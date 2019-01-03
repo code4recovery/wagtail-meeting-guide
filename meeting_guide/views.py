@@ -94,7 +94,7 @@ class MeetingsAPIView(MeetingsBaseView):
                 "time_formatted": f"{meeting.start_time:%H:%M %P}",
                 "distance": "",
                 "day": meeting.day_of_week,
-                "types": list(meeting.types.values_list('code', flat=True)),
+                "types": list(meeting.types.values_list('meeting_guide_code', flat=True)),
                 "location": meeting.meeting_location.title,
                 "location_notes": "",
                 "location_url": "https://www.disney.com/",

@@ -131,10 +131,18 @@ class MeetingType(models.Model):
 
     class Meta:
         ordering = ["type_name"]
-        indexes = [models.Index(fields=["type_name"]), models.Index(fields=["code"])]
+        indexes = [
+            models.Index(fields=["type_name"]),
+            models.Index(fields=["intergroup_code"]),
+            models.Index(fields=["meeting_guide_code"]),
+        ]
 
     def __str__(self):
-        return "{0} ({1})".format(self.type_name, self.code)
+        return "{0} ({1} / {2})".format(
+            self.type_name,
+            self.intergroup_code,
+            self.meeting_guide_code,
+        )
 
 
 class Meeting(Page):
@@ -167,7 +175,10 @@ class Meeting(Page):
     meeting_details = models.TextField(
         help_text="Additional details for the meeting.", null=True, blank=True
     )
-    types = ParentalManyToManyField(MeetingType, related_name="meetings")
+    types = ParentalManyToManyField(
+        MeetingType,
+        related_name="meetings",
+    )
 
     @property
     def day_sort_order(self):
