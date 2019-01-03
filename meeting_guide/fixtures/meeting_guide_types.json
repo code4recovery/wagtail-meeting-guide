@@ -1,0 +1,488 @@
+[
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 1,
+    "fields": {
+        "type_name": "11th Step Meditation",
+        "intergroup_code": "",
+        "meeting_guide_code": "11"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 2,
+    "fields": {
+        "type_name": "12 Steps & 12 Traditions,",
+        "intergroup_code": "",
+        "meeting_guide_code": "12x12"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 3,
+    "fields": {
+        "type_name": "As Bill Sees It",
+        "intergroup_code": "",
+        "meeting_guide_code": "ASBI"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 4,
+    "fields": {
+        "type_name": "Babysitting Available",
+        "intergroup_code": "",
+        "meeting_guide_code": "BA"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 5,
+    "fields": {
+        "type_name": "Big Book",
+        "intergroup_code": "",
+        "meeting_guide_code": "B"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 6,
+    "fields": {
+        "type_name": "Birthday",
+        "intergroup_code": "",
+        "meeting_guide_code": "H"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 7,
+    "fields": {
+        "type_name": "Breakfast",
+        "intergroup_code": "",
+        "meeting_guide_code": "BRK"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 8,
+    "fields": {
+        "type_name": "Candlelight",
+        "intergroup_code": "",
+        "meeting_guide_code": "AN"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 9,
+    "fields": {
+        "type_name": "Child-Friendly",
+        "intergroup_code": "",
+        "meeting_guide_code": "CF"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 10,
+    "fields": {
+        "type_name": "Closed",
+        "intergroup_code": "",
+        "meeting_guide_code": "C"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 11,
+    "fields": {
+        "type_name": "Concurrent with Al-Anon",
+        "intergroup_code": "",
+        "meeting_guide_code": "AL-AN"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 12,
+    "fields": {
+        "type_name": "Concurrent with Alateen",
+        "intergroup_code": "",
+        "meeting_guide_code": "AL"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 13,
+    "fields": {
+        "type_name": "Cross Talk Permitted",
+        "intergroup_code": "",
+        "meeting_guide_code": "XT"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 14,
+    "fields": {
+        "type_name": "Daily Reflections",
+        "intergroup_code": "",
+        "meeting_guide_code": "DR"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 15,
+    "fields": {
+        "type_name": "Digital Basket",
+        "intergroup_code": "",
+        "meeting_guide_code": "DB"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 16,
+    "fields": {
+        "type_name": "Discussion",
+        "intergroup_code": "",
+        "meeting_guide_code": "D"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 17,
+    "fields": {
+        "type_name": "Dual Diagnosis",
+        "intergroup_code": "",
+        "meeting_guide_code": "DD"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 18,
+    "fields": {
+        "type_name": "English",
+        "intergroup_code": "",
+        "meeting_guide_code": "EN"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 19,
+    "fields": {
+        "type_name": "Fragrance Free",
+        "intergroup_code": "",
+        "meeting_guide_code": "FF"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 20,
+    "fields": {
+        "type_name": "French",
+        "intergroup_code": "",
+        "meeting_guide_code": "FR"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 21,
+    "fields": {
+        "type_name": "Gay",
+        "intergroup_code": "",
+        "meeting_guide_code": "G"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 22,
+    "fields": {
+        "type_name": "Grapevine",
+        "intergroup_code": "",
+        "meeting_guide_code": "GR"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 23,
+    "fields": {
+        "type_name": "Indigenous",
+        "intergroup_code": "",
+        "meeting_guide_code": "NDG"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 24,
+    "fields": {
+        "type_name": "Italian",
+        "intergroup_code": "",
+        "meeting_guide_code": "ITA"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 25,
+    "fields": {
+        "type_name": "Japanese",
+        "intergroup_code": "",
+        "meeting_guide_code": "JA"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 26,
+    "fields": {
+        "type_name": "Korean",
+        "intergroup_code": "",
+        "meeting_guide_code": "KOR"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 27,
+    "fields": {
+        "type_name": "Lesbian",
+        "intergroup_code": "",
+        "meeting_guide_code": "L"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 28,
+    "fields": {
+        "type_name": "Literature",
+        "intergroup_code": "",
+        "meeting_guide_code": "LIT"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 29,
+    "fields": {
+        "type_name": "Living Sober",
+        "intergroup_code": "",
+        "meeting_guide_code": "LS"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 30,
+    "fields": {
+        "type_name": "LGBTQ",
+        "intergroup_code": "",
+        "meeting_guide_code": "LGBTQ"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 31,
+    "fields": {
+        "type_name": "Meditation",
+        "intergroup_code": "",
+        "meeting_guide_code": "MED"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 32,
+    "fields": {
+        "type_name": "Men",
+        "intergroup_code": "",
+        "meeting_guide_code": "M"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 33,
+    "fields": {
+        "type_name": "Native American",
+        "intergroup_code": "",
+        "meeting_guide_code": "N"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 34,
+    "fields": {
+        "type_name": "Newcomer",
+        "intergroup_code": "",
+        "meeting_guide_code": "BE"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 35,
+    "fields": {
+        "type_name": "Non-Smoking",
+        "intergroup_code": "",
+        "meeting_guide_code": "NS"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 36,
+    "fields": {
+        "type_name": "Open",
+        "intergroup_code": "",
+        "meeting_guide_code": "O"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 37,
+    "fields": {
+        "type_name": "People of Color",
+        "intergroup_code": "",
+        "meeting_guide_code": "POC"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 38,
+    "fields": {
+        "type_name": "Polish",
+        "intergroup_code": "",
+        "meeting_guide_code": "POL"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 39,
+    "fields": {
+        "type_name": "Portuguese",
+        "intergroup_code": "",
+        "meeting_guide_code": "POR"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 40,
+    "fields": {
+        "type_name": "Professionals",
+        "intergroup_code": "",
+        "meeting_guide_code": "P"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 41,
+    "fields": {
+        "type_name": "Punjabi",
+        "intergroup_code": "",
+        "meeting_guide_code": "PUN"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 42,
+    "fields": {
+        "type_name": "Russian",
+        "intergroup_code": "",
+        "meeting_guide_code": "RUS"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 43,
+    "fields": {
+        "type_name": "Secular",
+        "intergroup_code": "",
+        "meeting_guide_code": "A"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 44,
+    "fields": {
+        "type_name": "Sign Language",
+        "intergroup_code": "",
+        "meeting_guide_code": "ASL"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 45,
+    "fields": {
+        "type_name": "Smoking Permitted",
+        "intergroup_code": "",
+        "meeting_guide_code": "SM"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 46,
+    "fields": {
+        "type_name": "Spanish",
+        "intergroup_code": "",
+        "meeting_guide_code": "S"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 47,
+    "fields": {
+        "type_name": "Speaker",
+        "intergroup_code": "",
+        "meeting_guide_code": "SP"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 48,
+    "fields": {
+        "type_name": "Step Meeting",
+        "intergroup_code": "",
+        "meeting_guide_code": "ST"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 49,
+    "fields": {
+        "type_name": "Tradition Study",
+        "intergroup_code": "",
+        "meeting_guide_code": "TR"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 50,
+    "fields": {
+        "type_name": "Transgender",
+        "intergroup_code": "",
+        "meeting_guide_code": "T"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 51,
+    "fields": {
+        "type_name": "Wheelchair Access",
+        "intergroup_code": "",
+        "meeting_guide_code": "X"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 52,
+    "fields": {
+        "type_name": "Wheelchair-Accessible Bathroom",
+        "intergroup_code": "",
+        "meeting_guide_code": "XB"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 53,
+    "fields": {
+        "type_name": "Women",
+        "intergroup_code": "",
+        "meeting_guide_code": "W"
+    }
+},
+{
+    "model": "meeting_guide.meetingtype",
+    "pk": 54,
+    "fields": {
+        "type_name": "Young People",
+        "intergroup_code": "",
+        "meeting_guide_code": "Y"
+    }
+}
+]
