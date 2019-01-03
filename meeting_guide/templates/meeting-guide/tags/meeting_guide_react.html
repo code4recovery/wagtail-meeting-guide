@@ -1,0 +1,23 @@
+<meetings src="/api/"></meetings>
+<script>
+    window.config = {
+        defaults: {
+            title: true,
+        },
+        keys: {
+            mapbox: '{{ mapbox_key }}',
+        },
+        strings: {
+            en: {
+                // meetings: 'AA Meetings',
+            },
+        },
+    };
+</script>
+{% comment %}
+Let's keep a local copy of the JavaScript here so we can control
+when upgrades occur and test.
+
+Source is at https://react.meetingguide.org/app.js
+{% endcomment %}
+<script src="{% static 'meeting_guide/js/meeting-guide.js' %}" async></script>
