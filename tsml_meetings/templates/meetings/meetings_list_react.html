@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load cache static %}
+
+{% block extra_head_bottom %}
+<link rel="stylesheet" href="https://react.meetingguide.org/style.css">
+{% endblock extra_head_bottom %}
+
+{% block inner_content %}
+<div class="jumbotron">
+    <h1>Meeting Directory</h1>
+    <p class="lead">Welcome to SEPIA's list of meetings in the Philadelphia five-county area. Click a column header to sort by that header, or use the search box to search any field.</p>
+</div>
+<meetings src="/api/"></meetings>
+<script>
+    window.config = {
+        defaults: {
+            title: true,
+        },
+        keys: {
+            mapbox: 'pk.eyJ1IjoiZmxpcHBlcnBhIiwiYSI6ImNqcHZhbjZwdDBldDA0MXBveTlrZG9uaGIifQ.WpB5eRUcUnQh0-P_CX3nKg',
+        },
+        strings: {
+            en: {
+                // meetings: 'AA Meetings',
+            },
+        },
+    };
+</script>
+{% comment %}
+Let's keep a local copy of the JavaScript here so we can control
+when upgrades occur and test.
+
+Source is at https://react.meetingguide.org/app.js
+{% endcomment %}
+<script src="{% static 'js/meeting-guide.js' %}" async></script>
+{% endblock inner_content %}
+{% comment %}
+mapbox: 'pk.eyJ1IjoibWVldGluZ2d1aWRlIiwiYSI6ImNqb25haDN6dTA4YWIzcXBnbWc5dGE0bGoifQ.x6_nw57TOsfe7PY1azjTCA',
+{% endcomment %}
