@@ -19,10 +19,7 @@ class CacheMixin(object):
         return cache_page(self.get_cache_timeout())(super(CacheMixin, self).dispatch)(*args, **kwargs)
 
 
-class MeetingsView(CacheMixin, TemplateView):
-    """
-    List all meetings in a jQuery datatable.
-    """
+class MeetingsBaseView(CacheMixin, TemplateView):
     DAY_OF_WEEK = (
         (0, 'Sunday'),
         (1, 'Monday'),
@@ -32,8 +29,6 @@ class MeetingsView(CacheMixin, TemplateView):
         (5, 'Friday'),
         (6, 'Saturday'),
     )
-
-    template_name = 'meetings/meetings_list.html'
 
     def get_meetings(self):
         return Meeting.objects.filter(
@@ -49,17 +44,30 @@ class MeetingsView(CacheMixin, TemplateView):
             'start_time',
         )
 
+
+class MeetingsReactJSView(CacheMixin, TemplateView):
+    """
+    List all meetings in the Meeting Guide ReactJS plugin.
+    """
+    template_name = 'meeting_guide/meetings_list_react.html'
+
+
+class MeetingsDataTablesView(MeetingsBaseView):
+    """
+    List all meetings in a jQuery datatable.
+    """
+    template_name = 'meeting_guide/meetings_list.html'
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
         context['meetings'] = self.get_meetings()
 
         return context
 
 
-class MeetingsAPIView(MeetingsView):
+class MeetingsAPIView(MeetingsBaseView):
     """
-    List all meetings in a jQuery datatable.
+    Return a JSON response of the meeting list.
     """
 
     def get(self, request, *args, **kwargs):
