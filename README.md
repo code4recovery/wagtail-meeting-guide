@@ -6,6 +6,10 @@ Meeting Guide compatible Python package for [the Wagtail CMS](https://wagtail.io
 
 Wagtail Meeting Guide requires both Wagtail 2.0 and Django 2.0.
 
+## Pre-Requisites
+
+Using this package requires both the Wagtail CMS and Django. Wagtail and Django are fantastic for running your website, but require a developer. If you are new to Django and Wagtail, I would recommend going through both the [Django](https://docs.djangoproject.com/en/dev/intro/tutorial01/) and [Wagtail](http://docs.wagtail.io/en/v2.4/getting_started/tutorial.html) tutorials.
+
 ## Installation to Your Django Project
 
 * Install with the command `pip install wagtail-meeting-guide`
