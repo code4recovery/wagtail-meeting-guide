@@ -125,9 +125,9 @@ class MeetingType(models.Model):
     Model for storing different types of meetings.
     """
 
-    type_name = models.CharField(max_length=50)
-    intergroup_code = models.CharField(max_length=5)
-    meeting_guide_code = models.CharField(max_length=5)
+    type_name = models.CharField(max_length=191)
+    intergroup_code = models.CharField(max_length=5, null=True, blank=True)
+    meeting_guide_code = models.CharField(max_length=5, null=True, blank=True)
 
     class Meta:
         ordering = ["type_name"]

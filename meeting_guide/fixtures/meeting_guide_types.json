@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
         "type_name": "11th Step Meditation",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "11"
     }
 },
@@ -13,7 +13,7 @@
     "pk": 2,
     "fields": {
         "type_name": "12 Steps & 12 Traditions,",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "12x12"
     }
 },
@@ -22,7 +22,7 @@
     "pk": 3,
     "fields": {
         "type_name": "As Bill Sees It",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "ASBI"
     }
 },
@@ -31,7 +31,7 @@
     "pk": 4,
     "fields": {
         "type_name": "Babysitting Available",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "BA"
     }
 },
@@ -40,7 +40,7 @@
     "pk": 5,
     "fields": {
         "type_name": "Big Book",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "B"
     }
 },
@@ -49,7 +49,7 @@
     "pk": 6,
     "fields": {
         "type_name": "Birthday",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "H"
     }
 },
@@ -58,7 +58,7 @@
     "pk": 7,
     "fields": {
         "type_name": "Breakfast",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "BRK"
     }
 },
@@ -67,7 +67,7 @@
     "pk": 8,
     "fields": {
         "type_name": "Candlelight",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "AN"
     }
 },
@@ -76,7 +76,7 @@
     "pk": 9,
     "fields": {
         "type_name": "Child-Friendly",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "CF"
     }
 },
@@ -85,7 +85,7 @@
     "pk": 10,
     "fields": {
         "type_name": "Closed",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "C"
     }
 },
@@ -94,7 +94,7 @@
     "pk": 11,
     "fields": {
         "type_name": "Concurrent with Al-Anon",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "AL-AN"
     }
 },
@@ -103,7 +103,7 @@
     "pk": 12,
     "fields": {
         "type_name": "Concurrent with Alateen",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "AL"
     }
 },
@@ -112,7 +112,7 @@
     "pk": 13,
     "fields": {
         "type_name": "Cross Talk Permitted",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "XT"
     }
 },
@@ -121,7 +121,7 @@
     "pk": 14,
     "fields": {
         "type_name": "Daily Reflections",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "DR"
     }
 },
@@ -130,7 +130,7 @@
     "pk": 15,
     "fields": {
         "type_name": "Digital Basket",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "DB"
     }
 },
@@ -139,7 +139,7 @@
     "pk": 16,
     "fields": {
         "type_name": "Discussion",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "D"
     }
 },
@@ -148,7 +148,7 @@
     "pk": 17,
     "fields": {
         "type_name": "Dual Diagnosis",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "DD"
     }
 },
@@ -157,7 +157,7 @@
     "pk": 18,
     "fields": {
         "type_name": "English",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "EN"
     }
 },
@@ -166,7 +166,7 @@
     "pk": 19,
     "fields": {
         "type_name": "Fragrance Free",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "FF"
     }
 },
@@ -175,7 +175,7 @@
     "pk": 20,
     "fields": {
         "type_name": "French",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "FR"
     }
 },
@@ -184,7 +184,7 @@
     "pk": 21,
     "fields": {
         "type_name": "Gay",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "G"
     }
 },
@@ -193,7 +193,7 @@
     "pk": 22,
     "fields": {
         "type_name": "Grapevine",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "GR"
     }
 },
@@ -202,7 +202,7 @@
     "pk": 23,
     "fields": {
         "type_name": "Indigenous",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "NDG"
     }
 },
@@ -211,7 +211,7 @@
     "pk": 24,
     "fields": {
         "type_name": "Italian",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "ITA"
     }
 },
@@ -220,7 +220,7 @@
     "pk": 25,
     "fields": {
         "type_name": "Japanese",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "JA"
     }
 },
@@ -229,7 +229,7 @@
     "pk": 26,
     "fields": {
         "type_name": "Korean",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "KOR"
     }
 },
@@ -238,7 +238,7 @@
     "pk": 27,
     "fields": {
         "type_name": "Lesbian",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "L"
     }
 },
@@ -247,7 +247,7 @@
     "pk": 28,
     "fields": {
         "type_name": "Literature",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "LIT"
     }
 },
@@ -256,7 +256,7 @@
     "pk": 29,
     "fields": {
         "type_name": "Living Sober",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "LS"
     }
 },
@@ -265,7 +265,7 @@
     "pk": 30,
     "fields": {
         "type_name": "LGBTQ",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "LGBTQ"
     }
 },
@@ -274,7 +274,7 @@
     "pk": 31,
     "fields": {
         "type_name": "Meditation",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "MED"
     }
 },
@@ -283,7 +283,7 @@
     "pk": 32,
     "fields": {
         "type_name": "Men",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "M"
     }
 },
@@ -292,7 +292,7 @@
     "pk": 33,
     "fields": {
         "type_name": "Native American",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "N"
     }
 },
@@ -301,7 +301,7 @@
     "pk": 34,
     "fields": {
         "type_name": "Newcomer",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "BE"
     }
 },
@@ -310,7 +310,7 @@
     "pk": 35,
     "fields": {
         "type_name": "Non-Smoking",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "NS"
     }
 },
@@ -319,7 +319,7 @@
     "pk": 36,
     "fields": {
         "type_name": "Open",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "O"
     }
 },
@@ -328,7 +328,7 @@
     "pk": 37,
     "fields": {
         "type_name": "People of Color",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "POC"
     }
 },
@@ -337,7 +337,7 @@
     "pk": 38,
     "fields": {
         "type_name": "Polish",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "POL"
     }
 },
@@ -346,7 +346,7 @@
     "pk": 39,
     "fields": {
         "type_name": "Portuguese",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "POR"
     }
 },
@@ -355,7 +355,7 @@
     "pk": 40,
     "fields": {
         "type_name": "Professionals",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "P"
     }
 },
@@ -364,7 +364,7 @@
     "pk": 41,
     "fields": {
         "type_name": "Punjabi",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "PUN"
     }
 },
@@ -373,7 +373,7 @@
     "pk": 42,
     "fields": {
         "type_name": "Russian",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "RUS"
     }
 },
@@ -382,7 +382,7 @@
     "pk": 43,
     "fields": {
         "type_name": "Secular",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "A"
     }
 },
@@ -391,7 +391,7 @@
     "pk": 44,
     "fields": {
         "type_name": "Sign Language",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "ASL"
     }
 },
@@ -400,7 +400,7 @@
     "pk": 45,
     "fields": {
         "type_name": "Smoking Permitted",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "SM"
     }
 },
@@ -409,7 +409,7 @@
     "pk": 46,
     "fields": {
         "type_name": "Spanish",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "S"
     }
 },
@@ -418,7 +418,7 @@
     "pk": 47,
     "fields": {
         "type_name": "Speaker",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "SP"
     }
 },
@@ -427,7 +427,7 @@
     "pk": 48,
     "fields": {
         "type_name": "Step Meeting",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "ST"
     }
 },
@@ -436,7 +436,7 @@
     "pk": 49,
     "fields": {
         "type_name": "Tradition Study",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "TR"
     }
 },
@@ -445,7 +445,7 @@
     "pk": 50,
     "fields": {
         "type_name": "Transgender",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "T"
     }
 },
@@ -454,7 +454,7 @@
     "pk": 51,
     "fields": {
         "type_name": "Wheelchair Access",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "X"
     }
 },
@@ -463,7 +463,7 @@
     "pk": 52,
     "fields": {
         "type_name": "Wheelchair-Accessible Bathroom",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "XB"
     }
 },
@@ -472,7 +472,7 @@
     "pk": 53,
     "fields": {
         "type_name": "Women",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "W"
     }
 },
@@ -481,7 +481,7 @@
     "pk": 54,
     "fields": {
         "type_name": "Young People",
-        "intergroup_code": "",
+        "intergroup_code": null,
         "meeting_guide_code": "Y"
     }
 }

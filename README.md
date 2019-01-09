@@ -8,7 +8,10 @@ Wagtail Meeting Guide requires both Wagtail 2.0 and Django 2.0.
 
 ## Getting Started
 
-Instructions to be provided once development is less fluid.
+* Install with the command `pip install wagtail-meeting-guide`
+* Add `meeting_guide` to your `INSTALLED_APPS`.
+* Run migrations: `python manage.py migrate meeting_guide`
+* Load Meeting Guide's meeting types: `python manage.py loaddata meeting_guide_types.json`
 
 ## Release Notes
 
