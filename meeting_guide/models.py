@@ -178,6 +178,7 @@ class Meeting(Page):
     types = ParentalManyToManyField(
         MeetingType,
         related_name="meetings",
+        limit_choices_to={'intergroup_code__isnull': False},
     )
 
     @property
