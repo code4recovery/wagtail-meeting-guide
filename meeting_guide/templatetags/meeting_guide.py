@@ -4,10 +4,10 @@ register = template.Library()
 
 
 @register.inclusion_tag(
-    'meeting_guide/tags/meeting_guide_react.html',
+    'meeting_guide/tags/meeting_guide.html',
     takes_context=True
 )
-def meetings_list(context):
+def meeting_list(context):
     """
     Display the ReactJS drive Meeting Guide list.
     """
