@@ -25,6 +25,16 @@ Using this package requires both the Wagtail CMS and Django. Wagtail and Django 
 
 ## Including the Meeting Guide in Your Django Template
 
+The API end point for the locations and meetings you create in Wagtail has to be added to your site's root `urls.py`. Add a line like this:
+
+```python
+urlpatterns = [
+    ...
+    path("meeting-guide/", include("meeting_guide.urls")),
+    ...
+]
+```
+
 You can include the Meeting Guide within any Django Template. Here is an example:
 
 ```django+html
