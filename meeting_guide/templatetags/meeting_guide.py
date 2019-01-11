@@ -7,7 +7,7 @@ register = template.Library()
     'meeting_guide/tags/meeting_guide.html',
     takes_context=True
 )
-def meeting_list(context):
+def meeting_guide(context):
     """
     Display the ReactJS drive Meeting Guide list.
     """
