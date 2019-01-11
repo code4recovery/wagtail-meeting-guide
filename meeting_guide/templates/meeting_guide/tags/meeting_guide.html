@@ -1,5 +1,5 @@
 {% load static %}
-<meetings src="/api/"></meetings>
+<meetings src="{% url "meeting-guide:api" %}"></meetings>
 <script>
     window.config = {
         defaults: {
