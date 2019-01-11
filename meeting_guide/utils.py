@@ -17,7 +17,7 @@ def get_geocode_address(full_address):
     """
 
     cache_filename = (
-        "cache_meeting_locations/" +
+        "meeting_guide_cache/" +
         re.sub("[^0-9a-zA-Z]+", "", full_address.lower().lstrip(" ")) +
         ".json"
     )
@@ -36,8 +36,8 @@ def get_geocode_address(full_address):
             os.remove(cache_filename)
     else:
         payload = {
-            "bounds": settings.TSML_IMPORT_GOOGLE_API_BOUNDS,
-            "key": settings.TSML_IMPORT_GOOGLE_API_KEY,
+            "bounds": settings.GOOGLE_API_BOUNDS,
+            "key": settings.GOOGLE_API_KEY,
             "address": full_address.lstrip(" ").replace("'", ""),
         }
         # payload = {'key': API_KEY, 'address': full_address.lstrip(' ')}
