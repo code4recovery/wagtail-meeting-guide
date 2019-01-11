@@ -23,6 +23,20 @@ Using this package requires both the Wagtail CMS and Django. Wagtail and Django 
 * Enter your Intergroup's code for each of the Meeting Guide Code Types
 * Go to `Regions` and enter your regions; regions can have a parent, so you can nest them. For example, you could have `Philadelphia County` as a region with no parent, and `Center City` as a sub-region with `Philadelphia County` as the parent.
 
+## Including the Meeting Guide in Your Django Template
+
+You can include the Meeting Guide within any Django Template. Here is an example:
+
+```django+html
+{% extends "base.html" %}
+
+{% load meeting_guide %}
+
+{% block content %}
+    {% meeting_guide %}
+{% endblock content %}
+```
+
 ## Release Notes
 
 ### 0.1
