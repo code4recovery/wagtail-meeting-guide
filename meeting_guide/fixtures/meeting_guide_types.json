@@ -12,7 +12,7 @@
     "model": "meeting_guide.meetingtype",
     "pk": 2,
     "fields": {
-        "type_name": "12 Steps & 12 Traditions,",
+        "type_name": "12 Steps & 12 Traditions",
         "intergroup_code": null,
         "meeting_guide_code": "12x12"
     }
