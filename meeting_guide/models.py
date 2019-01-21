@@ -97,7 +97,7 @@ class Location(Page):
 
     @cached_property
     def point(self):
-        return geosgeometry_str_to_struct(self.location)
+        return geosgeometry_str_to_struct(self.lat_lng)
 
     @property
     def lat(self):
