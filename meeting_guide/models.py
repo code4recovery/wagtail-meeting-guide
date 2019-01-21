@@ -82,8 +82,18 @@ class Location(Page):
     """
 
     region = models.ForeignKey(Region, null=True, on_delete=models.SET_NULL)
-    formatted_address = models.CharField(max_length=255, blank=True, null=True)
-    lat_lng = models.CharField(max_length=255, blank=True, null=True)
+    formatted_address = models.CharField(
+        "Full Address",
+        max_length=255,
+        blank=True,
+        null=True,
+    )
+    lat_lng = models.CharField(
+        "Latitude/Longitude",
+        max_length=255,
+        blank=True,
+        null=True,
+    )
 
     @cached_property
     def point(self):
