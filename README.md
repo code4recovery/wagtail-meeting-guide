@@ -10,10 +10,14 @@ Wagtail Meeting Guide requires both Wagtail 2.0 and Django 2.0.
 
 Using this package requires both the Wagtail CMS and Django. Wagtail and Django are fantastic for running your website, but require a developer. If you are new, I would recommend going through both the [Django](https://docs.djangoproject.com/en/dev/intro/tutorial01/) and [Wagtail](http://docs.wagtail.io/en/v2.4/getting_started/tutorial.html) tutorials before trying to use this package.
 
+A Google Geocode API key is also required.
+
 ## Installation to Your Django Project
 
 * Install with the command `pip install wagtail-meeting-guide`
-* Add `meeting_guide` to your `INSTALLED_APPS`.
+* Add `meeting_guide` and `wagtailgmaps` to your `INSTALLED_APPS`.
+* Add the following settings, including your Google Geocode API key:
+
 * Run migrations: `python manage.py migrate meeting_guide`
 * Load Meeting Guide's meeting types: `python manage.py loaddata meeting_guide_types.json`
 

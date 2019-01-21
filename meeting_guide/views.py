@@ -98,7 +98,7 @@ class MeetingsAPIView(MeetingsBaseView):
                 "location": meeting.meeting_location.title,
                 "location_notes": "",
                 "location_url": "https://www.disney.com/",
-                "formatted_address": f"{meeting.meeting_location.address1}, {meeting.meeting_location.city}, {meeting.meeting_location.state} {meeting.meeting_location.postal_code}, US",
+                "formatted_address": meeting.formatted_address,
                 "latitude": str(meeting.meeting_location.latitude),
                 "longitude": str(meeting.meeting_location.longitude),
                 "region_id": meeting.meeting_location.region.id,

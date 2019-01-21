@@ -15,7 +15,10 @@ setup(
     include_package_data=True,
     packages=find_packages(),
     zip_safe=False,
-    install_requires=["wagtail>=2.0"],
+    install_requires=[
+        "wagtail>=2.0",
+        "wagtailgeowidget==4.0.5",
+    ],
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Environment :: Web Environment",

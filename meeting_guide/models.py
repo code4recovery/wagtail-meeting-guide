@@ -2,11 +2,16 @@ import datetime
 
 from django.db import models
 from django.forms import CheckboxSelectMultiple
+from django.utils.functional import cached_property
 
 from modelcluster.fields import ParentalManyToManyField
 from wagtail.core.models import Page
-from wagtail.admin.edit_handlers import FieldPanel, FieldRowPanel, HelpPanel
+from wagtail.admin.edit_handlers import (
+    FieldPanel, MultiFieldPanel, FieldRowPanel, HelpPanel
+)
 from wagtail.search.index import SearchField
+from wagtailgeowidget.edit_handlers import GeoPanel
+from wagtailgeowidget.helpers import geosgeometry_str_to_struct
 
 
 class Region(models.Model):
@@ -73,47 +78,47 @@ class GroupContribution(models.Model):
 
 class Location(Page):
     """
-    Basic location details.
+    Geocoded location details.
     """
 
     region = models.ForeignKey(Region, null=True, on_delete=models.SET_NULL)
-    address1 = models.CharField(max_length=255)
-    address2 = models.CharField(max_length=255, null=True, blank=True)
-    city = models.CharField(max_length=255)
-    state = models.CharField(max_length=2)
-    postal_code = models.CharField(max_length=10)
-    latitude = models.DecimalField(
-        max_digits=9, decimal_places=7, default=0
-    )  # From -90 to +90
-    longitude = models.DecimalField(
-        max_digits=10, decimal_places=7, default=0
-    )  # From -180 to +180
+    formatted_address = models.CharField(max_length=255, blank=True, null=True)
+    location = models.CharField(max_length=255, blank=True, null=True)
+
+    @cached_property
+    def point(self):
+        return geosgeometry_str_to_struct(self.location)
+
+    @property
+    def lat(self):
+        return self.point['y']
+
+    @property
+    def lng(self):
+        return self.point['x']
 
     content_panels = Page.content_panels + [
         FieldPanel("region"),
-        FieldPanel("address1"),
-        FieldPanel("address2"),
-        FieldPanel("city"),
-        FieldPanel("state"),
-        FieldPanel("postal_code"),
+        MultiFieldPanel(
+            [
+                FieldPanel('address'),
+                GeoPanel('location', address_field='address'),
+            ],
+            'Geocoded Address',
+        ),
     ]
 
     search_fields = Page.search_fields + [
         SearchField("region", partial_match=True),
-        SearchField("address1", partial_match=True),
-        SearchField("city", partial_match=True),
-        SearchField("postal_code", partial_match=True),
+        SearchField("formatted_address", partial_match=True),
     ]
 
     subpage_types = ["Meeting"]
 
     class Meta:
-        ordering = ["state", "city", "address1"]
         indexes = [
             models.Index(fields=["region"]),
-            models.Index(fields=["address1"]),
-            models.Index(fields=["city"]),
-            models.Index(fields=["postal_code"]),
+            models.Index(fields=["formatted_address"]),
         ]
 
     def __str__(self):
