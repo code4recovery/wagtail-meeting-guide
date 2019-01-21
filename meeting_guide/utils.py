@@ -36,8 +36,8 @@ def get_geocode_address(full_address):
             os.remove(cache_filename)
     else:
         payload = {
-            "bounds": settings.GOOGLE_API_BOUNDS,
-            "key": settings.GOOGLE_API_KEY,
+            "bounds": settings.GOOGLE_MAPS_API_BOUNDS,
+            "key": settings.GOOGLE_MAPS_V3_APIKEY,
             "address": full_address.lstrip(" ").replace("'", ""),
         }
         # payload = {'key': API_KEY, 'address': full_address.lstrip(' ')}

@@ -83,7 +83,7 @@ class Location(Page):
 
     region = models.ForeignKey(Region, null=True, on_delete=models.SET_NULL)
     formatted_address = models.CharField(max_length=255, blank=True, null=True)
-    location = models.CharField(max_length=255, blank=True, null=True)
+    lat_lng = models.CharField(max_length=255, blank=True, null=True)
 
     @cached_property
     def point(self):
@@ -101,8 +101,8 @@ class Location(Page):
         FieldPanel("region"),
         MultiFieldPanel(
             [
-                FieldPanel('address'),
-                GeoPanel('location', address_field='address'),
+                FieldPanel('formatted_address'),
+                GeoPanel('lat_lng', address_field='formatted_address'),
             ],
             'Geocoded Address',
         ),
