@@ -88,7 +88,7 @@ class MeetingsAPIView(MeetingsBaseView):
                 "notes": meeting.meeting_details,
                 "updated": f"{meeting.last_published_at if meeting.last_published_at else datetime.datetime.now():%Y-%m-%d %H:%M:%S}",
                 "location_id": meeting.meeting_location.id,
-                "url": "https://www.disney.com/",
+                "url": meeting.url_path,  # Fix me: needs full URL, not relative!
                 "time": f"{meeting.start_time:%H:%M}",
                 "end_time": f"{meeting.end_time:%H:%M}",
                 "time_formatted": f"{meeting.start_time:%H:%M %P}",
