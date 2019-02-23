@@ -217,7 +217,6 @@ class Meeting(Page):
                 FieldPanel("end_time"),
             ]
         ),
-        HelpPanel(content=""),
         FieldPanel("types", widget=CheckboxSelectMultiple),
         FieldPanel("meeting_details"),
     ]
