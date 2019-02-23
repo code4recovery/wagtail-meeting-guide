@@ -8,42 +8,6 @@ from .models import (
 )
 
 
-class GroupAdmin(ModelAdmin):
-    model = Group
-    menu_label = 'Groups'
-    menu_icon = 'fa-folder-open'
-    add_to_settings_menu = False
-    list_display = ('name', 'gso_number', 'area', 'district')
-    list_filter = ('area', 'district')
-    search_fields = ('name',)
-
-
-class GroupContributionAdmin(ModelAdmin):
-    model = GroupContribution
-    menu_label = 'Contributions'
-    menu_icon = 'fa-folder-open'
-    add_to_settings_menu = False
-    list_display = ('group', 'date', 'amount')
-    list_filter = ('group',)
-    search_fields = ('group',)
-
-
-class GroupAdminGroup(ModelAdminGroup):
-    menu_label = 'Groups'
-    menu_icon = 'fa-th'  # change as required
-    menu_order = 400  # will put in 3rd place (000 being 1st, 100 2nd)
-    items = (GroupAdmin, GroupContributionAdmin)
-
-
-class MeetingTypeAdmin(ModelAdmin):
-    model = MeetingType
-    menu_label = 'Meeting Types'
-    menu_icon = 'fa-folder-open'
-    add_to_settings_menu = True
-    list_display = ('type_name', 'intergroup_code', 'meeting_guide_code')
-    ordering = ('type_name',)
-
-
 class RegionListFilter(SimpleListFilter):
     """
     This filter will always return a subset of the instances in a Model, either filtering by the
@@ -80,6 +44,15 @@ class RegionListFilter(SimpleListFilter):
         return queryset
 
 
+class MeetingTypeAdmin(ModelAdmin):
+    model = MeetingType
+    menu_label = 'Meeting Types'
+    menu_icon = 'fa-folder-open'
+    add_to_settings_menu = True
+    list_display = ('type_name', 'intergroup_code', 'meeting_guide_code')
+    ordering = ('type_name',)
+
+
 class RegionAdmin(ModelAdmin):
     model = Region
     menu_icon = 'doc-full-inverse'
@@ -92,6 +65,31 @@ class RegionAdmin(ModelAdmin):
         return Region.objects.filter(parent=None)
 
 
-modeladmin_register(GroupAdminGroup)
-modeladmin_register(MeetingTypeAdmin)
-modeladmin_register(RegionAdmin)
+class GroupAdmin(ModelAdmin):
+    model = Group
+    menu_label = 'Groups'
+    menu_icon = 'fa-folder-open'
+    add_to_settings_menu = False
+    list_display = ('name', 'gso_number', 'area', 'district')
+    list_filter = ('area', 'district')
+    search_fields = ('name',)
+
+
+class GroupContributionAdmin(ModelAdmin):
+    model = GroupContribution
+    menu_label = 'Contributions'
+    menu_icon = 'fa-folder-open'
+    add_to_settings_menu = False
+    list_display = ('group', 'date', 'amount')
+    list_filter = ('group',)
+    search_fields = ('group',)
+
+
+class MeetingGuideAdminGroup(ModelAdminGroup):
+    menu_label = 'Meeting Guide'
+    menu_icon = 'fa-th'
+    menu_order = 1000
+    items = (MeetingTypeAdmin, RegionAdmin, GroupAdmin, GroupContributionAdmin)
+
+
+modeladmin_register(MeetingGuideAdminGroup)

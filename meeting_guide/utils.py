@@ -16,11 +16,16 @@ def get_geocode_address(full_address):
     Returns `None` if Google doesn't return an address.
     """
 
+    address_components = {}
+    address_components["problem"] = "OK"
+
     cache_filename = (
         "meeting_guide_cache/" +
         re.sub("[^0-9a-zA-Z]+", "", full_address.lower().lstrip(" ")) +
         ".json"
     )
+
+    address_components["cache_status"] = "MISS"
 
     if os.path.isfile(cache_filename):
         # grab the json from the cache
@@ -31,10 +36,13 @@ def get_geocode_address(full_address):
         try:
             # JSON is valid
             address_data = json.loads(cached_json)
+            address_components["cache_status"] = "HIT"
         except json.JSONDecodeError:
             # Invalid JSON, delete the file, get on next run
             os.remove(cache_filename)
-    else:
+            address_components["cache_status"] = "INVALID"
+
+    if address_components["cache_status"] != "HIT":
         payload = {
             "bounds": settings.GOOGLE_MAPS_API_BOUNDS,
             "key": settings.GOOGLE_MAPS_V3_APIKEY,
@@ -56,9 +64,6 @@ def get_geocode_address(full_address):
     # We have the data in 'address_data', let's do something with
     # each address and the associated meeting information.
     # Test to see if LOCATION address exists. If so, return the id from MySQL
-    address_components = {}
-    address_components["problem"] = "OK"
-
     if address_data["status"] == "ZERO_RESULTS":
         address_components[
             "problem"
