@@ -76,8 +76,9 @@ class MeetingsAPIView(MeetingsBaseView):
     """
 
     def get(self, request, *args, **kwargs):
-        meetings = self.get_meetings()
+        url = f"""{request.META["wsgi.url_scheme"]}://{request.META["SERVER_NAME"]}"""
 
+        meetings = self.get_meetings()
         meetings_dict = []
 
         for meeting in meetings:
@@ -88,16 +89,16 @@ class MeetingsAPIView(MeetingsBaseView):
                 "notes": meeting.meeting_details,
                 "updated": f"{meeting.last_published_at if meeting.last_published_at else datetime.datetime.now():%Y-%m-%d %H:%M:%S}",
                 "location_id": meeting.meeting_location.id,
-                "url": meeting.url_path,  # Fix me: needs full URL, not relative!
+                "url": f"{url}{meeting.url_path}",
                 "time": f"{meeting.start_time:%H:%M}",
                 "end_time": f"{meeting.end_time:%H:%M}",
                 "time_formatted": f"{meeting.start_time:%H:%M %P}",
                 "distance": "",
-                "day": meeting.day_of_week,
+                "day": str(meeting.day_of_week),
                 "types": list(meeting.types.values_list('meeting_guide_code', flat=True)),
                 "location": meeting.meeting_location.title,
                 "location_notes": "",
-                "location_url": "https://www.disney.com/",
+                "location_url": f"{url}{meeting.meeting_location.url_path}",
                 "formatted_address": meeting.meeting_location.formatted_address,
                 "latitude": str(meeting.meeting_location.lat),
                 "longitude": str(meeting.meeting_location.lng),
