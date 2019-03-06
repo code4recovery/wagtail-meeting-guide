@@ -7,7 +7,7 @@ from django.utils.functional import cached_property
 from modelcluster.fields import ParentalManyToManyField
 from wagtail.core.models import Page
 from wagtail.admin.edit_handlers import (
-    FieldPanel, MultiFieldPanel, FieldRowPanel, HelpPanel
+    FieldPanel, MultiFieldPanel, FieldRowPanel
 )
 from wagtail.search.index import SearchField
 from wagtailgeowidget.edit_handlers import GeoPanel
