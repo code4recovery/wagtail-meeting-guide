@@ -1,6 +1,5 @@
 import datetime
 import json
-from operator import itemgetter
 
 from django.conf import settings
 from django.http import HttpResponse
@@ -104,31 +103,14 @@ class MeetingsPrintView(MeetingsBaseView):
                 meeting_dict[m.day_of_week][region][sub_region] = []
 
             meeting_dict[m.day_of_week][region][sub_region].append({
-                "id": m.id,
                 "name": m.title,
-                "slug": m.slug,
-                "notes": m.meeting_details,
-                "updated": f"{m.last_published_at if m.last_published_at else datetime.datetime.now():%Y-%m-%d %H:%M:%S}",
-                "location_id": m.meeting_location.id,
-                "time": f"{m.start_time:%H:%M}",
-                "end_time": f"{m.end_time:%H:%M}",
                 "time_formatted": f"{m.start_time:%I:%M%P}",
-                "distance": "",
-                "day": str(m.day_of_week),
+                "day": Meeting.get_day_of_week_value(m.day_of_week),
                 "day_of_week": m.day_of_week,
                 "types": list(m.types.values_list('meeting_guide_code', flat=True)),
                 "location": m.meeting_location.title,
-                "location_notes": "",
                 "formatted_address": m.meeting_location.formatted_address,
-                "latitude": str(m.meeting_location.lat),
-                "longitude": str(m.meeting_location.lng),
-                "region_id": m.meeting_location.region.parent.id,
-                "region": region,
-                "sub_region_id": m.meeting_location.region.id,
-                "sub_region": sub_region,
-
                 "group": m.group.name if m.group else '',
-                "image": "",
             })
 
         context = super().get_context_data(**kwargs)

@@ -6,8 +6,18 @@
     {% for region, region_value in day_value.items %}
     <section>
         <h2>{{ region }}</h2>
-            {% for sub_region, sub_region_value in region_value.items %}
+            {% for sub_region, meetings in region_value.items %}
                 <h3>{{ sub_region }}</h3>
+                <table>
+                    {% for meeting in meetings %}
+                        <tr>
+                            <td>{{ meeting.time_formatted }}</td>
+                            <td>{{ meeting.name }}</td>
+                            <td>{{ meeting.types|join:";" }}</td>
+                            <td>{{ meeting.location }}<br>{{ meeting.formatted_address }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
             {% endfor %}
     </section>
     {% endfor %}
@@ -15,67 +25,3 @@
 {% endfor %}
 </body>
 </html>
-{% comment %}
-{% for meeting in meetings %}
-    {% ifchanged meeting.day %}
-        <section>
-            <h1>{{ meeting.day }}</h1>
-    {% endifchanged %}
-
-        {% ifchanged meeting.region %}
-            <section>
-                <h2>{{ meeting.region }}</h2>
-        {% endifchanged %}
-
-            {% ifchanged meeting.sub_region %}
-                <section>
-                    <h3>{{ meeting.sub_region }}</h3>
-                    <table>
-
-            {% endifchanged %}
-
-                <tr>
-                    <td>{{ meeting.time_formatted }}</td>
-                    <td>{{ meeting.name }}</td>
-                    <td>{{ meeting.types|join:";" }}</td>
-                    <td>{{ meeting.location }}<br>{{ meeting.formatted_address }}</td>
-                </tr>
-
-            {% ifchanged meeting.sub_region %}
-                    </table>
-                </section>
-            {% endifchanged %}
-
-        {% ifchanged meeting.region %}
-            </section>
-        {% endifchanged %}
-
-    {% ifchanged meeting.day %}
-        </section>
-    {% endifchanged %}
-
-
-    {# xxxx {{ meeting.day_of_week }} {{ meeting.region }} {{ meeting.sub_region }}<br>#}
-    <tr>
-        <td>
-            {{ meeting.group.name }}<br>
-            {{ meeting.meeting_location.address1 }}<br>
-            {{ meeting.meeting_location.city }},
-            {{ meeting.meeting_location.state }}
-            {{ meeting.meeting_location.postal_code }}<br>
-            {{ meeting.meeting_location.region }}
-        </td>
-        <td data-order="{{ meeting.day_sort_order }}">
-            {{ meeting.get_day_of_week_display }}
-        </td>
-        <td data-order="{{ meeting.day_sort_order }}{{ meeting.start_time|date:"H" }}{{ meeting.start_time|date:"i" }}">
-            {{ meeting.start_time }} - 
-            {{ meeting.end_time }}
-        </td>
-        <td>
-            {% for type in meeting.types.all %}
-                {{ type.type_name }}<br>
-            {% endfor %}
-        </td>
-    </tr>
-{% endcomment %}
