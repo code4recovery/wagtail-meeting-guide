@@ -77,45 +77,62 @@ class MeetingsPrintView(MeetingsBaseView):
     """
     template_name = 'meeting_guide/meetings_list_print.html'
 
+    def get_meetings(self):
+        return Meeting.objects.select_related(
+            'meeting_location__region__parent',
+        ).filter(
+            status=1,
+        ).order_by(
+            'day_of_week',
+            'meeting_location__region__parent__name',
+            'meeting_location__region__name',
+        )
+
     def get_context_data(self, **kwargs):
         meetings = self.get_meetings()
-        meetings_list = []
+        meeting_dict = {}
 
-        for meeting in meetings:
-            meetings_list.append({
-                "id": meeting.id,
-                "name": meeting.title,
-                "slug": meeting.slug,
-                "notes": meeting.meeting_details,
-                "updated": f"{meeting.last_published_at if meeting.last_published_at else datetime.datetime.now():%Y-%m-%d %H:%M:%S}",
-                "location_id": meeting.meeting_location.id,
-                "time": f"{meeting.start_time:%H:%M}",
-                "end_time": f"{meeting.end_time:%H:%M}",
-                "time_formatted": f"{meeting.start_time:%I:%M%P}",
+        for m in meetings:
+            region = m.meeting_location.region.parent.name
+            sub_region = m.meeting_location.region.name
+
+            if m.day_of_week not in meeting_dict:
+                meeting_dict[m.day_of_week] = {}
+            if region not in meeting_dict[m.day_of_week]:
+                meeting_dict[m.day_of_week][region] = {}
+            if sub_region not in meeting_dict[m.day_of_week][region]:
+                meeting_dict[m.day_of_week][region][sub_region] = []
+
+            meeting_dict[m.day_of_week][region][sub_region].append({
+                "id": m.id,
+                "name": m.title,
+                "slug": m.slug,
+                "notes": m.meeting_details,
+                "updated": f"{m.last_published_at if m.last_published_at else datetime.datetime.now():%Y-%m-%d %H:%M:%S}",
+                "location_id": m.meeting_location.id,
+                "time": f"{m.start_time:%H:%M}",
+                "end_time": f"{m.end_time:%H:%M}",
+                "time_formatted": f"{m.start_time:%I:%M%P}",
                 "distance": "",
-                "day": str(meeting.day_of_week),
-                "day_of_week": meeting.day_of_week,
-                "types": list(meeting.types.values_list('meeting_guide_code', flat=True)),
-                "location": meeting.meeting_location.title,
+                "day": str(m.day_of_week),
+                "day_of_week": m.day_of_week,
+                "types": list(m.types.values_list('meeting_guide_code', flat=True)),
+                "location": m.meeting_location.title,
                 "location_notes": "",
-                "formatted_address": meeting.meeting_location.formatted_address,
-                "latitude": str(meeting.meeting_location.lat),
-                "longitude": str(meeting.meeting_location.lng),
-                "region_id": meeting.meeting_location.region.parent.id,
-                "region": meeting.meeting_location.region.parent.name,
-                "sub_region_id": meeting.meeting_location.region.id,
-                "sub_region": meeting.meeting_location.region.name,
+                "formatted_address": m.meeting_location.formatted_address,
+                "latitude": str(m.meeting_location.lat),
+                "longitude": str(m.meeting_location.lng),
+                "region_id": m.meeting_location.region.parent.id,
+                "region": region,
+                "sub_region_id": m.meeting_location.region.id,
+                "sub_region": sub_region,
 
-                "group": meeting.group.name if meeting.group else '',
+                "group": m.group.name if m.group else '',
                 "image": "",
             })
 
-        meetings_list.sort(key=itemgetter('time'))
-        meetings_list.sort(key=itemgetter('sub_region'))
-        meetings_list.sort(key=itemgetter('region'))
-        meetings_list.sort(key=itemgetter('day_of_week'))
         context = super().get_context_data(**kwargs)
-        context['meetings'] = meetings_list
+        context['meetings'] = meeting_dict
 
         return context
 

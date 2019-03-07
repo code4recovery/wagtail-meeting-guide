@@ -85,7 +85,12 @@ class Location(Page):
     Geocoded location details.
     """
 
-    region = models.ForeignKey(Region, null=True, on_delete=models.SET_NULL)
+    region = models.ForeignKey(
+        Region,
+        related_name='locations',
+        null=True,
+        on_delete=models.SET_NULL,
+    )
     formatted_address = models.CharField(
         "Full Address",
         max_length=255,
@@ -169,23 +174,38 @@ class Meeting(Page):
     Model for storing meeting data.
     """
 
+    SUNDAY = 0
+    MONDAY = 1
+    TUESDAY = 2
+    WEDNESDAY = 3
+    THURSDAY = 4
+    FRIDAY = 5
+    SATURDAY = 6
     DAY_OF_WEEK = (
-        (0, "Sunday"),
-        (1, "Monday"),
-        (2, "Tuesday"),
-        (3, "Wednesday"),
-        (4, "Thursday"),
-        (5, "Friday"),
-        (6, "Saturday"),
+        (SUNDAY, "Sunday"),
+        (MONDAY, "Monday"),
+        (TUESDAY, "Tuesday"),
+        (WEDNESDAY, "Wednesday"),
+        (THURSDAY, "Thursday"),
+        (FRIDAY, "Friday"),
+        (SATURDAY, "Saturday"),
     )
 
-    STATUS_CHOICES = ((0, "Inactive"), (1, "Active"))
+    INACTIVE = 0
+    ACTIVE = 1
+    STATUS_CHOICES = (
+        (INACTIVE, "Inactive"),
+        (ACTIVE, "Active"),
+    )
 
     group = models.ForeignKey(
         Group, null=True, blank=True, on_delete=models.SET_NULL, related_name="meetings"
     )
     meeting_location = models.ForeignKey(
-        Location, null=True, on_delete=models.SET_NULL, related_name="meetings"
+        Location,
+        related_name='meetings',
+        null=True,
+        on_delete=models.SET_NULL,
     )
     start_time = models.TimeField(null=True)
     end_time = models.TimeField(null=True)
