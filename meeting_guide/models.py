@@ -21,7 +21,11 @@ class Region(models.Model):
 
     name = models.CharField(max_length=255)
     parent = models.ForeignKey(
-        "Region", blank=True, null=True, on_delete=models.CASCADE
+        "Region",
+        related_name='subregions',
+        blank=True,
+        null=True,
+        on_delete=models.CASCADE,
     )
 
     class Meta:

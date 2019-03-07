@@ -1,5 +1,6 @@
 import datetime
 import json
+from operator import itemgetter
 
 from django.conf import settings
 from django.http import HttpResponse
@@ -66,6 +67,55 @@ class MeetingsDataTablesView(MeetingsBaseView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['meetings'] = self.get_meetings()
+
+        return context
+
+
+class MeetingsPrintView(MeetingsBaseView):
+    """
+    List all meetings in a printable format.
+    """
+    template_name = 'meeting_guide/meetings_list_print.html'
+
+    def get_context_data(self, **kwargs):
+        meetings = self.get_meetings()
+        meetings_list = []
+
+        for meeting in meetings:
+            meetings_list.append({
+                "id": meeting.id,
+                "name": meeting.title,
+                "slug": meeting.slug,
+                "notes": meeting.meeting_details,
+                "updated": f"{meeting.last_published_at if meeting.last_published_at else datetime.datetime.now():%Y-%m-%d %H:%M:%S}",
+                "location_id": meeting.meeting_location.id,
+                "time": f"{meeting.start_time:%H:%M}",
+                "end_time": f"{meeting.end_time:%H:%M}",
+                "time_formatted": f"{meeting.start_time:%I:%M%P}",
+                "distance": "",
+                "day": str(meeting.day_of_week),
+                "day_of_week": meeting.day_of_week,
+                "types": list(meeting.types.values_list('meeting_guide_code', flat=True)),
+                "location": meeting.meeting_location.title,
+                "location_notes": "",
+                "formatted_address": meeting.meeting_location.formatted_address,
+                "latitude": str(meeting.meeting_location.lat),
+                "longitude": str(meeting.meeting_location.lng),
+                "region_id": meeting.meeting_location.region.parent.id,
+                "region": meeting.meeting_location.region.parent.name,
+                "sub_region_id": meeting.meeting_location.region.id,
+                "sub_region": meeting.meeting_location.region.name,
+
+                "group": meeting.group.name if meeting.group else '',
+                "image": "",
+            })
+
+        meetings_list.sort(key=itemgetter('time'))
+        meetings_list.sort(key=itemgetter('sub_region'))
+        meetings_list.sort(key=itemgetter('region'))
+        meetings_list.sort(key=itemgetter('day_of_week'))
+        context = super().get_context_data(**kwargs)
+        context['meetings'] = meetings_list
 
         return context
 
