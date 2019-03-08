@@ -3,8 +3,11 @@ import json
 
 from django.conf import settings
 from django.http import HttpResponse
+from django.template.loader import render_to_string
 from django.views.decorators.cache import cache_page
 from django.views.generic import TemplateView
+
+from pdfkit import from_string
 
 from .models import Meeting
 
@@ -92,21 +95,21 @@ class MeetingsPrintView(MeetingsBaseView):
         meeting_dict = {}
 
         for m in meetings:
+            day = m.get_day_of_week_display()
             region = m.meeting_location.region.parent.name
             sub_region = m.meeting_location.region.name
 
-            if m.day_of_week not in meeting_dict:
-                meeting_dict[m.day_of_week] = {}
-            if region not in meeting_dict[m.day_of_week]:
-                meeting_dict[m.day_of_week][region] = {}
-            if sub_region not in meeting_dict[m.day_of_week][region]:
-                meeting_dict[m.day_of_week][region][sub_region] = []
+            if day not in meeting_dict:
+                meeting_dict[day] = {}
+            if region not in meeting_dict[day]:
+                meeting_dict[day][region] = {}
+            if sub_region not in meeting_dict[day][region]:
+                meeting_dict[day][region][sub_region] = []
 
-            meeting_dict[m.day_of_week][region][sub_region].append({
+            meeting_dict[day][region][sub_region].append({
                 "name": m.title,
                 "time_formatted": f"{m.start_time:%I:%M%P}",
-                "day": Meeting.get_day_of_week_value(m.day_of_week),
-                "day_of_week": m.day_of_week,
+                "day": day,
                 "types": list(m.types.values_list('meeting_guide_code', flat=True)),
                 "location": m.meeting_location.title,
                 "formatted_address": m.meeting_location.formatted_address,
@@ -117,6 +120,27 @@ class MeetingsPrintView(MeetingsBaseView):
         context['meetings'] = meeting_dict
 
         return context
+
+    def create_pdf(self, **kwargs):
+        options = {
+            'page-width': '100mm',
+            'page-height': '120mm',
+            'margin-top': '10mm',
+            'margin-right': '10mm',
+            'margin-bottom': '10mm',
+            'margin-left': '10mm',
+            'header-left': '[section]: [subsection]',
+            'encoding': "UTF-8",
+            'no-outline': None
+        }
+        context = self.get_context_data(**kwargs)
+        html_content = render_to_string(self.template_name, context)
+
+        pdf_content = from_string(html_content, False, options=options)
+        response = HttpResponse(pdf_content, content_type="application/pdf")
+        response["Content-Disposition"] = "inline; filename=meeting-guide.pdf"
+
+        return response
 
 
 class MeetingsAPIView(MeetingsBaseView):
