@@ -143,6 +143,33 @@ class MeetingsPrintView(MeetingsBaseView):
         return response
 
 
+class MeetingsPrintDownloadView(MeetingsPrintView):
+    """
+    List all meetings in a printable format.
+    """
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        options = {
+            'page-width': '100mm',
+            'page-height': '120mm',
+            'margin-top': '10mm',
+            'margin-right': '10mm',
+            'margin-bottom': '10mm',
+            'margin-left': '10mm',
+            'header-left': '[section]: [subsection]',
+            'encoding': "UTF-8",
+            'no-outline': None
+        }
+        html_content = render_to_string(self.template_name, context)
+
+        pdf_content = from_string(html_content, False, options=options)
+        response = HttpResponse(pdf_content, content_type="application/pdf")
+        response["Content-Disposition"] = "inline; filename=meeting-guide.pdf"
+
+        return response
+
+
 class MeetingsAPIView(MeetingsBaseView):
     """
     Return a JSON response of the meeting list.
