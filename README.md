@@ -51,6 +51,26 @@ You can include the Meeting Guide within any Django Template. Here is an example
 {% endblock content %}
 ```
 
+## Downloading Meetings as a PDF
+
+To download the meeting list as a PDF, you must [have wkhtmltopdf installed on your system](https://wkhtmltopdf.org/). The end point for the download is `meeting-guide/download/`.
+
+You can change the print options in your Django settings:
+
+```python
+WAGTAIL_MEETING_GUIDE_PRINT_OPTIONS = {
+    'page-width': '100mm',
+    'page-height': '120mm',
+    'margin-top': '10mm',
+    'margin-right': '10mm',
+    'margin-bottom': '10mm',
+    'margin-left': '10mm',
+    'header-left': '[section]: [subsection]',
+    'encoding': "UTF-8",
+    'no-outline': None
+}
+```
+
 ## Release Notes
 
 ### 0.1
