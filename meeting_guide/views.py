@@ -10,6 +10,7 @@ from django.views.generic import TemplateView
 from pdfkit import from_string
 
 from .models import Meeting
+from .settings import get_print_options
 
 
 class CacheMixin(object):
@@ -75,7 +76,7 @@ class MeetingsDataTablesView(MeetingsBaseView):
 
 class MeetingsPrintView(MeetingsBaseView):
     """
-    List all meetings in a printable format.
+    List all meetings in an HTML printable format.
     """
     template_name = 'meeting_guide/meetings_list_print.html'
 
@@ -121,45 +122,14 @@ class MeetingsPrintView(MeetingsBaseView):
 
         return context
 
-    def create_pdf(self, **kwargs):
-        options = {
-            'page-width': '100mm',
-            'page-height': '120mm',
-            'margin-top': '10mm',
-            'margin-right': '10mm',
-            'margin-bottom': '10mm',
-            'margin-left': '10mm',
-            'header-left': '[section]: [subsection]',
-            'encoding': "UTF-8",
-            'no-outline': None
-        }
-        context = self.get_context_data(**kwargs)
-        html_content = render_to_string(self.template_name, context)
-
-        pdf_content = from_string(html_content, False, options=options)
-        response = HttpResponse(pdf_content, content_type="application/pdf")
-        response["Content-Disposition"] = "inline; filename=meeting-guide.pdf"
-
-        return response
-
 
 class MeetingsPrintDownloadView(MeetingsPrintView):
     """
-    List all meetings in a printable format.
+    Provide a PDF download of all active meetings.
     """
 
     def get(self, request, *args, **kwargs):
-        options = {
-            'page-width': '100mm',
-            'page-height': '120mm',
-            'margin-top': '10mm',
-            'margin-right': '10mm',
-            'margin-bottom': '10mm',
-            'margin-left': '10mm',
-            'header-left': '[section]: [subsection]',
-            'encoding': "UTF-8",
-            'no-outline': None
-        }
+        options = get_print_options()
         context = self.get_context_data(**kwargs)
         html_content = render_to_string(self.template_name, context)
 
