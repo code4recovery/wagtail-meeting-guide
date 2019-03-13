@@ -11,10 +11,12 @@
                 <table>
                     {% for meeting in meetings %}
                         <tr>
-                            <td>{{ meeting.time_formatted }}</td>
+                            <td>
+                                {{ meeting.time_formatted }}<br>
+                                {{ meeting.types|join:";" }}
+                            </td>
                             <td>{{ meeting.name }}</td>
-                            <td>{{ meeting.types|join:";" }}</td>
-                            <td>{{ meeting.location }}<br>{{ meeting.formatted_address }}</td>
+                            <td>{{ meeting.formatted_address }}</td>
                         </tr>
                     {% endfor %}
                 </table>
