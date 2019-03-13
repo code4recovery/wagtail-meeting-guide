@@ -55,7 +55,7 @@ You can include the Meeting Guide within any Django Template. Here is an example
 
 To download the meeting list as a PDF, you must [have wkhtmltopdf installed on your system](https://wkhtmltopdf.org/). The end point for the download is `meeting-guide/download/`.
 
-You can change the print options in your Django settings:
+You can change the print and style options in your Django settings. The options are a Python dictionary while the styles are a string containing CSS:
 
 ```python
 WAGTAIL_MEETING_GUIDE_PRINT_OPTIONS = {
@@ -69,6 +69,24 @@ WAGTAIL_MEETING_GUIDE_PRINT_OPTIONS = {
     'encoding': "UTF-8",
     'no-outline': None
 }
+
+WAGTAIL_MEETING_GUIDE_PRINT_STYLES = """
+html, td {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 9px;
+  -webkit-text-size-adjust:100%;
+  -ms-text-size-adjust:100%;
+  color: red;
+}
+
+body {
+  margin:0;
+}
+
+h1, .h1 {
+  font-size: 24px;
+}
+"""
 ```
 
 ## Release Notes
