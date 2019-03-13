@@ -91,6 +91,7 @@ class MeetingsPrintView(MeetingsBaseView):
             'day_of_week',
             'meeting_location__region__parent__name',
             'meeting_location__region__name',
+            'start_time',
         )
 
     def get_context_data(self, **kwargs):

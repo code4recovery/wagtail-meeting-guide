@@ -7,19 +7,32 @@
     <section>
         <h2>{{ region }}</h2>
             {% for sub_region, meetings in region_value.items %}
-                <h3>{{ sub_region }}</h3>
-                <table>
-                    {% for meeting in meetings %}
-                        <tr>
-                            <td>
-                                {{ meeting.time_formatted }}<br>
-                                {{ meeting.types|join:";" }}
-                            </td>
-                            <td>{{ meeting.name }}</td>
-                            <td>{{ meeting.formatted_address }}</td>
-                        </tr>
-                    {% endfor %}
-                </table>
+                <div class="region">
+                    <h3>{{ sub_region }}</h3>
+                    <table width="100%">
+                        {% for meeting in meetings %}
+                            <tr>
+                                <td width="10%">
+                                    {{ meeting.time_formatted }}
+                                </td>
+                                <td width="30%">
+                                    <strong>
+                                        {{ meeting.name }}
+                                    </strong>
+                                </td>
+                                <td width="10%">
+                                    {{ meeting.types|join:";" }}
+                                </td>
+                                <td width="50%">
+                                    {{ meeting.formatted_address }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
             {% endfor %}
     </section>
     {% endfor %}
