@@ -40,7 +40,6 @@ html, td {
   font-size: 9px;
   -webkit-text-size-adjust:100%;
   -ms-text-size-adjust:100%;
-  color: red;
 }
 
 body {
