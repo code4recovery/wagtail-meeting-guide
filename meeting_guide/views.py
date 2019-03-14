@@ -128,7 +128,8 @@ class MeetingsPrintView(MeetingsBaseView):
 
 class MeetingsPrintDownloadView(MeetingsPrintView):
     """
-    Provide a PDF download of all active meetings.
+    Provide a PDF download of all active meetings, sourcing
+    the HTML printable format.
     """
 
     def get(self, request, *args, **kwargs):
