@@ -212,7 +212,15 @@ class Meeting(Page):
     day_of_week = models.SmallIntegerField(default=0, choices=DAY_OF_WEEK)
     status = models.SmallIntegerField(default=1, choices=STATUS_CHOICES)
     meeting_details = models.TextField(
-        help_text="Additional details for the meeting.", null=True, blank=True
+        null=True,
+        blank=True,
+        help_text="Additional details about the meeting.",
+    )
+    location_details = models.TextField(
+        null=True,
+        blank=True,
+        help_text="How to find the meeting at the location, I.e.: 'In the basement',"
+                  " 'In the rear building.'",
     )
     types = ParentalManyToManyField(
         MeetingType,
@@ -243,6 +251,7 @@ class Meeting(Page):
         ),
         FieldPanel("types", widget=CheckboxSelectMultiple),
         FieldPanel("meeting_details"),
+        FieldPanel("location_details"),
     ]
 
     search_fields = Page.search_fields + [
