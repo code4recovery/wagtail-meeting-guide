@@ -41,7 +41,7 @@ def get_print_styles():
         """
 html, td {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 14pt;
+  font-size: 11pt;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
 }
@@ -67,11 +67,12 @@ h1, .h1 {
 }
 
 h2, .h2 {
-  font-size: 24pt;
+  font-size: 1px;
 }
 
 h3, .h3 {
   font-size: 16pt;
+  display: inline-block;
 }
 
 h4, .h4 {

@@ -8,8 +8,8 @@
         <h2>{{ region }}</h2>
             {% for sub_region, meetings in region_value.items %}
                 <div class="region">
-                    <h3>{{ sub_region }}</h3>
-                    <table width="100%">
+                    <font size="5">{{ sub_region }}</font>
+                    <table width="100%" cellspacing="0" cellpadding="2" border="0">
                         {% for meeting in meetings %}
                             <tr>
                                 <td width="10%">
@@ -24,6 +24,7 @@
                                     {{ meeting.types|join:";" }}
                                 </td>
                                 <td width="50%">
+                                    {{ meeting.location.title }}<br>
                                     {{ meeting.formatted_address }}
                                 </td>
                             </tr>
