@@ -85,6 +85,7 @@ class MeetingsPrintView(MeetingsBaseView):
     def get_meetings(self):
         return Meeting.objects.select_related(
             'meeting_location__region__parent',
+            'group',
         ).filter(
             status=1,
         ).order_by(
@@ -117,7 +118,8 @@ class MeetingsPrintView(MeetingsBaseView):
                 "types": list(m.types.values_list('meeting_guide_code', flat=True)),
                 "location": m.meeting_location.title,
                 "formatted_address": m.meeting_location.formatted_address,
-                "group": m.group.name if m.group else '',
+                "group": getattr(m.group, "name", None),
+                "gso_number": getattr(m.group, "gso_number", None),
             })
 
         context = super().get_context_data(**kwargs)

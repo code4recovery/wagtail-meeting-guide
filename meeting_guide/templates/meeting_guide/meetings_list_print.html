@@ -16,9 +16,10 @@
                                     {{ meeting.time_formatted }}
                                 </td>
                                 <td width="30%">
-                                    <strong>
-                                        {{ meeting.name }}
-                                    </strong>
+                                    <strong>{{ meeting.name }}</strong>
+                                    {% if meeting.gso_number %}
+                                        <br>(GSO#: {{ meeting.gso_number }})
+                                    {% endif %}
                                 </td>
                                 <td width="10%">
                                     {{ meeting.types|join:";" }}
