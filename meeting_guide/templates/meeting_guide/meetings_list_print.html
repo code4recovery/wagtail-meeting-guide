@@ -10,23 +10,24 @@
                 <div class="region">
                     <font size="5">{{ sub_region }}</font>
                     <table width="100%" cellspacing="0" cellpadding="2" border="0">
-                        {% for meeting in meetings %}
+                        {% for m in meetings %}
                             <tr>
                                 <td width="10%">
-                                    {{ meeting.time_formatted }}
+                                    {{ m.time_formatted }}
                                 </td>
                                 <td width="30%">
-                                    <strong>{{ meeting.name }}</strong>
-                                    {% if meeting.gso_number %}
-                                        <br>(GSO#: {{ meeting.gso_number }})
+                                    <strong>{{ m.name }}</strong>
+                                    {% if m.district %}
+                                        <br>(D{{ m.district }}{% if m.gso_number %}
+                                            / GSO #{{ m.gso_number }}{% endif %})
                                     {% endif %}
                                 </td>
                                 <td width="10%">
-                                    {{ meeting.types|join:";" }}
+                                    {{ m.types|join:";" }}
                                 </td>
                                 <td width="50%">
-                                    {{ meeting.location.title }}<br>
-                                    {{ meeting.formatted_address }}
+                                    {{ m.location.title }}<br>
+                                    {{ m.formatted_address }}
                                 </td>
                             </tr>
                             <tr>

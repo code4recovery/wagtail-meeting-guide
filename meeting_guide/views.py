@@ -115,10 +115,11 @@ class MeetingsPrintView(MeetingsBaseView):
                 "name": m.title,
                 "time_formatted": f"{m.start_time:%I:%M%P}",
                 "day": day,
-                "types": list(m.types.values_list('meeting_guide_code', flat=True)),
+                "types": list(m.types.values_list('intergroup_code', flat=True)),
                 "location": m.meeting_location.title,
                 "formatted_address": m.meeting_location.formatted_address,
                 "group": getattr(m.group, "name", None),
+                "district": getattr(m.group, "district", None),
                 "gso_number": getattr(m.group, "gso_number", None),
             })
 
@@ -172,6 +173,21 @@ class MeetingsAPIView(MeetingsBaseView):
         meetings_dict = []
 
         for meeting in meetings:
+            district = getattr(meeting.group, "district", "")
+            if len(district):
+                district = f"A{district}"
+
+            gso_number = getattr(meeting.group, "gso_number", "")
+            if len(gso_number):
+                gso_number = f" / GSO #{gso_number}"
+
+            group_info = f"{district}{gso_number}"
+
+            if len(group_info):
+                location = f"{meeting.meeting_location.title}\n({group_info})"
+            else:
+                location = meeting.meeting_location.title
+
             meetings_dict.append({
                 "id": meeting.id,
                 "name": meeting.title,
@@ -186,7 +202,7 @@ class MeetingsAPIView(MeetingsBaseView):
                 "distance": "",
                 "day": str(meeting.day_of_week),
                 "types": list(meeting.types.values_list('meeting_guide_code', flat=True)),
-                "location": meeting.meeting_location.title,
+                "location": location,
                 "location_notes": "",
                 "location_url": f"{url}{meeting.meeting_location.url_path}",
                 "formatted_address": meeting.meeting_location.formatted_address,
@@ -195,7 +211,7 @@ class MeetingsAPIView(MeetingsBaseView):
                 "region_id": meeting.meeting_location.region.id,
                 "region": f"{meeting.meeting_location.region.parent.name}: {meeting.meeting_location.region.name}",
 
-                "group": meeting.group.name if meeting.group else '',
+                "group": group_info,
                 "image": "",
             })
 
