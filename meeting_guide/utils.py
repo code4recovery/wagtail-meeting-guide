@@ -139,7 +139,7 @@ def get_geocode_address(full_address):
                 address_components["subregion"] = ""
                 address_components[
                     "problem"
-                ] = 'Google did not return "neighborhood", "locality", "city", or "administrative_area_level_3" for subregion field for address {0}:\n{1}\n\n.'.format(
+                ] = 'Google did not return "neighborhood", "locality", "sublocality", "city", or "administrative_area_level_3" for subregion field for address {0}:\n{1}\n\n.'.format(
                     full_address, address_components
                 )
 
