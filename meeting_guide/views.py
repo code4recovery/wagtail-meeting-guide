@@ -175,7 +175,7 @@ class MeetingsAPIView(MeetingsBaseView):
         for meeting in meetings:
             district = getattr(meeting.group, "district", "")
             if len(district):
-                district = f"A{district}"
+                district = f"D{district}"
 
             gso_number = getattr(meeting.group, "gso_number", "")
             if len(gso_number):
