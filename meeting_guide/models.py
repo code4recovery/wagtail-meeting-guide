@@ -5,6 +5,7 @@ from django.forms import CheckboxSelectMultiple
 from django.utils.functional import cached_property
 
 from modelcluster.fields import ParentalManyToManyField
+from mptt.models import MPTTModel, TreeForeignKey
 from wagtail.core.models import Page
 from wagtail.admin.edit_handlers import (
     FieldPanel, MultiFieldPanel, FieldRowPanel
@@ -14,32 +15,31 @@ from wagtailgeowidget.edit_handlers import GeoPanel
 from wagtailgeowidget.helpers import geosgeometry_str_to_struct
 
 
-class Region(models.Model):
+class Region(MPTTModel):
     """
     Tree of regions and sub-regions.
     """
 
     name = models.CharField(max_length=255)
-    parent = models.ForeignKey(
-        "Region",
-        related_name='subregions',
-        blank=True,
-        null=True,
+    parent = TreeForeignKey(
+        "self",
         on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name="children",
     )
 
-    class Meta:
-        unique_together = ("name", "parent")
-        ordering = ["parent__name", "name"]
-        indexes = [models.Index(fields=["name"])]
-
     def __str__(self):
-        if self.parent is None:
-            parent_name = ""
-        else:
-            parent_name = f"{self.parent.name}: "
+        ancestors = self.get_ancestors(
+            include_self=True,
+        ).values_list(
+            "name",
+            flat=True,
+        )
+        return " > ".join(ancestors)
 
-        return f"{parent_name}{self.name}"
+    class MPTTMeta:
+        order_insertion_by = ["name"]
 
 
 class Group(models.Model):

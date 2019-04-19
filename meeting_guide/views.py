@@ -11,7 +11,7 @@ from django.views.generic import TemplateView
 
 from pdfkit import from_string
 
-from .models import Meeting
+from .models import Meeting, Region
 from .settings import get_print_options, get_print_styles
 
 
@@ -172,6 +172,9 @@ class MeetingsAPIView(MeetingsBaseView):
         meetings = self.get_meetings()
         meetings_dict = []
 
+        # Eager load all regions to reference below.
+        regions = Region.objects.all().prefetch_related('children')
+
         for meeting in meetings:
             district = getattr(meeting.group, "district", "")
             if len(district):
@@ -187,6 +190,15 @@ class MeetingsAPIView(MeetingsBaseView):
                 location = f"{meeting.meeting_location.title}\n({group_info})"
             else:
                 location = meeting.meeting_location.title
+
+            region_ancestors = list(regions.get(
+                id=meeting.meeting_location.region.id,
+            ).get_ancestors(
+                include_self=True,
+            ).values_list(
+                "name",
+                flat=True,
+            ))
 
             meetings_dict.append({
                 "id": meeting.id,
@@ -210,7 +222,7 @@ class MeetingsAPIView(MeetingsBaseView):
                 "longitude": str(meeting.meeting_location.lng),
                 "region_id": meeting.meeting_location.region.id,
                 "region": f"{meeting.meeting_location.region.parent.name}: {meeting.meeting_location.region.name}",
-
+                "regions": region_ancestors,
                 "group": group_info,
                 "image": "",
             })

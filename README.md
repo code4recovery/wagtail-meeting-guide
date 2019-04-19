@@ -15,7 +15,7 @@ A Google Geocode API key is also required.
 ## Installation to Your Django Project
 
 * Install with the command `pip install wagtail-meeting-guide`
-* Add `meeting_guide` and `wagtailgmaps` to your `INSTALLED_APPS`.
+* Add `meeting_guide`, `mptt`, and `wagtailgeowidget` to your `INSTALLED_APPS`.
 * Add the following settings, including your Google Geocode API key:
 
 * Run migrations: `python manage.py migrate meeting_guide`
