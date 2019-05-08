@@ -1,35 +1,6 @@
 from django.conf import settings
 
 
-def get_print_options():
-    """
-    Default options for PDF printing.
-    """
-
-    return getattr(
-        settings,
-        "WAGTAIL_MEETING_GUIDE_PRINT_OPTIONS",
-        {
-            'page-size': 'letter',
-
-            'margin-top': '0.5in',
-            'margin-right': '0.5in',
-            'margin-bottom': '0.5in',
-            'margin-left': '0.5in',
-
-            'header-left': '[section]: [subsection]',
-            'header-font-name': 'Arial, sans-serif',
-            'header-font-size': '20',
-            'header-line': '',
-            'footer-center': '[page] / [topage]',
-
-            'quiet': '',
-            'encoding': "UTF-8",
-            'no-outline': None,
-        },
-    )
-
-
 def get_print_styles():
     """
     Default options for PDF styling.

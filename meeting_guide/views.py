@@ -1,18 +1,16 @@
 import datetime
 import json
-from os import remove
 
 from django.conf import settings
 from django.http import HttpResponse
 from django.template.loader import render_to_string
-from django.utils.crypto import get_random_string
 from django.views.decorators.cache import cache_page
 from django.views.generic import TemplateView
 
-from pdfkit import from_string
+from weasyprint import HTML, CSS
 
 from .models import Meeting, Region
-from .settings import get_print_options, get_print_styles
+from .settings import get_print_styles
 
 
 class CacheMixin(object):
@@ -136,27 +134,22 @@ class MeetingsPrintDownloadView(MeetingsPrintView):
     """
 
     def get(self, request, *args, **kwargs):
-        options = get_print_options()
-        styles = get_print_styles()
-
         context = self.get_context_data(**kwargs)
         html_content = render_to_string(self.template_name, context)
 
-        style_filename = f"{get_random_string(50)}.css"
-        with open(style_filename, "w") as css_file:
-            css_file.write(styles)
-            css_file.close()
-
-        pdf_content = from_string(
-            html_content,
-            False,
-            options=options,
-            css=style_filename,
+        pdf_content = HTML(
+            string=html_content,
+        ).render(
+            '/tmp/weasyprint-website.pdf',
+            stylesheets=[
+                CSS(
+                    string=get_print_styles(),
+                )
+            ],
         )
+
         response = HttpResponse(pdf_content, content_type="application/pdf")
         response["Content-Disposition"] = "inline; filename=meeting-guide.pdf"
-
-        remove(style_filename)
 
         return response
 
