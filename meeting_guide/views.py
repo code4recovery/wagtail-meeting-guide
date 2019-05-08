@@ -7,10 +7,9 @@ from django.template.loader import render_to_string
 from django.views.decorators.cache import cache_page
 from django.views.generic import TemplateView
 
-from weasyprint import HTML, CSS
+from django_weasyprint import WeasyTemplateResponseMixin
 
 from .models import Meeting, Region
-from .settings import get_print_styles
 
 
 class CacheMixin(object):
@@ -127,31 +126,19 @@ class MeetingsPrintView(MeetingsBaseView):
         return context
 
 
-class MeetingsPrintDownloadView(MeetingsPrintView):
+class MeetingsPrintDownloadView(WeasyTemplateResponseMixin, MeetingsPrintView):
     """
     Provide a PDF download of all active meetings, sourcing
     the HTML printable format.
     """
+    from django.contrib.staticfiles import finders
 
-    def get(self, request, *args, **kwargs):
-        context = self.get_context_data(**kwargs)
-        html_content = render_to_string(self.template_name, context)
+    meeting_guide_css_file = finders.find("meeting_guide/print.css")
 
-        pdf_content = HTML(
-            string=html_content,
-        ).render(
-            '/tmp/weasyprint-website.pdf',
-            stylesheets=[
-                CSS(
-                    string=get_print_styles(),
-                )
-            ],
-        )
-
-        response = HttpResponse(pdf_content, content_type="application/pdf")
-        response["Content-Disposition"] = "inline; filename=meeting-guide.pdf"
-
-        return response
+    pdf_stylesheets = [
+        meeting_guide_css_file,
+    ]
+    pdf_presentational_hints = True
 
 
 class MeetingsAPIView(MeetingsBaseView):
