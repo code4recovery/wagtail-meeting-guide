@@ -7,10 +7,10 @@
 <div class="container-fluid">
 {% for day, day_value in meetings.items %}
 <section>
-    <h1>{{ day }}</h1>
+    <header>{{ day }}</header>
     {% for region, region_value in day_value.items %}
     <section>
-        <h2>{{ region }}</h2>
+        <subheader>{{ region }}</subheader>
             {% for sub_region, meetings in region_value.items %}
                 <h3>{{ sub_region }}</h3>
                 {% for m in meetings %}

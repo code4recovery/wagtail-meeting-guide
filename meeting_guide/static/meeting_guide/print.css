@@ -31,14 +31,26 @@ body {
     page-break-after: always;
 }
 
+header {
+   width: 0;
+   height: 0;
+   visibility: hidden;
+   string-set: header content();
+}
+
+subheader {
+   width: 0;
+   height: 0;
+   visibility: hidden;
+   string-set: subheader content();
+}
+
 h1, .h1 {
-    string-set: header content();
-    font-size: 0px;
+    font-size: 18pt;
 }
 
 h2, .h2 {
-    string-set: subheader content();
-    font-size: 0px;
+    font-size: 16pt;
 }
 
 h3, .h3 {
