@@ -19,6 +19,7 @@ setup(
         "wagtail>=2.0,<2.5",
         "wagtailgeowidget==4.0.5",
         "django-mptt==0.10.0",
+        "django-weasyprint==0.5.4",
     ],
     classifiers=[
         "Development Status :: 3 - Alpha",
