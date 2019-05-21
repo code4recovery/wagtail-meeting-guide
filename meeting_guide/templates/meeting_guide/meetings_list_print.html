@@ -6,15 +6,15 @@
 </head>
 <body>
 <div class="container-fluid">
-{% for day, day_value in meetings.items %}
+{% for region, region_value in meetings.items %}
 <section>
-    <header>{{ day }}</header>
-    {% for region, region_value in day_value.items %}
+    <header>{{ region }}</header>
+    {% for day, day_value in region_value.items %}
     <section>
-        <subheader>{{ region }}</subheader>
-            {% for sub_region, meetings in region_value.items %}
+        <subheader>{{ day }}</subheader>
+            {% for sub_region, meetings in day_value.items %}
                 <h3>{{ sub_region }}</h3>
-                <table class="table table-striped">
+                <table>
                     <tbody>
                         {% for m in meetings %}
                             <tr>

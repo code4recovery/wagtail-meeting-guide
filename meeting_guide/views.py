@@ -90,7 +90,7 @@ class MeetingsPrintView(MeetingsBaseView):
             'meeting_location__region__parent__name',
             'meeting_location__region__name',
             'start_time',
-        )[0:100]
+        )
 
     def get_context_data(self, **kwargs):
         meetings = self.get_meetings()
@@ -100,19 +100,23 @@ class MeetingsPrintView(MeetingsBaseView):
             day = m.get_day_of_week_display()
             region = m.meeting_location.region.parent.name
             sub_region = m.meeting_location.region.name
+            types = list(m.types.values_list('intergroup_code', flat=True))
 
-            if day not in meeting_dict:
-                meeting_dict[day] = {}
-            if region not in meeting_dict[day]:
-                meeting_dict[day][region] = {}
-            if sub_region not in meeting_dict[day][region]:
-                meeting_dict[day][region][sub_region] = []
+            if None in types:
+                print(m.types.values_list('meeting_guide_code', flat=True))
 
-            meeting_dict[day][region][sub_region].append({
+            if region not in meeting_dict:
+                meeting_dict[region] = {}
+            if day not in meeting_dict[region]:
+                meeting_dict[region][day] = {}
+            if sub_region not in meeting_dict[region][day]:
+                meeting_dict[region][day][sub_region] = []
+
+            meeting_dict[region][day][sub_region].append({
                 "name": m.title,
                 "time_formatted": f"{m.start_time:%I:%M%P}",
                 "day": day,
-                "types": list(m.types.values_list('intergroup_code', flat=True)),
+                "types": types,
                 "location": m.meeting_location.title,
                 "formatted_address": m.meeting_location.formatted_address,
                 "group": getattr(m.group, "name", None),
