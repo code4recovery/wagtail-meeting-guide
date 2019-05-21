@@ -133,7 +133,6 @@ class MeetingsPrintView(MeetingsBaseView):
         ).order_by(
             "intergroup_code",
         )
-        print(context["meeting_types"])
 
         return context
 
