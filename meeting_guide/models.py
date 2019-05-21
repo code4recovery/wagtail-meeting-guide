@@ -7,9 +7,7 @@ from django.utils.functional import cached_property
 from modelcluster.fields import ParentalManyToManyField
 from mptt.models import MPTTModel, TreeForeignKey
 from wagtail.core.models import Page
-from wagtail.admin.edit_handlers import (
-    FieldPanel, MultiFieldPanel, FieldRowPanel
-)
+from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel, FieldRowPanel
 from wagtail.search.index import SearchField
 from wagtailgeowidget.edit_handlers import GeoPanel
 from wagtailgeowidget.helpers import geosgeometry_str_to_struct
@@ -22,20 +20,11 @@ class Region(MPTTModel):
 
     name = models.CharField(max_length=255)
     parent = TreeForeignKey(
-        "self",
-        on_delete=models.CASCADE,
-        null=True,
-        blank=True,
-        related_name="children",
+        "self", on_delete=models.CASCADE, null=True, blank=True, related_name="children"
     )
 
     def __str__(self):
-        ancestors = self.get_ancestors(
-            include_self=True,
-        ).values_list(
-            "name",
-            flat=True,
-        )
+        ancestors = self.get_ancestors(include_self=True).values_list("name", flat=True)
         return " > ".join(ancestors)
 
     class MPTTMeta:
@@ -86,22 +75,13 @@ class Location(Page):
     """
 
     region = models.ForeignKey(
-        Region,
-        related_name='locations',
-        null=True,
-        on_delete=models.SET_NULL,
+        Region, related_name="locations", null=True, on_delete=models.SET_NULL
     )
     formatted_address = models.CharField(
-        "Full Address",
-        max_length=255,
-        blank=True,
-        null=True,
+        "Full Address", max_length=255, blank=True, null=True
     )
     lat_lng = models.CharField(
-        "Latitude/Longitude",
-        max_length=255,
-        blank=True,
-        null=True,
+        "Latitude/Longitude", max_length=255, blank=True, null=True
     )
 
     @cached_property
@@ -110,20 +90,20 @@ class Location(Page):
 
     @property
     def lat(self):
-        return self.point['y']
+        return self.point["y"]
 
     @property
     def lng(self):
-        return self.point['x']
+        return self.point["x"]
 
     content_panels = Page.content_panels + [
         FieldPanel("region"),
         MultiFieldPanel(
             [
-                FieldPanel('formatted_address'),
-                GeoPanel('lat_lng', address_field='formatted_address'),
+                FieldPanel("formatted_address"),
+                GeoPanel("lat_lng", address_field="formatted_address"),
             ],
-            'Geocoded Address',
+            "Geocoded Address",
         ),
     ]
 
@@ -163,9 +143,7 @@ class MeetingType(models.Model):
 
     def __str__(self):
         return "{0} ({1} / {2})".format(
-            self.type_name,
-            self.intergroup_code,
-            self.meeting_guide_code,
+            self.type_name, self.intergroup_code, self.meeting_guide_code
         )
 
 
@@ -193,39 +171,31 @@ class Meeting(Page):
 
     INACTIVE = 0
     ACTIVE = 1
-    STATUS_CHOICES = (
-        (INACTIVE, "Inactive"),
-        (ACTIVE, "Active"),
-    )
+    STATUS_CHOICES = ((INACTIVE, "Inactive"), (ACTIVE, "Active"))
 
     group = models.ForeignKey(
         Group, null=True, blank=True, on_delete=models.SET_NULL, related_name="meetings"
     )
     meeting_location = models.ForeignKey(
-        Location,
-        related_name='meetings',
-        null=True,
-        on_delete=models.SET_NULL,
+        Location, related_name="meetings", null=True, on_delete=models.SET_NULL
     )
     start_time = models.TimeField(null=True)
     end_time = models.TimeField(null=True)
     day_of_week = models.SmallIntegerField(default=0, choices=DAY_OF_WEEK)
     status = models.SmallIntegerField(default=1, choices=STATUS_CHOICES)
     meeting_details = models.TextField(
-        null=True,
-        blank=True,
-        help_text="Additional details about the meeting.",
+        null=True, blank=True, help_text="Additional details about the meeting."
     )
     location_details = models.TextField(
         null=True,
         blank=True,
         help_text="How to find the meeting at the location, I.e.: 'In the basement',"
-                  " 'In the rear building.'",
+        " 'In the rear building.'",
     )
     types = ParentalManyToManyField(
         MeetingType,
         related_name="meetings",
-        limit_choices_to={'intergroup_code__isnull': False},
+        limit_choices_to={"intergroup_code__isnull": False},
     )
 
     @property
