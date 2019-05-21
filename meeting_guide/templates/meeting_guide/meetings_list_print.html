@@ -5,6 +5,42 @@
 <link href="{% static "meeting_guide/print.css" %}" rel="stylesheet">
 </head>
 <body>
+<div class="text-center">
+    <h2>
+        FIVE COUNTY MEETING DIRECTORY
+        <br><br>
+        SEPTEMBER 2018
+        <br><br>
+        SOUTHEASTERN PENNSYLVANIA
+        INTERGROUP ASSOCIATION
+        <br><br>
+        S.E.P.I.A.<br>
+        444 North 3rd Street, 3rd Floor<br>
+        Philadelphia, PA 19123
+        <br><br>
+        Phone: 215-923-7900; Fax: 215-923-7133<br>
+        Website: www.aasepia.org<br>
+        Email: info@aasepia.org
+        <br><br>
+        NOTE: Please refer to our website for the most up-
+        to-date information about all meetings.
+    </h2>
+    <table border="1">
+        <tbody>
+            <tr>
+                <th width="50%" align="right">Code</th>
+                <th width="50%">Description</th>
+            </tr>
+            {% for type in meeting_types %}
+                <tr>
+                    <td align="right">{{ type.intergroup_code }}</td>
+                    <td>{{ type.type_name }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
 <div class="container-fluid">
 {% for region, region_value in meetings.items %}
 <section>

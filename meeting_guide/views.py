@@ -3,13 +3,12 @@ import json
 
 from django.conf import settings
 from django.http import HttpResponse
-from django.template.loader import render_to_string
 from django.views.decorators.cache import cache_page
 from django.views.generic import TemplateView
 
 from django_weasyprint import WeasyTemplateResponseMixin
 
-from .models import Meeting, Region
+from .models import Meeting, MeetingType, Region
 
 
 class CacheMixin(object):
@@ -90,7 +89,7 @@ class MeetingsPrintView(MeetingsBaseView):
             'meeting_location__region__parent__name',
             'meeting_location__region__name',
             'start_time',
-        )
+        )[0:10]
 
     def get_context_data(self, **kwargs):
         meetings = self.get_meetings()
@@ -126,6 +125,15 @@ class MeetingsPrintView(MeetingsBaseView):
 
         context = super().get_context_data(**kwargs)
         context['meetings'] = meeting_dict
+        context["meeting_types"] = MeetingType.objects.values(
+            "type_name",
+            "intergroup_code",
+        ).filter(
+            intergroup_code__isnull=False,
+        ).order_by(
+            "intergroup_code",
+        )
+        print(context["meeting_types"])
 
         return context
 
