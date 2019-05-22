@@ -1,12 +1,12 @@
 import json
 import os
 import re
-
-from django.core.files import File
-
 import requests
 
+from django.core.files import File
 from django.conf import settings
+
+from meeting_guide.models import Region
 
 
 def get_geocode_address(full_address):
@@ -165,3 +165,32 @@ def get_geocode_address(full_address):
                 )
 
     return address_components
+
+
+
+def build_tree(regions):
+    """ Build up our regions recursively """
+    items = []
+    for r in regions:
+        item = {
+            "label": r.name,
+            "value": r.id,
+            "children": []
+        }
+
+        if r.children.count():
+            item["children"] = build_tree(r.children.all())
+
+        items.append(item)
+
+    return items
+
+
+def get_region_tree():
+    """
+    Generate deeply nested region data for use by react-dropdown-tree-select
+    This returns a nested structure of lists and dicts of regions with their
+    names, ids, and children.
+    """
+    top_regions = Region.objects.filter(parent__isnull=True).prefetch_related("children")
+    return build_tree(top_regions)

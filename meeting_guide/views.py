@@ -9,6 +9,7 @@ from django.views.generic import TemplateView
 from django_weasyprint import WeasyTemplateResponseMixin
 
 from .models import Meeting, MeetingType, Region
+from .utils import get_region_tree
 
 
 class CacheMixin(object):
@@ -240,10 +241,8 @@ class RegionAPIView(MeetingsBaseView):
     """
 
     def get(self, request, *args, **kwargs):
-        # Eager load all regions to reference below.
-        regions = list(Region.objects.all().prefetch_related('children'))
-
-        return HttpResponse(json.dumps(regions), content_type='application/json')
+        tree = get_region_tree()
+        return HttpResponse(json.dumps(tree), content_type='application/json')
 
 
 from django.views.generic.edit import UpdateView
