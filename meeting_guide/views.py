@@ -18,7 +18,7 @@ class CacheMixin(object):
         return self.cache_timeout
 
     def dispatch(self, *args, **kwargs):
-        return cache_page(self.get_cache_timeout())(super(CacheMixin, self).dispatch)(*args, **kwargs)
+        return cache_page(self.get_cache_timeout())(super().dispatch)(*args, **kwargs)
 
 
 class MeetingsBaseView(CacheMixin, TemplateView):
@@ -232,6 +232,18 @@ class MeetingsAPIView(MeetingsBaseView):
             meetings_dict = json.dumps(meetings_dict)
 
         return HttpResponse(meetings_dict, content_type='application/json')
+
+
+class RegionAPIView(MeetingsBaseView):
+    """
+    Return a JSON response of the meeting list.
+    """
+
+    def get(self, request, *args, **kwargs):
+        # Eager load all regions to reference below.
+        regions = list(Region.objects.all().prefetch_related('children'))
+
+        return HttpResponse(json.dumps(regions), content_type='application/json')
 
 
 from django.views.generic.edit import UpdateView

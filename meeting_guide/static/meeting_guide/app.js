@@ -41334,14 +41334,13 @@ function (_Component) {
       }
 
       if (this.props.state.meetings && meeting && meeting.hasOwnProperty('formatted_address')) {
-        var _other_meetings = this.props.state.meetings.filter(function (m) {
+        other_meetings = this.props.state.meetings.filter(function (m) {
           return m.formatted_address === meeting.formatted_address;
         });
-
-        console.log(_other_meetings);
+        console.log(other_meetings);
       }
 
-      return this.props.state.input.meeting && meeting && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return this.props.state.input.meeting && meeting && other_meetings(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "flex-column flex-grow-1 d-flex"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "font-weight-light"
@@ -41430,7 +41429,7 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_map_gl__WEBPACK_IMPORTED_MODULE_2__["NavigationControl"], {
         showCompass: false,
         onViewportChange: this.updateViewport
-      }))))));
+      })))))));
     }
   }]);
 
