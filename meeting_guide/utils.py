@@ -167,7 +167,6 @@ def get_geocode_address(full_address):
     return address_components
 
 
-
 def build_tree(regions):
     """ Build up our regions recursively """
     items = []
