@@ -45,7 +45,7 @@ class MeetingsBaseView(CacheMixin, TemplateView):
         ).order_by(
             'day_of_week',
             'start_time',
-        )
+        )[0:10]
 
 
 class MeetingsReactJSView(CacheMixin, TemplateView):
