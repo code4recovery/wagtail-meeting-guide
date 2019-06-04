@@ -60642,25 +60642,6 @@ function (_Component) {
           loading: false
         });
       });
-      /*
-      // Get the regions from the region API, hard coded for now
-      fetch("/meeting-guide/api/regions/")
-      .then(response => {
-      return response.json();
-      }).then(result => {
-      const region_data = {
-      label: "Everywhere",
-      value: "",
-      children: result,
-      };
-      console.dir(region_data);
-      this.setState({
-      region_tree: result,
-      });
-      }, error => {
-      console.error('Region JSON fetch error: ' + error);
-      });
-      */
     }
   }, {
     key: "updateRegionChildren",
