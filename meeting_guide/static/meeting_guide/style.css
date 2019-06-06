@@ -212,12 +212,12 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
         border-radius: 12px 3px 3px 12px;
     }
 
-    .mapboxgl-ctrl-attrib.mapboxgl-compact > * {
+    .mapboxgl-ctrl-attrib.mapboxgl-compact .mapboxgl-ctrl-attrib-inner {
         display: none;
     }
 
-    .mapboxgl-ctrl-attrib.mapboxgl-compact:hover > * {
-        display: inline;
+    .mapboxgl-ctrl-attrib.mapboxgl-compact:hover .mapboxgl-ctrl-attrib-inner {
+        display: block;
     }
 
     .mapboxgl-ctrl-attrib.mapboxgl-compact::after {
@@ -561,7 +561,8 @@ meetings abbr[data-original-title] {
           text-decoration: underline dotted;
   cursor: help;
   border-bottom: 0;
-  text-decoration-skip-ink: none;
+  -webkit-text-decoration-skip-ink: none;
+          text-decoration-skip-ink: none;
 }
 meetings address {
   margin-bottom: 1rem;
@@ -695,11 +696,20 @@ meetings button,
 meetings select {
   text-transform: none;
 }
+meetings select {
+  word-wrap: normal;
+}
 meetings button,
 meetings [type=button],
 meetings [type=reset],
 meetings [type=submit] {
   -webkit-appearance: button;
+}
+meetings button:not(:disabled),
+meetings [type=button]:not(:disabled),
+meetings [type=reset]:not(:disabled),
+meetings [type=submit]:not(:disabled) {
+  cursor: pointer;
 }
 meetings button::-moz-focus-inner,
 meetings [type=button]::-moz-focus-inner,
@@ -774,10 +784,8 @@ meetings [hidden] {
 meetings h1, meetings h2, meetings h3, meetings h4, meetings h5, meetings h6,
 meetings .h1, meetings .h2, meetings .h3, meetings .h4, meetings .h5, meetings .h6 {
   margin-bottom: 0.5rem;
-  font-family: inherit;
   font-weight: 500;
   line-height: 1.2;
-  color: inherit;
 }
 meetings h1, meetings .h1 {
   font-size: 2.5rem;
@@ -1630,7 +1638,7 @@ meetings .offset-11 {
 meetings .table {
   width: 100%;
   margin-bottom: 1rem;
-  background-color: transparent;
+  color: #212529;
 }
 meetings .table th,
 meetings .table td {
@@ -1644,9 +1652,6 @@ meetings .table thead th {
 }
 meetings .table tbody + tbody {
   border-top: 2px solid #dee2e6;
-}
-meetings .table .table {
-  background-color: #fff;
 }
 meetings .table-sm th,
 meetings .table-sm td {
@@ -1673,6 +1678,7 @@ meetings .table-striped tbody tr:nth-of-type(odd) {
   background-color: rgba(0, 0, 0, 0.05);
 }
 meetings .table-hover tbody tr:hover {
+  color: #212529;
   background-color: rgba(0, 0, 0, 0.075);
 }
 meetings .table-primary,
@@ -1833,8 +1839,8 @@ meetings .table-hover .table-active:hover > th {
 }
 meetings .table .thead-dark th {
   color: #fff;
-  background-color: #212529;
-  border-color: #32383e;
+  background-color: #343a40;
+  border-color: #454d55;
 }
 meetings .table .thead-light th {
   color: #495057;
@@ -1843,12 +1849,12 @@ meetings .table .thead-light th {
 }
 meetings .table-dark {
   color: #fff;
-  background-color: #212529;
+  background-color: #343a40;
 }
 meetings .table-dark th,
 meetings .table-dark td,
 meetings .table-dark thead th {
-  border-color: #32383e;
+  border-color: #454d55;
 }
 meetings .table-dark.table-bordered {
   border: 0;
@@ -1857,6 +1863,7 @@ meetings .table-dark.table-striped tbody tr:nth-of-type(odd) {
   background-color: rgba(255, 255, 255, 0.05);
 }
 meetings .table-dark.table-hover tbody tr:hover {
+  color: #fff;
   background-color: rgba(255, 255, 255, 0.075);
 }
 @media (max-width: 575.98px) {
@@ -1865,7 +1872,6 @@ meetings .table-dark.table-hover tbody tr:hover {
     width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    -ms-overflow-style: -ms-autohiding-scrollbar;
   }
   meetings .table-responsive-sm > .table-bordered {
     border: 0;
@@ -1877,7 +1883,6 @@ meetings .table-dark.table-hover tbody tr:hover {
     width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    -ms-overflow-style: -ms-autohiding-scrollbar;
   }
   meetings .table-responsive-md > .table-bordered {
     border: 0;
@@ -1889,7 +1894,6 @@ meetings .table-dark.table-hover tbody tr:hover {
     width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    -ms-overflow-style: -ms-autohiding-scrollbar;
   }
   meetings .table-responsive-lg > .table-bordered {
     border: 0;
@@ -1901,7 +1905,6 @@ meetings .table-dark.table-hover tbody tr:hover {
     width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    -ms-overflow-style: -ms-autohiding-scrollbar;
   }
   meetings .table-responsive-xl > .table-bordered {
     border: 0;
@@ -1912,7 +1915,6 @@ meetings .table-responsive {
   width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 meetings .table-responsive > .table-bordered {
   border: 0;
@@ -1920,7 +1922,7 @@ meetings .table-responsive > .table-bordered {
 meetings .form-control {
   display: block;
   width: 100%;
-  height: calc(2.25rem + 2px);
+  height: calc(1.5em + 0.75rem + 2px);
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   font-weight: 400;
@@ -1932,7 +1934,7 @@ meetings .form-control {
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-@media screen and (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce) {
   meetings .form-control {
     transition: none;
   }
@@ -1949,6 +1951,10 @@ meetings .form-control:focus {
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 meetings .form-control::-webkit-input-placeholder {
+  color: #6c757d;
+  opacity: 1;
+}
+meetings .form-control::-moz-placeholder {
   color: #6c757d;
   opacity: 1;
 }
@@ -2013,14 +2019,14 @@ meetings .form-control-plaintext.form-control-sm, meetings .form-control-plainte
   padding-left: 0;
 }
 meetings .form-control-sm {
-  height: calc(1.8125rem + 2px);
+  height: calc(1.5em + 0.5rem + 2px);
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   line-height: 1.5;
   border-radius: 0.2rem;
 }
 meetings .form-control-lg {
-  height: calc(2.875rem + 2px);
+  height: calc(1.5em + 1rem + 2px);
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
   line-height: 1.5;
@@ -2101,11 +2107,11 @@ meetings .valid-tooltip {
 }
 .was-validated meetings .form-control:valid, meetings .form-control.is-valid {
   border-color: #28a745;
-  padding-right: 2.25rem;
-  background-repeat: no-repeat;
-  background-position: center right calc(2.25rem / 4);
-  background-size: calc(2.25rem / 2) calc(2.25rem / 2);
+  padding-right: calc(1.5em + 0.75rem);
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: center right calc(0.375em + 0.1875rem);
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
 }
 .was-validated meetings .form-control:valid:focus, meetings .form-control.is-valid:focus {
   border-color: #28a745;
@@ -2117,13 +2123,13 @@ meetings .form-control.is-valid ~ .valid-tooltip {
   display: block;
 }
 .was-validated meetings textarea.form-control:valid, meetings textarea.form-control.is-valid {
-  padding-right: 2.25rem;
-  background-position: top calc(2.25rem / 4) right calc(2.25rem / 4);
+  padding-right: calc(1.5em + 0.75rem);
+  background-position: top calc(0.375em + 0.1875rem) right calc(0.375em + 0.1875rem);
 }
 .was-validated meetings .custom-select:valid, meetings .custom-select.is-valid {
   border-color: #28a745;
-  padding-right: 3.4375rem;
-  background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right 0.75rem center/8px 10px, url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e") no-repeat center right 1.75rem/1.125rem 1.125rem;
+  padding-right: calc((1em + 0.75rem) * 3 / 4 + 1.75rem);
+  background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right 0.75rem center/8px 10px, url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e") #fff no-repeat center right 1.75rem/calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
 }
 .was-validated meetings .custom-select:valid:focus, meetings .custom-select.is-valid:focus {
   border-color: #28a745;
@@ -2203,11 +2209,11 @@ meetings .invalid-tooltip {
 }
 .was-validated meetings .form-control:invalid, meetings .form-control.is-invalid {
   border-color: #dc3545;
-  padding-right: 2.25rem;
+  padding-right: calc(1.5em + 0.75rem);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23dc3545' viewBox='-2 -2 7 7'%3e%3cpath stroke='%23dc3545' d='M0 0l3 3m0-3L0 3'/%3e%3ccircle r='.5'/%3e%3ccircle cx='3' r='.5'/%3e%3ccircle cy='3' r='.5'/%3e%3ccircle cx='3' cy='3' r='.5'/%3e%3c/svg%3E");
   background-repeat: no-repeat;
-  background-position: center right calc(2.25rem / 4);
-  background-size: calc(2.25rem / 2) calc(2.25rem / 2);
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23dc3545' viewBox='-2 -2 7 7'%3e%3cpath stroke='%23d9534f' d='M0 0l3 3m0-3L0 3'/%3e%3ccircle r='.5'/%3e%3ccircle cx='3' r='.5'/%3e%3ccircle cy='3' r='.5'/%3e%3ccircle cx='3' cy='3' r='.5'/%3e%3c/svg%3E");
+  background-position: center right calc(0.375em + 0.1875rem);
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
 }
 .was-validated meetings .form-control:invalid:focus, meetings .form-control.is-invalid:focus {
   border-color: #dc3545;
@@ -2219,13 +2225,13 @@ meetings .form-control.is-invalid ~ .invalid-tooltip {
   display: block;
 }
 .was-validated meetings textarea.form-control:invalid, meetings textarea.form-control.is-invalid {
-  padding-right: 2.25rem;
-  background-position: top calc(2.25rem / 4) right calc(2.25rem / 4);
+  padding-right: calc(1.5em + 0.75rem);
+  background-position: top calc(0.375em + 0.1875rem) right calc(0.375em + 0.1875rem);
 }
 .was-validated meetings .custom-select:invalid, meetings .custom-select.is-invalid {
   border-color: #dc3545;
-  padding-right: 3.4375rem;
-  background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right 0.75rem center/8px 10px, url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23dc3545' viewBox='-2 -2 7 7'%3e%3cpath stroke='%23d9534f' d='M0 0l3 3m0-3L0 3'/%3e%3ccircle r='.5'/%3e%3ccircle cx='3' r='.5'/%3e%3ccircle cy='3' r='.5'/%3e%3ccircle cx='3' cy='3' r='.5'/%3e%3c/svg%3E") no-repeat center right 1.75rem/1.125rem 1.125rem;
+  padding-right: calc((1em + 0.75rem) * 3 / 4 + 1.75rem);
+  background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right 0.75rem center/8px 10px, url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23dc3545' viewBox='-2 -2 7 7'%3e%3cpath stroke='%23dc3545' d='M0 0l3 3m0-3L0 3'/%3e%3ccircle r='.5'/%3e%3ccircle cx='3' r='.5'/%3e%3ccircle cy='3' r='.5'/%3e%3ccircle cx='3' cy='3' r='.5'/%3e%3c/svg%3E") #fff no-repeat center right 1.75rem/calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
 }
 .was-validated meetings .custom-select:invalid:focus, meetings .custom-select.is-invalid:focus {
   border-color: #dc3545;
@@ -2325,6 +2331,7 @@ meetings .form-inline .custom-select {
   }
   meetings .form-inline .form-check-input {
     position: relative;
+    flex-shrink: 0;
     margin-top: 0;
     margin-right: 0.25rem;
     margin-left: 0;
@@ -2355,7 +2362,7 @@ meetings .btn {
   border-radius: 0.25rem;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-@media screen and (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce) {
   meetings .btn {
     transition: none;
   }
@@ -2370,9 +2377,6 @@ meetings .btn:focus, meetings .btn.focus {
 }
 meetings .btn.disabled, meetings .btn:disabled {
   opacity: 0.65;
-}
-meetings .btn:not(:disabled):not(.disabled) {
-  cursor: pointer;
 }
 meetings a.btn.disabled,
 meetings fieldset:disabled a.btn {
@@ -2781,6 +2785,7 @@ meetings .btn-outline-dark:not(:disabled):not(.disabled):active:focus, meetings 
 meetings .btn-link {
   font-weight: 400;
   color: #007bff;
+  text-decoration: none;
 }
 meetings .btn-link:hover {
   color: #0056b3;
@@ -2824,6 +2829,9 @@ meetings .dropdown,
 meetings .dropleft {
   position: relative;
 }
+meetings .dropdown-toggle {
+  white-space: nowrap;
+}
 meetings .dropdown-toggle::after {
   display: inline-block;
   margin-left: 0.255em;
@@ -2856,42 +2864,22 @@ meetings .dropdown-menu {
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 0.25rem;
 }
+meetings .dropdown-menu-left {
+  right: auto;
+  left: 0;
+}
 meetings .dropdown-menu-right {
   right: 0;
   left: auto;
 }
 @media (min-width: 576px) {
-  meetings .dropdown-menu-sm-right {
-    right: 0;
-    left: auto;
-  }
-}
-@media (min-width: 768px) {
-  meetings .dropdown-menu-md-right {
-    right: 0;
-    left: auto;
-  }
-}
-@media (min-width: 992px) {
-  meetings .dropdown-menu-lg-right {
-    right: 0;
-    left: auto;
-  }
-}
-@media (min-width: 1200px) {
-  meetings .dropdown-menu-xl-right {
-    right: 0;
-    left: auto;
-  }
-}
-meetings .dropdown-menu-left {
-  right: auto;
-  left: 0;
-}
-@media (min-width: 576px) {
   meetings .dropdown-menu-sm-left {
     right: auto;
     left: 0;
+  }
+  meetings .dropdown-menu-sm-right {
+    right: 0;
+    left: auto;
   }
 }
 @media (min-width: 768px) {
@@ -2899,17 +2887,29 @@ meetings .dropdown-menu-left {
     right: auto;
     left: 0;
   }
+  meetings .dropdown-menu-md-right {
+    right: 0;
+    left: auto;
+  }
 }
 @media (min-width: 992px) {
   meetings .dropdown-menu-lg-left {
     right: auto;
     left: 0;
   }
+  meetings .dropdown-menu-lg-right {
+    right: 0;
+    left: auto;
+  }
 }
 @media (min-width: 1200px) {
   meetings .dropdown-menu-xl-left {
     right: auto;
     left: 0;
+  }
+  meetings .dropdown-menu-xl-right {
+    right: 0;
+    left: auto;
   }
 }
 meetings .dropup .dropdown-menu {
@@ -3006,14 +3006,6 @@ meetings .dropdown-item {
   white-space: nowrap;
   background-color: transparent;
   border: 0;
-}
-meetings .dropdown-item:first-child {
-  border-top-left-radius: calc(0.25rem - 1px);
-  border-top-right-radius: calc(0.25rem - 1px);
-}
-meetings .dropdown-item:last-child {
-  border-bottom-right-radius: calc(0.25rem - 1px);
-  border-bottom-left-radius: calc(0.25rem - 1px);
 }
 meetings .dropdown-item:hover, meetings .dropdown-item:focus {
   color: #16181b;
@@ -3252,7 +3244,7 @@ meetings .input-group-text input[type=checkbox] {
 }
 meetings .input-group-lg > .form-control:not(textarea),
 meetings .input-group-lg > .custom-select {
-  height: calc(2.875rem + 2px);
+  height: calc(1.5em + 1rem + 2px);
 }
 meetings .input-group-lg > .form-control,
 meetings .input-group-lg > .custom-select,
@@ -3267,7 +3259,7 @@ meetings .input-group-lg > .input-group-append > .btn {
 }
 meetings .input-group-sm > .form-control:not(textarea),
 meetings .input-group-sm > .custom-select {
-  height: calc(1.8125rem + 2px);
+  height: calc(1.5em + 0.5rem + 2px);
 }
 meetings .input-group-sm > .form-control,
 meetings .input-group-sm > .custom-select,
@@ -3312,6 +3304,12 @@ meetings .badge {
   white-space: nowrap;
   vertical-align: baseline;
   border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  meetings .badge {
+    transition: none;
+  }
 }
 ameetings .badge:hover, ameetings .badge:focus {
   text-decoration: none;
@@ -3337,6 +3335,10 @@ ameetings .badge-primary:hover, ameetings .badge-primary:focus {
   color: #fff;
   background-color: #0062cc;
 }
+ameetings .badge-primary:focus, ameetings .badge-primary.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
 
 meetings .badge-secondary {
   color: #fff;
@@ -3345,6 +3347,10 @@ meetings .badge-secondary {
 ameetings .badge-secondary:hover, ameetings .badge-secondary:focus {
   color: #fff;
   background-color: #545b62;
+}
+ameetings .badge-secondary:focus, ameetings .badge-secondary.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.5);
 }
 
 meetings .badge-success {
@@ -3355,6 +3361,10 @@ ameetings .badge-success:hover, ameetings .badge-success:focus {
   color: #fff;
   background-color: #1e7e34;
 }
+ameetings .badge-success:focus, ameetings .badge-success.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5);
+}
 
 meetings .badge-info {
   color: #fff;
@@ -3363,6 +3373,10 @@ meetings .badge-info {
 ameetings .badge-info:hover, ameetings .badge-info:focus {
   color: #fff;
   background-color: #117a8b;
+}
+ameetings .badge-info:focus, ameetings .badge-info.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5);
 }
 
 meetings .badge-warning {
@@ -3373,6 +3387,10 @@ ameetings .badge-warning:hover, ameetings .badge-warning:focus {
   color: #212529;
   background-color: #d39e00;
 }
+ameetings .badge-warning:focus, ameetings .badge-warning.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);
+}
 
 meetings .badge-danger {
   color: #fff;
@@ -3381,6 +3399,10 @@ meetings .badge-danger {
 ameetings .badge-danger:hover, ameetings .badge-danger:focus {
   color: #fff;
   background-color: #bd2130;
+}
+ameetings .badge-danger:focus, ameetings .badge-danger.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.5);
 }
 
 meetings .badge-light {
@@ -3391,6 +3413,10 @@ ameetings .badge-light:hover, ameetings .badge-light:focus {
   color: #212529;
   background-color: #dae0e5;
 }
+ameetings .badge-light:focus, ameetings .badge-light.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(248, 249, 250, 0.5);
+}
 
 meetings .badge-dark {
   color: #fff;
@@ -3399,6 +3425,10 @@ meetings .badge-dark {
 ameetings .badge-dark:hover, ameetings .badge-dark:focus {
   color: #fff;
   background-color: #1d2124;
+}
+ameetings .badge-dark:focus, ameetings .badge-dark.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(52, 58, 64, 0.5);
 }
 
 meetings .alert {
@@ -3524,6 +3554,7 @@ meetings .list-group-item-action {
   text-align: inherit;
 }
 meetings .list-group-item-action:hover, meetings .list-group-item-action:focus {
+  z-index: 1;
   color: #495057;
   text-decoration: none;
   background-color: #f8f9fa;
@@ -3549,10 +3580,6 @@ meetings .list-group-item:last-child {
   border-bottom-right-radius: 0.25rem;
   border-bottom-left-radius: 0.25rem;
 }
-meetings .list-group-item:hover, meetings .list-group-item:focus {
-  z-index: 1;
-  text-decoration: none;
-}
 meetings .list-group-item.disabled, meetings .list-group-item:disabled {
   color: #6c757d;
   pointer-events: none;
@@ -3563,6 +3590,104 @@ meetings .list-group-item.active {
   color: #fff;
   background-color: #007bff;
   border-color: #007bff;
+}
+meetings .list-group-horizontal {
+  flex-direction: row;
+}
+meetings .list-group-horizontal .list-group-item {
+  margin-right: -1px;
+  margin-bottom: 0;
+}
+meetings .list-group-horizontal .list-group-item:first-child {
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+  border-top-right-radius: 0;
+}
+meetings .list-group-horizontal .list-group-item:last-child {
+  margin-right: 0;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  border-bottom-left-radius: 0;
+}
+@media (min-width: 576px) {
+  meetings .list-group-horizontal-sm {
+    flex-direction: row;
+  }
+  meetings .list-group-horizontal-sm .list-group-item {
+    margin-right: -1px;
+    margin-bottom: 0;
+  }
+  meetings .list-group-horizontal-sm .list-group-item:first-child {
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+    border-top-right-radius: 0;
+  }
+  meetings .list-group-horizontal-sm .list-group-item:last-child {
+    margin-right: 0;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+    border-bottom-left-radius: 0;
+  }
+}
+@media (min-width: 768px) {
+  meetings .list-group-horizontal-md {
+    flex-direction: row;
+  }
+  meetings .list-group-horizontal-md .list-group-item {
+    margin-right: -1px;
+    margin-bottom: 0;
+  }
+  meetings .list-group-horizontal-md .list-group-item:first-child {
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+    border-top-right-radius: 0;
+  }
+  meetings .list-group-horizontal-md .list-group-item:last-child {
+    margin-right: 0;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+    border-bottom-left-radius: 0;
+  }
+}
+@media (min-width: 992px) {
+  meetings .list-group-horizontal-lg {
+    flex-direction: row;
+  }
+  meetings .list-group-horizontal-lg .list-group-item {
+    margin-right: -1px;
+    margin-bottom: 0;
+  }
+  meetings .list-group-horizontal-lg .list-group-item:first-child {
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+    border-top-right-radius: 0;
+  }
+  meetings .list-group-horizontal-lg .list-group-item:last-child {
+    margin-right: 0;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+    border-bottom-left-radius: 0;
+  }
+}
+@media (min-width: 1200px) {
+  meetings .list-group-horizontal-xl {
+    flex-direction: row;
+  }
+  meetings .list-group-horizontal-xl .list-group-item {
+    margin-right: -1px;
+    margin-bottom: 0;
+  }
+  meetings .list-group-horizontal-xl .list-group-item:first-child {
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+    border-top-right-radius: 0;
+  }
+  meetings .list-group-horizontal-xl .list-group-item:last-child {
+    margin-right: 0;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+    border-bottom-left-radius: 0;
+  }
 }
 meetings .list-group-flush .list-group-item {
   border-right: 0;
@@ -3828,6 +3953,9 @@ meetings .border-dark {
 meetings .border-white {
   border-color: #fff !important;
 }
+meetings .rounded-sm {
+  border-radius: 0.2rem !important;
+}
 meetings .rounded {
   border-radius: 0.25rem !important;
 }
@@ -3846,6 +3974,9 @@ meetings .rounded-bottom {
 meetings .rounded-left {
   border-top-left-radius: 0.25rem !important;
   border-bottom-left-radius: 0.25rem !important;
+}
+meetings .rounded-lg {
+  border-radius: 0.3rem !important;
 }
 meetings .rounded-circle {
   border-radius: 50% !important;
@@ -4063,8 +4194,8 @@ meetings .embed-responsive-21by9::before {
 meetings .embed-responsive-16by9::before {
   padding-top: 56.25%;
 }
-meetings .embed-responsive-3by4::before {
-  padding-top: 133.3333333333%;
+meetings .embed-responsive-4by3::before {
+  padding-top: 75%;
 }
 meetings .embed-responsive-1by1::before {
   padding-top: 100%;
@@ -4761,6 +4892,17 @@ meetings .vw-100 {
 }
 meetings .vh-100 {
   height: 100vh !important;
+}
+meetings .stretched-link::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: auto;
+  content: "";
+  background-color: rgba(0, 0, 0, 0);
 }
 meetings .m-0 {
   margin: 0 !important;
@@ -6481,7 +6623,7 @@ meetings .mx-xl-auto {
   }
 }
 meetings .text-monospace {
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
 }
 meetings .text-justify {
   text-align: justify !important;
@@ -6649,6 +6791,10 @@ meetings .text-hide {
 }
 meetings .text-decoration-none {
   text-decoration: none !important;
+}
+meetings .text-break {
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
 }
 meetings .text-reset {
   color: inherit !important;
