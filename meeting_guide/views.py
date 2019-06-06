@@ -45,7 +45,7 @@ class MeetingsBaseView(CacheMixin, TemplateView):
         ).order_by(
             'day_of_week',
             'start_time',
-        )
+        )[0:30]
 
 
 class MeetingsReactJSView(CacheMixin, TemplateView):
@@ -142,6 +142,8 @@ class MeetingsPrintDownloadView(WeasyTemplateResponseMixin, MeetingsPrintView):
     """
     Provide a PDF download of all active meetings, sourcing
     the HTML printable format.
+
+    SEPIA WIDTH: 3.75" x 5.5" papersize (0.25" margin)
     """
     from django.contrib.staticfiles import finders
 
