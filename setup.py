@@ -16,7 +16,7 @@ setup(
     packages=find_packages(),
     zip_safe=False,
     install_requires=[
-        "wagtail>=2.0,<2.6",
+        "wagtail>=2.0",
         "wagtailgeowidget==4.0.5",
         "django-mptt==0.10.0",
         "django-weasyprint==0.5.4",
