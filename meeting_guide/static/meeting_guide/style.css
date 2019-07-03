@@ -6942,7 +6942,7 @@ meetings .container-fluid table tr th:first-child, meetings .container-fluid tab
   }
 }
 meetings .container-fluid .mapboxgl-popup-content .list-group .list-group-item {
-  padding: 0.25rem 0.25rem 0.25rem 4rem;
+  padding: 0.25rem 0.25rem 0.25rem 5rem;
 }
 meetings .container-fluid .mapboxgl-popup-content .list-group .list-group-item time {
   left: 0.5rem;

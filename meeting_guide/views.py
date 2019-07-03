@@ -45,7 +45,7 @@ class MeetingsBaseView(CacheMixin, TemplateView):
         ).order_by(
             'day_of_week',
             'start_time',
-        )[0:30]
+        )
 
 
 class MeetingsReactJSView(CacheMixin, TemplateView):
@@ -220,14 +220,6 @@ class MeetingsAPIView(MeetingsBaseView):
                 "group": group_info,
                 "image": "",
             })
-
-            """
-            Eventually, we'll support regions and subregions:
-                "region_id": meeting.meeting_location.region.parent.id,
-                "region": meeting.meeting_location.region.parent.name,
-                "sub_region_id": meeting.meeting_location.region.id,
-                "sub_region": meeting.meeting_location.region.name,
-            """
 
         if settings.DEBUG:
             meetings_dict = json.dumps(meetings_dict, indent=4)
