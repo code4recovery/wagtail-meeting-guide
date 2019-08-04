@@ -555,12 +555,43 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
     }
 }
 @charset "UTF-8";
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
 }
 
 meetings {
+  @-webkit-keyframes spinner-border {
+    to {
+      -webkit-transform: rotate(360deg);
+              transform: rotate(360deg);
+    }
+  }
+  @keyframes spinner-border {
+    to {
+      -webkit-transform: rotate(360deg);
+              transform: rotate(360deg);
+    }
+  }
+  @-webkit-keyframes spinner-grow {
+    0% {
+      -webkit-transform: scale(0);
+              transform: scale(0);
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  @keyframes spinner-grow {
+    0% {
+      -webkit-transform: scale(0);
+              transform: scale(0);
+    }
+    50% {
+      opacity: 1;
+    }
+  }
   background-color: #fff;
   color: #212529;
   font-family: sans-serif;
@@ -576,366 +607,1502 @@ meetings {
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
 }
-meetings *,
-meetings *::before,
-meetings *::after {
-  box-sizing: border-box;
-}
-meetings html {
-  font-family: sans-serif;
-  line-height: 1.15;
-  -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-meetings article, meetings aside, meetings figcaption, meetings figure, meetings footer, meetings header, meetings hgroup, meetings main, meetings nav, meetings section {
-  display: block;
-}
-meetings body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #212529;
-  text-align: left;
-  background-color: #fff;
-}
-meetings [tabindex="-1"]:focus {
-  outline: 0 !important;
-}
-meetings hr {
-  box-sizing: content-box;
-  height: 0;
-  overflow: visible;
-}
-meetings h1, meetings h2, meetings h3, meetings h4, meetings h5, meetings h6 {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-}
-meetings p {
-  margin-top: 0;
+meetings .alert {
+  position: relative;
+  padding: 0.75rem 1.25rem;
   margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
 }
-meetings abbr[title],
-meetings abbr[data-original-title] {
-  text-decoration: underline;
-  -webkit-text-decoration: underline dotted;
-          text-decoration: underline dotted;
-  cursor: help;
-  border-bottom: 0;
-  -webkit-text-decoration-skip-ink: none;
-          text-decoration-skip-ink: none;
+meetings .alert-heading {
+  color: inherit;
 }
-meetings address {
-  margin-bottom: 1rem;
-  font-style: normal;
-  line-height: inherit;
-}
-meetings ol,
-meetings ul,
-meetings dl {
-  margin-top: 0;
-  margin-bottom: 1rem;
-}
-meetings ol ol,
-meetings ul ul,
-meetings ol ul,
-meetings ul ol {
-  margin-bottom: 0;
-}
-meetings dt {
+meetings .alert-link {
   font-weight: 700;
 }
-meetings dd {
-  margin-bottom: 0.5rem;
+meetings .alert-dismissible {
+  padding-right: 4rem;
+}
+meetings .alert-dismissible .close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.75rem 1.25rem;
+  color: inherit;
+}
+meetings .alert-primary {
+  color: #004085;
+  background-color: #cce5ff;
+  border-color: #b8daff;
+}
+meetings .alert-primary hr {
+  border-top-color: #9fcdff;
+}
+meetings .alert-primary .alert-link {
+  color: #002752;
+}
+meetings .alert-secondary {
+  color: #383d41;
+  background-color: #e2e3e5;
+  border-color: #d6d8db;
+}
+meetings .alert-secondary hr {
+  border-top-color: #c8cbcf;
+}
+meetings .alert-secondary .alert-link {
+  color: #202326;
+}
+meetings .alert-success {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+meetings .alert-success hr {
+  border-top-color: #b1dfbb;
+}
+meetings .alert-success .alert-link {
+  color: #0b2e13;
+}
+meetings .alert-info {
+  color: #0c5460;
+  background-color: #d1ecf1;
+  border-color: #bee5eb;
+}
+meetings .alert-info hr {
+  border-top-color: #abdde5;
+}
+meetings .alert-info .alert-link {
+  color: #062c33;
+}
+meetings .alert-warning {
+  color: #856404;
+  background-color: #fff3cd;
+  border-color: #ffeeba;
+}
+meetings .alert-warning hr {
+  border-top-color: #ffe8a1;
+}
+meetings .alert-warning .alert-link {
+  color: #533f03;
+}
+meetings .alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+meetings .alert-danger hr {
+  border-top-color: #f1b0b7;
+}
+meetings .alert-danger .alert-link {
+  color: #491217;
+}
+meetings .alert-light {
+  color: #818182;
+  background-color: #fefefe;
+  border-color: #fdfdfe;
+}
+meetings .alert-light hr {
+  border-top-color: #ececf6;
+}
+meetings .alert-light .alert-link {
+  color: #686868;
+}
+meetings .alert-dark {
+  color: #1b1e21;
+  background-color: #d6d8d9;
+  border-color: #c6c8ca;
+}
+meetings .alert-dark hr {
+  border-top-color: #b9bbbe;
+}
+meetings .alert-dark .alert-link {
+  color: #040505;
+}
+meetings .badge {
+  display: inline-block;
+  padding: 0.25em 0.4em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  meetings .badge {
+    -webkit-transition: none;
+    transition: none;
+  }
+}
+ameetings .badge:hover, ameetings .badge:focus {
+  text-decoration: none;
+}
+
+meetings .badge:empty {
+  display: none;
+}
+meetings .btn .badge {
+  position: relative;
+  top: -1px;
+}
+meetings .badge-pill {
+  padding-right: 0.6em;
+  padding-left: 0.6em;
+  border-radius: 10rem;
+}
+meetings .badge-primary {
+  color: #fff;
+  background-color: #007bff;
+}
+ameetings .badge-primary:hover, ameetings .badge-primary:focus {
+  color: #fff;
+  background-color: #0062cc;
+}
+ameetings .badge-primary:focus, ameetings .badge-primary.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+meetings .badge-secondary {
+  color: #fff;
+  background-color: #6c757d;
+}
+ameetings .badge-secondary:hover, ameetings .badge-secondary:focus {
+  color: #fff;
+  background-color: #545b62;
+}
+ameetings .badge-secondary:focus, ameetings .badge-secondary.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.5);
+}
+
+meetings .badge-success {
+  color: #fff;
+  background-color: #28a745;
+}
+ameetings .badge-success:hover, ameetings .badge-success:focus {
+  color: #fff;
+  background-color: #1e7e34;
+}
+ameetings .badge-success:focus, ameetings .badge-success.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5);
+}
+
+meetings .badge-info {
+  color: #fff;
+  background-color: #17a2b8;
+}
+ameetings .badge-info:hover, ameetings .badge-info:focus {
+  color: #fff;
+  background-color: #117a8b;
+}
+ameetings .badge-info:focus, ameetings .badge-info.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5);
+}
+
+meetings .badge-warning {
+  color: #212529;
+  background-color: #ffc107;
+}
+ameetings .badge-warning:hover, ameetings .badge-warning:focus {
+  color: #212529;
+  background-color: #d39e00;
+}
+ameetings .badge-warning:focus, ameetings .badge-warning.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);
+}
+
+meetings .badge-danger {
+  color: #fff;
+  background-color: #dc3545;
+}
+ameetings .badge-danger:hover, ameetings .badge-danger:focus {
+  color: #fff;
+  background-color: #bd2130;
+}
+ameetings .badge-danger:focus, ameetings .badge-danger.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.5);
+}
+
+meetings .badge-light {
+  color: #212529;
+  background-color: #f8f9fa;
+}
+ameetings .badge-light:hover, ameetings .badge-light:focus {
+  color: #212529;
+  background-color: #dae0e5;
+}
+ameetings .badge-light:focus, ameetings .badge-light.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(248, 249, 250, 0.5);
+}
+
+meetings .badge-dark {
+  color: #fff;
+  background-color: #343a40;
+}
+ameetings .badge-dark:hover, ameetings .badge-dark:focus {
+  color: #fff;
+  background-color: #1d2124;
+}
+ameetings .badge-dark:focus, ameetings .badge-dark.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(52, 58, 64, 0.5);
+}
+
+meetings .btn-group,
+meetings .btn-group-vertical {
+  position: relative;
+  display: -webkit-inline-box;
+  display: inline-flex;
+  vertical-align: middle;
+}
+meetings .btn-group > .btn,
+meetings .btn-group-vertical > .btn {
+  position: relative;
+  -webkit-box-flex: 1;
+          flex: 1 1 auto;
+}
+meetings .btn-group > .btn:hover,
+meetings .btn-group-vertical > .btn:hover {
+  z-index: 1;
+}
+meetings .btn-group > .btn:focus, meetings .btn-group > .btn:active, meetings .btn-group > .btn.active,
+meetings .btn-group-vertical > .btn:focus,
+meetings .btn-group-vertical > .btn:active,
+meetings .btn-group-vertical > .btn.active {
+  z-index: 1;
+}
+meetings .btn-toolbar {
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-box-pack: start;
+          justify-content: flex-start;
+}
+meetings .btn-toolbar .input-group {
+  width: auto;
+}
+meetings .btn-group > .btn:not(:first-child),
+meetings .btn-group > .btn-group:not(:first-child) {
+  margin-left: -1px;
+}
+meetings .btn-group > .btn:not(:last-child):not(.dropdown-toggle),
+meetings .btn-group > .btn-group:not(:last-child) > .btn {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+meetings .btn-group > .btn:not(:first-child),
+meetings .btn-group > .btn-group:not(:first-child) > .btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+meetings .dropdown-toggle-split {
+  padding-right: 0.5625rem;
+  padding-left: 0.5625rem;
+}
+meetings .dropdown-toggle-split::after, .dropup meetings .dropdown-toggle-split::after, .dropright meetings .dropdown-toggle-split::after {
   margin-left: 0;
 }
-meetings blockquote {
-  margin: 0 0 1rem;
+.dropleft meetings .dropdown-toggle-split::before {
+  margin-right: 0;
 }
-meetings b,
-meetings strong {
-  font-weight: bolder;
+meetings .btn-sm + .dropdown-toggle-split, meetings .btn-group-sm > .btn + .dropdown-toggle-split {
+  padding-right: 0.375rem;
+  padding-left: 0.375rem;
 }
-meetings small {
-  font-size: 80%;
+meetings .btn-lg + .dropdown-toggle-split, meetings .btn-group-lg > .btn + .dropdown-toggle-split {
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
 }
-meetings sub,
-meetings sup {
-  position: relative;
-  font-size: 75%;
-  line-height: 0;
-  vertical-align: baseline;
+meetings .btn-group-vertical {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  -webkit-box-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+          justify-content: center;
 }
-meetings sub {
-  bottom: -0.25em;
+meetings .btn-group-vertical > .btn,
+meetings .btn-group-vertical > .btn-group {
+  width: 100%;
 }
-meetings sup {
-  top: -0.5em;
+meetings .btn-group-vertical > .btn:not(:first-child),
+meetings .btn-group-vertical > .btn-group:not(:first-child) {
+  margin-top: -1px;
 }
-meetings a {
-  color: #007bff;
+meetings .btn-group-vertical > .btn:not(:last-child):not(.dropdown-toggle),
+meetings .btn-group-vertical > .btn-group:not(:last-child) > .btn {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+meetings .btn-group-vertical > .btn:not(:first-child),
+meetings .btn-group-vertical > .btn-group:not(:first-child) > .btn {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+meetings .btn-group-toggle > .btn,
+meetings .btn-group-toggle > .btn-group > .btn {
+  margin-bottom: 0;
+}
+meetings .btn-group-toggle > .btn input[type=radio],
+meetings .btn-group-toggle > .btn input[type=checkbox],
+meetings .btn-group-toggle > .btn-group > .btn input[type=radio],
+meetings .btn-group-toggle > .btn-group > .btn input[type=checkbox] {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  pointer-events: none;
+}
+meetings .btn {
+  display: inline-block;
+  font-weight: 400;
+  color: #212529;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  meetings .btn {
+    -webkit-transition: none;
+    transition: none;
+  }
+}
+meetings .btn:hover {
+  color: #212529;
   text-decoration: none;
+}
+meetings .btn:focus, meetings .btn.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+meetings .btn.disabled, meetings .btn:disabled {
+  opacity: 0.65;
+}
+meetings a.btn.disabled,
+meetings fieldset:disabled a.btn {
+  pointer-events: none;
+}
+meetings .btn-primary {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+meetings .btn-primary:hover {
+  color: #fff;
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+meetings .btn-primary:focus, meetings .btn-primary.focus {
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
+meetings .btn-primary.disabled, meetings .btn-primary:disabled {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+meetings .btn-primary:not(:disabled):not(.disabled):active, meetings .btn-primary:not(:disabled):not(.disabled).active, .show > meetings .btn-primary.dropdown-toggle {
+  color: #fff;
+  background-color: #0062cc;
+  border-color: #005cbf;
+}
+meetings .btn-primary:not(:disabled):not(.disabled):active:focus, meetings .btn-primary:not(:disabled):not(.disabled).active:focus, .show > meetings .btn-primary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
+meetings .btn-secondary {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+meetings .btn-secondary:hover {
+  color: #fff;
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+meetings .btn-secondary:focus, meetings .btn-secondary.focus {
+  box-shadow: 0 0 0 0.2rem rgba(130, 138, 145, 0.5);
+}
+meetings .btn-secondary.disabled, meetings .btn-secondary:disabled {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+meetings .btn-secondary:not(:disabled):not(.disabled):active, meetings .btn-secondary:not(:disabled):not(.disabled).active, .show > meetings .btn-secondary.dropdown-toggle {
+  color: #fff;
+  background-color: #545b62;
+  border-color: #4e555b;
+}
+meetings .btn-secondary:not(:disabled):not(.disabled):active:focus, meetings .btn-secondary:not(:disabled):not(.disabled).active:focus, .show > meetings .btn-secondary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(130, 138, 145, 0.5);
+}
+meetings .btn-success {
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
+}
+meetings .btn-success:hover {
+  color: #fff;
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+meetings .btn-success:focus, meetings .btn-success.focus {
+  box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5);
+}
+meetings .btn-success.disabled, meetings .btn-success:disabled {
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
+}
+meetings .btn-success:not(:disabled):not(.disabled):active, meetings .btn-success:not(:disabled):not(.disabled).active, .show > meetings .btn-success.dropdown-toggle {
+  color: #fff;
+  background-color: #1e7e34;
+  border-color: #1c7430;
+}
+meetings .btn-success:not(:disabled):not(.disabled):active:focus, meetings .btn-success:not(:disabled):not(.disabled).active:focus, .show > meetings .btn-success.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5);
+}
+meetings .btn-info {
+  color: #fff;
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+}
+meetings .btn-info:hover {
+  color: #fff;
+  background-color: #138496;
+  border-color: #117a8b;
+}
+meetings .btn-info:focus, meetings .btn-info.focus {
+  box-shadow: 0 0 0 0.2rem rgba(58, 176, 195, 0.5);
+}
+meetings .btn-info.disabled, meetings .btn-info:disabled {
+  color: #fff;
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+}
+meetings .btn-info:not(:disabled):not(.disabled):active, meetings .btn-info:not(:disabled):not(.disabled).active, .show > meetings .btn-info.dropdown-toggle {
+  color: #fff;
+  background-color: #117a8b;
+  border-color: #10707f;
+}
+meetings .btn-info:not(:disabled):not(.disabled):active:focus, meetings .btn-info:not(:disabled):not(.disabled).active:focus, .show > meetings .btn-info.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(58, 176, 195, 0.5);
+}
+meetings .btn-warning {
+  color: #212529;
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+meetings .btn-warning:hover {
+  color: #212529;
+  background-color: #e0a800;
+  border-color: #d39e00;
+}
+meetings .btn-warning:focus, meetings .btn-warning.focus {
+  box-shadow: 0 0 0 0.2rem rgba(222, 170, 12, 0.5);
+}
+meetings .btn-warning.disabled, meetings .btn-warning:disabled {
+  color: #212529;
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+meetings .btn-warning:not(:disabled):not(.disabled):active, meetings .btn-warning:not(:disabled):not(.disabled).active, .show > meetings .btn-warning.dropdown-toggle {
+  color: #212529;
+  background-color: #d39e00;
+  border-color: #c69500;
+}
+meetings .btn-warning:not(:disabled):not(.disabled):active:focus, meetings .btn-warning:not(:disabled):not(.disabled).active:focus, .show > meetings .btn-warning.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(222, 170, 12, 0.5);
+}
+meetings .btn-danger {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+meetings .btn-danger:hover {
+  color: #fff;
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+meetings .btn-danger:focus, meetings .btn-danger.focus {
+  box-shadow: 0 0 0 0.2rem rgba(225, 83, 97, 0.5);
+}
+meetings .btn-danger.disabled, meetings .btn-danger:disabled {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+meetings .btn-danger:not(:disabled):not(.disabled):active, meetings .btn-danger:not(:disabled):not(.disabled).active, .show > meetings .btn-danger.dropdown-toggle {
+  color: #fff;
+  background-color: #bd2130;
+  border-color: #b21f2d;
+}
+meetings .btn-danger:not(:disabled):not(.disabled):active:focus, meetings .btn-danger:not(:disabled):not(.disabled).active:focus, .show > meetings .btn-danger.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(225, 83, 97, 0.5);
+}
+meetings .btn-light {
+  color: #212529;
+  background-color: #f8f9fa;
+  border-color: #f8f9fa;
+}
+meetings .btn-light:hover {
+  color: #212529;
+  background-color: #e2e6ea;
+  border-color: #dae0e5;
+}
+meetings .btn-light:focus, meetings .btn-light.focus {
+  box-shadow: 0 0 0 0.2rem rgba(216, 217, 219, 0.5);
+}
+meetings .btn-light.disabled, meetings .btn-light:disabled {
+  color: #212529;
+  background-color: #f8f9fa;
+  border-color: #f8f9fa;
+}
+meetings .btn-light:not(:disabled):not(.disabled):active, meetings .btn-light:not(:disabled):not(.disabled).active, .show > meetings .btn-light.dropdown-toggle {
+  color: #212529;
+  background-color: #dae0e5;
+  border-color: #d3d9df;
+}
+meetings .btn-light:not(:disabled):not(.disabled):active:focus, meetings .btn-light:not(:disabled):not(.disabled).active:focus, .show > meetings .btn-light.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(216, 217, 219, 0.5);
+}
+meetings .btn-dark {
+  color: #fff;
+  background-color: #343a40;
+  border-color: #343a40;
+}
+meetings .btn-dark:hover {
+  color: #fff;
+  background-color: #23272b;
+  border-color: #1d2124;
+}
+meetings .btn-dark:focus, meetings .btn-dark.focus {
+  box-shadow: 0 0 0 0.2rem rgba(82, 88, 93, 0.5);
+}
+meetings .btn-dark.disabled, meetings .btn-dark:disabled {
+  color: #fff;
+  background-color: #343a40;
+  border-color: #343a40;
+}
+meetings .btn-dark:not(:disabled):not(.disabled):active, meetings .btn-dark:not(:disabled):not(.disabled).active, .show > meetings .btn-dark.dropdown-toggle {
+  color: #fff;
+  background-color: #1d2124;
+  border-color: #171a1d;
+}
+meetings .btn-dark:not(:disabled):not(.disabled):active:focus, meetings .btn-dark:not(:disabled):not(.disabled).active:focus, .show > meetings .btn-dark.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(82, 88, 93, 0.5);
+}
+meetings .btn-outline-primary {
+  color: #007bff;
+  border-color: #007bff;
+}
+meetings .btn-outline-primary:hover {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+meetings .btn-outline-primary:focus, meetings .btn-outline-primary.focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+meetings .btn-outline-primary.disabled, meetings .btn-outline-primary:disabled {
+  color: #007bff;
   background-color: transparent;
 }
-meetings a:hover {
+meetings .btn-outline-primary:not(:disabled):not(.disabled):active, meetings .btn-outline-primary:not(:disabled):not(.disabled).active, .show > meetings .btn-outline-primary.dropdown-toggle {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+meetings .btn-outline-primary:not(:disabled):not(.disabled):active:focus, meetings .btn-outline-primary:not(:disabled):not(.disabled).active:focus, .show > meetings .btn-outline-primary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+meetings .btn-outline-secondary {
+  color: #6c757d;
+  border-color: #6c757d;
+}
+meetings .btn-outline-secondary:hover {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+meetings .btn-outline-secondary:focus, meetings .btn-outline-secondary.focus {
+  box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.5);
+}
+meetings .btn-outline-secondary.disabled, meetings .btn-outline-secondary:disabled {
+  color: #6c757d;
+  background-color: transparent;
+}
+meetings .btn-outline-secondary:not(:disabled):not(.disabled):active, meetings .btn-outline-secondary:not(:disabled):not(.disabled).active, .show > meetings .btn-outline-secondary.dropdown-toggle {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+meetings .btn-outline-secondary:not(:disabled):not(.disabled):active:focus, meetings .btn-outline-secondary:not(:disabled):not(.disabled).active:focus, .show > meetings .btn-outline-secondary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.5);
+}
+meetings .btn-outline-success {
+  color: #28a745;
+  border-color: #28a745;
+}
+meetings .btn-outline-success:hover {
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
+}
+meetings .btn-outline-success:focus, meetings .btn-outline-success.focus {
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5);
+}
+meetings .btn-outline-success.disabled, meetings .btn-outline-success:disabled {
+  color: #28a745;
+  background-color: transparent;
+}
+meetings .btn-outline-success:not(:disabled):not(.disabled):active, meetings .btn-outline-success:not(:disabled):not(.disabled).active, .show > meetings .btn-outline-success.dropdown-toggle {
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
+}
+meetings .btn-outline-success:not(:disabled):not(.disabled):active:focus, meetings .btn-outline-success:not(:disabled):not(.disabled).active:focus, .show > meetings .btn-outline-success.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5);
+}
+meetings .btn-outline-info {
+  color: #17a2b8;
+  border-color: #17a2b8;
+}
+meetings .btn-outline-info:hover {
+  color: #fff;
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+}
+meetings .btn-outline-info:focus, meetings .btn-outline-info.focus {
+  box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5);
+}
+meetings .btn-outline-info.disabled, meetings .btn-outline-info:disabled {
+  color: #17a2b8;
+  background-color: transparent;
+}
+meetings .btn-outline-info:not(:disabled):not(.disabled):active, meetings .btn-outline-info:not(:disabled):not(.disabled).active, .show > meetings .btn-outline-info.dropdown-toggle {
+  color: #fff;
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+}
+meetings .btn-outline-info:not(:disabled):not(.disabled):active:focus, meetings .btn-outline-info:not(:disabled):not(.disabled).active:focus, .show > meetings .btn-outline-info.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5);
+}
+meetings .btn-outline-warning {
+  color: #ffc107;
+  border-color: #ffc107;
+}
+meetings .btn-outline-warning:hover {
+  color: #212529;
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+meetings .btn-outline-warning:focus, meetings .btn-outline-warning.focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);
+}
+meetings .btn-outline-warning.disabled, meetings .btn-outline-warning:disabled {
+  color: #ffc107;
+  background-color: transparent;
+}
+meetings .btn-outline-warning:not(:disabled):not(.disabled):active, meetings .btn-outline-warning:not(:disabled):not(.disabled).active, .show > meetings .btn-outline-warning.dropdown-toggle {
+  color: #212529;
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+meetings .btn-outline-warning:not(:disabled):not(.disabled):active:focus, meetings .btn-outline-warning:not(:disabled):not(.disabled).active:focus, .show > meetings .btn-outline-warning.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);
+}
+meetings .btn-outline-danger {
+  color: #dc3545;
+  border-color: #dc3545;
+}
+meetings .btn-outline-danger:hover {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+meetings .btn-outline-danger:focus, meetings .btn-outline-danger.focus {
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.5);
+}
+meetings .btn-outline-danger.disabled, meetings .btn-outline-danger:disabled {
+  color: #dc3545;
+  background-color: transparent;
+}
+meetings .btn-outline-danger:not(:disabled):not(.disabled):active, meetings .btn-outline-danger:not(:disabled):not(.disabled).active, .show > meetings .btn-outline-danger.dropdown-toggle {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+meetings .btn-outline-danger:not(:disabled):not(.disabled):active:focus, meetings .btn-outline-danger:not(:disabled):not(.disabled).active:focus, .show > meetings .btn-outline-danger.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.5);
+}
+meetings .btn-outline-light {
+  color: #f8f9fa;
+  border-color: #f8f9fa;
+}
+meetings .btn-outline-light:hover {
+  color: #212529;
+  background-color: #f8f9fa;
+  border-color: #f8f9fa;
+}
+meetings .btn-outline-light:focus, meetings .btn-outline-light.focus {
+  box-shadow: 0 0 0 0.2rem rgba(248, 249, 250, 0.5);
+}
+meetings .btn-outline-light.disabled, meetings .btn-outline-light:disabled {
+  color: #f8f9fa;
+  background-color: transparent;
+}
+meetings .btn-outline-light:not(:disabled):not(.disabled):active, meetings .btn-outline-light:not(:disabled):not(.disabled).active, .show > meetings .btn-outline-light.dropdown-toggle {
+  color: #212529;
+  background-color: #f8f9fa;
+  border-color: #f8f9fa;
+}
+meetings .btn-outline-light:not(:disabled):not(.disabled):active:focus, meetings .btn-outline-light:not(:disabled):not(.disabled).active:focus, .show > meetings .btn-outline-light.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(248, 249, 250, 0.5);
+}
+meetings .btn-outline-dark {
+  color: #343a40;
+  border-color: #343a40;
+}
+meetings .btn-outline-dark:hover {
+  color: #fff;
+  background-color: #343a40;
+  border-color: #343a40;
+}
+meetings .btn-outline-dark:focus, meetings .btn-outline-dark.focus {
+  box-shadow: 0 0 0 0.2rem rgba(52, 58, 64, 0.5);
+}
+meetings .btn-outline-dark.disabled, meetings .btn-outline-dark:disabled {
+  color: #343a40;
+  background-color: transparent;
+}
+meetings .btn-outline-dark:not(:disabled):not(.disabled):active, meetings .btn-outline-dark:not(:disabled):not(.disabled).active, .show > meetings .btn-outline-dark.dropdown-toggle {
+  color: #fff;
+  background-color: #343a40;
+  border-color: #343a40;
+}
+meetings .btn-outline-dark:not(:disabled):not(.disabled):active:focus, meetings .btn-outline-dark:not(:disabled):not(.disabled).active:focus, .show > meetings .btn-outline-dark.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(52, 58, 64, 0.5);
+}
+meetings .btn-link {
+  font-weight: 400;
+  color: #007bff;
+  text-decoration: none;
+}
+meetings .btn-link:hover {
   color: #0056b3;
   text-decoration: underline;
 }
-meetings a:not([href]):not([tabindex]) {
-  color: inherit;
-  text-decoration: none;
+meetings .btn-link:focus, meetings .btn-link.focus {
+  text-decoration: underline;
+  box-shadow: none;
 }
-meetings a:not([href]):not([tabindex]):hover, meetings a:not([href]):not([tabindex]):focus {
-  color: inherit;
-  text-decoration: none;
-}
-meetings a:not([href]):not([tabindex]):focus {
-  outline: 0;
-}
-meetings pre,
-meetings code,
-meetings kbd,
-meetings samp {
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  font-size: 1em;
-}
-meetings pre {
-  margin-top: 0;
-  margin-bottom: 1rem;
-  overflow: auto;
-}
-meetings figure {
-  margin: 0 0 1rem;
-}
-meetings img {
-  vertical-align: middle;
-  border-style: none;
-}
-meetings svg {
-  overflow: hidden;
-  vertical-align: middle;
-}
-meetings table {
-  border-collapse: collapse;
-}
-meetings caption {
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
+meetings .btn-link:disabled, meetings .btn-link.disabled {
   color: #6c757d;
-  text-align: left;
-  caption-side: bottom;
+  pointer-events: none;
 }
-meetings th {
-  text-align: inherit;
+meetings .btn-lg, meetings .btn-group-lg > .btn {
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  border-radius: 0.3rem;
 }
-meetings label {
-  display: inline-block;
-  margin-bottom: 0.5rem;
+meetings .btn-sm, meetings .btn-group-sm > .btn {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
 }
-meetings button {
-  border-radius: 0;
-}
-meetings button:focus {
-  outline: 1px dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-}
-meetings input,
-meetings button,
-meetings select,
-meetings optgroup,
-meetings textarea {
-  margin: 0;
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-}
-meetings button,
-meetings input {
-  overflow: visible;
-}
-meetings button,
-meetings select {
-  text-transform: none;
-}
-meetings select {
-  word-wrap: normal;
-}
-meetings button,
-meetings [type=button],
-meetings [type=reset],
-meetings [type=submit] {
-  -webkit-appearance: button;
-}
-meetings button:not(:disabled),
-meetings [type=button]:not(:disabled),
-meetings [type=reset]:not(:disabled),
-meetings [type=submit]:not(:disabled) {
-  cursor: pointer;
-}
-meetings button::-moz-focus-inner,
-meetings [type=button]::-moz-focus-inner,
-meetings [type=reset]::-moz-focus-inner,
-meetings [type=submit]::-moz-focus-inner {
-  padding: 0;
-  border-style: none;
-}
-meetings input[type=radio],
-meetings input[type=checkbox] {
-  box-sizing: border-box;
-  padding: 0;
-}
-meetings input[type=date],
-meetings input[type=time],
-meetings input[type=datetime-local],
-meetings input[type=month] {
-  -webkit-appearance: listbox;
-}
-meetings textarea {
-  overflow: auto;
-  resize: vertical;
-}
-meetings fieldset {
-  min-width: 0;
-  padding: 0;
-  margin: 0;
-  border: 0;
-}
-meetings legend {
+meetings .btn-block {
   display: block;
   width: 100%;
-  max-width: 100%;
-  padding: 0;
-  margin-bottom: 0.5rem;
-  font-size: 1.5rem;
-  line-height: inherit;
-  color: inherit;
-  white-space: normal;
 }
-meetings progress {
-  vertical-align: baseline;
+meetings .btn-block + .btn-block {
+  margin-top: 0.5rem;
 }
-meetings [type=number]::-webkit-inner-spin-button,
-meetings [type=number]::-webkit-outer-spin-button {
-  height: auto;
+meetings input[type=submit].btn-block,
+meetings input[type=reset].btn-block,
+meetings input[type=button].btn-block {
+  width: 100%;
 }
-meetings [type=search] {
-  outline-offset: -2px;
-  -webkit-appearance: none;
+meetings .dropup,
+meetings .dropright,
+meetings .dropdown,
+meetings .dropleft {
+  position: relative;
 }
-meetings [type=search]::-webkit-search-decoration {
-  -webkit-appearance: none;
+meetings .dropdown-toggle {
+  white-space: nowrap;
 }
-meetings ::-webkit-file-upload-button {
-  font: inherit;
-  -webkit-appearance: button;
-}
-meetings output {
+meetings .dropdown-toggle::after {
   display: inline-block;
+  margin-left: 0.255em;
+  vertical-align: 0.255em;
+  content: "";
+  border-top: 0.3em solid;
+  border-right: 0.3em solid transparent;
+  border-bottom: 0;
+  border-left: 0.3em solid transparent;
 }
-meetings summary {
-  display: list-item;
-  cursor: pointer;
+meetings .dropdown-toggle:empty::after {
+  margin-left: 0;
 }
-meetings template {
+meetings .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 10rem;
+  padding: 0.5rem 0;
+  margin: 0.125rem 0 0;
+  font-size: 1rem;
+  color: #212529;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
+}
+meetings .dropdown-menu-left {
+  right: auto;
+  left: 0;
+}
+meetings .dropdown-menu-right {
+  right: 0;
+  left: auto;
+}
+@media (min-width: 576px) {
+  meetings .dropdown-menu-sm-left {
+    right: auto;
+    left: 0;
+  }
+  meetings .dropdown-menu-sm-right {
+    right: 0;
+    left: auto;
+  }
+}
+@media (min-width: 768px) {
+  meetings .dropdown-menu-md-left {
+    right: auto;
+    left: 0;
+  }
+  meetings .dropdown-menu-md-right {
+    right: 0;
+    left: auto;
+  }
+}
+@media (min-width: 992px) {
+  meetings .dropdown-menu-lg-left {
+    right: auto;
+    left: 0;
+  }
+  meetings .dropdown-menu-lg-right {
+    right: 0;
+    left: auto;
+  }
+}
+@media (min-width: 1200px) {
+  meetings .dropdown-menu-xl-left {
+    right: auto;
+    left: 0;
+  }
+  meetings .dropdown-menu-xl-right {
+    right: 0;
+    left: auto;
+  }
+}
+meetings .dropup .dropdown-menu {
+  top: auto;
+  bottom: 100%;
+  margin-top: 0;
+  margin-bottom: 0.125rem;
+}
+meetings .dropup .dropdown-toggle::after {
+  display: inline-block;
+  margin-left: 0.255em;
+  vertical-align: 0.255em;
+  content: "";
+  border-top: 0;
+  border-right: 0.3em solid transparent;
+  border-bottom: 0.3em solid;
+  border-left: 0.3em solid transparent;
+}
+meetings .dropup .dropdown-toggle:empty::after {
+  margin-left: 0;
+}
+meetings .dropright .dropdown-menu {
+  top: 0;
+  right: auto;
+  left: 100%;
+  margin-top: 0;
+  margin-left: 0.125rem;
+}
+meetings .dropright .dropdown-toggle::after {
+  display: inline-block;
+  margin-left: 0.255em;
+  vertical-align: 0.255em;
+  content: "";
+  border-top: 0.3em solid transparent;
+  border-right: 0;
+  border-bottom: 0.3em solid transparent;
+  border-left: 0.3em solid;
+}
+meetings .dropright .dropdown-toggle:empty::after {
+  margin-left: 0;
+}
+meetings .dropright .dropdown-toggle::after {
+  vertical-align: 0;
+}
+meetings .dropleft .dropdown-menu {
+  top: 0;
+  right: 100%;
+  left: auto;
+  margin-top: 0;
+  margin-right: 0.125rem;
+}
+meetings .dropleft .dropdown-toggle::after {
+  display: inline-block;
+  margin-left: 0.255em;
+  vertical-align: 0.255em;
+  content: "";
+}
+meetings .dropleft .dropdown-toggle::after {
   display: none;
 }
-meetings [hidden] {
-  display: none !important;
-}
-meetings h1, meetings h2, meetings h3, meetings h4, meetings h5, meetings h6,
-meetings .h1, meetings .h2, meetings .h3, meetings .h4, meetings .h5, meetings .h6 {
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  line-height: 1.2;
-}
-meetings h1, meetings .h1 {
-  font-size: 2.5rem;
-}
-meetings h2, meetings .h2 {
-  font-size: 2rem;
-}
-meetings h3, meetings .h3 {
-  font-size: 1.75rem;
-}
-meetings h4, meetings .h4 {
-  font-size: 1.5rem;
-}
-meetings h5, meetings .h5 {
-  font-size: 1.25rem;
-}
-meetings h6, meetings .h6 {
-  font-size: 1rem;
-}
-meetings .lead {
-  font-size: 1.25rem;
-  font-weight: 300;
-}
-meetings .display-1 {
-  font-size: 6rem;
-  font-weight: 300;
-  line-height: 1.2;
-}
-meetings .display-2 {
-  font-size: 5.5rem;
-  font-weight: 300;
-  line-height: 1.2;
-}
-meetings .display-3 {
-  font-size: 4.5rem;
-  font-weight: 300;
-  line-height: 1.2;
-}
-meetings .display-4 {
-  font-size: 3.5rem;
-  font-weight: 300;
-  line-height: 1.2;
-}
-meetings hr {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  border: 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
-meetings small,
-meetings .small {
-  font-size: 80%;
-  font-weight: 400;
-}
-meetings mark,
-meetings .mark {
-  padding: 0.2em;
-  background-color: #fcf8e3;
-}
-meetings .list-unstyled {
-  padding-left: 0;
-  list-style: none;
-}
-meetings .list-inline {
-  padding-left: 0;
-  list-style: none;
-}
-meetings .list-inline-item {
+meetings .dropleft .dropdown-toggle::before {
   display: inline-block;
+  margin-right: 0.255em;
+  vertical-align: 0.255em;
+  content: "";
+  border-top: 0.3em solid transparent;
+  border-right: 0.3em solid;
+  border-bottom: 0.3em solid transparent;
 }
-meetings .list-inline-item:not(:last-child) {
-  margin-right: 0.5rem;
+meetings .dropleft .dropdown-toggle:empty::after {
+  margin-left: 0;
 }
-meetings .initialism {
-  font-size: 90%;
-  text-transform: uppercase;
+meetings .dropleft .dropdown-toggle::before {
+  vertical-align: 0;
 }
-meetings .blockquote {
-  margin-bottom: 1rem;
-  font-size: 1.25rem;
+meetings .dropdown-menu[x-placement^=top], meetings .dropdown-menu[x-placement^=right], meetings .dropdown-menu[x-placement^=bottom], meetings .dropdown-menu[x-placement^=left] {
+  right: auto;
+  bottom: auto;
 }
-meetings .blockquote-footer {
+meetings .dropdown-divider {
+  height: 0;
+  margin: 0.5rem 0;
+  overflow: hidden;
+  border-top: 1px solid #e9ecef;
+}
+meetings .dropdown-item {
   display: block;
-  font-size: 80%;
+  width: 100%;
+  padding: 0.25rem 1.5rem;
+  clear: both;
+  font-weight: 400;
+  color: #212529;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+}
+meetings .dropdown-item:hover, meetings .dropdown-item:focus {
+  color: #16181b;
+  text-decoration: none;
+  background-color: #f8f9fa;
+}
+meetings .dropdown-item.active, meetings .dropdown-item:active {
+  color: #fff;
+  text-decoration: none;
+  background-color: #007bff;
+}
+meetings .dropdown-item.disabled, meetings .dropdown-item:disabled {
+  color: #6c757d;
+  pointer-events: none;
+  background-color: transparent;
+}
+meetings .dropdown-menu.show {
+  display: block;
+}
+meetings .dropdown-header {
+  display: block;
+  padding: 0.5rem 1.5rem;
+  margin-bottom: 0;
+  font-size: 0.875rem;
+  color: #6c757d;
+  white-space: nowrap;
+}
+meetings .dropdown-item-text {
+  display: block;
+  padding: 0.25rem 1.5rem;
+  color: #212529;
+}
+meetings .form-control {
+  display: block;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  -webkit-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  meetings .form-control {
+    -webkit-transition: none;
+    transition: none;
+  }
+}
+meetings .form-control::-ms-expand {
+  background-color: transparent;
+  border: 0;
+}
+meetings .form-control:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+meetings .form-control::-webkit-input-placeholder {
+  color: #6c757d;
+  opacity: 1;
+}
+meetings .form-control::-moz-placeholder {
+  color: #6c757d;
+  opacity: 1;
+}
+meetings .form-control:-ms-input-placeholder {
+  color: #6c757d;
+  opacity: 1;
+}
+meetings .form-control::-ms-input-placeholder {
+  color: #6c757d;
+  opacity: 1;
+}
+meetings .form-control::placeholder {
+  color: #6c757d;
+  opacity: 1;
+}
+meetings .form-control:disabled, meetings .form-control[readonly] {
+  background-color: #e9ecef;
+  opacity: 1;
+}
+meetings select.form-control:focus::-ms-value {
+  color: #495057;
+  background-color: #fff;
+}
+meetings .form-control-file,
+meetings .form-control-range {
+  display: block;
+  width: 100%;
+}
+meetings .col-form-label {
+  padding-top: calc(0.375rem + 1px);
+  padding-bottom: calc(0.375rem + 1px);
+  margin-bottom: 0;
+  font-size: inherit;
+  line-height: 1.5;
+}
+meetings .col-form-label-lg {
+  padding-top: calc(0.5rem + 1px);
+  padding-bottom: calc(0.5rem + 1px);
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+meetings .col-form-label-sm {
+  padding-top: calc(0.25rem + 1px);
+  padding-bottom: calc(0.25rem + 1px);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+meetings .form-control-plaintext {
+  display: block;
+  width: 100%;
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
+  margin-bottom: 0;
+  line-height: 1.5;
+  color: #212529;
+  background-color: transparent;
+  border: solid transparent;
+  border-width: 1px 0;
+}
+meetings .form-control-plaintext.form-control-sm, meetings .form-control-plaintext.form-control-lg {
+  padding-right: 0;
+  padding-left: 0;
+}
+meetings .form-control-sm {
+  height: calc(1.5em + 0.5rem + 2px);
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+}
+meetings .form-control-lg {
+  height: calc(1.5em + 1rem + 2px);
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  border-radius: 0.3rem;
+}
+meetings select.form-control[size], meetings select.form-control[multiple] {
+  height: auto;
+}
+meetings textarea.form-control {
+  height: auto;
+}
+meetings .form-group {
+  margin-bottom: 1rem;
+}
+meetings .form-text {
+  display: block;
+  margin-top: 0.25rem;
+}
+meetings .form-row {
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -5px;
+  margin-left: -5px;
+}
+meetings .form-row > .col,
+meetings .form-row > [class*=col-] {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+meetings .form-check {
+  position: relative;
+  display: block;
+  padding-left: 1.25rem;
+}
+meetings .form-check-input {
+  position: absolute;
+  margin-top: 0.3rem;
+  margin-left: -1.25rem;
+}
+meetings .form-check-input:disabled ~ .form-check-label {
   color: #6c757d;
 }
-meetings .blockquote-footer::before {
-  content: "\2014\A0";
+meetings .form-check-label {
+  margin-bottom: 0;
+}
+meetings .form-check-inline {
+  display: -webkit-inline-box;
+  display: inline-flex;
+  -webkit-box-align: center;
+          align-items: center;
+  padding-left: 0;
+  margin-right: 0.75rem;
+}
+meetings .form-check-inline .form-check-input {
+  position: static;
+  margin-top: 0;
+  margin-right: 0.3125rem;
+  margin-left: 0;
+}
+meetings .valid-feedback {
+  display: none;
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 80%;
+  color: #28a745;
+}
+meetings .valid-tooltip {
+  position: absolute;
+  top: 100%;
+  z-index: 5;
+  display: none;
+  max-width: 100%;
+  padding: 0.25rem 0.5rem;
+  margin-top: 0.1rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #fff;
+  background-color: rgba(40, 167, 69, 0.9);
+  border-radius: 0.25rem;
+}
+.was-validated meetings .form-control:valid, meetings .form-control.is-valid {
+  border-color: #28a745;
+  padding-right: calc(1.5em + 0.75rem);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: center right calc(0.375em + 0.1875rem);
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+.was-validated meetings .form-control:valid:focus, meetings .form-control.is-valid:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+.was-validated meetings .form-control:valid ~ .valid-feedback,
+.was-validated meetings .form-control:valid ~ .valid-tooltip, meetings .form-control.is-valid ~ .valid-feedback,
+meetings .form-control.is-valid ~ .valid-tooltip {
+  display: block;
+}
+.was-validated meetings textarea.form-control:valid, meetings textarea.form-control.is-valid {
+  padding-right: calc(1.5em + 0.75rem);
+  background-position: top calc(0.375em + 0.1875rem) right calc(0.375em + 0.1875rem);
+}
+.was-validated meetings .custom-select:valid, meetings .custom-select.is-valid {
+  border-color: #28a745;
+  padding-right: calc((1em + 0.75rem) * 3 / 4 + 1.75rem);
+  background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right 0.75rem center/8px 10px, url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e") #fff no-repeat center right 1.75rem/calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+.was-validated meetings .custom-select:valid:focus, meetings .custom-select.is-valid:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+.was-validated meetings .custom-select:valid ~ .valid-feedback,
+.was-validated meetings .custom-select:valid ~ .valid-tooltip, meetings .custom-select.is-valid ~ .valid-feedback,
+meetings .custom-select.is-valid ~ .valid-tooltip {
+  display: block;
+}
+.was-validated meetings .form-control-file:valid ~ .valid-feedback,
+.was-validated meetings .form-control-file:valid ~ .valid-tooltip, meetings .form-control-file.is-valid ~ .valid-feedback,
+meetings .form-control-file.is-valid ~ .valid-tooltip {
+  display: block;
+}
+.was-validated meetings .form-check-input:valid ~ .form-check-label, meetings .form-check-input.is-valid ~ .form-check-label {
+  color: #28a745;
+}
+.was-validated meetings .form-check-input:valid ~ .valid-feedback,
+.was-validated meetings .form-check-input:valid ~ .valid-tooltip, meetings .form-check-input.is-valid ~ .valid-feedback,
+meetings .form-check-input.is-valid ~ .valid-tooltip {
+  display: block;
+}
+.was-validated meetings .custom-control-input:valid ~ .custom-control-label, meetings .custom-control-input.is-valid ~ .custom-control-label {
+  color: #28a745;
+}
+.was-validated meetings .custom-control-input:valid ~ .custom-control-label::before, meetings .custom-control-input.is-valid ~ .custom-control-label::before {
+  border-color: #28a745;
+}
+.was-validated meetings .custom-control-input:valid ~ .valid-feedback,
+.was-validated meetings .custom-control-input:valid ~ .valid-tooltip, meetings .custom-control-input.is-valid ~ .valid-feedback,
+meetings .custom-control-input.is-valid ~ .valid-tooltip {
+  display: block;
+}
+.was-validated meetings .custom-control-input:valid:checked ~ .custom-control-label::before, meetings .custom-control-input.is-valid:checked ~ .custom-control-label::before {
+  border-color: #34ce57;
+  background-color: #34ce57;
+}
+.was-validated meetings .custom-control-input:valid:focus ~ .custom-control-label::before, meetings .custom-control-input.is-valid:focus ~ .custom-control-label::before {
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+.was-validated meetings .custom-control-input:valid:focus:not(:checked) ~ .custom-control-label::before, meetings .custom-control-input.is-valid:focus:not(:checked) ~ .custom-control-label::before {
+  border-color: #28a745;
+}
+.was-validated meetings .custom-file-input:valid ~ .custom-file-label, meetings .custom-file-input.is-valid ~ .custom-file-label {
+  border-color: #28a745;
+}
+.was-validated meetings .custom-file-input:valid ~ .valid-feedback,
+.was-validated meetings .custom-file-input:valid ~ .valid-tooltip, meetings .custom-file-input.is-valid ~ .valid-feedback,
+meetings .custom-file-input.is-valid ~ .valid-tooltip {
+  display: block;
+}
+.was-validated meetings .custom-file-input:valid:focus ~ .custom-file-label, meetings .custom-file-input.is-valid:focus ~ .custom-file-label {
+  border-color: #28a745;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+meetings .invalid-feedback {
+  display: none;
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 80%;
+  color: #dc3545;
+}
+meetings .invalid-tooltip {
+  position: absolute;
+  top: 100%;
+  z-index: 5;
+  display: none;
+  max-width: 100%;
+  padding: 0.25rem 0.5rem;
+  margin-top: 0.1rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #fff;
+  background-color: rgba(220, 53, 69, 0.9);
+  border-radius: 0.25rem;
+}
+.was-validated meetings .form-control:invalid, meetings .form-control.is-invalid {
+  border-color: #dc3545;
+  padding-right: calc(1.5em + 0.75rem);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23dc3545' viewBox='-2 -2 7 7'%3e%3cpath stroke='%23dc3545' d='M0 0l3 3m0-3L0 3'/%3e%3ccircle r='.5'/%3e%3ccircle cx='3' r='.5'/%3e%3ccircle cy='3' r='.5'/%3e%3ccircle cx='3' cy='3' r='.5'/%3e%3c/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center right calc(0.375em + 0.1875rem);
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+.was-validated meetings .form-control:invalid:focus, meetings .form-control.is-invalid:focus {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+.was-validated meetings .form-control:invalid ~ .invalid-feedback,
+.was-validated meetings .form-control:invalid ~ .invalid-tooltip, meetings .form-control.is-invalid ~ .invalid-feedback,
+meetings .form-control.is-invalid ~ .invalid-tooltip {
+  display: block;
+}
+.was-validated meetings textarea.form-control:invalid, meetings textarea.form-control.is-invalid {
+  padding-right: calc(1.5em + 0.75rem);
+  background-position: top calc(0.375em + 0.1875rem) right calc(0.375em + 0.1875rem);
+}
+.was-validated meetings .custom-select:invalid, meetings .custom-select.is-invalid {
+  border-color: #dc3545;
+  padding-right: calc((1em + 0.75rem) * 3 / 4 + 1.75rem);
+  background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right 0.75rem center/8px 10px, url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23dc3545' viewBox='-2 -2 7 7'%3e%3cpath stroke='%23dc3545' d='M0 0l3 3m0-3L0 3'/%3e%3ccircle r='.5'/%3e%3ccircle cx='3' r='.5'/%3e%3ccircle cy='3' r='.5'/%3e%3ccircle cx='3' cy='3' r='.5'/%3e%3c/svg%3E") #fff no-repeat center right 1.75rem/calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+.was-validated meetings .custom-select:invalid:focus, meetings .custom-select.is-invalid:focus {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+.was-validated meetings .custom-select:invalid ~ .invalid-feedback,
+.was-validated meetings .custom-select:invalid ~ .invalid-tooltip, meetings .custom-select.is-invalid ~ .invalid-feedback,
+meetings .custom-select.is-invalid ~ .invalid-tooltip {
+  display: block;
+}
+.was-validated meetings .form-control-file:invalid ~ .invalid-feedback,
+.was-validated meetings .form-control-file:invalid ~ .invalid-tooltip, meetings .form-control-file.is-invalid ~ .invalid-feedback,
+meetings .form-control-file.is-invalid ~ .invalid-tooltip {
+  display: block;
+}
+.was-validated meetings .form-check-input:invalid ~ .form-check-label, meetings .form-check-input.is-invalid ~ .form-check-label {
+  color: #dc3545;
+}
+.was-validated meetings .form-check-input:invalid ~ .invalid-feedback,
+.was-validated meetings .form-check-input:invalid ~ .invalid-tooltip, meetings .form-check-input.is-invalid ~ .invalid-feedback,
+meetings .form-check-input.is-invalid ~ .invalid-tooltip {
+  display: block;
+}
+.was-validated meetings .custom-control-input:invalid ~ .custom-control-label, meetings .custom-control-input.is-invalid ~ .custom-control-label {
+  color: #dc3545;
+}
+.was-validated meetings .custom-control-input:invalid ~ .custom-control-label::before, meetings .custom-control-input.is-invalid ~ .custom-control-label::before {
+  border-color: #dc3545;
+}
+.was-validated meetings .custom-control-input:invalid ~ .invalid-feedback,
+.was-validated meetings .custom-control-input:invalid ~ .invalid-tooltip, meetings .custom-control-input.is-invalid ~ .invalid-feedback,
+meetings .custom-control-input.is-invalid ~ .invalid-tooltip {
+  display: block;
+}
+.was-validated meetings .custom-control-input:invalid:checked ~ .custom-control-label::before, meetings .custom-control-input.is-invalid:checked ~ .custom-control-label::before {
+  border-color: #e4606d;
+  background-color: #e4606d;
+}
+.was-validated meetings .custom-control-input:invalid:focus ~ .custom-control-label::before, meetings .custom-control-input.is-invalid:focus ~ .custom-control-label::before {
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+.was-validated meetings .custom-control-input:invalid:focus:not(:checked) ~ .custom-control-label::before, meetings .custom-control-input.is-invalid:focus:not(:checked) ~ .custom-control-label::before {
+  border-color: #dc3545;
+}
+.was-validated meetings .custom-file-input:invalid ~ .custom-file-label, meetings .custom-file-input.is-invalid ~ .custom-file-label {
+  border-color: #dc3545;
+}
+.was-validated meetings .custom-file-input:invalid ~ .invalid-feedback,
+.was-validated meetings .custom-file-input:invalid ~ .invalid-tooltip, meetings .custom-file-input.is-invalid ~ .invalid-feedback,
+meetings .custom-file-input.is-invalid ~ .invalid-tooltip {
+  display: block;
+}
+.was-validated meetings .custom-file-input:invalid:focus ~ .custom-file-label, meetings .custom-file-input.is-invalid:focus ~ .custom-file-label {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+meetings .form-inline {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+          flex-flow: row wrap;
+  -webkit-box-align: center;
+          align-items: center;
+}
+meetings .form-inline .form-check {
+  width: 100%;
+}
+@media (min-width: 576px) {
+  meetings .form-inline label {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+            justify-content: center;
+    margin-bottom: 0;
+  }
+  meetings .form-inline .form-group {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-flex: 0;
+            flex: 0 0 auto;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+            flex-flow: row wrap;
+    -webkit-box-align: center;
+            align-items: center;
+    margin-bottom: 0;
+  }
+  meetings .form-inline .form-control {
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+  }
+  meetings .form-inline .form-control-plaintext {
+    display: inline-block;
+  }
+  meetings .form-inline .input-group,
+meetings .form-inline .custom-select {
+    width: auto;
+  }
+  meetings .form-inline .form-check {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+            justify-content: center;
+    width: auto;
+    padding-left: 0;
+  }
+  meetings .form-inline .form-check-input {
+    position: relative;
+    flex-shrink: 0;
+    margin-top: 0;
+    margin-right: 0.25rem;
+    margin-left: 0;
+  }
+  meetings .form-inline .custom-control {
+    -webkit-box-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+            justify-content: center;
+  }
+  meetings .form-inline .custom-control-label {
+    margin-bottom: 0;
+  }
 }
 meetings .container {
   width: 100%;
@@ -1843,6 +3010,836 @@ meetings .offset-11 {
     margin-left: 91.6666666667%;
   }
 }
+meetings .input-group {
+  position: relative;
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-box-align: stretch;
+          align-items: stretch;
+  width: 100%;
+}
+meetings .input-group > .form-control,
+meetings .input-group > .form-control-plaintext,
+meetings .input-group > .custom-select,
+meetings .input-group > .custom-file {
+  position: relative;
+  -webkit-box-flex: 1;
+          flex: 1 1 auto;
+  width: 1%;
+  margin-bottom: 0;
+}
+meetings .input-group > .form-control + .form-control,
+meetings .input-group > .form-control + .custom-select,
+meetings .input-group > .form-control + .custom-file,
+meetings .input-group > .form-control-plaintext + .form-control,
+meetings .input-group > .form-control-plaintext + .custom-select,
+meetings .input-group > .form-control-plaintext + .custom-file,
+meetings .input-group > .custom-select + .form-control,
+meetings .input-group > .custom-select + .custom-select,
+meetings .input-group > .custom-select + .custom-file,
+meetings .input-group > .custom-file + .form-control,
+meetings .input-group > .custom-file + .custom-select,
+meetings .input-group > .custom-file + .custom-file {
+  margin-left: -1px;
+}
+meetings .input-group > .form-control:focus,
+meetings .input-group > .custom-select:focus,
+meetings .input-group > .custom-file .custom-file-input:focus ~ .custom-file-label {
+  z-index: 3;
+}
+meetings .input-group > .custom-file .custom-file-input:focus {
+  z-index: 4;
+}
+meetings .input-group > .form-control:not(:last-child),
+meetings .input-group > .custom-select:not(:last-child) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+meetings .input-group > .form-control:not(:first-child),
+meetings .input-group > .custom-select:not(:first-child) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+meetings .input-group > .custom-file {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+}
+meetings .input-group > .custom-file:not(:last-child) .custom-file-label, meetings .input-group > .custom-file:not(:last-child) .custom-file-label::after {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+meetings .input-group > .custom-file:not(:first-child) .custom-file-label {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+meetings .input-group-prepend,
+meetings .input-group-append {
+  display: -webkit-box;
+  display: flex;
+}
+meetings .input-group-prepend .btn,
+meetings .input-group-append .btn {
+  position: relative;
+  z-index: 2;
+}
+meetings .input-group-prepend .btn:focus,
+meetings .input-group-append .btn:focus {
+  z-index: 3;
+}
+meetings .input-group-prepend .btn + .btn,
+meetings .input-group-prepend .btn + .input-group-text,
+meetings .input-group-prepend .input-group-text + .input-group-text,
+meetings .input-group-prepend .input-group-text + .btn,
+meetings .input-group-append .btn + .btn,
+meetings .input-group-append .btn + .input-group-text,
+meetings .input-group-append .input-group-text + .input-group-text,
+meetings .input-group-append .input-group-text + .btn {
+  margin-left: -1px;
+}
+meetings .input-group-prepend {
+  margin-right: -1px;
+}
+meetings .input-group-append {
+  margin-left: -1px;
+}
+meetings .input-group-text {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  padding: 0.375rem 0.75rem;
+  margin-bottom: 0;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  text-align: center;
+  white-space: nowrap;
+  background-color: #e9ecef;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+meetings .input-group-text input[type=radio],
+meetings .input-group-text input[type=checkbox] {
+  margin-top: 0;
+}
+meetings .input-group-lg > .form-control:not(textarea),
+meetings .input-group-lg > .custom-select {
+  height: calc(1.5em + 1rem + 2px);
+}
+meetings .input-group-lg > .form-control,
+meetings .input-group-lg > .custom-select,
+meetings .input-group-lg > .input-group-prepend > .input-group-text,
+meetings .input-group-lg > .input-group-append > .input-group-text,
+meetings .input-group-lg > .input-group-prepend > .btn,
+meetings .input-group-lg > .input-group-append > .btn {
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  border-radius: 0.3rem;
+}
+meetings .input-group-sm > .form-control:not(textarea),
+meetings .input-group-sm > .custom-select {
+  height: calc(1.5em + 0.5rem + 2px);
+}
+meetings .input-group-sm > .form-control,
+meetings .input-group-sm > .custom-select,
+meetings .input-group-sm > .input-group-prepend > .input-group-text,
+meetings .input-group-sm > .input-group-append > .input-group-text,
+meetings .input-group-sm > .input-group-prepend > .btn,
+meetings .input-group-sm > .input-group-append > .btn {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+}
+meetings .input-group-lg > .custom-select,
+meetings .input-group-sm > .custom-select {
+  padding-right: 1.75rem;
+}
+meetings .input-group > .input-group-prepend > .btn,
+meetings .input-group > .input-group-prepend > .input-group-text,
+meetings .input-group > .input-group-append:not(:last-child) > .btn,
+meetings .input-group > .input-group-append:not(:last-child) > .input-group-text,
+meetings .input-group > .input-group-append:last-child > .btn:not(:last-child):not(.dropdown-toggle),
+meetings .input-group > .input-group-append:last-child > .input-group-text:not(:last-child) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+meetings .input-group > .input-group-append > .btn,
+meetings .input-group > .input-group-append > .input-group-text,
+meetings .input-group > .input-group-prepend:not(:first-child) > .btn,
+meetings .input-group > .input-group-prepend:not(:first-child) > .input-group-text,
+meetings .input-group > .input-group-prepend:first-child > .btn:not(:first-child),
+meetings .input-group > .input-group-prepend:first-child > .input-group-text:not(:first-child) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+meetings .list-group {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+meetings .list-group-item-action {
+  width: 100%;
+  color: #495057;
+  text-align: inherit;
+}
+meetings .list-group-item-action:hover, meetings .list-group-item-action:focus {
+  z-index: 1;
+  color: #495057;
+  text-decoration: none;
+  background-color: #f8f9fa;
+}
+meetings .list-group-item-action:active {
+  color: #212529;
+  background-color: #e9ecef;
+}
+meetings .list-group-item {
+  position: relative;
+  display: block;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: -1px;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+meetings .list-group-item:first-child {
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+meetings .list-group-item:last-child {
+  margin-bottom: 0;
+  border-bottom-right-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+meetings .list-group-item.disabled, meetings .list-group-item:disabled {
+  color: #6c757d;
+  pointer-events: none;
+  background-color: #fff;
+}
+meetings .list-group-item.active {
+  z-index: 2;
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+meetings .list-group-horizontal {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+          flex-direction: row;
+}
+meetings .list-group-horizontal .list-group-item {
+  margin-right: -1px;
+  margin-bottom: 0;
+}
+meetings .list-group-horizontal .list-group-item:first-child {
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+  border-top-right-radius: 0;
+}
+meetings .list-group-horizontal .list-group-item:last-child {
+  margin-right: 0;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  border-bottom-left-radius: 0;
+}
+@media (min-width: 576px) {
+  meetings .list-group-horizontal-sm {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+            flex-direction: row;
+  }
+  meetings .list-group-horizontal-sm .list-group-item {
+    margin-right: -1px;
+    margin-bottom: 0;
+  }
+  meetings .list-group-horizontal-sm .list-group-item:first-child {
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+    border-top-right-radius: 0;
+  }
+  meetings .list-group-horizontal-sm .list-group-item:last-child {
+    margin-right: 0;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+    border-bottom-left-radius: 0;
+  }
+}
+@media (min-width: 768px) {
+  meetings .list-group-horizontal-md {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+            flex-direction: row;
+  }
+  meetings .list-group-horizontal-md .list-group-item {
+    margin-right: -1px;
+    margin-bottom: 0;
+  }
+  meetings .list-group-horizontal-md .list-group-item:first-child {
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+    border-top-right-radius: 0;
+  }
+  meetings .list-group-horizontal-md .list-group-item:last-child {
+    margin-right: 0;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+    border-bottom-left-radius: 0;
+  }
+}
+@media (min-width: 992px) {
+  meetings .list-group-horizontal-lg {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+            flex-direction: row;
+  }
+  meetings .list-group-horizontal-lg .list-group-item {
+    margin-right: -1px;
+    margin-bottom: 0;
+  }
+  meetings .list-group-horizontal-lg .list-group-item:first-child {
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+    border-top-right-radius: 0;
+  }
+  meetings .list-group-horizontal-lg .list-group-item:last-child {
+    margin-right: 0;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+    border-bottom-left-radius: 0;
+  }
+}
+@media (min-width: 1200px) {
+  meetings .list-group-horizontal-xl {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+            flex-direction: row;
+  }
+  meetings .list-group-horizontal-xl .list-group-item {
+    margin-right: -1px;
+    margin-bottom: 0;
+  }
+  meetings .list-group-horizontal-xl .list-group-item:first-child {
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+    border-top-right-radius: 0;
+  }
+  meetings .list-group-horizontal-xl .list-group-item:last-child {
+    margin-right: 0;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+    border-bottom-left-radius: 0;
+  }
+}
+meetings .list-group-flush .list-group-item {
+  border-right: 0;
+  border-left: 0;
+  border-radius: 0;
+}
+meetings .list-group-flush .list-group-item:last-child {
+  margin-bottom: -1px;
+}
+meetings .list-group-flush:first-child .list-group-item:first-child {
+  border-top: 0;
+}
+meetings .list-group-flush:last-child .list-group-item:last-child {
+  margin-bottom: 0;
+  border-bottom: 0;
+}
+meetings .list-group-item-primary {
+  color: #004085;
+  background-color: #b8daff;
+}
+meetings .list-group-item-primary.list-group-item-action:hover, meetings .list-group-item-primary.list-group-item-action:focus {
+  color: #004085;
+  background-color: #9fcdff;
+}
+meetings .list-group-item-primary.list-group-item-action.active {
+  color: #fff;
+  background-color: #004085;
+  border-color: #004085;
+}
+meetings .list-group-item-secondary {
+  color: #383d41;
+  background-color: #d6d8db;
+}
+meetings .list-group-item-secondary.list-group-item-action:hover, meetings .list-group-item-secondary.list-group-item-action:focus {
+  color: #383d41;
+  background-color: #c8cbcf;
+}
+meetings .list-group-item-secondary.list-group-item-action.active {
+  color: #fff;
+  background-color: #383d41;
+  border-color: #383d41;
+}
+meetings .list-group-item-success {
+  color: #155724;
+  background-color: #c3e6cb;
+}
+meetings .list-group-item-success.list-group-item-action:hover, meetings .list-group-item-success.list-group-item-action:focus {
+  color: #155724;
+  background-color: #b1dfbb;
+}
+meetings .list-group-item-success.list-group-item-action.active {
+  color: #fff;
+  background-color: #155724;
+  border-color: #155724;
+}
+meetings .list-group-item-info {
+  color: #0c5460;
+  background-color: #bee5eb;
+}
+meetings .list-group-item-info.list-group-item-action:hover, meetings .list-group-item-info.list-group-item-action:focus {
+  color: #0c5460;
+  background-color: #abdde5;
+}
+meetings .list-group-item-info.list-group-item-action.active {
+  color: #fff;
+  background-color: #0c5460;
+  border-color: #0c5460;
+}
+meetings .list-group-item-warning {
+  color: #856404;
+  background-color: #ffeeba;
+}
+meetings .list-group-item-warning.list-group-item-action:hover, meetings .list-group-item-warning.list-group-item-action:focus {
+  color: #856404;
+  background-color: #ffe8a1;
+}
+meetings .list-group-item-warning.list-group-item-action.active {
+  color: #fff;
+  background-color: #856404;
+  border-color: #856404;
+}
+meetings .list-group-item-danger {
+  color: #721c24;
+  background-color: #f5c6cb;
+}
+meetings .list-group-item-danger.list-group-item-action:hover, meetings .list-group-item-danger.list-group-item-action:focus {
+  color: #721c24;
+  background-color: #f1b0b7;
+}
+meetings .list-group-item-danger.list-group-item-action.active {
+  color: #fff;
+  background-color: #721c24;
+  border-color: #721c24;
+}
+meetings .list-group-item-light {
+  color: #818182;
+  background-color: #fdfdfe;
+}
+meetings .list-group-item-light.list-group-item-action:hover, meetings .list-group-item-light.list-group-item-action:focus {
+  color: #818182;
+  background-color: #ececf6;
+}
+meetings .list-group-item-light.list-group-item-action.active {
+  color: #fff;
+  background-color: #818182;
+  border-color: #818182;
+}
+meetings .list-group-item-dark {
+  color: #1b1e21;
+  background-color: #c6c8ca;
+}
+meetings .list-group-item-dark.list-group-item-action:hover, meetings .list-group-item-dark.list-group-item-action:focus {
+  color: #1b1e21;
+  background-color: #b9bbbe;
+}
+meetings .list-group-item-dark.list-group-item-action.active {
+  color: #fff;
+  background-color: #1b1e21;
+  border-color: #1b1e21;
+}
+@media print {
+  meetings *,
+meetings *::before,
+meetings *::after {
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+  meetings a:not(.btn) {
+    text-decoration: underline;
+  }
+  meetings abbr[title]::after {
+    content: " (" attr(title) ")";
+  }
+  meetings pre {
+    white-space: pre-wrap !important;
+  }
+  meetings pre,
+meetings blockquote {
+    border: 1px solid #adb5bd;
+    page-break-inside: avoid;
+  }
+  meetings thead {
+    display: table-header-group;
+  }
+  meetings tr,
+meetings img {
+    page-break-inside: avoid;
+  }
+  meetings p,
+meetings h2,
+meetings h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  meetings h2,
+meetings h3 {
+    page-break-after: avoid;
+  }
+  @page {
+    meetings {
+      size: a3;
+    }
+  }
+  meetings body {
+    min-width: 992px !important;
+  }
+  meetings .container {
+    min-width: 992px !important;
+  }
+  meetings .navbar {
+    display: none;
+  }
+  meetings .badge {
+    border: 1px solid #000;
+  }
+  meetings .table {
+    border-collapse: collapse !important;
+  }
+  meetings .table td,
+meetings .table th {
+    background-color: #fff !important;
+  }
+  meetings .table-bordered th,
+meetings .table-bordered td {
+    border: 1px solid #dee2e6 !important;
+  }
+  meetings .table-dark {
+    color: inherit;
+  }
+  meetings .table-dark th,
+meetings .table-dark td,
+meetings .table-dark thead th,
+meetings .table-dark tbody + tbody {
+    border-color: #dee2e6;
+  }
+  meetings .table .thead-dark th {
+    color: inherit;
+    border-color: #dee2e6;
+  }
+}
+meetings *,
+meetings *::before,
+meetings *::after {
+  box-sizing: border-box;
+}
+meetings html {
+  font-family: sans-serif;
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+meetings article, meetings aside, meetings figcaption, meetings figure, meetings footer, meetings header, meetings hgroup, meetings main, meetings nav, meetings section {
+  display: block;
+}
+meetings body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: left;
+  background-color: #fff;
+}
+meetings [tabindex="-1"]:focus {
+  outline: 0 !important;
+}
+meetings hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+meetings h1, meetings h2, meetings h3, meetings h4, meetings h5, meetings h6 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+meetings p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+meetings abbr[title],
+meetings abbr[data-original-title] {
+  text-decoration: underline;
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
+  cursor: help;
+  border-bottom: 0;
+  -webkit-text-decoration-skip-ink: none;
+          text-decoration-skip-ink: none;
+}
+meetings address {
+  margin-bottom: 1rem;
+  font-style: normal;
+  line-height: inherit;
+}
+meetings ol,
+meetings ul,
+meetings dl {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+meetings ol ol,
+meetings ul ul,
+meetings ol ul,
+meetings ul ol {
+  margin-bottom: 0;
+}
+meetings dt {
+  font-weight: 700;
+}
+meetings dd {
+  margin-bottom: 0.5rem;
+  margin-left: 0;
+}
+meetings blockquote {
+  margin: 0 0 1rem;
+}
+meetings b,
+meetings strong {
+  font-weight: bolder;
+}
+meetings small {
+  font-size: 80%;
+}
+meetings sub,
+meetings sup {
+  position: relative;
+  font-size: 75%;
+  line-height: 0;
+  vertical-align: baseline;
+}
+meetings sub {
+  bottom: -0.25em;
+}
+meetings sup {
+  top: -0.5em;
+}
+meetings a {
+  color: #007bff;
+  text-decoration: none;
+  background-color: transparent;
+}
+meetings a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+meetings a:not([href]):not([tabindex]) {
+  color: inherit;
+  text-decoration: none;
+}
+meetings a:not([href]):not([tabindex]):hover, meetings a:not([href]):not([tabindex]):focus {
+  color: inherit;
+  text-decoration: none;
+}
+meetings a:not([href]):not([tabindex]):focus {
+  outline: 0;
+}
+meetings pre,
+meetings code,
+meetings kbd,
+meetings samp {
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 1em;
+}
+meetings pre {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  overflow: auto;
+}
+meetings figure {
+  margin: 0 0 1rem;
+}
+meetings img {
+  vertical-align: middle;
+  border-style: none;
+}
+meetings svg {
+  overflow: hidden;
+  vertical-align: middle;
+}
+meetings table {
+  border-collapse: collapse;
+}
+meetings caption {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  color: #6c757d;
+  text-align: left;
+  caption-side: bottom;
+}
+meetings th {
+  text-align: inherit;
+}
+meetings label {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+meetings button {
+  border-radius: 0;
+}
+meetings button:focus {
+  outline: 1px dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+}
+meetings input,
+meetings button,
+meetings select,
+meetings optgroup,
+meetings textarea {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+meetings button,
+meetings input {
+  overflow: visible;
+}
+meetings button,
+meetings select {
+  text-transform: none;
+}
+meetings select {
+  word-wrap: normal;
+}
+meetings button,
+meetings [type=button],
+meetings [type=reset],
+meetings [type=submit] {
+  -webkit-appearance: button;
+}
+meetings button:not(:disabled),
+meetings [type=button]:not(:disabled),
+meetings [type=reset]:not(:disabled),
+meetings [type=submit]:not(:disabled) {
+  cursor: pointer;
+}
+meetings button::-moz-focus-inner,
+meetings [type=button]::-moz-focus-inner,
+meetings [type=reset]::-moz-focus-inner,
+meetings [type=submit]::-moz-focus-inner {
+  padding: 0;
+  border-style: none;
+}
+meetings input[type=radio],
+meetings input[type=checkbox] {
+  box-sizing: border-box;
+  padding: 0;
+}
+meetings input[type=date],
+meetings input[type=time],
+meetings input[type=datetime-local],
+meetings input[type=month] {
+  -webkit-appearance: listbox;
+}
+meetings textarea {
+  overflow: auto;
+  resize: vertical;
+}
+meetings fieldset {
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+meetings legend {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  line-height: inherit;
+  color: inherit;
+  white-space: normal;
+}
+@media (max-width: 1200px) {
+  meetings legend {
+    font-size: calc(1.275rem + 0.3vw);
+  }
+}
+meetings progress {
+  vertical-align: baseline;
+}
+meetings [type=number]::-webkit-inner-spin-button,
+meetings [type=number]::-webkit-outer-spin-button {
+  height: auto;
+}
+meetings [type=search] {
+  outline-offset: -2px;
+  -webkit-appearance: none;
+}
+meetings [type=search]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+meetings ::-webkit-file-upload-button {
+  font: inherit;
+  -webkit-appearance: button;
+}
+meetings output {
+  display: inline-block;
+}
+meetings summary {
+  display: list-item;
+  cursor: pointer;
+}
+meetings template {
+  display: none;
+}
+meetings [hidden] {
+  display: none !important;
+}
+meetings .spinner-border {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  vertical-align: text-bottom;
+  border: 0.25em solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  -webkit-animation: spinner-border 0.75s linear infinite;
+          animation: spinner-border 0.75s linear infinite;
+}
+meetings .spinner-border-sm {
+  width: 1rem;
+  height: 1rem;
+  border-width: 0.2em;
+}
+meetings .spinner-grow {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  vertical-align: text-bottom;
+  background-color: currentColor;
+  border-radius: 50%;
+  opacity: 0;
+  -webkit-animation: spinner-grow 0.75s linear infinite;
+          animation: spinner-grow 0.75s linear infinite;
+}
+meetings .spinner-grow-sm {
+  width: 1rem;
+  height: 1rem;
+}
 meetings .table {
   width: 100%;
   margin-bottom: 1rem;
@@ -2127,1949 +4124,139 @@ meetings .table-responsive {
 meetings .table-responsive > .table-bordered {
   border: 0;
 }
-meetings .form-control {
-  display: block;
-  width: 100%;
-  height: calc(1.5em + 0.75rem + 2px);
-  padding: 0.375rem 0.75rem;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #495057;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid #ced4da;
-  border-radius: 0.25rem;
-  -webkit-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+meetings h1, meetings h2, meetings h3, meetings h4, meetings h5, meetings h6,
+meetings .h1, meetings .h2, meetings .h3, meetings .h4, meetings .h5, meetings .h6 {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.2;
 }
-@media (prefers-reduced-motion: reduce) {
-  meetings .form-control {
-    -webkit-transition: none;
-    transition: none;
+meetings h1, meetings .h1 {
+  font-size: 2.5rem;
+}
+@media (max-width: 1200px) {
+  meetings h1, meetings .h1 {
+    font-size: calc(1.375rem + 1.5vw);
   }
 }
-meetings .form-control::-ms-expand {
-  background-color: transparent;
-  border: 0;
+meetings h2, meetings .h2 {
+  font-size: 2rem;
 }
-meetings .form-control:focus {
-  color: #495057;
-  background-color: #fff;
-  border-color: #80bdff;
-  outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+@media (max-width: 1200px) {
+  meetings h2, meetings .h2 {
+    font-size: calc(1.325rem + 0.9vw);
+  }
 }
-meetings .form-control::-webkit-input-placeholder {
-  color: #6c757d;
-  opacity: 1;
+meetings h3, meetings .h3 {
+  font-size: 1.75rem;
 }
-meetings .form-control::-moz-placeholder {
-  color: #6c757d;
-  opacity: 1;
+@media (max-width: 1200px) {
+  meetings h3, meetings .h3 {
+    font-size: calc(1.3rem + 0.6vw);
+  }
 }
-meetings .form-control:-ms-input-placeholder {
-  color: #6c757d;
-  opacity: 1;
+meetings h4, meetings .h4 {
+  font-size: 1.5rem;
 }
-meetings .form-control::-ms-input-placeholder {
-  color: #6c757d;
-  opacity: 1;
+@media (max-width: 1200px) {
+  meetings h4, meetings .h4 {
+    font-size: calc(1.275rem + 0.3vw);
+  }
 }
-meetings .form-control::placeholder {
-  color: #6c757d;
-  opacity: 1;
-}
-meetings .form-control:disabled, meetings .form-control[readonly] {
-  background-color: #e9ecef;
-  opacity: 1;
-}
-meetings select.form-control:focus::-ms-value {
-  color: #495057;
-  background-color: #fff;
-}
-meetings .form-control-file,
-meetings .form-control-range {
-  display: block;
-  width: 100%;
-}
-meetings .col-form-label {
-  padding-top: calc(0.375rem + 1px);
-  padding-bottom: calc(0.375rem + 1px);
-  margin-bottom: 0;
-  font-size: inherit;
-  line-height: 1.5;
-}
-meetings .col-form-label-lg {
-  padding-top: calc(0.5rem + 1px);
-  padding-bottom: calc(0.5rem + 1px);
+meetings h5, meetings .h5 {
   font-size: 1.25rem;
-  line-height: 1.5;
 }
-meetings .col-form-label-sm {
-  padding-top: calc(0.25rem + 1px);
-  padding-bottom: calc(0.25rem + 1px);
-  font-size: 0.875rem;
-  line-height: 1.5;
+meetings h6, meetings .h6 {
+  font-size: 1rem;
 }
-meetings .form-control-plaintext {
-  display: block;
-  width: 100%;
-  padding-top: 0.375rem;
-  padding-bottom: 0.375rem;
-  margin-bottom: 0;
-  line-height: 1.5;
-  color: #212529;
-  background-color: transparent;
-  border: solid transparent;
-  border-width: 1px 0;
-}
-meetings .form-control-plaintext.form-control-sm, meetings .form-control-plaintext.form-control-lg {
-  padding-right: 0;
-  padding-left: 0;
-}
-meetings .form-control-sm {
-  height: calc(1.5em + 0.5rem + 2px);
-  padding: 0.25rem 0.5rem;
-  font-size: 0.875rem;
-  line-height: 1.5;
-  border-radius: 0.2rem;
-}
-meetings .form-control-lg {
-  height: calc(1.5em + 1rem + 2px);
-  padding: 0.5rem 1rem;
+meetings .lead {
   font-size: 1.25rem;
-  line-height: 1.5;
-  border-radius: 0.3rem;
+  font-weight: 300;
 }
-meetings select.form-control[size], meetings select.form-control[multiple] {
-  height: auto;
+meetings .display-1 {
+  font-size: 6rem;
+  font-weight: 300;
+  line-height: 1.2;
 }
-meetings textarea.form-control {
-  height: auto;
+@media (max-width: 1200px) {
+  meetings .display-1 {
+    font-size: calc(1.725rem + 5.7vw);
+  }
 }
-meetings .form-group {
+meetings .display-2 {
+  font-size: 5.5rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
+@media (max-width: 1200px) {
+  meetings .display-2 {
+    font-size: calc(1.675rem + 5.1vw);
+  }
+}
+meetings .display-3 {
+  font-size: 4.5rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
+@media (max-width: 1200px) {
+  meetings .display-3 {
+    font-size: calc(1.575rem + 3.9vw);
+  }
+}
+meetings .display-4 {
+  font-size: 3.5rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
+@media (max-width: 1200px) {
+  meetings .display-4 {
+    font-size: calc(1.475rem + 2.7vw);
+  }
+}
+meetings hr {
+  margin-top: 1rem;
   margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
-meetings .form-text {
-  display: block;
-  margin-top: 0.25rem;
+meetings small,
+meetings .small {
+  font-size: 80%;
+  font-weight: 400;
 }
-meetings .form-row {
-  display: -webkit-box;
-  display: flex;
-  flex-wrap: wrap;
-  margin-right: -5px;
-  margin-left: -5px;
+meetings mark,
+meetings .mark {
+  padding: 0.2em;
+  background-color: #fcf8e3;
 }
-meetings .form-row > .col,
-meetings .form-row > [class*=col-] {
-  padding-right: 5px;
-  padding-left: 5px;
-}
-meetings .form-check {
-  position: relative;
-  display: block;
-  padding-left: 1.25rem;
-}
-meetings .form-check-input {
-  position: absolute;
-  margin-top: 0.3rem;
-  margin-left: -1.25rem;
-}
-meetings .form-check-input:disabled ~ .form-check-label {
-  color: #6c757d;
-}
-meetings .form-check-label {
-  margin-bottom: 0;
-}
-meetings .form-check-inline {
-  display: -webkit-inline-box;
-  display: inline-flex;
-  -webkit-box-align: center;
-          align-items: center;
+meetings .list-unstyled {
   padding-left: 0;
-  margin-right: 0.75rem;
-}
-meetings .form-check-inline .form-check-input {
-  position: static;
-  margin-top: 0;
-  margin-right: 0.3125rem;
-  margin-left: 0;
-}
-meetings .valid-feedback {
-  display: none;
-  width: 100%;
-  margin-top: 0.25rem;
-  font-size: 80%;
-  color: #28a745;
-}
-meetings .valid-tooltip {
-  position: absolute;
-  top: 100%;
-  z-index: 5;
-  display: none;
-  max-width: 100%;
-  padding: 0.25rem 0.5rem;
-  margin-top: 0.1rem;
-  font-size: 0.875rem;
-  line-height: 1.5;
-  color: #fff;
-  background-color: rgba(40, 167, 69, 0.9);
-  border-radius: 0.25rem;
-}
-.was-validated meetings .form-control:valid, meetings .form-control.is-valid {
-  border-color: #28a745;
-  padding-right: calc(1.5em + 0.75rem);
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
-  background-repeat: no-repeat;
-  background-position: center right calc(0.375em + 0.1875rem);
-  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
-}
-.was-validated meetings .form-control:valid:focus, meetings .form-control.is-valid:focus {
-  border-color: #28a745;
-  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
-}
-.was-validated meetings .form-control:valid ~ .valid-feedback,
-.was-validated meetings .form-control:valid ~ .valid-tooltip, meetings .form-control.is-valid ~ .valid-feedback,
-meetings .form-control.is-valid ~ .valid-tooltip {
-  display: block;
-}
-.was-validated meetings textarea.form-control:valid, meetings textarea.form-control.is-valid {
-  padding-right: calc(1.5em + 0.75rem);
-  background-position: top calc(0.375em + 0.1875rem) right calc(0.375em + 0.1875rem);
-}
-.was-validated meetings .custom-select:valid, meetings .custom-select.is-valid {
-  border-color: #28a745;
-  padding-right: calc((1em + 0.75rem) * 3 / 4 + 1.75rem);
-  background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right 0.75rem center/8px 10px, url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e") #fff no-repeat center right 1.75rem/calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
-}
-.was-validated meetings .custom-select:valid:focus, meetings .custom-select.is-valid:focus {
-  border-color: #28a745;
-  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
-}
-.was-validated meetings .custom-select:valid ~ .valid-feedback,
-.was-validated meetings .custom-select:valid ~ .valid-tooltip, meetings .custom-select.is-valid ~ .valid-feedback,
-meetings .custom-select.is-valid ~ .valid-tooltip {
-  display: block;
-}
-.was-validated meetings .form-control-file:valid ~ .valid-feedback,
-.was-validated meetings .form-control-file:valid ~ .valid-tooltip, meetings .form-control-file.is-valid ~ .valid-feedback,
-meetings .form-control-file.is-valid ~ .valid-tooltip {
-  display: block;
-}
-.was-validated meetings .form-check-input:valid ~ .form-check-label, meetings .form-check-input.is-valid ~ .form-check-label {
-  color: #28a745;
-}
-.was-validated meetings .form-check-input:valid ~ .valid-feedback,
-.was-validated meetings .form-check-input:valid ~ .valid-tooltip, meetings .form-check-input.is-valid ~ .valid-feedback,
-meetings .form-check-input.is-valid ~ .valid-tooltip {
-  display: block;
-}
-.was-validated meetings .custom-control-input:valid ~ .custom-control-label, meetings .custom-control-input.is-valid ~ .custom-control-label {
-  color: #28a745;
-}
-.was-validated meetings .custom-control-input:valid ~ .custom-control-label::before, meetings .custom-control-input.is-valid ~ .custom-control-label::before {
-  border-color: #28a745;
-}
-.was-validated meetings .custom-control-input:valid ~ .valid-feedback,
-.was-validated meetings .custom-control-input:valid ~ .valid-tooltip, meetings .custom-control-input.is-valid ~ .valid-feedback,
-meetings .custom-control-input.is-valid ~ .valid-tooltip {
-  display: block;
-}
-.was-validated meetings .custom-control-input:valid:checked ~ .custom-control-label::before, meetings .custom-control-input.is-valid:checked ~ .custom-control-label::before {
-  border-color: #34ce57;
-  background-color: #34ce57;
-}
-.was-validated meetings .custom-control-input:valid:focus ~ .custom-control-label::before, meetings .custom-control-input.is-valid:focus ~ .custom-control-label::before {
-  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
-}
-.was-validated meetings .custom-control-input:valid:focus:not(:checked) ~ .custom-control-label::before, meetings .custom-control-input.is-valid:focus:not(:checked) ~ .custom-control-label::before {
-  border-color: #28a745;
-}
-.was-validated meetings .custom-file-input:valid ~ .custom-file-label, meetings .custom-file-input.is-valid ~ .custom-file-label {
-  border-color: #28a745;
-}
-.was-validated meetings .custom-file-input:valid ~ .valid-feedback,
-.was-validated meetings .custom-file-input:valid ~ .valid-tooltip, meetings .custom-file-input.is-valid ~ .valid-feedback,
-meetings .custom-file-input.is-valid ~ .valid-tooltip {
-  display: block;
-}
-.was-validated meetings .custom-file-input:valid:focus ~ .custom-file-label, meetings .custom-file-input.is-valid:focus ~ .custom-file-label {
-  border-color: #28a745;
-  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
-}
-meetings .invalid-feedback {
-  display: none;
-  width: 100%;
-  margin-top: 0.25rem;
-  font-size: 80%;
-  color: #dc3545;
-}
-meetings .invalid-tooltip {
-  position: absolute;
-  top: 100%;
-  z-index: 5;
-  display: none;
-  max-width: 100%;
-  padding: 0.25rem 0.5rem;
-  margin-top: 0.1rem;
-  font-size: 0.875rem;
-  line-height: 1.5;
-  color: #fff;
-  background-color: rgba(220, 53, 69, 0.9);
-  border-radius: 0.25rem;
-}
-.was-validated meetings .form-control:invalid, meetings .form-control.is-invalid {
-  border-color: #dc3545;
-  padding-right: calc(1.5em + 0.75rem);
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23dc3545' viewBox='-2 -2 7 7'%3e%3cpath stroke='%23dc3545' d='M0 0l3 3m0-3L0 3'/%3e%3ccircle r='.5'/%3e%3ccircle cx='3' r='.5'/%3e%3ccircle cy='3' r='.5'/%3e%3ccircle cx='3' cy='3' r='.5'/%3e%3c/svg%3E");
-  background-repeat: no-repeat;
-  background-position: center right calc(0.375em + 0.1875rem);
-  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
-}
-.was-validated meetings .form-control:invalid:focus, meetings .form-control.is-invalid:focus {
-  border-color: #dc3545;
-  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
-}
-.was-validated meetings .form-control:invalid ~ .invalid-feedback,
-.was-validated meetings .form-control:invalid ~ .invalid-tooltip, meetings .form-control.is-invalid ~ .invalid-feedback,
-meetings .form-control.is-invalid ~ .invalid-tooltip {
-  display: block;
-}
-.was-validated meetings textarea.form-control:invalid, meetings textarea.form-control.is-invalid {
-  padding-right: calc(1.5em + 0.75rem);
-  background-position: top calc(0.375em + 0.1875rem) right calc(0.375em + 0.1875rem);
-}
-.was-validated meetings .custom-select:invalid, meetings .custom-select.is-invalid {
-  border-color: #dc3545;
-  padding-right: calc((1em + 0.75rem) * 3 / 4 + 1.75rem);
-  background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right 0.75rem center/8px 10px, url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23dc3545' viewBox='-2 -2 7 7'%3e%3cpath stroke='%23dc3545' d='M0 0l3 3m0-3L0 3'/%3e%3ccircle r='.5'/%3e%3ccircle cx='3' r='.5'/%3e%3ccircle cy='3' r='.5'/%3e%3ccircle cx='3' cy='3' r='.5'/%3e%3c/svg%3E") #fff no-repeat center right 1.75rem/calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
-}
-.was-validated meetings .custom-select:invalid:focus, meetings .custom-select.is-invalid:focus {
-  border-color: #dc3545;
-  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
-}
-.was-validated meetings .custom-select:invalid ~ .invalid-feedback,
-.was-validated meetings .custom-select:invalid ~ .invalid-tooltip, meetings .custom-select.is-invalid ~ .invalid-feedback,
-meetings .custom-select.is-invalid ~ .invalid-tooltip {
-  display: block;
-}
-.was-validated meetings .form-control-file:invalid ~ .invalid-feedback,
-.was-validated meetings .form-control-file:invalid ~ .invalid-tooltip, meetings .form-control-file.is-invalid ~ .invalid-feedback,
-meetings .form-control-file.is-invalid ~ .invalid-tooltip {
-  display: block;
-}
-.was-validated meetings .form-check-input:invalid ~ .form-check-label, meetings .form-check-input.is-invalid ~ .form-check-label {
-  color: #dc3545;
-}
-.was-validated meetings .form-check-input:invalid ~ .invalid-feedback,
-.was-validated meetings .form-check-input:invalid ~ .invalid-tooltip, meetings .form-check-input.is-invalid ~ .invalid-feedback,
-meetings .form-check-input.is-invalid ~ .invalid-tooltip {
-  display: block;
-}
-.was-validated meetings .custom-control-input:invalid ~ .custom-control-label, meetings .custom-control-input.is-invalid ~ .custom-control-label {
-  color: #dc3545;
-}
-.was-validated meetings .custom-control-input:invalid ~ .custom-control-label::before, meetings .custom-control-input.is-invalid ~ .custom-control-label::before {
-  border-color: #dc3545;
-}
-.was-validated meetings .custom-control-input:invalid ~ .invalid-feedback,
-.was-validated meetings .custom-control-input:invalid ~ .invalid-tooltip, meetings .custom-control-input.is-invalid ~ .invalid-feedback,
-meetings .custom-control-input.is-invalid ~ .invalid-tooltip {
-  display: block;
-}
-.was-validated meetings .custom-control-input:invalid:checked ~ .custom-control-label::before, meetings .custom-control-input.is-invalid:checked ~ .custom-control-label::before {
-  border-color: #e4606d;
-  background-color: #e4606d;
-}
-.was-validated meetings .custom-control-input:invalid:focus ~ .custom-control-label::before, meetings .custom-control-input.is-invalid:focus ~ .custom-control-label::before {
-  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
-}
-.was-validated meetings .custom-control-input:invalid:focus:not(:checked) ~ .custom-control-label::before, meetings .custom-control-input.is-invalid:focus:not(:checked) ~ .custom-control-label::before {
-  border-color: #dc3545;
-}
-.was-validated meetings .custom-file-input:invalid ~ .custom-file-label, meetings .custom-file-input.is-invalid ~ .custom-file-label {
-  border-color: #dc3545;
-}
-.was-validated meetings .custom-file-input:invalid ~ .invalid-feedback,
-.was-validated meetings .custom-file-input:invalid ~ .invalid-tooltip, meetings .custom-file-input.is-invalid ~ .invalid-feedback,
-meetings .custom-file-input.is-invalid ~ .invalid-tooltip {
-  display: block;
-}
-.was-validated meetings .custom-file-input:invalid:focus ~ .custom-file-label, meetings .custom-file-input.is-invalid:focus ~ .custom-file-label {
-  border-color: #dc3545;
-  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
-}
-meetings .form-inline {
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-          flex-flow: row wrap;
-  -webkit-box-align: center;
-          align-items: center;
-}
-meetings .form-inline .form-check {
-  width: 100%;
-}
-@media (min-width: 576px) {
-  meetings .form-inline label {
-    display: -webkit-box;
-    display: flex;
-    -webkit-box-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-            justify-content: center;
-    margin-bottom: 0;
-  }
-  meetings .form-inline .form-group {
-    display: -webkit-box;
-    display: flex;
-    -webkit-box-flex: 0;
-            flex: 0 0 auto;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-            flex-flow: row wrap;
-    -webkit-box-align: center;
-            align-items: center;
-    margin-bottom: 0;
-  }
-  meetings .form-inline .form-control {
-    display: inline-block;
-    width: auto;
-    vertical-align: middle;
-  }
-  meetings .form-inline .form-control-plaintext {
-    display: inline-block;
-  }
-  meetings .form-inline .input-group,
-meetings .form-inline .custom-select {
-    width: auto;
-  }
-  meetings .form-inline .form-check {
-    display: -webkit-box;
-    display: flex;
-    -webkit-box-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-            justify-content: center;
-    width: auto;
-    padding-left: 0;
-  }
-  meetings .form-inline .form-check-input {
-    position: relative;
-    flex-shrink: 0;
-    margin-top: 0;
-    margin-right: 0.25rem;
-    margin-left: 0;
-  }
-  meetings .form-inline .custom-control {
-    -webkit-box-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-            justify-content: center;
-  }
-  meetings .form-inline .custom-control-label {
-    margin-bottom: 0;
-  }
-}
-meetings .btn {
-  display: inline-block;
-  font-weight: 400;
-  color: #212529;
-  text-align: center;
-  vertical-align: middle;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  background-color: transparent;
-  border: 1px solid transparent;
-  padding: 0.375rem 0.75rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  border-radius: 0.25rem;
-  -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-@media (prefers-reduced-motion: reduce) {
-  meetings .btn {
-    -webkit-transition: none;
-    transition: none;
-  }
-}
-meetings .btn:hover {
-  color: #212529;
-  text-decoration: none;
-}
-meetings .btn:focus, meetings .btn.focus {
-  outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-}
-meetings .btn.disabled, meetings .btn:disabled {
-  opacity: 0.65;
-}
-meetings a.btn.disabled,
-meetings fieldset:disabled a.btn {
-  pointer-events: none;
-}
-meetings .btn-primary {
-  color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
-}
-meetings .btn-primary:hover {
-  color: #fff;
-  background-color: #0069d9;
-  border-color: #0062cc;
-}
-meetings .btn-primary:focus, meetings .btn-primary.focus {
-  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
-}
-meetings .btn-primary.disabled, meetings .btn-primary:disabled {
-  color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
-}
-meetings .btn-primary:not(:disabled):not(.disabled):active, meetings .btn-primary:not(:disabled):not(.disabled).active, .show > meetings .btn-primary.dropdown-toggle {
-  color: #fff;
-  background-color: #0062cc;
-  border-color: #005cbf;
-}
-meetings .btn-primary:not(:disabled):not(.disabled):active:focus, meetings .btn-primary:not(:disabled):not(.disabled).active:focus, .show > meetings .btn-primary.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
-}
-meetings .btn-secondary {
-  color: #fff;
-  background-color: #6c757d;
-  border-color: #6c757d;
-}
-meetings .btn-secondary:hover {
-  color: #fff;
-  background-color: #5a6268;
-  border-color: #545b62;
-}
-meetings .btn-secondary:focus, meetings .btn-secondary.focus {
-  box-shadow: 0 0 0 0.2rem rgba(130, 138, 145, 0.5);
-}
-meetings .btn-secondary.disabled, meetings .btn-secondary:disabled {
-  color: #fff;
-  background-color: #6c757d;
-  border-color: #6c757d;
-}
-meetings .btn-secondary:not(:disabled):not(.disabled):active, meetings .btn-secondary:not(:disabled):not(.disabled).active, .show > meetings .btn-secondary.dropdown-toggle {
-  color: #fff;
-  background-color: #545b62;
-  border-color: #4e555b;
-}
-meetings .btn-secondary:not(:disabled):not(.disabled):active:focus, meetings .btn-secondary:not(:disabled):not(.disabled).active:focus, .show > meetings .btn-secondary.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(130, 138, 145, 0.5);
-}
-meetings .btn-success {
-  color: #fff;
-  background-color: #28a745;
-  border-color: #28a745;
-}
-meetings .btn-success:hover {
-  color: #fff;
-  background-color: #218838;
-  border-color: #1e7e34;
-}
-meetings .btn-success:focus, meetings .btn-success.focus {
-  box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5);
-}
-meetings .btn-success.disabled, meetings .btn-success:disabled {
-  color: #fff;
-  background-color: #28a745;
-  border-color: #28a745;
-}
-meetings .btn-success:not(:disabled):not(.disabled):active, meetings .btn-success:not(:disabled):not(.disabled).active, .show > meetings .btn-success.dropdown-toggle {
-  color: #fff;
-  background-color: #1e7e34;
-  border-color: #1c7430;
-}
-meetings .btn-success:not(:disabled):not(.disabled):active:focus, meetings .btn-success:not(:disabled):not(.disabled).active:focus, .show > meetings .btn-success.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5);
-}
-meetings .btn-info {
-  color: #fff;
-  background-color: #17a2b8;
-  border-color: #17a2b8;
-}
-meetings .btn-info:hover {
-  color: #fff;
-  background-color: #138496;
-  border-color: #117a8b;
-}
-meetings .btn-info:focus, meetings .btn-info.focus {
-  box-shadow: 0 0 0 0.2rem rgba(58, 176, 195, 0.5);
-}
-meetings .btn-info.disabled, meetings .btn-info:disabled {
-  color: #fff;
-  background-color: #17a2b8;
-  border-color: #17a2b8;
-}
-meetings .btn-info:not(:disabled):not(.disabled):active, meetings .btn-info:not(:disabled):not(.disabled).active, .show > meetings .btn-info.dropdown-toggle {
-  color: #fff;
-  background-color: #117a8b;
-  border-color: #10707f;
-}
-meetings .btn-info:not(:disabled):not(.disabled):active:focus, meetings .btn-info:not(:disabled):not(.disabled).active:focus, .show > meetings .btn-info.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(58, 176, 195, 0.5);
-}
-meetings .btn-warning {
-  color: #212529;
-  background-color: #ffc107;
-  border-color: #ffc107;
-}
-meetings .btn-warning:hover {
-  color: #212529;
-  background-color: #e0a800;
-  border-color: #d39e00;
-}
-meetings .btn-warning:focus, meetings .btn-warning.focus {
-  box-shadow: 0 0 0 0.2rem rgba(222, 170, 12, 0.5);
-}
-meetings .btn-warning.disabled, meetings .btn-warning:disabled {
-  color: #212529;
-  background-color: #ffc107;
-  border-color: #ffc107;
-}
-meetings .btn-warning:not(:disabled):not(.disabled):active, meetings .btn-warning:not(:disabled):not(.disabled).active, .show > meetings .btn-warning.dropdown-toggle {
-  color: #212529;
-  background-color: #d39e00;
-  border-color: #c69500;
-}
-meetings .btn-warning:not(:disabled):not(.disabled):active:focus, meetings .btn-warning:not(:disabled):not(.disabled).active:focus, .show > meetings .btn-warning.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(222, 170, 12, 0.5);
-}
-meetings .btn-danger {
-  color: #fff;
-  background-color: #dc3545;
-  border-color: #dc3545;
-}
-meetings .btn-danger:hover {
-  color: #fff;
-  background-color: #c82333;
-  border-color: #bd2130;
-}
-meetings .btn-danger:focus, meetings .btn-danger.focus {
-  box-shadow: 0 0 0 0.2rem rgba(225, 83, 97, 0.5);
-}
-meetings .btn-danger.disabled, meetings .btn-danger:disabled {
-  color: #fff;
-  background-color: #dc3545;
-  border-color: #dc3545;
-}
-meetings .btn-danger:not(:disabled):not(.disabled):active, meetings .btn-danger:not(:disabled):not(.disabled).active, .show > meetings .btn-danger.dropdown-toggle {
-  color: #fff;
-  background-color: #bd2130;
-  border-color: #b21f2d;
-}
-meetings .btn-danger:not(:disabled):not(.disabled):active:focus, meetings .btn-danger:not(:disabled):not(.disabled).active:focus, .show > meetings .btn-danger.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(225, 83, 97, 0.5);
-}
-meetings .btn-light {
-  color: #212529;
-  background-color: #f8f9fa;
-  border-color: #f8f9fa;
-}
-meetings .btn-light:hover {
-  color: #212529;
-  background-color: #e2e6ea;
-  border-color: #dae0e5;
-}
-meetings .btn-light:focus, meetings .btn-light.focus {
-  box-shadow: 0 0 0 0.2rem rgba(216, 217, 219, 0.5);
-}
-meetings .btn-light.disabled, meetings .btn-light:disabled {
-  color: #212529;
-  background-color: #f8f9fa;
-  border-color: #f8f9fa;
-}
-meetings .btn-light:not(:disabled):not(.disabled):active, meetings .btn-light:not(:disabled):not(.disabled).active, .show > meetings .btn-light.dropdown-toggle {
-  color: #212529;
-  background-color: #dae0e5;
-  border-color: #d3d9df;
-}
-meetings .btn-light:not(:disabled):not(.disabled):active:focus, meetings .btn-light:not(:disabled):not(.disabled).active:focus, .show > meetings .btn-light.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(216, 217, 219, 0.5);
-}
-meetings .btn-dark {
-  color: #fff;
-  background-color: #343a40;
-  border-color: #343a40;
-}
-meetings .btn-dark:hover {
-  color: #fff;
-  background-color: #23272b;
-  border-color: #1d2124;
-}
-meetings .btn-dark:focus, meetings .btn-dark.focus {
-  box-shadow: 0 0 0 0.2rem rgba(82, 88, 93, 0.5);
-}
-meetings .btn-dark.disabled, meetings .btn-dark:disabled {
-  color: #fff;
-  background-color: #343a40;
-  border-color: #343a40;
-}
-meetings .btn-dark:not(:disabled):not(.disabled):active, meetings .btn-dark:not(:disabled):not(.disabled).active, .show > meetings .btn-dark.dropdown-toggle {
-  color: #fff;
-  background-color: #1d2124;
-  border-color: #171a1d;
-}
-meetings .btn-dark:not(:disabled):not(.disabled):active:focus, meetings .btn-dark:not(:disabled):not(.disabled).active:focus, .show > meetings .btn-dark.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(82, 88, 93, 0.5);
-}
-meetings .btn-outline-primary {
-  color: #007bff;
-  border-color: #007bff;
-}
-meetings .btn-outline-primary:hover {
-  color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
-}
-meetings .btn-outline-primary:focus, meetings .btn-outline-primary.focus {
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
-}
-meetings .btn-outline-primary.disabled, meetings .btn-outline-primary:disabled {
-  color: #007bff;
-  background-color: transparent;
-}
-meetings .btn-outline-primary:not(:disabled):not(.disabled):active, meetings .btn-outline-primary:not(:disabled):not(.disabled).active, .show > meetings .btn-outline-primary.dropdown-toggle {
-  color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
-}
-meetings .btn-outline-primary:not(:disabled):not(.disabled):active:focus, meetings .btn-outline-primary:not(:disabled):not(.disabled).active:focus, .show > meetings .btn-outline-primary.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
-}
-meetings .btn-outline-secondary {
-  color: #6c757d;
-  border-color: #6c757d;
-}
-meetings .btn-outline-secondary:hover {
-  color: #fff;
-  background-color: #6c757d;
-  border-color: #6c757d;
-}
-meetings .btn-outline-secondary:focus, meetings .btn-outline-secondary.focus {
-  box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.5);
-}
-meetings .btn-outline-secondary.disabled, meetings .btn-outline-secondary:disabled {
-  color: #6c757d;
-  background-color: transparent;
-}
-meetings .btn-outline-secondary:not(:disabled):not(.disabled):active, meetings .btn-outline-secondary:not(:disabled):not(.disabled).active, .show > meetings .btn-outline-secondary.dropdown-toggle {
-  color: #fff;
-  background-color: #6c757d;
-  border-color: #6c757d;
-}
-meetings .btn-outline-secondary:not(:disabled):not(.disabled):active:focus, meetings .btn-outline-secondary:not(:disabled):not(.disabled).active:focus, .show > meetings .btn-outline-secondary.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.5);
-}
-meetings .btn-outline-success {
-  color: #28a745;
-  border-color: #28a745;
-}
-meetings .btn-outline-success:hover {
-  color: #fff;
-  background-color: #28a745;
-  border-color: #28a745;
-}
-meetings .btn-outline-success:focus, meetings .btn-outline-success.focus {
-  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5);
-}
-meetings .btn-outline-success.disabled, meetings .btn-outline-success:disabled {
-  color: #28a745;
-  background-color: transparent;
-}
-meetings .btn-outline-success:not(:disabled):not(.disabled):active, meetings .btn-outline-success:not(:disabled):not(.disabled).active, .show > meetings .btn-outline-success.dropdown-toggle {
-  color: #fff;
-  background-color: #28a745;
-  border-color: #28a745;
-}
-meetings .btn-outline-success:not(:disabled):not(.disabled):active:focus, meetings .btn-outline-success:not(:disabled):not(.disabled).active:focus, .show > meetings .btn-outline-success.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5);
-}
-meetings .btn-outline-info {
-  color: #17a2b8;
-  border-color: #17a2b8;
-}
-meetings .btn-outline-info:hover {
-  color: #fff;
-  background-color: #17a2b8;
-  border-color: #17a2b8;
-}
-meetings .btn-outline-info:focus, meetings .btn-outline-info.focus {
-  box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5);
-}
-meetings .btn-outline-info.disabled, meetings .btn-outline-info:disabled {
-  color: #17a2b8;
-  background-color: transparent;
-}
-meetings .btn-outline-info:not(:disabled):not(.disabled):active, meetings .btn-outline-info:not(:disabled):not(.disabled).active, .show > meetings .btn-outline-info.dropdown-toggle {
-  color: #fff;
-  background-color: #17a2b8;
-  border-color: #17a2b8;
-}
-meetings .btn-outline-info:not(:disabled):not(.disabled):active:focus, meetings .btn-outline-info:not(:disabled):not(.disabled).active:focus, .show > meetings .btn-outline-info.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5);
-}
-meetings .btn-outline-warning {
-  color: #ffc107;
-  border-color: #ffc107;
-}
-meetings .btn-outline-warning:hover {
-  color: #212529;
-  background-color: #ffc107;
-  border-color: #ffc107;
-}
-meetings .btn-outline-warning:focus, meetings .btn-outline-warning.focus {
-  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);
-}
-meetings .btn-outline-warning.disabled, meetings .btn-outline-warning:disabled {
-  color: #ffc107;
-  background-color: transparent;
-}
-meetings .btn-outline-warning:not(:disabled):not(.disabled):active, meetings .btn-outline-warning:not(:disabled):not(.disabled).active, .show > meetings .btn-outline-warning.dropdown-toggle {
-  color: #212529;
-  background-color: #ffc107;
-  border-color: #ffc107;
-}
-meetings .btn-outline-warning:not(:disabled):not(.disabled):active:focus, meetings .btn-outline-warning:not(:disabled):not(.disabled).active:focus, .show > meetings .btn-outline-warning.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);
-}
-meetings .btn-outline-danger {
-  color: #dc3545;
-  border-color: #dc3545;
-}
-meetings .btn-outline-danger:hover {
-  color: #fff;
-  background-color: #dc3545;
-  border-color: #dc3545;
-}
-meetings .btn-outline-danger:focus, meetings .btn-outline-danger.focus {
-  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.5);
-}
-meetings .btn-outline-danger.disabled, meetings .btn-outline-danger:disabled {
-  color: #dc3545;
-  background-color: transparent;
-}
-meetings .btn-outline-danger:not(:disabled):not(.disabled):active, meetings .btn-outline-danger:not(:disabled):not(.disabled).active, .show > meetings .btn-outline-danger.dropdown-toggle {
-  color: #fff;
-  background-color: #dc3545;
-  border-color: #dc3545;
-}
-meetings .btn-outline-danger:not(:disabled):not(.disabled):active:focus, meetings .btn-outline-danger:not(:disabled):not(.disabled).active:focus, .show > meetings .btn-outline-danger.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.5);
-}
-meetings .btn-outline-light {
-  color: #f8f9fa;
-  border-color: #f8f9fa;
-}
-meetings .btn-outline-light:hover {
-  color: #212529;
-  background-color: #f8f9fa;
-  border-color: #f8f9fa;
-}
-meetings .btn-outline-light:focus, meetings .btn-outline-light.focus {
-  box-shadow: 0 0 0 0.2rem rgba(248, 249, 250, 0.5);
-}
-meetings .btn-outline-light.disabled, meetings .btn-outline-light:disabled {
-  color: #f8f9fa;
-  background-color: transparent;
-}
-meetings .btn-outline-light:not(:disabled):not(.disabled):active, meetings .btn-outline-light:not(:disabled):not(.disabled).active, .show > meetings .btn-outline-light.dropdown-toggle {
-  color: #212529;
-  background-color: #f8f9fa;
-  border-color: #f8f9fa;
-}
-meetings .btn-outline-light:not(:disabled):not(.disabled):active:focus, meetings .btn-outline-light:not(:disabled):not(.disabled).active:focus, .show > meetings .btn-outline-light.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(248, 249, 250, 0.5);
-}
-meetings .btn-outline-dark {
-  color: #343a40;
-  border-color: #343a40;
-}
-meetings .btn-outline-dark:hover {
-  color: #fff;
-  background-color: #343a40;
-  border-color: #343a40;
-}
-meetings .btn-outline-dark:focus, meetings .btn-outline-dark.focus {
-  box-shadow: 0 0 0 0.2rem rgba(52, 58, 64, 0.5);
-}
-meetings .btn-outline-dark.disabled, meetings .btn-outline-dark:disabled {
-  color: #343a40;
-  background-color: transparent;
-}
-meetings .btn-outline-dark:not(:disabled):not(.disabled):active, meetings .btn-outline-dark:not(:disabled):not(.disabled).active, .show > meetings .btn-outline-dark.dropdown-toggle {
-  color: #fff;
-  background-color: #343a40;
-  border-color: #343a40;
-}
-meetings .btn-outline-dark:not(:disabled):not(.disabled):active:focus, meetings .btn-outline-dark:not(:disabled):not(.disabled).active:focus, .show > meetings .btn-outline-dark.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(52, 58, 64, 0.5);
-}
-meetings .btn-link {
-  font-weight: 400;
-  color: #007bff;
-  text-decoration: none;
-}
-meetings .btn-link:hover {
-  color: #0056b3;
-  text-decoration: underline;
-}
-meetings .btn-link:focus, meetings .btn-link.focus {
-  text-decoration: underline;
-  box-shadow: none;
-}
-meetings .btn-link:disabled, meetings .btn-link.disabled {
-  color: #6c757d;
-  pointer-events: none;
-}
-meetings .btn-lg, meetings .btn-group-lg > .btn {
-  padding: 0.5rem 1rem;
-  font-size: 1.25rem;
-  line-height: 1.5;
-  border-radius: 0.3rem;
-}
-meetings .btn-sm, meetings .btn-group-sm > .btn {
-  padding: 0.25rem 0.5rem;
-  font-size: 0.875rem;
-  line-height: 1.5;
-  border-radius: 0.2rem;
-}
-meetings .btn-block {
-  display: block;
-  width: 100%;
-}
-meetings .btn-block + .btn-block {
-  margin-top: 0.5rem;
-}
-meetings input[type=submit].btn-block,
-meetings input[type=reset].btn-block,
-meetings input[type=button].btn-block {
-  width: 100%;
-}
-meetings .dropup,
-meetings .dropright,
-meetings .dropdown,
-meetings .dropleft {
-  position: relative;
-}
-meetings .dropdown-toggle {
-  white-space: nowrap;
-}
-meetings .dropdown-toggle::after {
-  display: inline-block;
-  margin-left: 0.255em;
-  vertical-align: 0.255em;
-  content: "";
-  border-top: 0.3em solid;
-  border-right: 0.3em solid transparent;
-  border-bottom: 0;
-  border-left: 0.3em solid transparent;
-}
-meetings .dropdown-toggle:empty::after {
-  margin-left: 0;
-}
-meetings .dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 1000;
-  display: none;
-  float: left;
-  min-width: 10rem;
-  padding: 0.5rem 0;
-  margin: 0.125rem 0 0;
-  font-size: 1rem;
-  color: #212529;
-  text-align: left;
   list-style: none;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 0.25rem;
 }
-meetings .dropdown-menu-left {
-  right: auto;
-  left: 0;
-}
-meetings .dropdown-menu-right {
-  right: 0;
-  left: auto;
-}
-@media (min-width: 576px) {
-  meetings .dropdown-menu-sm-left {
-    right: auto;
-    left: 0;
-  }
-  meetings .dropdown-menu-sm-right {
-    right: 0;
-    left: auto;
-  }
-}
-@media (min-width: 768px) {
-  meetings .dropdown-menu-md-left {
-    right: auto;
-    left: 0;
-  }
-  meetings .dropdown-menu-md-right {
-    right: 0;
-    left: auto;
-  }
-}
-@media (min-width: 992px) {
-  meetings .dropdown-menu-lg-left {
-    right: auto;
-    left: 0;
-  }
-  meetings .dropdown-menu-lg-right {
-    right: 0;
-    left: auto;
-  }
-}
-@media (min-width: 1200px) {
-  meetings .dropdown-menu-xl-left {
-    right: auto;
-    left: 0;
-  }
-  meetings .dropdown-menu-xl-right {
-    right: 0;
-    left: auto;
-  }
-}
-meetings .dropup .dropdown-menu {
-  top: auto;
-  bottom: 100%;
-  margin-top: 0;
-  margin-bottom: 0.125rem;
-}
-meetings .dropup .dropdown-toggle::after {
-  display: inline-block;
-  margin-left: 0.255em;
-  vertical-align: 0.255em;
-  content: "";
-  border-top: 0;
-  border-right: 0.3em solid transparent;
-  border-bottom: 0.3em solid;
-  border-left: 0.3em solid transparent;
-}
-meetings .dropup .dropdown-toggle:empty::after {
-  margin-left: 0;
-}
-meetings .dropright .dropdown-menu {
-  top: 0;
-  right: auto;
-  left: 100%;
-  margin-top: 0;
-  margin-left: 0.125rem;
-}
-meetings .dropright .dropdown-toggle::after {
-  display: inline-block;
-  margin-left: 0.255em;
-  vertical-align: 0.255em;
-  content: "";
-  border-top: 0.3em solid transparent;
-  border-right: 0;
-  border-bottom: 0.3em solid transparent;
-  border-left: 0.3em solid;
-}
-meetings .dropright .dropdown-toggle:empty::after {
-  margin-left: 0;
-}
-meetings .dropright .dropdown-toggle::after {
-  vertical-align: 0;
-}
-meetings .dropleft .dropdown-menu {
-  top: 0;
-  right: 100%;
-  left: auto;
-  margin-top: 0;
-  margin-right: 0.125rem;
-}
-meetings .dropleft .dropdown-toggle::after {
-  display: inline-block;
-  margin-left: 0.255em;
-  vertical-align: 0.255em;
-  content: "";
-}
-meetings .dropleft .dropdown-toggle::after {
-  display: none;
-}
-meetings .dropleft .dropdown-toggle::before {
-  display: inline-block;
-  margin-right: 0.255em;
-  vertical-align: 0.255em;
-  content: "";
-  border-top: 0.3em solid transparent;
-  border-right: 0.3em solid;
-  border-bottom: 0.3em solid transparent;
-}
-meetings .dropleft .dropdown-toggle:empty::after {
-  margin-left: 0;
-}
-meetings .dropleft .dropdown-toggle::before {
-  vertical-align: 0;
-}
-meetings .dropdown-menu[x-placement^=top], meetings .dropdown-menu[x-placement^=right], meetings .dropdown-menu[x-placement^=bottom], meetings .dropdown-menu[x-placement^=left] {
-  right: auto;
-  bottom: auto;
-}
-meetings .dropdown-divider {
-  height: 0;
-  margin: 0.5rem 0;
-  overflow: hidden;
-  border-top: 1px solid #e9ecef;
-}
-meetings .dropdown-item {
-  display: block;
-  width: 100%;
-  padding: 0.25rem 1.5rem;
-  clear: both;
-  font-weight: 400;
-  color: #212529;
-  text-align: inherit;
-  white-space: nowrap;
-  background-color: transparent;
-  border: 0;
-}
-meetings .dropdown-item:hover, meetings .dropdown-item:focus {
-  color: #16181b;
-  text-decoration: none;
-  background-color: #f8f9fa;
-}
-meetings .dropdown-item.active, meetings .dropdown-item:active {
-  color: #fff;
-  text-decoration: none;
-  background-color: #007bff;
-}
-meetings .dropdown-item.disabled, meetings .dropdown-item:disabled {
-  color: #6c757d;
-  pointer-events: none;
-  background-color: transparent;
-}
-meetings .dropdown-menu.show {
-  display: block;
-}
-meetings .dropdown-header {
-  display: block;
-  padding: 0.5rem 1.5rem;
-  margin-bottom: 0;
-  font-size: 0.875rem;
-  color: #6c757d;
-  white-space: nowrap;
-}
-meetings .dropdown-item-text {
-  display: block;
-  padding: 0.25rem 1.5rem;
-  color: #212529;
-}
-meetings .btn-group,
-meetings .btn-group-vertical {
-  position: relative;
-  display: -webkit-inline-box;
-  display: inline-flex;
-  vertical-align: middle;
-}
-meetings .btn-group > .btn,
-meetings .btn-group-vertical > .btn {
-  position: relative;
-  -webkit-box-flex: 1;
-          flex: 1 1 auto;
-}
-meetings .btn-group > .btn:hover,
-meetings .btn-group-vertical > .btn:hover {
-  z-index: 1;
-}
-meetings .btn-group > .btn:focus, meetings .btn-group > .btn:active, meetings .btn-group > .btn.active,
-meetings .btn-group-vertical > .btn:focus,
-meetings .btn-group-vertical > .btn:active,
-meetings .btn-group-vertical > .btn.active {
-  z-index: 1;
-}
-meetings .btn-toolbar {
-  display: -webkit-box;
-  display: flex;
-  flex-wrap: wrap;
-  -webkit-box-pack: start;
-          justify-content: flex-start;
-}
-meetings .btn-toolbar .input-group {
-  width: auto;
-}
-meetings .btn-group > .btn:not(:first-child),
-meetings .btn-group > .btn-group:not(:first-child) {
-  margin-left: -1px;
-}
-meetings .btn-group > .btn:not(:last-child):not(.dropdown-toggle),
-meetings .btn-group > .btn-group:not(:last-child) > .btn {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-meetings .btn-group > .btn:not(:first-child),
-meetings .btn-group > .btn-group:not(:first-child) > .btn {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
-meetings .dropdown-toggle-split {
-  padding-right: 0.5625rem;
-  padding-left: 0.5625rem;
-}
-meetings .dropdown-toggle-split::after, .dropup meetings .dropdown-toggle-split::after, .dropright meetings .dropdown-toggle-split::after {
-  margin-left: 0;
-}
-.dropleft meetings .dropdown-toggle-split::before {
-  margin-right: 0;
-}
-meetings .btn-sm + .dropdown-toggle-split, meetings .btn-group-sm > .btn + .dropdown-toggle-split {
-  padding-right: 0.375rem;
-  padding-left: 0.375rem;
-}
-meetings .btn-lg + .dropdown-toggle-split, meetings .btn-group-lg > .btn + .dropdown-toggle-split {
-  padding-right: 0.75rem;
-  padding-left: 0.75rem;
-}
-meetings .btn-group-vertical {
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-          flex-direction: column;
-  -webkit-box-align: start;
-          align-items: flex-start;
-  -webkit-box-pack: center;
-          justify-content: center;
-}
-meetings .btn-group-vertical > .btn,
-meetings .btn-group-vertical > .btn-group {
-  width: 100%;
-}
-meetings .btn-group-vertical > .btn:not(:first-child),
-meetings .btn-group-vertical > .btn-group:not(:first-child) {
-  margin-top: -1px;
-}
-meetings .btn-group-vertical > .btn:not(:last-child):not(.dropdown-toggle),
-meetings .btn-group-vertical > .btn-group:not(:last-child) > .btn {
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-meetings .btn-group-vertical > .btn:not(:first-child),
-meetings .btn-group-vertical > .btn-group:not(:first-child) > .btn {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-meetings .btn-group-toggle > .btn,
-meetings .btn-group-toggle > .btn-group > .btn {
-  margin-bottom: 0;
-}
-meetings .btn-group-toggle > .btn input[type=radio],
-meetings .btn-group-toggle > .btn input[type=checkbox],
-meetings .btn-group-toggle > .btn-group > .btn input[type=radio],
-meetings .btn-group-toggle > .btn-group > .btn input[type=checkbox] {
-  position: absolute;
-  clip: rect(0, 0, 0, 0);
-  pointer-events: none;
-}
-meetings .input-group {
-  position: relative;
-  display: -webkit-box;
-  display: flex;
-  flex-wrap: wrap;
-  -webkit-box-align: stretch;
-          align-items: stretch;
-  width: 100%;
-}
-meetings .input-group > .form-control,
-meetings .input-group > .form-control-plaintext,
-meetings .input-group > .custom-select,
-meetings .input-group > .custom-file {
-  position: relative;
-  -webkit-box-flex: 1;
-          flex: 1 1 auto;
-  width: 1%;
-  margin-bottom: 0;
-}
-meetings .input-group > .form-control + .form-control,
-meetings .input-group > .form-control + .custom-select,
-meetings .input-group > .form-control + .custom-file,
-meetings .input-group > .form-control-plaintext + .form-control,
-meetings .input-group > .form-control-plaintext + .custom-select,
-meetings .input-group > .form-control-plaintext + .custom-file,
-meetings .input-group > .custom-select + .form-control,
-meetings .input-group > .custom-select + .custom-select,
-meetings .input-group > .custom-select + .custom-file,
-meetings .input-group > .custom-file + .form-control,
-meetings .input-group > .custom-file + .custom-select,
-meetings .input-group > .custom-file + .custom-file {
-  margin-left: -1px;
-}
-meetings .input-group > .form-control:focus,
-meetings .input-group > .custom-select:focus,
-meetings .input-group > .custom-file .custom-file-input:focus ~ .custom-file-label {
-  z-index: 3;
-}
-meetings .input-group > .custom-file .custom-file-input:focus {
-  z-index: 4;
-}
-meetings .input-group > .form-control:not(:last-child),
-meetings .input-group > .custom-select:not(:last-child) {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-meetings .input-group > .form-control:not(:first-child),
-meetings .input-group > .custom-select:not(:first-child) {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
-meetings .input-group > .custom-file {
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-align: center;
-          align-items: center;
-}
-meetings .input-group > .custom-file:not(:last-child) .custom-file-label, meetings .input-group > .custom-file:not(:last-child) .custom-file-label::after {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-meetings .input-group > .custom-file:not(:first-child) .custom-file-label {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
-meetings .input-group-prepend,
-meetings .input-group-append {
-  display: -webkit-box;
-  display: flex;
-}
-meetings .input-group-prepend .btn,
-meetings .input-group-append .btn {
-  position: relative;
-  z-index: 2;
-}
-meetings .input-group-prepend .btn:focus,
-meetings .input-group-append .btn:focus {
-  z-index: 3;
-}
-meetings .input-group-prepend .btn + .btn,
-meetings .input-group-prepend .btn + .input-group-text,
-meetings .input-group-prepend .input-group-text + .input-group-text,
-meetings .input-group-prepend .input-group-text + .btn,
-meetings .input-group-append .btn + .btn,
-meetings .input-group-append .btn + .input-group-text,
-meetings .input-group-append .input-group-text + .input-group-text,
-meetings .input-group-append .input-group-text + .btn {
-  margin-left: -1px;
-}
-meetings .input-group-prepend {
-  margin-right: -1px;
-}
-meetings .input-group-append {
-  margin-left: -1px;
-}
-meetings .input-group-text {
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-align: center;
-          align-items: center;
-  padding: 0.375rem 0.75rem;
-  margin-bottom: 0;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #495057;
-  text-align: center;
-  white-space: nowrap;
-  background-color: #e9ecef;
-  border: 1px solid #ced4da;
-  border-radius: 0.25rem;
-}
-meetings .input-group-text input[type=radio],
-meetings .input-group-text input[type=checkbox] {
-  margin-top: 0;
-}
-meetings .input-group-lg > .form-control:not(textarea),
-meetings .input-group-lg > .custom-select {
-  height: calc(1.5em + 1rem + 2px);
-}
-meetings .input-group-lg > .form-control,
-meetings .input-group-lg > .custom-select,
-meetings .input-group-lg > .input-group-prepend > .input-group-text,
-meetings .input-group-lg > .input-group-append > .input-group-text,
-meetings .input-group-lg > .input-group-prepend > .btn,
-meetings .input-group-lg > .input-group-append > .btn {
-  padding: 0.5rem 1rem;
-  font-size: 1.25rem;
-  line-height: 1.5;
-  border-radius: 0.3rem;
-}
-meetings .input-group-sm > .form-control:not(textarea),
-meetings .input-group-sm > .custom-select {
-  height: calc(1.5em + 0.5rem + 2px);
-}
-meetings .input-group-sm > .form-control,
-meetings .input-group-sm > .custom-select,
-meetings .input-group-sm > .input-group-prepend > .input-group-text,
-meetings .input-group-sm > .input-group-append > .input-group-text,
-meetings .input-group-sm > .input-group-prepend > .btn,
-meetings .input-group-sm > .input-group-append > .btn {
-  padding: 0.25rem 0.5rem;
-  font-size: 0.875rem;
-  line-height: 1.5;
-  border-radius: 0.2rem;
-}
-meetings .input-group-lg > .custom-select,
-meetings .input-group-sm > .custom-select {
-  padding-right: 1.75rem;
-}
-meetings .input-group > .input-group-prepend > .btn,
-meetings .input-group > .input-group-prepend > .input-group-text,
-meetings .input-group > .input-group-append:not(:last-child) > .btn,
-meetings .input-group > .input-group-append:not(:last-child) > .input-group-text,
-meetings .input-group > .input-group-append:last-child > .btn:not(:last-child):not(.dropdown-toggle),
-meetings .input-group > .input-group-append:last-child > .input-group-text:not(:last-child) {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-meetings .input-group > .input-group-append > .btn,
-meetings .input-group > .input-group-append > .input-group-text,
-meetings .input-group > .input-group-prepend:not(:first-child) > .btn,
-meetings .input-group > .input-group-prepend:not(:first-child) > .input-group-text,
-meetings .input-group > .input-group-prepend:first-child > .btn:not(:first-child),
-meetings .input-group > .input-group-prepend:first-child > .input-group-text:not(:first-child) {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
-meetings .badge {
-  display: inline-block;
-  padding: 0.25em 0.4em;
-  font-size: 75%;
-  font-weight: 700;
-  line-height: 1;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: baseline;
-  border-radius: 0.25rem;
-  -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-@media (prefers-reduced-motion: reduce) {
-  meetings .badge {
-    -webkit-transition: none;
-    transition: none;
-  }
-}
-ameetings .badge:hover, ameetings .badge:focus {
-  text-decoration: none;
-}
-
-meetings .badge:empty {
-  display: none;
-}
-meetings .btn .badge {
-  position: relative;
-  top: -1px;
-}
-meetings .badge-pill {
-  padding-right: 0.6em;
-  padding-left: 0.6em;
-  border-radius: 10rem;
-}
-meetings .badge-primary {
-  color: #fff;
-  background-color: #007bff;
-}
-ameetings .badge-primary:hover, ameetings .badge-primary:focus {
-  color: #fff;
-  background-color: #0062cc;
-}
-ameetings .badge-primary:focus, ameetings .badge-primary.focus {
-  outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
-}
-
-meetings .badge-secondary {
-  color: #fff;
-  background-color: #6c757d;
-}
-ameetings .badge-secondary:hover, ameetings .badge-secondary:focus {
-  color: #fff;
-  background-color: #545b62;
-}
-ameetings .badge-secondary:focus, ameetings .badge-secondary.focus {
-  outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.5);
-}
-
-meetings .badge-success {
-  color: #fff;
-  background-color: #28a745;
-}
-ameetings .badge-success:hover, ameetings .badge-success:focus {
-  color: #fff;
-  background-color: #1e7e34;
-}
-ameetings .badge-success:focus, ameetings .badge-success.focus {
-  outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5);
-}
-
-meetings .badge-info {
-  color: #fff;
-  background-color: #17a2b8;
-}
-ameetings .badge-info:hover, ameetings .badge-info:focus {
-  color: #fff;
-  background-color: #117a8b;
-}
-ameetings .badge-info:focus, ameetings .badge-info.focus {
-  outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5);
-}
-
-meetings .badge-warning {
-  color: #212529;
-  background-color: #ffc107;
-}
-ameetings .badge-warning:hover, ameetings .badge-warning:focus {
-  color: #212529;
-  background-color: #d39e00;
-}
-ameetings .badge-warning:focus, ameetings .badge-warning.focus {
-  outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);
-}
-
-meetings .badge-danger {
-  color: #fff;
-  background-color: #dc3545;
-}
-ameetings .badge-danger:hover, ameetings .badge-danger:focus {
-  color: #fff;
-  background-color: #bd2130;
-}
-ameetings .badge-danger:focus, ameetings .badge-danger.focus {
-  outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.5);
-}
-
-meetings .badge-light {
-  color: #212529;
-  background-color: #f8f9fa;
-}
-ameetings .badge-light:hover, ameetings .badge-light:focus {
-  color: #212529;
-  background-color: #dae0e5;
-}
-ameetings .badge-light:focus, ameetings .badge-light.focus {
-  outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(248, 249, 250, 0.5);
-}
-
-meetings .badge-dark {
-  color: #fff;
-  background-color: #343a40;
-}
-ameetings .badge-dark:hover, ameetings .badge-dark:focus {
-  color: #fff;
-  background-color: #1d2124;
-}
-ameetings .badge-dark:focus, ameetings .badge-dark.focus {
-  outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(52, 58, 64, 0.5);
-}
-
-meetings .alert {
-  position: relative;
-  padding: 0.75rem 1.25rem;
-  margin-bottom: 1rem;
-  border: 1px solid transparent;
-  border-radius: 0.25rem;
-}
-meetings .alert-heading {
-  color: inherit;
-}
-meetings .alert-link {
-  font-weight: 700;
-}
-meetings .alert-dismissible {
-  padding-right: 4rem;
-}
-meetings .alert-dismissible .close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 0.75rem 1.25rem;
-  color: inherit;
-}
-meetings .alert-primary {
-  color: #004085;
-  background-color: #cce5ff;
-  border-color: #b8daff;
-}
-meetings .alert-primary hr {
-  border-top-color: #9fcdff;
-}
-meetings .alert-primary .alert-link {
-  color: #002752;
-}
-meetings .alert-secondary {
-  color: #383d41;
-  background-color: #e2e3e5;
-  border-color: #d6d8db;
-}
-meetings .alert-secondary hr {
-  border-top-color: #c8cbcf;
-}
-meetings .alert-secondary .alert-link {
-  color: #202326;
-}
-meetings .alert-success {
-  color: #155724;
-  background-color: #d4edda;
-  border-color: #c3e6cb;
-}
-meetings .alert-success hr {
-  border-top-color: #b1dfbb;
-}
-meetings .alert-success .alert-link {
-  color: #0b2e13;
-}
-meetings .alert-info {
-  color: #0c5460;
-  background-color: #d1ecf1;
-  border-color: #bee5eb;
-}
-meetings .alert-info hr {
-  border-top-color: #abdde5;
-}
-meetings .alert-info .alert-link {
-  color: #062c33;
-}
-meetings .alert-warning {
-  color: #856404;
-  background-color: #fff3cd;
-  border-color: #ffeeba;
-}
-meetings .alert-warning hr {
-  border-top-color: #ffe8a1;
-}
-meetings .alert-warning .alert-link {
-  color: #533f03;
-}
-meetings .alert-danger {
-  color: #721c24;
-  background-color: #f8d7da;
-  border-color: #f5c6cb;
-}
-meetings .alert-danger hr {
-  border-top-color: #f1b0b7;
-}
-meetings .alert-danger .alert-link {
-  color: #491217;
-}
-meetings .alert-light {
-  color: #818182;
-  background-color: #fefefe;
-  border-color: #fdfdfe;
-}
-meetings .alert-light hr {
-  border-top-color: #ececf6;
-}
-meetings .alert-light .alert-link {
-  color: #686868;
-}
-meetings .alert-dark {
-  color: #1b1e21;
-  background-color: #d6d8d9;
-  border-color: #c6c8ca;
-}
-meetings .alert-dark hr {
-  border-top-color: #b9bbbe;
-}
-meetings .alert-dark .alert-link {
-  color: #040505;
-}
-meetings .list-group {
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-          flex-direction: column;
+meetings .list-inline {
   padding-left: 0;
-  margin-bottom: 0;
+  list-style: none;
 }
-meetings .list-group-item-action {
-  width: 100%;
-  color: #495057;
-  text-align: inherit;
+meetings .list-inline-item {
+  display: inline-block;
 }
-meetings .list-group-item-action:hover, meetings .list-group-item-action:focus {
-  z-index: 1;
-  color: #495057;
-  text-decoration: none;
-  background-color: #f8f9fa;
+meetings .list-inline-item:not(:last-child) {
+  margin-right: 0.5rem;
 }
-meetings .list-group-item-action:active {
-  color: #212529;
-  background-color: #e9ecef;
+meetings .initialism {
+  font-size: 90%;
+  text-transform: uppercase;
 }
-meetings .list-group-item {
-  position: relative;
+meetings .blockquote {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+meetings .blockquote-footer {
   display: block;
-  padding: 0.75rem 1.25rem;
-  margin-bottom: -1px;
-  background-color: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.125);
-}
-meetings .list-group-item:first-child {
-  border-top-left-radius: 0.25rem;
-  border-top-right-radius: 0.25rem;
-}
-meetings .list-group-item:last-child {
-  margin-bottom: 0;
-  border-bottom-right-radius: 0.25rem;
-  border-bottom-left-radius: 0.25rem;
-}
-meetings .list-group-item.disabled, meetings .list-group-item:disabled {
+  font-size: 80%;
   color: #6c757d;
-  pointer-events: none;
-  background-color: #fff;
 }
-meetings .list-group-item.active {
-  z-index: 2;
-  color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
-}
-meetings .list-group-horizontal {
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-          flex-direction: row;
-}
-meetings .list-group-horizontal .list-group-item {
-  margin-right: -1px;
-  margin-bottom: 0;
-}
-meetings .list-group-horizontal .list-group-item:first-child {
-  border-top-left-radius: 0.25rem;
-  border-bottom-left-radius: 0.25rem;
-  border-top-right-radius: 0;
-}
-meetings .list-group-horizontal .list-group-item:last-child {
-  margin-right: 0;
-  border-top-right-radius: 0.25rem;
-  border-bottom-right-radius: 0.25rem;
-  border-bottom-left-radius: 0;
-}
-@media (min-width: 576px) {
-  meetings .list-group-horizontal-sm {
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-            flex-direction: row;
-  }
-  meetings .list-group-horizontal-sm .list-group-item {
-    margin-right: -1px;
-    margin-bottom: 0;
-  }
-  meetings .list-group-horizontal-sm .list-group-item:first-child {
-    border-top-left-radius: 0.25rem;
-    border-bottom-left-radius: 0.25rem;
-    border-top-right-radius: 0;
-  }
-  meetings .list-group-horizontal-sm .list-group-item:last-child {
-    margin-right: 0;
-    border-top-right-radius: 0.25rem;
-    border-bottom-right-radius: 0.25rem;
-    border-bottom-left-radius: 0;
-  }
-}
-@media (min-width: 768px) {
-  meetings .list-group-horizontal-md {
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-            flex-direction: row;
-  }
-  meetings .list-group-horizontal-md .list-group-item {
-    margin-right: -1px;
-    margin-bottom: 0;
-  }
-  meetings .list-group-horizontal-md .list-group-item:first-child {
-    border-top-left-radius: 0.25rem;
-    border-bottom-left-radius: 0.25rem;
-    border-top-right-radius: 0;
-  }
-  meetings .list-group-horizontal-md .list-group-item:last-child {
-    margin-right: 0;
-    border-top-right-radius: 0.25rem;
-    border-bottom-right-radius: 0.25rem;
-    border-bottom-left-radius: 0;
-  }
-}
-@media (min-width: 992px) {
-  meetings .list-group-horizontal-lg {
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-            flex-direction: row;
-  }
-  meetings .list-group-horizontal-lg .list-group-item {
-    margin-right: -1px;
-    margin-bottom: 0;
-  }
-  meetings .list-group-horizontal-lg .list-group-item:first-child {
-    border-top-left-radius: 0.25rem;
-    border-bottom-left-radius: 0.25rem;
-    border-top-right-radius: 0;
-  }
-  meetings .list-group-horizontal-lg .list-group-item:last-child {
-    margin-right: 0;
-    border-top-right-radius: 0.25rem;
-    border-bottom-right-radius: 0.25rem;
-    border-bottom-left-radius: 0;
-  }
-}
-@media (min-width: 1200px) {
-  meetings .list-group-horizontal-xl {
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-            flex-direction: row;
-  }
-  meetings .list-group-horizontal-xl .list-group-item {
-    margin-right: -1px;
-    margin-bottom: 0;
-  }
-  meetings .list-group-horizontal-xl .list-group-item:first-child {
-    border-top-left-radius: 0.25rem;
-    border-bottom-left-radius: 0.25rem;
-    border-top-right-radius: 0;
-  }
-  meetings .list-group-horizontal-xl .list-group-item:last-child {
-    margin-right: 0;
-    border-top-right-radius: 0.25rem;
-    border-bottom-right-radius: 0.25rem;
-    border-bottom-left-radius: 0;
-  }
-}
-meetings .list-group-flush .list-group-item {
-  border-right: 0;
-  border-left: 0;
-  border-radius: 0;
-}
-meetings .list-group-flush .list-group-item:last-child {
-  margin-bottom: -1px;
-}
-meetings .list-group-flush:first-child .list-group-item:first-child {
-  border-top: 0;
-}
-meetings .list-group-flush:last-child .list-group-item:last-child {
-  margin-bottom: 0;
-  border-bottom: 0;
-}
-meetings .list-group-item-primary {
-  color: #004085;
-  background-color: #b8daff;
-}
-meetings .list-group-item-primary.list-group-item-action:hover, meetings .list-group-item-primary.list-group-item-action:focus {
-  color: #004085;
-  background-color: #9fcdff;
-}
-meetings .list-group-item-primary.list-group-item-action.active {
-  color: #fff;
-  background-color: #004085;
-  border-color: #004085;
-}
-meetings .list-group-item-secondary {
-  color: #383d41;
-  background-color: #d6d8db;
-}
-meetings .list-group-item-secondary.list-group-item-action:hover, meetings .list-group-item-secondary.list-group-item-action:focus {
-  color: #383d41;
-  background-color: #c8cbcf;
-}
-meetings .list-group-item-secondary.list-group-item-action.active {
-  color: #fff;
-  background-color: #383d41;
-  border-color: #383d41;
-}
-meetings .list-group-item-success {
-  color: #155724;
-  background-color: #c3e6cb;
-}
-meetings .list-group-item-success.list-group-item-action:hover, meetings .list-group-item-success.list-group-item-action:focus {
-  color: #155724;
-  background-color: #b1dfbb;
-}
-meetings .list-group-item-success.list-group-item-action.active {
-  color: #fff;
-  background-color: #155724;
-  border-color: #155724;
-}
-meetings .list-group-item-info {
-  color: #0c5460;
-  background-color: #bee5eb;
-}
-meetings .list-group-item-info.list-group-item-action:hover, meetings .list-group-item-info.list-group-item-action:focus {
-  color: #0c5460;
-  background-color: #abdde5;
-}
-meetings .list-group-item-info.list-group-item-action.active {
-  color: #fff;
-  background-color: #0c5460;
-  border-color: #0c5460;
-}
-meetings .list-group-item-warning {
-  color: #856404;
-  background-color: #ffeeba;
-}
-meetings .list-group-item-warning.list-group-item-action:hover, meetings .list-group-item-warning.list-group-item-action:focus {
-  color: #856404;
-  background-color: #ffe8a1;
-}
-meetings .list-group-item-warning.list-group-item-action.active {
-  color: #fff;
-  background-color: #856404;
-  border-color: #856404;
-}
-meetings .list-group-item-danger {
-  color: #721c24;
-  background-color: #f5c6cb;
-}
-meetings .list-group-item-danger.list-group-item-action:hover, meetings .list-group-item-danger.list-group-item-action:focus {
-  color: #721c24;
-  background-color: #f1b0b7;
-}
-meetings .list-group-item-danger.list-group-item-action.active {
-  color: #fff;
-  background-color: #721c24;
-  border-color: #721c24;
-}
-meetings .list-group-item-light {
-  color: #818182;
-  background-color: #fdfdfe;
-}
-meetings .list-group-item-light.list-group-item-action:hover, meetings .list-group-item-light.list-group-item-action:focus {
-  color: #818182;
-  background-color: #ececf6;
-}
-meetings .list-group-item-light.list-group-item-action.active {
-  color: #fff;
-  background-color: #818182;
-  border-color: #818182;
-}
-meetings .list-group-item-dark {
-  color: #1b1e21;
-  background-color: #c6c8ca;
-}
-meetings .list-group-item-dark.list-group-item-action:hover, meetings .list-group-item-dark.list-group-item-action:focus {
-  color: #1b1e21;
-  background-color: #b9bbbe;
-}
-meetings .list-group-item-dark.list-group-item-action.active {
-  color: #fff;
-  background-color: #1b1e21;
-  border-color: #1b1e21;
+meetings .blockquote-footer::before {
+  content: "\2014\A0";
 }
 meetings .align-baseline {
   vertical-align: baseline !important;
@@ -7180,86 +7367,6 @@ meetings .visible {
 meetings .invisible {
   visibility: hidden !important;
 }
-@media print {
-  meetings *,
-meetings *::before,
-meetings *::after {
-    text-shadow: none !important;
-    box-shadow: none !important;
-  }
-  meetings a:not(.btn) {
-    text-decoration: underline;
-  }
-  meetings abbr[title]::after {
-    content: " (" attr(title) ")";
-  }
-  meetings pre {
-    white-space: pre-wrap !important;
-  }
-  meetings pre,
-meetings blockquote {
-    border: 1px solid #adb5bd;
-    page-break-inside: avoid;
-  }
-  meetings thead {
-    display: table-header-group;
-  }
-  meetings tr,
-meetings img {
-    page-break-inside: avoid;
-  }
-  meetings p,
-meetings h2,
-meetings h3 {
-    orphans: 3;
-    widows: 3;
-  }
-  meetings h2,
-meetings h3 {
-    page-break-after: avoid;
-  }
-  @page {
-    meetings {
-      size: a3;
-    }
-  }
-  meetings body {
-    min-width: 992px !important;
-  }
-  meetings .container {
-    min-width: 992px !important;
-  }
-  meetings .navbar {
-    display: none;
-  }
-  meetings .badge {
-    border: 1px solid #000;
-  }
-  meetings .table {
-    border-collapse: collapse !important;
-  }
-  meetings .table td,
-meetings .table th {
-    background-color: #fff !important;
-  }
-  meetings .table-bordered th,
-meetings .table-bordered td {
-    border: 1px solid #dee2e6 !important;
-  }
-  meetings .table-dark {
-    color: inherit;
-  }
-  meetings .table-dark th,
-meetings .table-dark td,
-meetings .table-dark thead th,
-meetings .table-dark tbody + tbody {
-    border-color: #dee2e6;
-  }
-  meetings .table .thead-dark th {
-    color: inherit;
-    border-color: #dee2e6;
-  }
-}
 meetings .container-fluid {
   min-height: 100%;
 }
@@ -7297,7 +7404,8 @@ meetings .container-fluid .map .popup {
   max-width: 85%;
   width: 320px;
 }
-meetings .container-fluid table tr th:first-child, meetings .container-fluid table td:first-child {
+meetings .container-fluid table tr th:first-child,
+meetings .container-fluid table td:first-child {
   padding-left: 1rem;
 }
 @media (max-width: 575.98px) {

@@ -41836,33 +41836,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var classnames_bind__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames/bind */ "./node_modules/classnames/bind.js");
-/* harmony import */ var classnames_bind__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames_bind__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var query_string__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! query-string */ "./node_modules/query-string/index.js");
-/* harmony import */ var query_string__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(query_string__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var deepmerge__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! deepmerge */ "./node_modules/deepmerge/dist/umd.js");
-/* harmony import */ var deepmerge__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(deepmerge__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _components_alert__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/alert */ "./src/components/alert.jsx");
-/* harmony import */ var _components_controls__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/controls */ "./src/components/controls.jsx");
-/* harmony import */ var _components_map__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/map */ "./src/components/map.jsx");
-/* harmony import */ var _components_meeting__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/meeting */ "./src/components/meeting.jsx");
-/* harmony import */ var _components_table__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/table */ "./src/components/table.jsx");
-/* harmony import */ var _components_title__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/title */ "./src/components/title.jsx");
+/* harmony import */ var _components_alert__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/alert */ "./src/components/alert.jsx");
+/* harmony import */ var _components_controls__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/controls */ "./src/components/controls.jsx");
+/* harmony import */ var _components_loading__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/loading */ "./src/components/loading.jsx");
+/* harmony import */ var _components_map__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/map */ "./src/components/map.jsx");
+/* harmony import */ var _components_meeting__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/meeting */ "./src/components/meeting.jsx");
+/* harmony import */ var _components_table__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/table */ "./src/components/table.jsx");
+/* harmony import */ var _components_title__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/title */ "./src/components/title.jsx");
+/* harmony import */ var _helpers_query_string__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./helpers/query-string */ "./src/helpers/query-string.jsx");
+/* harmony import */ var _helpers_data__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./helpers/data */ "./src/helpers/data.jsx");
 /* harmony import */ var _settings__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./settings */ "./src/settings.jsx");
-/* harmony import */ var _helpers_format_time__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./helpers/format-time */ "./src/helpers/format-time.jsx");
-/* harmony import */ var _helpers_google_sheet__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./helpers/google-sheet */ "./src/helpers/google-sheet.jsx");
-/* harmony import */ var _helpers_slugify__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./helpers/slugify */ "./src/helpers/slugify.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -41880,6 +41866,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
@@ -41892,18 +41885,16 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+ //locate first <meetings> element
 
-
- //locate <meetings> element
-
-var element = document.getElementsByTagName('meetings');
-if (!element.length) console.error('Could not find a <meetings> element in your HTML');
-element = element[0];
+var _document$getElements = document.getElementsByTagName('meetings'),
+    _document$getElements2 = _slicedToArray(_document$getElements, 1),
+    element = _document$getElements2[0];
 
 var App =
 /*#__PURE__*/
-function (_Component) {
-  _inherits(App, _Component);
+function (_React$Component) {
+  _inherits(App, _React$Component);
 
   function App() {
     var _this;
@@ -41924,20 +41915,7 @@ function (_Component) {
         type: false
       },
       error: null,
-      input: {
-        center: null,
-        day: [],
-        district: [],
-        meeting: null,
-        mode: _settings__WEBPACK_IMPORTED_MODULE_11__["settings"].defaults.mode,
-        query: null,
-        radius: null,
-        region: [],
-        search: '',
-        time: [],
-        type: [],
-        view: _settings__WEBPACK_IMPORTED_MODULE_11__["settings"].defaults.view
-      },
+      input: Object(_helpers_query_string__WEBPACK_IMPORTED_MODULE_9__["getQueryString"])(location.search),
       indexes: {
         day: [],
         region: [],
@@ -41947,37 +41925,7 @@ function (_Component) {
       loading: true,
       map_initialized: false,
       meetings: []
-    }; //load input from query string
-
-    var querystring = query_string__WEBPACK_IMPORTED_MODULE_3__["parse"](location.search);
-
-    for (var i = 0; i < _settings__WEBPACK_IMPORTED_MODULE_11__["settings"].filters.length; i++) {
-      var filter = _settings__WEBPACK_IMPORTED_MODULE_11__["settings"].filters[i];
-
-      if (querystring[filter]) {
-        if (filter == 'day' && querystring.day == 'any') {
-          _this.state.input.day = [];
-        } else {
-          _this.state.input[filter] = querystring[filter].split('/');
-        }
-      }
-    }
-
-    for (var _i = 0; _i < _settings__WEBPACK_IMPORTED_MODULE_11__["settings"].params.length; _i++) {
-      if (querystring[_settings__WEBPACK_IMPORTED_MODULE_11__["settings"].params[_i]]) {
-        _this.state.input[_settings__WEBPACK_IMPORTED_MODULE_11__["settings"].params[_i]] = querystring[_settings__WEBPACK_IMPORTED_MODULE_11__["settings"].params[_i]];
-      }
-    }
-
-    if (querystring.meeting) {
-      _this.state.input.meeting = querystring.meeting;
-    } //today mode
-
-
-    if (!querystring.day && _settings__WEBPACK_IMPORTED_MODULE_11__["settings"].defaults.today) {
-      _this.state.input.day.push(new Date().getDay());
-    } //need to bind this for the function to access `this`
-
+    }; //need to bind this for the function to access `this`
 
     _this.setAppState = _this.setAppState.bind(_assertThisInitialized(_this));
     return _this;
@@ -42001,244 +41949,19 @@ function (_Component) {
       }).then(function (result) {
         //checks if src is google sheet and translates it if so
         if (json.includes('spreadsheets.google.com')) {
-          result = Object(_helpers_google_sheet__WEBPACK_IMPORTED_MODULE_13__["default"])(result);
-        } //indexes start as objects, will be converted to arrays
-
-
-        var indexes = {
-          day: {},
-          region: {},
-          time: {},
-          type: {} //need these lookups in a second
-
-        };
-        var lookup_day = _settings__WEBPACK_IMPORTED_MODULE_11__["settings"].days.map(function (day) {
-          return _settings__WEBPACK_IMPORTED_MODULE_11__["strings"][day];
-        });
-        var lookup_type = {};
-
-        for (var code in _settings__WEBPACK_IMPORTED_MODULE_11__["strings"].types) {
-          lookup_type[_settings__WEBPACK_IMPORTED_MODULE_11__["strings"].types[code]] = code;
-        } //get a copy of the array
-
-
-        var capabilities = _this2.state.capabilities; //check for any meetings with arrays of days and creates an individual meeting for each day in array
-
-        var meetings_to_add = [];
-        var indexes_to_remove = [];
-
-        var _loop = function _loop(i) {
-          //for readability
-          var meeting = result[i];
-
-          if (Array.isArray(meeting.day)) {
-            indexes_to_remove.push(i);
-            meeting.day.forEach(function (single_day) {
-              var temp_meeting = Object.assign({}, meeting);
-              temp_meeting.day = single_day;
-              temp_meeting.slug = meeting.slug + "-" + single_day;
-              meetings_to_add.push(temp_meeting);
-            });
-          }
-        };
-
-        for (var i = 0; i < result.length; i++) {
-          _loop(i);
+          result = Object(_helpers_data__WEBPACK_IMPORTED_MODULE_10__["translateGoogleSheet"])(result);
         }
 
-        for (var i = 0; i < indexes_to_remove.length; i++) {
-          result = result.splice(indexes_to_remove[i], 1);
-        }
-
-        result = result.concat(meetings_to_add); //build index objects for dropdowns
-
-        for (var _i2 = 0; _i2 < result.length; _i2++) {
-          //for readability
-          var meeting = result[_i2]; //if no region then use city
-
-          if (!meeting.region && meeting.city) {
-            meeting.region = meeting.city;
-          } //build region index
-
-
-          if (meeting.region) {
-            capabilities.region = true;
-
-            if (meeting.region in indexes.region === false) {
-              indexes.region[meeting.region] = {
-                key: meeting.region_id || Object(_helpers_slugify__WEBPACK_IMPORTED_MODULE_14__["default"])(meeting.region),
-                name: meeting.region,
-                slugs: []
-              };
-            }
-
-            indexes.region[meeting.region].slugs.push(meeting.slug);
-          } //format day
-
-
-          if (Number.isInteger(meeting.day)) {
-            //convert day to string if integer
-            meeting.day = meeting.day.toString();
-          } else if (lookup_day.includes(meeting.day)) {
-            meeting.day = lookup_day.indexOf(meeting.day).toString();
-          } //build day index
-
-
-          if (meeting.day) {
-            capabilities.day = true;
-
-            if (meeting.day in indexes.day === false) {
-              indexes.day[meeting.day] = {
-                key: meeting.day,
-                name: _settings__WEBPACK_IMPORTED_MODULE_11__["strings"][_settings__WEBPACK_IMPORTED_MODULE_11__["settings"].days[meeting.day]],
-                slugs: []
-              };
-            }
-
-            indexes.day[meeting.day].slugs.push(meeting.slug);
-          } //build time index (can be multiple)
-
-
-          if (meeting.time) {
-            capabilities.time = true;
-
-            var _meeting$time$split = meeting.time.split(':'),
-                _meeting$time$split2 = _slicedToArray(_meeting$time$split, 2),
-                hours = _meeting$time$split2[0],
-                minutes = _meeting$time$split2[1];
-
-            meeting.minutes = parseInt(hours) * 60 + parseInt(minutes);
-            meeting.times = [];
-
-            if (meeting.minutes >= 240 && meeting.minutes < 720) {
-              //4am–12pm
-              meeting.times.push(0);
-            }
-
-            if (meeting.minutes >= 660 && meeting.minutes < 1020) {
-              //11am–5pm
-              meeting.times.push(1);
-            }
-
-            if (meeting.minutes >= 960 && meeting.minutes < 1260) {
-              //4–9pm
-              meeting.times.push(2);
-            }
-
-            if (meeting.minutes >= 1200 || meeting.minutes < 300) {
-              //8pm–5am
-              meeting.times.push(3);
-            }
-
-            for (var j = 0; j < meeting.times.length; j++) {
-              if (meeting.times[j] in indexes.time === false) {
-                indexes.time[meeting.times[j]] = {
-                  key: _settings__WEBPACK_IMPORTED_MODULE_11__["settings"].times[meeting.times[j]],
-                  name: _settings__WEBPACK_IMPORTED_MODULE_11__["strings"][_settings__WEBPACK_IMPORTED_MODULE_11__["settings"].times[meeting.times[j]]],
-                  slugs: []
-                };
-              }
-
-              indexes.time[meeting.times[j]].slugs.push(meeting.slug);
-            }
-
-            meeting.time_formatted = Object(_helpers_format_time__WEBPACK_IMPORTED_MODULE_12__["default"])(meeting.time);
-            meeting.end_time_formatted = Object(_helpers_format_time__WEBPACK_IMPORTED_MODULE_12__["default"])(meeting.end_time);
-          } //build type index (can be multiple)
-
-
-          if (meeting.types) {
-            capabilities.type = true;
-            meeting.types = meeting.types.map(function (type) {
-              return type.trim();
-            }).filter(function (type) {
-              return type.length;
-            });
-
-            for (var _j = 0; _j < meeting.types.length; _j++) {
-              if (meeting.types[_j] in lookup_type) {
-                meeting.types[_j] = lookup_type[meeting.types[_j]];
-              }
-
-              if (meeting.types[_j] in _settings__WEBPACK_IMPORTED_MODULE_11__["strings"].types) {
-                if (meeting.types[_j] in indexes.type === false) {
-                  indexes.type[meeting.types[_j]] = {
-                    key: meeting.types[_j],
-                    name: _settings__WEBPACK_IMPORTED_MODULE_11__["strings"].types[meeting.types[_j]],
-                    slugs: []
-                  };
-                }
-
-                indexes.type[meeting.types[_j]].slugs.push(meeting.slug);
-              }
-            }
-
-            meeting.types = meeting.types.filter(function (type) {
-              return type in _settings__WEBPACK_IMPORTED_MODULE_11__["strings"].types;
-            }).sort();
-          } //build index of map pins
-
-
-          if (meeting.latitude && meeting.latitude) {
-            capabilities.coordinates = true;
-          } //creates formatted_address if necessary
-
-
-          if (!meeting.formatted_address) {
-            if (meeting.address && meeting.city) {
-              var temp = meeting.address + ", " + meeting.city;
-              if (meeting.state) temp = temp + ", " + meeting.state;
-              if (meeting.postal_code) temp = temp + " " + meeting.postal_code;
-              if (meeting.country) temp = temp + ", " + meeting.country;
-              meeting.formatted_address = temp;
-            } else {
-              console.error('Formatted address could not be created, at least address and city required.');
-            }
-          } //build search string
-
-
-          meeting.search = [meeting.name, meeting.location, meeting.location_notes, meeting.notes, meeting.formatted_address].join(' ').toLowerCase();
-        } //convert region to array and sort by name
-
-
-        indexes.region = Object.values(indexes.region);
-        indexes.region.sort(function (a, b) {
-          return a.name > b.name ? 1 : b.name > a.name ? -1 : 0;
-        }); //convert day to array and sort by ordinal
-
-        indexes.day = Object.values(indexes.day);
-        indexes.day.sort(function (a, b) {
-          return a.key - b.key;
-        }); //convert time to array and sort by ordinal
-
-        indexes.time = Object.values(indexes.time);
-        indexes.time.sort(function (a, b) {
-          return _settings__WEBPACK_IMPORTED_MODULE_11__["settings"].times.indexOf(a.key) - _settings__WEBPACK_IMPORTED_MODULE_11__["settings"].times.indexOf(b.key);
-        }); //convert type to array and sort by name
-
-        indexes.type = Object.values(indexes.type);
-        indexes.type.sort(function (a, b) {
-          return a.name > b.name ? 1 : b.name > a.name ? -1 : 0;
-        }); //near me mode enabled on https
-
-        if (capabilities.coordinates) {
-          _settings__WEBPACK_IMPORTED_MODULE_11__["settings"].modes.push('location');
-
-          if (window.location.protocol == 'https:') {
-            capabilities.geolocation = true;
-            _settings__WEBPACK_IMPORTED_MODULE_11__["settings"].modes.push('me');
-          }
-
-          if (_settings__WEBPACK_IMPORTED_MODULE_11__["settings"].keys.mapbox) {
-            capabilities.map = true;
-          }
-        } //todo filter out unused meetings properties to have a leaner memory footprint
-
+        var _loadData = Object(_helpers_data__WEBPACK_IMPORTED_MODULE_10__["loadData"])(result, _this2.state.capabilities),
+            _loadData2 = _slicedToArray(_loadData, 3),
+            meetings = _loadData2[0],
+            indexes = _loadData2[1],
+            capabilities = _loadData2[2];
 
         _this2.setState({
           capabilities: capabilities,
           indexes: indexes,
-          meetings: result,
+          meetings: meetings,
           loading: false
         });
       }, function (error) {
@@ -42249,34 +41972,6 @@ function (_Component) {
           loading: false
         });
       });
-    } //get common matches between arrays (for meeting filtering)
-
-  }, {
-    key: "getCommonElements",
-    value: function getCommonElements(arrays) {
-      var currentValues = {};
-      var commonValues = {};
-      if (!arrays.length) return [];
-
-      for (var i = arrays[0].length - 1; i >= 0; i--) {
-        //Iterating backwards for efficiency
-        currentValues[arrays[0][i]] = 1; //Doesn't really matter what we set it to
-      }
-
-      for (var i = arrays.length - 1; i > 0; i--) {
-        var currentArray = arrays[i];
-
-        for (var j = currentArray.length - 1; j >= 0; j--) {
-          if (currentArray[j] in currentValues) {
-            commonValues[currentArray[j]] = 1; //Once again, the `1` doesn't matter
-          }
-        }
-
-        currentValues = commonValues;
-        commonValues = {};
-      }
-
-      return Object.keys(currentValues);
     } //function for components to set global state
 
   }, {
@@ -42293,121 +41988,48 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      //show loading spinner?
+      if (this.state.loading) return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_loading__WEBPACK_IMPORTED_MODULE_4__["default"], null); //apply filters to query string
 
-      var filteredSlugs = [];
+      Object(_helpers_query_string__WEBPACK_IMPORTED_MODULE_9__["setQueryString"])(this.state); //filter data
 
-      if (!this.state.loading) {
-        //run filters on meetings
-        var filterFound = false;
-        var query = {};
-        var existingQuery = query_string__WEBPACK_IMPORTED_MODULE_3__["parse"](location.search); //filter by region, day, time, and type
+      var filteredSlugs = Object(_helpers_data__WEBPACK_IMPORTED_MODULE_10__["filterData"])(this.state); //show alert?
 
-        var _loop2 = function _loop2(i) {
-          var filter = _settings__WEBPACK_IMPORTED_MODULE_11__["settings"].filters[i];
+      this.state.alert = filteredSlugs.length ? null : 'no_results'; //make map update
 
-          if (_this3.state.input[filter].length && _this3.state.indexes[filter].length) {
-            filterFound = true;
-            filteredSlugs.push([].concat.apply([], _this3.state.input[filter].map(function (x) {
-              return _this3.state.indexes[filter].find(function (y) {
-                return y.key == x;
-              }).slugs;
-            })));
-
-            if (filter != 'day') {
-              query[filter] = _this3.state.input[filter].join('/');
-            }
-          }
-        };
-
-        for (var i = 0; i < _settings__WEBPACK_IMPORTED_MODULE_11__["settings"].filters.length; i++) {
-          _loop2(i);
-        } //decide whether to set day in the query string (todo refactor)
-
-
-        if (this.state.input.day.length && this.state.indexes.day.length) {
-          if (!_settings__WEBPACK_IMPORTED_MODULE_11__["settings"].defaults.today || existingQuery.search || existingQuery.day || existingQuery.region || existingQuery.district || existingQuery.time || existingQuery.type || this.state.input.day.length > 1 || this.state.input.day[0] != new Date().getDay()) {
-            query.day = this.state.input.day.join('/');
-          }
-        } else if (_settings__WEBPACK_IMPORTED_MODULE_11__["settings"].defaults.today) {
-          query.day = 'any';
-        } //keyword search
-
-
-        if (this.state.input.search.length) {
-          filterFound = true;
-          query['search'] = this.state.input.search;
-          var needle = this.state.input.search.toLowerCase();
-          var matches = this.state.meetings.filter(function (meeting) {
-            return meeting.search.search(needle) !== -1;
-          });
-          filteredSlugs.push([].concat.apply([], matches.map(function (meeting) {
-            return meeting.slug;
-          })));
-        } //set mode property
-
-
-        if (this.state.input.mode != _settings__WEBPACK_IMPORTED_MODULE_11__["settings"].defaults.mode) query.mode = this.state.input.mode; //set map property if set
-
-        if (this.state.input.view != _settings__WEBPACK_IMPORTED_MODULE_11__["settings"].defaults.view) query.view = this.state.input.view; //set inside page property if set
-
-        if (this.state.input.meeting) query.meeting = this.state.input.meeting; //create a query string with only values in use
-
-        query = query_string__WEBPACK_IMPORTED_MODULE_3__["stringify"](deepmerge__WEBPACK_IMPORTED_MODULE_4___default()(deepmerge__WEBPACK_IMPORTED_MODULE_4___default()(existingQuery, {
-          day: undefined,
-          mode: undefined,
-          region: undefined,
-          search: undefined,
-          meeting: undefined,
-          time: undefined,
-          type: undefined,
-          view: undefined
-        }), query)); //un-url-encode the separator
-
-        query = query.split(encodeURIComponent('/')).join('/'); //set the query string with html5
-
-        window.history.pushState('', '', query.length ? '?' + query : window.location.pathname); //do the filtering, if necessary
-
-        filteredSlugs = filterFound ? this.getCommonElements(filteredSlugs) //get intersection of slug arrays
-        : this.state.meetings.map(function (meeting) {
-          return meeting.slug;
-        }); //get everything
-        //show alert
-
-        this.state.alert = filteredSlugs.length ? null : 'no_results'; //make map update
-
-        this.state.map_initialized = false;
-      }
-
+      this.state.map_initialized = false;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container-fluid py-3 d-flex flex-column"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_title__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      }, this.state.input.meeting && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_meeting__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        state: this.state,
+        setAppState: this.setAppState
+      }), !this.state.input.meeting && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, _settings__WEBPACK_IMPORTED_MODULE_11__["settings"].defaults.title && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_title__WEBPACK_IMPORTED_MODULE_8__["default"], {
         state: this.state
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_controls__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_controls__WEBPACK_IMPORTED_MODULE_3__["default"], {
         state: this.state,
         setAppState: this.setAppState
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_alert__WEBPACK_IMPORTED_MODULE_5__["default"], {
-        state: this.state,
-        filteredSlugs: filteredSlugs
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_table__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_alert__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        state: this.state
+      }), filteredSlugs.length > 0 && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, this.state.input.view === 'list' && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_table__WEBPACK_IMPORTED_MODULE_7__["default"], {
         state: this.state,
         setAppState: this.setAppState,
         filteredSlugs: filteredSlugs
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_map__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      }), this.state.input.view === 'map' && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_map__WEBPACK_IMPORTED_MODULE_5__["default"], {
         state: this.state,
         setAppState: this.setAppState,
         filteredSlugs: filteredSlugs
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_meeting__WEBPACK_IMPORTED_MODULE_8__["default"], {
-        state: this.state,
-        setAppState: this.setAppState
-      }));
+      }))));
     }
   }]);
 
   return App;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(App, null), element);
+if (element) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(App, null), element);
+} else {
+  console.warn('Could not find a <meetings> element in your HTML');
+}
 
 /***/ }),
 
@@ -42474,7 +42096,7 @@ function (_Component) {
         className: classnames_bind__WEBPACK_IMPORTED_MODULE_1___default()('alert', {
           'alert-danger': this.props.state.error,
           'alert-warning': this.props.state.alert && !this.props.state.error,
-          'd-none': this.props.state.loading || !message
+          'd-none': !message
         })
       }, message);
     }
@@ -42648,9 +42270,7 @@ function (_Component) {
       var _this3 = this;
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: classnames_bind__WEBPACK_IMPORTED_MODULE_1___default()('row d-print-none', {
-          'd-none': this.props.state.loading || this.props.state.input.meeting
-        })
+        className: "row d-print-none"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-6 col-lg"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -42700,9 +42320,11 @@ function (_Component) {
             return _this3.setDropdown(filter);
           }
         }, _this3.props.state.input[filter].length && _this3.props.state.indexes[filter].length ? _this3.props.state.input[filter].map(function (x) {
-          return _this3.props.state.indexes[filter].find(function (y) {
+          var value = _this3.props.state.indexes[filter].find(function (y) {
             return y.key == x;
-          }).name;
+          });
+
+          return value ? value.name : '';
         }).join(' + ') : _settings__WEBPACK_IMPORTED_MODULE_2__["strings"][filter + '_any']), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: classnames_bind__WEBPACK_IMPORTED_MODULE_1___default()('dropdown-menu', {
             show: _this3.state.dropdown == filter,
@@ -42778,62 +42400,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Link; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-
-
-var Link =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(Link, _Component);
-
-  function Link() {
-    _classCallCheck(this, Link);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(Link).apply(this, arguments));
-  }
-
-  _createClass(Link, [{
-    key: "setMeeting",
-    value: function setMeeting(event, slug) {
+function Link(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: window.location.pathname + '?meeting=' + props.meeting.slug,
+    onClick: function onClick(event) {
       event.preventDefault();
-      this.props.state.input.meeting = slug;
-      this.props.setAppState('input', this.props.state.input);
+      props.state.input.meeting = props.meeting.slug;
+      props.setAppState('input', props.state.input);
     }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this = this;
+  }, props.meeting.name);
+}
 
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: window.location.pathname + '?meeting=' + this.props.meeting.slug,
-        onClick: function onClick(event) {
-          return _this.setMeeting(event, _this.props.meeting.slug);
-        }
-      }, this.props.meeting.name);
-    }
-  }]);
+/***/ }),
 
-  return Link;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+/***/ "./src/components/loading.jsx":
+/*!************************************!*\
+  !*** ./src/components/loading.jsx ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Loading; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
+function Loading() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "d-flex h-100 flex-grow-1 align-items-center justify-content-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "spinner-border text-secondary m-5"
+  }));
+}
 
 /***/ }),
 
@@ -42849,12 +42449,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Map; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var classnames_bind__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames/bind */ "./node_modules/classnames/bind.js");
-/* harmony import */ var classnames_bind__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames_bind__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_map_gl__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-map-gl */ "./node_modules/react-map-gl/dist/esm/index.js");
-/* harmony import */ var viewport_mercator_project__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! viewport-mercator-project */ "./node_modules/viewport-mercator-project/dist/esm/index.js");
-/* harmony import */ var _settings__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../settings */ "./src/settings.jsx");
-/* harmony import */ var _link__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./link */ "./src/components/link.jsx");
+/* harmony import */ var react_map_gl__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-map-gl */ "./node_modules/react-map-gl/dist/esm/index.js");
+/* harmony import */ var viewport_mercator_project__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! viewport-mercator-project */ "./node_modules/viewport-mercator-project/dist/esm/index.js");
+/* harmony import */ var _settings__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../settings */ "./src/settings.jsx");
+/* harmony import */ var _link__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./link */ "./src/components/link.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -42881,7 +42479,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-
 var Map =
 /*#__PURE__*/
 function (_Component) {
@@ -42896,19 +42493,12 @@ function (_Component) {
     _this.state = {
       bounds: {},
       popup: true,
-      viewport: new viewport_mercator_project__WEBPACK_IMPORTED_MODULE_3__["default"]()
+      viewport: new viewport_mercator_project__WEBPACK_IMPORTED_MODULE_2__["default"]()
     }; //need this for changes to the viewport, eg panning, zooming, resizing
 
     _this.updateViewport = _this.updateViewport.bind(_assertThisInitialized(_this));
     return _this;
   }
-  /*
-  goToNYC() {
-  	const viewport = {...this.state.viewport, longitude: -74.1, latitude: 40.7};
-  	this.setState({viewport});
-  }
-  */
-
 
   _createClass(Map, [{
     key: "updateViewport",
@@ -42923,16 +42513,10 @@ function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      //is component hidden?
-      if (this.props.filteredSlugs.length == 0 || this.props.state.input.view != 'map' || this.props.state.input.meeting) {
-        return null;
-      } //filter & sort locations so southern pins are in front
-
-
+      //filter & sort meetings so southern pins are in front
       var meetings = this.props.state.meetings.filter(function (meeting) {
         return _this2.props.filteredSlugs.indexOf(meeting.slug) != -1;
-      });
-      meetings.sort(function (a, b) {
+      }).sort(function (a, b) {
         return b.latitude - a.latitude;
       }); //reset bounds
 
@@ -42970,7 +42554,7 @@ function (_Component) {
       } //make the viewport
 
 
-      if (this.state.bounds.west == this.state.bounds.east) {
+      if (this.state.bounds.west === this.state.bounds.east) {
         //single marker
         this.state.viewport = {
           latitude: this.state.bounds.north,
@@ -42979,7 +42563,7 @@ function (_Component) {
         };
       } else if (!this.props.state.map_initialized && this.state.viewport.width > 1) {
         //calculate bounds now knowing dimensions
-        this.state.viewport = new viewport_mercator_project__WEBPACK_IMPORTED_MODULE_3__["default"]({
+        this.state.viewport = new viewport_mercator_project__WEBPACK_IMPORTED_MODULE_2__["default"]({
           width: this.state.viewport.width,
           height: this.state.viewport.height
         }).fitBounds([[this.state.bounds.west, this.state.bounds.south], [this.state.bounds.east, this.state.bounds.north]], {
@@ -42989,9 +42573,9 @@ function (_Component) {
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "border rounded bg-light flex-grow-1 map"
-      }, this.state.viewport && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_map_gl__WEBPACK_IMPORTED_MODULE_2__["default"], _extends({}, this.state.viewport, {
-        mapboxApiAccessToken: _settings__WEBPACK_IMPORTED_MODULE_4__["settings"].keys.mapbox,
-        mapStyle: _settings__WEBPACK_IMPORTED_MODULE_4__["settings"].mapbox_style,
+      }, this.state.viewport && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_map_gl__WEBPACK_IMPORTED_MODULE_1__["default"], _extends({}, this.state.viewport, {
+        mapboxApiAccessToken: _settings__WEBPACK_IMPORTED_MODULE_3__["settings"].keys.mapbox,
+        mapStyle: _settings__WEBPACK_IMPORTED_MODULE_3__["settings"].mapbox_style,
         onViewportChange: this.updateViewport,
         style: {
           position: 'absolute'
@@ -43003,20 +42587,20 @@ function (_Component) {
 
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           key: key
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_map_gl__WEBPACK_IMPORTED_MODULE_2__["Marker"], {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_map_gl__WEBPACK_IMPORTED_MODULE_1__["Marker"], {
           latitude: location.latitude,
           longitude: location.longitude,
-          offsetLeft: -_settings__WEBPACK_IMPORTED_MODULE_4__["settings"].marker_style.width / 2,
-          offsetTop: -_settings__WEBPACK_IMPORTED_MODULE_4__["settings"].marker_style.height
+          offsetLeft: -_settings__WEBPACK_IMPORTED_MODULE_3__["settings"].marker_style.width / 2,
+          offsetTop: -_settings__WEBPACK_IMPORTED_MODULE_3__["settings"].marker_style.height
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           title: location.name,
-          style: _settings__WEBPACK_IMPORTED_MODULE_4__["settings"].marker_style,
+          style: _settings__WEBPACK_IMPORTED_MODULE_3__["settings"].marker_style,
           onClick: function onClick() {
             return _this2.setState({
               popup: key
             });
           }
-        })), _this2.state.popup == key && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_map_gl__WEBPACK_IMPORTED_MODULE_2__["Popup"], {
+        })), _this2.state.popup == key && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_map_gl__WEBPACK_IMPORTED_MODULE_1__["Popup"], {
           latitude: location.latitude,
           longitude: location.longitude,
           className: "popup",
@@ -43025,7 +42609,7 @@ function (_Component) {
               popup: null
             });
           },
-          offsetTop: -_settings__WEBPACK_IMPORTED_MODULE_4__["settings"].marker_style.height
+          offsetTop: -_settings__WEBPACK_IMPORTED_MODULE_3__["settings"].marker_style.height
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
           className: "font-weight-light"
         }, location.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, location.formatted_address), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
@@ -43034,7 +42618,7 @@ function (_Component) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
             key: meeting.slug,
             className: "list-group-item"
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("time", null, meeting.time_formatted), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_link__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("time", null, meeting.formatted_time), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_link__WEBPACK_IMPORTED_MODULE_4__["default"], {
             meeting: meeting,
             state: _this2.props.state,
             setAppState: _this2.props.setAppState
@@ -43044,7 +42628,7 @@ function (_Component) {
         }, "Directions")));
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "control"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_map_gl__WEBPACK_IMPORTED_MODULE_2__["NavigationControl"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_map_gl__WEBPACK_IMPORTED_MODULE_1__["NavigationControl"], {
         showCompass: false,
         onViewportChange: this.updateViewport
       }))));
@@ -43125,6 +42709,7 @@ function (_Component) {
     value: function goBack(event) {
       event.preventDefault();
       this.props.state.input.meeting = null;
+      this.state.viewport = null;
       this.props.setAppState('input', this.props.state.input);
     }
   }, {
@@ -43141,24 +42726,26 @@ function (_Component) {
 
       var meeting = {}; //fetch meeting data from array
 
-      if (this.props.state.input.meeting) {
-        for (var i = 0; i < this.props.state.meetings.length; i++) {
-          if (this.props.state.meetings[i].slug == this.props.state.input.meeting) {
-            meeting = this.props.state.meetings[i];
-            meeting.latitude = parseFloat(meeting.latitude);
-            meeting.longitude = parseFloat(meeting.longitude);
-            if (!this.state.viewport) this.state.viewport = {
+      for (var i = 0; i < this.props.state.meetings.length; i++) {
+        if (this.props.state.meetings[i].slug == this.props.state.input.meeting) {
+          meeting = this.props.state.meetings[i];
+          meeting.latitude = parseFloat(meeting.latitude);
+          meeting.longitude = parseFloat(meeting.longitude);
+
+          if (!this.state.viewport) {
+            this.state.viewport = {
               latitude: meeting.latitude,
               longitude: meeting.longitude,
               zoom: 14
-            }; //set page title
+            };
+          } //set page title
 
-            document.title = meeting.name;
-          }
+
+          document.title = meeting.name;
         }
       }
 
-      return this.props.state.input.meeting && meeting && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "flex-column flex-grow-1 d-flex"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "font-weight-light"
@@ -43182,19 +42769,19 @@ function (_Component) {
         className: "list-group-item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, _settings__WEBPACK_IMPORTED_MODULE_3__["strings"].meeting_information), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "my-0 mt-1"
-      }, _settings__WEBPACK_IMPORTED_MODULE_3__["strings"][_settings__WEBPACK_IMPORTED_MODULE_3__["settings"].days[meeting.day]], ", ", meeting.time_formatted, meeting.end_time ? ' – ' + meeting.end_time_formatted : ''), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+      }, _settings__WEBPACK_IMPORTED_MODULE_3__["strings"][_settings__WEBPACK_IMPORTED_MODULE_3__["settings"].days[meeting.day]], ",", ' ', meeting.formatted_time, meeting.end_time ? ' – ' + meeting.formatted_end_time : ''), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: classnames_bind__WEBPACK_IMPORTED_MODULE_1___default()('my-0 mt-1', {
           'd-none': !meeting.types || !meeting.types.length
         })
       }, meeting.types ? meeting.types.map(function (type) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: type
-        }, _settings__WEBPACK_IMPORTED_MODULE_3__["strings"].types[type]);
+        }, type);
       }) : '')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "list-group-item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, meeting.location), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "my-0 mt-1"
-      }, meeting.formatted_address), this.props.state.meetings && meeting && meeting.hasOwnProperty('formatted_address') && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, _settings__WEBPACK_IMPORTED_MODULE_3__["settings"].days.map(function (day, index) {
+      }, meeting.formatted_address), this.props.state.meetings && meeting && meeting.hasOwnProperty('formatted_address') && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, _settings__WEBPACK_IMPORTED_MODULE_3__["settings"].days.map(function (day, index) {
         var meetings = _this2.props.state.meetings.filter(function (m) {
           return m.day == index && m.formatted_address === meeting.formatted_address;
         });
@@ -43212,14 +42799,15 @@ function (_Component) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
             key: m.slug,
             style: {
-              paddingLeft: '5rem'
+              paddingLeft: '5.25rem'
             }
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-            className: "position-absolute text-muted",
+            className: "position-absolute text-muted text-right",
             style: {
-              left: '1.25rem'
+              left: '1.25rem',
+              width: '4.5rem'
             }
-          }, m.time_formatted), m.slug === meeting.slug && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, m.name), m.slug !== meeting.slug && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_link__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          }, m.formatted_time), m.slug === meeting.slug && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, m.name), m.slug !== meeting.slug && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_link__WEBPACK_IMPORTED_MODULE_4__["default"], {
             meeting: m,
             state: _this2.props.state,
             setAppState: _this2.props.setAppState
@@ -43238,7 +42826,7 @@ function (_Component) {
         width: "100%",
         height: "100%"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_map_gl__WEBPACK_IMPORTED_MODULE_2__["Marker"], {
-        latitude: meeting.latitude - .0025,
+        latitude: meeting.latitude - 0.0025,
         longitude: meeting.longitude,
         offsetLeft: -_settings__WEBPACK_IMPORTED_MODULE_3__["settings"].marker_style.width / 2,
         offsetTop: -_settings__WEBPACK_IMPORTED_MODULE_3__["settings"].marker_style.height
@@ -43251,7 +42839,7 @@ function (_Component) {
           });
         }
       })), this.state.popup && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_map_gl__WEBPACK_IMPORTED_MODULE_2__["Popup"], {
-        latitude: meeting.latitude - .0025,
+        latitude: meeting.latitude - 0.0025,
         longitude: meeting.longitude,
         className: "popup",
         onClose: function onClose() {
@@ -43350,7 +42938,7 @@ function (_Component) {
             'd-none': this.props.state.input.day.length == 1,
             'd-sm-inline': this.props.state.input.day.length != 1
           })
-        }, _settings__WEBPACK_IMPORTED_MODULE_2__["strings"][_settings__WEBPACK_IMPORTED_MODULE_2__["settings"].days[meeting.day]]), meeting.time_formatted);
+        }, _settings__WEBPACK_IMPORTED_MODULE_2__["strings"][_settings__WEBPACK_IMPORTED_MODULE_2__["settings"].days[meeting.day]]), meeting.formatted_time);
       }
 
       return meeting[key];
@@ -43363,9 +42951,7 @@ function (_Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
-        className: classnames_bind__WEBPACK_IMPORTED_MODULE_1___default()('table table-striped flex-grow-1 my-0', {
-          'd-none': this.props.filteredSlugs.length == 0 || this.props.state.input.view != 'list' || this.props.state.input.meeting
-        })
+        className: "table table-striped flex-grow-1 my-0"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
         className: "d-none d-sm-table-row"
       }, _settings__WEBPACK_IMPORTED_MODULE_2__["settings"].defaults.columns.map(function (column) {
@@ -43407,165 +42993,80 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Title; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var classnames_bind__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames/bind */ "./node_modules/classnames/bind.js");
-/* harmony import */ var classnames_bind__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames_bind__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _settings__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../settings */ "./src/settings.jsx");
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+/* harmony import */ var _settings__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../settings */ "./src/settings.jsx");
 
 
+function Title(props) {
+  var title = [_settings__WEBPACK_IMPORTED_MODULE_1__["strings"].meetings];
 
+  if (props.state.input) {
+    if (props.state.indexes.type.length && props.state.input.type.length) {
+      title.unshift(props.state.input.type.map(function (x) {
+        var value = props.state.indexes.type.find(function (y) {
+          return y.key == x;
+        });
+        return value ? value.name : '';
+      }).join(' + '));
+    }
 
+    if (props.state.indexes.time.length && props.state.input.time.length) {
+      title.unshift(props.state.input.time.map(function (x) {
+        var value = props.state.indexes.time.find(function (y) {
+          return y.key == x;
+        });
+        return value ? value.name : '';
+      }).join(' + '));
+    }
 
-var Title =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(Title, _Component);
+    if (props.state.indexes.day.length && props.state.input.day.length) {
+      title.unshift(props.state.input.day.map(function (x) {
+        var value = props.state.indexes.day.find(function (y) {
+          return y.key == x;
+        });
+        return value ? value.name : '';
+      }).join(' + '));
+    }
 
-  function Title() {
-    _classCallCheck(this, Title);
+    if (props.state.indexes.region.length && props.state.input.region.length) {
+      title.push(_settings__WEBPACK_IMPORTED_MODULE_1__["strings"]["in"]);
+      title.push(props.state.input.region.map(function (x) {
+        var value = props.state.indexes.region.find(function (y) {
+          return y.key == x;
+        });
+        return value ? value.name : '';
+      }).join(' + '));
+    }
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Title).apply(this, arguments));
+    if (props.state.input.search.length) {
+      title.push(_settings__WEBPACK_IMPORTED_MODULE_1__["strings"]["with"]);
+      title.push('‘' + props.state.input.search + '’');
+    }
   }
 
-  _createClass(Title, [{
-    key: "render",
-    value: function render() {
-      var _this = this;
-
-      var title = [_settings__WEBPACK_IMPORTED_MODULE_2__["strings"].meetings];
-
-      if (this.props.state.input) {
-        if (this.props.state.indexes.type.length && this.props.state.input.type.length) {
-          title.unshift(this.props.state.input.type.map(function (x) {
-            return _this.props.state.indexes.type.find(function (y) {
-              return y.key == x;
-            }).name;
-          }).join(' + '));
-        }
-
-        if (this.props.state.indexes.time.length && this.props.state.input.time.length) {
-          title.unshift(this.props.state.input.time.map(function (x) {
-            return _this.props.state.indexes.time.find(function (y) {
-              return y.key == x;
-            }).name;
-          }).join(' + '));
-        }
-
-        if (this.props.state.indexes.day.length && this.props.state.input.day.length) {
-          title.unshift(this.props.state.input.day.map(function (x) {
-            return _this.props.state.indexes.day.find(function (y) {
-              return y.key == x;
-            }).name;
-          }).join(' + '));
-        }
-
-        if (this.props.state.indexes.region.length && this.props.state.input.region.length) {
-          title.push(_settings__WEBPACK_IMPORTED_MODULE_2__["strings"]["in"]);
-          title.push(this.props.state.input.region.map(function (x) {
-            return _this.props.state.indexes.region.find(function (y) {
-              return y.key == x;
-            }).name;
-          }).join(' + '));
-        }
-
-        if (this.props.state.input.search.length) {
-          title.push(_settings__WEBPACK_IMPORTED_MODULE_2__["strings"]["with"]);
-          title.push('‘' + this.props.state.input.search + '’');
-        }
-      }
-
-      title = title.join(' ');
-      document.title = title;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-        className: classnames_bind__WEBPACK_IMPORTED_MODULE_1___default()('font-weight-light', {
-          'd-none': !_settings__WEBPACK_IMPORTED_MODULE_2__["settings"].defaults.title || this.props.state.input.meeting || this.props.state.loading
-        })
-      }, title);
-    }
-  }]);
-
-  return Title;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
-
-
-
-/***/ }),
-
-/***/ "./src/helpers/format-time.jsx":
-/*!*************************************!*\
-  !*** ./src/helpers/format-time.jsx ***!
-  \*************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return FormatTime; });
-/* harmony import */ var _settings__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../settings */ "./src/settings.jsx");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
- //quick format time function
-
-function FormatTime(time) {
-  //check that string is HH:MM
-  if (!time || time.length !== 5 || time.substr(2, 1) !== ':') return null; //get hours and minutes
-
-  var _time$split = time.split(':'),
-      _time$split2 = _slicedToArray(_time$split, 2),
-      hours = _time$split2[0],
-      minutes = _time$split2[1]; //check for times with special names
-
-
-  if (hours == '12' && minutes == '00') {
-    return _settings__WEBPACK_IMPORTED_MODULE_0__["strings"].noon;
-  } else if (hours == '00' && minutes == '00' || hours == '23' && minutes == '59' || hours == '24' && minutes == '00') {
-    return _settings__WEBPACK_IMPORTED_MODULE_0__["strings"].midnight;
-  } //create a date object
-
-
-  var date = new Date();
-  date.setHours(parseInt(hours));
-  date.setMinutes(parseInt(minutes));
-  return date.toLocaleTimeString([], {
-    hour: '2-digit',
-    minute: '2-digit'
-  });
+  title = title.join(' ');
+  document.title = title;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "font-weight-light pb-1"
+  }, title);
 }
 
 /***/ }),
 
-/***/ "./src/helpers/google-sheet.jsx":
-/*!**************************************!*\
-  !*** ./src/helpers/google-sheet.jsx ***!
-  \**************************************/
-/*! exports provided: default */
+/***/ "./src/helpers/data.jsx":
+/*!******************************!*\
+  !*** ./src/helpers/data.jsx ***!
+  \******************************/
+/*! exports provided: filterData, loadData, translateGoogleSheet */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return translateGoogleSheet; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filterData", function() { return filterData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadData", function() { return loadData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "translateGoogleSheet", function() { return translateGoogleSheet; });
+/* harmony import */ var _settings__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../settings */ "./src/settings.jsx");
+/* harmony import */ var _slugify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./slugify */ "./src/helpers/slugify.jsx");
+/* harmony import */ var _time__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./time */ "./src/helpers/time.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -43574,7 +43075,356 @@ function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = 
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-//translates Google Sheet JSON into Meeting Guide format
+
+
+ //run filters on meetings
+
+function filterData(state) {
+  var filterFound = false;
+  var filteredSlugs = []; //filter by region, day, time, and type
+
+  var _loop = function _loop(i) {
+    var filter = _settings__WEBPACK_IMPORTED_MODULE_0__["settings"].filters[i];
+
+    if (state.input[filter].length && state.indexes[filter].length) {
+      filterFound = true;
+      filteredSlugs.push([].concat.apply([], state.input[filter].map(function (x) {
+        var value = state.indexes[filter].find(function (y) {
+          return y.key == x;
+        });
+        return value ? value.slugs : [];
+      })));
+    }
+  };
+
+  for (var i = 0; i < _settings__WEBPACK_IMPORTED_MODULE_0__["settings"].filters.length; i++) {
+    _loop(i);
+  } //keyword search
+
+
+  if (state.input.search.length) {
+    filterFound = true;
+    var needle = state.input.search.toLowerCase();
+    var matches = state.meetings.filter(function (meeting) {
+      return meeting.search.search(needle) !== -1;
+    });
+    filteredSlugs.push([].concat.apply([], matches.map(function (meeting) {
+      return meeting.slug;
+    })));
+  } //do the filtering, if necessary
+
+
+  filteredSlugs = filterFound ? getCommonElements(filteredSlugs) //get intersection of slug arrays
+  : state.meetings.map(function (meeting) {
+    return meeting.slug;
+  }); //get everything
+
+  return filteredSlugs;
+} //get common matches between arrays (for meeting filtering)
+
+function getCommonElements(arrays) {
+  var currentValues = {};
+  var commonValues = {};
+  if (!arrays.length) return [];
+
+  for (var i = arrays[0].length - 1; i >= 0; i--) {
+    //Iterating backwards for efficiency
+    currentValues[arrays[0][i]] = 1; //Doesn't really matter what we set it to
+  }
+
+  for (var i = arrays.length - 1; i > 0; i--) {
+    var currentArray = arrays[i];
+
+    for (var j = currentArray.length - 1; j >= 0; j--) {
+      if (currentArray[j] in currentValues) {
+        commonValues[currentArray[j]] = 1; //Once again, the `1` doesn't matter
+      }
+    }
+
+    currentValues = commonValues;
+    commonValues = {};
+  }
+
+  return Object.keys(currentValues);
+}
+
+function loadData(meetings, capabilities) {
+  //indexes start as objects, will be converted to arrays
+  var indexes = {
+    day: {},
+    region: {},
+    time: {},
+    type: {}
+  }; //filter out unused meetings properties for a leaner memory footprint
+
+  var meeting_properties = ['day', 'formatted_address', 'formatted_end_time', 'formatted_time', 'latitude', 'longitude', 'location', 'location_notes', 'name', 'notes', 'region', 'search', 'slug', 'sub_region', 'time', 'types']; //need these lookups in a second
+
+  var lookup_day = _settings__WEBPACK_IMPORTED_MODULE_0__["settings"].days.map(function (day) {
+    return _settings__WEBPACK_IMPORTED_MODULE_0__["strings"][day];
+  });
+  var lookup_type_codes = Object.keys(_settings__WEBPACK_IMPORTED_MODULE_0__["strings"].types);
+  var lookup_type_values = Object.values(_settings__WEBPACK_IMPORTED_MODULE_0__["strings"].types); //check for any meetings with arrays of days and creates an individual meeting for each day in array
+
+  var meetings_to_add = [];
+  var indexes_to_remove = [];
+
+  var _loop2 = function _loop2(i) {
+    //for readability
+    var meeting = meetings[i];
+
+    if (Array.isArray(meeting.day)) {
+      indexes_to_remove.push(i);
+      meeting.day.forEach(function (single_day) {
+        var temp_meeting = Object.assign({}, meeting);
+        temp_meeting.day = single_day;
+        temp_meeting.slug = meeting.slug + '-' + single_day;
+        meetings_to_add.push(temp_meeting);
+      });
+    }
+  };
+
+  for (var i = 0; i < meetings.length; i++) {
+    _loop2(i);
+  }
+
+  for (var i = 0; i < indexes_to_remove.length; i++) {
+    meetings = meetings.splice(indexes_to_remove[i], 1);
+  }
+
+  meetings = meetings.concat(meetings_to_add); //build index objects for dropdowns
+
+  var _loop3 = function _loop3(_i) {
+    //for readability
+    var meeting = meetings[_i]; //if no region then use city
+
+    if (!meeting.region && meeting.city) {
+      meeting.region = meeting.city;
+    } //build region index
+
+
+    if (meeting.region) {
+      capabilities.region = true;
+
+      if (meeting.region in indexes.region === false) {
+        indexes.region[meeting.region] = {
+          key: meeting.region_id || Object(_slugify__WEBPACK_IMPORTED_MODULE_1__["default"])(meeting.region),
+          name: meeting.region,
+          slugs: []
+        };
+      }
+
+      indexes.region[meeting.region].slugs.push(meeting.slug);
+    } //format day
+
+
+    if (Number.isInteger(meeting.day)) {
+      //convert day to string if integer
+      meeting.day = meeting.day.toString();
+    } else if (lookup_day.includes(meeting.day)) {
+      meeting.day = lookup_day.indexOf(meeting.day).toString();
+    } //build day index
+
+
+    if (meeting.day) {
+      capabilities.day = true;
+
+      if (meeting.day in indexes.day === false) {
+        indexes.day[meeting.day] = {
+          key: meeting.day,
+          name: _settings__WEBPACK_IMPORTED_MODULE_0__["strings"][_settings__WEBPACK_IMPORTED_MODULE_0__["settings"].days[meeting.day]],
+          slugs: []
+        };
+      }
+
+      indexes.day[meeting.day].slugs.push(meeting.slug);
+    } //build time index (can be multiple)
+
+
+    if (meeting.time) {
+      capabilities.time = true;
+
+      var _meeting$time$split = meeting.time.split(':'),
+          _meeting$time$split2 = _slicedToArray(_meeting$time$split, 2),
+          hours = _meeting$time$split2[0],
+          minutes = _meeting$time$split2[1];
+
+      var timeInMinutes = parseInt(hours) * 60 + parseInt(minutes);
+      var times = [];
+
+      if (timeInMinutes >= 240 && timeInMinutes < 720) {
+        //4am–12pm
+        times.push(0); //morning
+      }
+
+      if (timeInMinutes >= 660 && timeInMinutes < 1020) {
+        //11am–5pm
+        times.push(1); //midday
+      }
+
+      if (timeInMinutes >= 960 && timeInMinutes < 1260) {
+        //4–9pm
+        times.push(2); //evening
+      }
+
+      if (timeInMinutes >= 1200 || timeInMinutes < 300) {
+        //8pm–5am
+        times.push(3); //night
+      }
+
+      for (var j = 0; j < times.length; j++) {
+        if (times[j] in indexes.time === false) {
+          indexes.time[times[j]] = {
+            key: _settings__WEBPACK_IMPORTED_MODULE_0__["settings"].times[times[j]],
+            name: _settings__WEBPACK_IMPORTED_MODULE_0__["strings"][_settings__WEBPACK_IMPORTED_MODULE_0__["settings"].times[times[j]]],
+            slugs: []
+          };
+        }
+
+        indexes.time[times[j]].slugs.push(meeting.slug);
+      } //format for display
+
+
+      meeting.formatted_time = Object(_time__WEBPACK_IMPORTED_MODULE_2__["formatTime"])(meeting.time);
+      meeting.formatted_end_time = Object(_time__WEBPACK_IMPORTED_MODULE_2__["formatTime"])(meeting.end_time);
+    } //handle types
+
+
+    if (meeting.types) {
+      capabilities.type = true; //clean up and sort types
+
+      meeting.types = meeting.types.map(function (type) {
+        return type.trim();
+      }).filter(function (type) {
+        return lookup_type_codes.includes(type) || lookup_type_values.includes(type);
+      }).map(function (type) {
+        return lookup_type_codes.includes(type) ? _settings__WEBPACK_IMPORTED_MODULE_0__["strings"].types[type] : type;
+      }).sort(); //build type index (can be multiple)
+
+      for (var _j = 0; _j < meeting.types.length; _j++) {
+        if (meeting.types[_j] in indexes.type === false) {
+          indexes.type[meeting.types[_j]] = {
+            key: Object(_slugify__WEBPACK_IMPORTED_MODULE_1__["default"])(meeting.types[_j]),
+            name: meeting.types[_j],
+            slugs: []
+          };
+        }
+
+        indexes.type[meeting.types[_j]].slugs.push(meeting.slug);
+      }
+    } //build index of map pins
+
+
+    if (meeting.latitude && meeting.longitude) {
+      capabilities.coordinates = true;
+    } //creates formatted_address if necessary
+
+
+    if (!meeting.formatted_address) {
+      if (meeting.address && meeting.city) {
+        var temp = meeting.address + ', ' + meeting.city;
+        if (meeting.state) temp = temp + ', ' + meeting.state;
+
+        if (meeting.postal_code) {
+          temp = temp + ' ' + meeting.postal_code; //for Google Sheets or other feeds without underscore
+        } else if (meeting.postalcode) {
+          temp = temp + ' ' + meeting.postalcode;
+        }
+
+        if (meeting.country) temp = temp + ', ' + meeting.country;
+        meeting.formatted_address = temp;
+      } else {
+        console.error('Formatted address could not be created, at least address and city required.');
+      }
+    } //build search string
+
+
+    meeting.search = [meeting.name, meeting.location, meeting.location_notes, meeting.notes, meeting.formatted_address].filter(function (e) {
+      return e;
+    }).join(' ').toLowerCase(); //loop through and remove items not in whitelist
+
+    Object.keys(meeting).map(function (key) {
+      if (!meeting_properties.includes(key)) {
+        delete meeting[key];
+      }
+    }); //define any missing values
+
+    for (var _i2 = 0; _i2 < meeting_properties.length; _i2++) {
+      if (!meeting.hasOwnProperty(meeting_properties[_i2])) {
+        meeting[meeting_properties[_i2]] = '';
+      }
+    }
+  };
+
+  for (var _i = 0; _i < meetings.length; _i++) {
+    _loop3(_i);
+  } //convert region to array and sort by name
+
+
+  indexes.region = Object.values(indexes.region);
+  indexes.region.sort(function (a, b) {
+    return a.name > b.name ? 1 : b.name > a.name ? -1 : 0;
+  }); //convert day to array and sort by ordinal
+
+  indexes.day = Object.values(indexes.day);
+  indexes.day.sort(function (a, b) {
+    return a.key - b.key;
+  }); //convert time to array and sort by ordinal
+
+  indexes.time = Object.values(indexes.time);
+  indexes.time.sort(function (a, b) {
+    return _settings__WEBPACK_IMPORTED_MODULE_0__["settings"].times.indexOf(a.key) - _settings__WEBPACK_IMPORTED_MODULE_0__["settings"].times.indexOf(b.key);
+  }); //convert type to array and sort by name
+
+  indexes.type = Object.values(indexes.type);
+  indexes.type.sort(function (a, b) {
+    return a.name > b.name ? 1 : b.name > a.name ? -1 : 0;
+  }); //near me mode enabled on https
+
+  if (capabilities.coordinates) {
+    _settings__WEBPACK_IMPORTED_MODULE_0__["settings"].modes.push('location');
+
+    if (window.location.protocol == 'https:') {
+      capabilities.geolocation = true;
+      _settings__WEBPACK_IMPORTED_MODULE_0__["settings"].modes.push('me');
+    }
+
+    if (_settings__WEBPACK_IMPORTED_MODULE_0__["settings"].keys.mapbox) {
+      capabilities.map = true;
+    }
+  } //sort meetings by day -> time -> location -> name
+  //(todo consider extracting for dynamic sorting)
+
+
+  meetings.sort(function (a, b) {
+    if (a.day !== b.day) {
+      if (a.day === null) return -1;
+      if (b.day === null) return 1;
+      return a.day - b.day;
+    }
+
+    if (a.time !== b.time) {
+      if (a.time === null) return -1;
+      if (b.time === null) return 1;
+      return a.time.localeCompare(b.time);
+    }
+
+    if (a.location !== b.location) {
+      if (a.location === null) return -1;
+      if (b.location === null) return 1;
+      return a.location.localeCompare(b.location);
+    }
+
+    if (a.name !== b.name) {
+      if (a.name === null) return -1;
+      if (b.name === null) return 1;
+      return a.name.localeCompare(b.location);
+    }
+
+    return 0;
+  });
+  return [meetings, indexes, capabilities];
+} //translates Google Sheet JSON into Meeting Guide format
+
 function translateGoogleSheet(data) {
   //see Cateret County example on https://github.com/meeting-guide/spreadsheet
   //https://docs.google.com/spreadsheets/d/e/2PACX-1vQJ5OsDCKSDEvWvqM_Z6tmXe4N-VYEnEAfvU5PX5QXZjHVbnrX-aeiyhWnZp0wpWtOmWjO4L5GJtfFu/pubhtml
@@ -43599,38 +43449,138 @@ function translateGoogleSheet(data) {
     } //convert time to HH:MM
 
 
-    var timeTemp = meeting.time.toLowerCase();
-
-    if (timeTemp.includes(' am')) {
-      meeting.time = timeTemp.substr(0, timeTemp.indexOf(' am'));
-
-      if (meeting.time == 12) {
-        var _timeTemp$split = timeTemp.split(':'),
-            _timeTemp$split2 = _slicedToArray(_timeTemp$split, 2),
-            tempHours = _timeTemp$split2[0],
-            tempMinutes = _timeTemp$split2[1];
-
-        tempHours = parseInt(tempHours) - 12;
-        meeting.time = tempHours + ':' + tempMinutes;
-      }
-    } else if (timeTemp.includes(' pm')) {
-      timeTemp = timeTemp.substr(0, timeTemp.indexOf(' pm'));
-
-      var _timeTemp$split3 = timeTemp.split(':'),
-          _timeTemp$split4 = _slicedToArray(_timeTemp$split3, 2),
-          _tempHours = _timeTemp$split4[0],
-          _tempMinutes = _timeTemp$split4[1];
-
-      if (_tempHours != '12') _tempHours = parseInt(_tempHours) + 12;
-      meeting.time = _tempHours + ':' + _tempMinutes;
-    } //array-ify types
-
+    meeting.time = Object(_time__WEBPACK_IMPORTED_MODULE_2__["parseTime"])(meeting.time); //array-ify types
 
     meeting.types = meeting.types.split(',');
     meetings.push(meeting);
   }
 
   return meetings;
+}
+
+/***/ }),
+
+/***/ "./src/helpers/query-string.jsx":
+/*!**************************************!*\
+  !*** ./src/helpers/query-string.jsx ***!
+  \**************************************/
+/*! exports provided: getQueryString, setQueryString */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getQueryString", function() { return getQueryString; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setQueryString", function() { return setQueryString; });
+/* harmony import */ var query_string__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! query-string */ "./node_modules/query-string/index.js");
+/* harmony import */ var query_string__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(query_string__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var deepmerge__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! deepmerge */ "./node_modules/deepmerge/dist/umd.js");
+/* harmony import */ var deepmerge__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(deepmerge__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _settings__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../settings */ "./src/settings.jsx");
+
+
+
+function getQueryString(queryString) {
+  var input = {
+    center: null,
+    day: [],
+    district: [],
+    meeting: null,
+    mode: _settings__WEBPACK_IMPORTED_MODULE_2__["settings"].defaults.mode,
+    query: null,
+    radius: null,
+    region: [],
+    search: '',
+    time: [],
+    type: [],
+    view: _settings__WEBPACK_IMPORTED_MODULE_2__["settings"].defaults.view
+  }; //load input from query string
+
+  var querystring = query_string__WEBPACK_IMPORTED_MODULE_0___default.a.parse(location.search);
+
+  for (var i = 0; i < _settings__WEBPACK_IMPORTED_MODULE_2__["settings"].filters.length; i++) {
+    var filter = _settings__WEBPACK_IMPORTED_MODULE_2__["settings"].filters[i];
+
+    if (querystring[filter]) {
+      if (filter == 'day' && querystring.day == 'any') {
+        input.day = [];
+      } else {
+        input[filter] = querystring[filter].split('/');
+      }
+    }
+  }
+
+  for (var _i = 0; _i < _settings__WEBPACK_IMPORTED_MODULE_2__["settings"].params.length; _i++) {
+    if (querystring[_settings__WEBPACK_IMPORTED_MODULE_2__["settings"].params[_i]]) {
+      input[_settings__WEBPACK_IMPORTED_MODULE_2__["settings"].params[_i]] = querystring[_settings__WEBPACK_IMPORTED_MODULE_2__["settings"].params[_i]];
+    }
+  }
+
+  if (querystring.meeting) {
+    input.meeting = querystring.meeting;
+  } //today mode
+
+
+  if (!querystring.day && _settings__WEBPACK_IMPORTED_MODULE_2__["settings"].defaults.today) {
+    input.day.push(new Date().getDay());
+  }
+
+  return input;
+}
+function setQueryString(state) {
+  var query = {};
+  var existingQuery = query_string__WEBPACK_IMPORTED_MODULE_0___default.a.parse(location.search); //filter by region, day, time, and type
+
+  for (var i = 0; i < _settings__WEBPACK_IMPORTED_MODULE_2__["settings"].filters.length; i++) {
+    var filter = _settings__WEBPACK_IMPORTED_MODULE_2__["settings"].filters[i];
+
+    if (state.input[filter].length && state.indexes[filter].length) {
+      if (filter != 'day') {
+        query[filter] = state.input[filter].join('/');
+      }
+    }
+  } //decide whether to set day in the query string (todo refactor)
+
+
+  if (state.input.day.length && state.indexes.day.length) {
+    if (!_settings__WEBPACK_IMPORTED_MODULE_2__["settings"].defaults.today || existingQuery.search || existingQuery.day || existingQuery.region || existingQuery.district || existingQuery.time || existingQuery.type || state.input.day.length > 1 || state.input.day[0] != new Date().getDay()) {
+      query.day = state.input.day.join('/');
+    }
+  } else if (_settings__WEBPACK_IMPORTED_MODULE_2__["settings"].defaults.today) {
+    query.day = 'any';
+  } //keyword search
+
+
+  if (state.input.search.length) {
+    query['search'] = state.input.search;
+  } //set mode property
+
+
+  if (state.input.mode != _settings__WEBPACK_IMPORTED_MODULE_2__["settings"].defaults.mode) {
+    query.mode = state.input.mode;
+  } //set map property if set
+
+
+  if (state.input.view != _settings__WEBPACK_IMPORTED_MODULE_2__["settings"].defaults.view) {
+    query.view = state.input.view;
+  } //set inside page property if set
+
+
+  if (state.input.meeting) query.meeting = state.input.meeting; //create a query string with only values in use
+
+  query = query_string__WEBPACK_IMPORTED_MODULE_0___default.a.stringify(deepmerge__WEBPACK_IMPORTED_MODULE_1___default()(deepmerge__WEBPACK_IMPORTED_MODULE_1___default()(existingQuery, {
+    day: undefined,
+    mode: undefined,
+    region: undefined,
+    search: undefined,
+    meeting: undefined,
+    time: undefined,
+    type: undefined,
+    view: undefined
+  }), query)); //un-url-encode the separator
+
+  query = query.split(encodeURIComponent('/')).join('/'); //set the query string with html5
+
+  window.history.pushState('', '', query.length ? '?' + query : window.location.pathname);
 }
 
 /***/ }),
@@ -43651,19 +43601,83 @@ function Slugify(str) {
   str = str.trim();
   str = str.toLowerCase(); // remove accents, swap ñ for n, etc
 
-  var from = "åàáãäâèéëêìíïîòóöôùúüûñç·/_,:;";
-  var to = "aaaaaaeeeeiiiioooouuuunc------";
+  var from = 'åàáãäâèéëêìíïîòóöôùúüûñç·/_,:;';
+  var to = 'aaaaaaeeeeiiiioooouuuunc------';
 
   for (var i = 0, l = from.length; i < l; i++) {
-    str = str.replace(new RegExp(from.charAt(i), "g"), to.charAt(i));
+    str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
   }
 
-  return str.replace(/[^a-z0-9 -]/g, "") // remove invalid chars
-  .replace(/\s+/g, "-") // collapse whitespace and replace by -
-  .replace(/-+/g, "-") // collapse dashes
-  .replace(/^-+/, "") // trim - from start of text
-  .replace(/-+$/, "") // trim - from end of text
+  return str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+  .replace(/\s+/g, '-') // collapse whitespace and replace by -
+  .replace(/-+/g, '-') // collapse dashes
+  .replace(/^-+/, '') // trim - from start of text
+  .replace(/-+$/, '') // trim - from end of text
   .replace(/-/g, separator);
+}
+
+/***/ }),
+
+/***/ "./src/helpers/time.jsx":
+/*!******************************!*\
+  !*** ./src/helpers/time.jsx ***!
+  \******************************/
+/*! exports provided: formatTime, parseTime */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "formatTime", function() { return formatTime; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseTime", function() { return parseTime; });
+/* harmony import */ var _settings__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../settings */ "./src/settings.jsx");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+ //quick format time function
+
+function formatTime(time) {
+  //check that string is HH:MM
+  if (!time || time.length !== 5 || time.substr(2, 1) !== ':') return null; //get hours and minutes
+
+  var _time$split = time.split(':'),
+      _time$split2 = _slicedToArray(_time$split, 2),
+      hours = _time$split2[0],
+      minutes = _time$split2[1]; //check for times with special names
+
+
+  if (hours == '12' && minutes == '00') {
+    return _settings__WEBPACK_IMPORTED_MODULE_0__["strings"].noon;
+  } else if (hours == '00' && minutes == '00' || hours == '23' && minutes == '59' || hours == '24' && minutes == '00') {
+    return _settings__WEBPACK_IMPORTED_MODULE_0__["strings"].midnight;
+  } //create a date object
+
+
+  var date = new Date();
+  date.setHours(parseInt(hours));
+  date.setMinutes(parseInt(minutes));
+  return date.toLocaleTimeString([], {
+    hour: '2-digit',
+    minute: '2-digit'
+  });
+}
+function parseTime(timeString) {
+  if (!timeString.length) return null;
+  var time = timeString.match(/(\d+)(:(\d\d))?\s*(p?)/i);
+  if (time == null) return null;
+  var hours = parseInt(time[1], 10);
+
+  if (hours == 12 && !time[4]) {
+    hours = 0;
+  } else {
+    hours += hours < 12 && time[4] ? 12 : 0;
+  }
+
+  return String(hours).padStart(2, '0') + ':' + time[3];
 }
 
 /***/ }),
