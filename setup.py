@@ -5,7 +5,7 @@ with open("README.md") as f:
 
 setup(
     name="wagtail-meeting_guide",
-    version="0.1.dev10",
+    version="0.1.dev11",
     description="Meeting Guide compatible Python package for Django's Wagtail CMS: meetings, locations, and API.",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -30,6 +30,7 @@ setup(
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3 :: Only",
         "Framework :: Django",
         "Framework :: Django :: 2.0",
