@@ -1,6 +1,6 @@
 html, td {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 9pt;
+    font-family: "DejaVu Sans Condensed", Arial, Helvetica, sans-serif;
+    font-size: 13pt;
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
 }
@@ -11,15 +11,13 @@ table {
 
 body {
     margin: 0;
-    width: 3.5in;
 }
 
 @page {
-    size: 3.75in 5.5in;
-    margin: 0.2in;
+    size: Letter;
     @top-center {
         content: string(header) ": " string(subheader);
-        font-size: 14pt;
+        font-size: 20pt;
     }
     @bottom-center {
         content: "Page " counter(page) " of " counter(pages) " - www.AASEPIA.org - 215-923-7900";
@@ -32,6 +30,10 @@ body {
 
 .page-break {
     page-break-after: always;
+}
+
+.text-center {
+    text-align: center;
 }
 
 header {
@@ -49,25 +51,25 @@ subheader {
 }
 
 h1, .h1 {
-    font-size: 14pt;
+    font-size: 26pt;
 }
 
 h2, .h2 {
-    font-size: 12pt;
+    font-size: 22pt;
 }
 
 h3, .h3 {
-    font-size: 11pt;
+    font-size: 16pt;
 }
 
 h4, .h4 {
-    font-size: 10pt;
+    font-size: 14pt;
 }
 
 h5, .h5 {
-    font-size: 9pt;
+    font-size: 11pt;
 }
 
 h6, .h6 {
-    font-size: 8pt;
+    font-size: 9pt;
 }

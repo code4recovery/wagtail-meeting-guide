@@ -1,7 +1,7 @@
 {% load bootstrap4 static %}
 <html>
 <head>
-{% bootstrap_css %}
+{# bootstrap_css #}
 <link href="{% static "meeting_guide/print.css" %}" rel="stylesheet">
 </head>
 <body>
@@ -20,7 +20,9 @@
     <br><br>
     Phone: 215-923-7900 Fax: 215-923-7133<br>
     Website: www.aasepia.org Email: info@aasepia.org
-    <br><br>
+</div>
+<div class="page-break"></div>
+<div class="text-center">
     <h3>Meeting Type Codes</h3>
 </div>
 
@@ -37,7 +39,9 @@
     </tbody>
 </table>
 <br><br>
+<div class="text-center">
 NOTE: Please refer to our website for the most up-to-date information about all meetings.
+</div>
 <div class="page-break"></div>
 <div class="container-fluid">
 {% for region, region_value in meetings.items %}
@@ -52,20 +56,20 @@ NOTE: Please refer to our website for the most up-to-date information about all 
                     <tbody>
                         {% for m in meetings %}
                             <tr>
-                                <td style="width: 10%;">
-                                    {{ m.time_formatted }}
+                                <td style="width: 8%;">
+                                    {{ m.time_formatted }}<br>
+                                    {{ m.types|join:"; " }}
                                 </td>
-                                <td style="width: 30%;">
+                                <td style="width: 2%;">
+                                </td>
+                                <td style="width: 35%;">
                                     <strong>{{ m.name }}</strong>
                                     {% if m.district %}
                                         <br>(D{{ m.district }}{% if m.gso_number %}
                                             / GSO #{{ m.gso_number }}{% endif %})
                                     {% endif %}
                                 </td>
-                                <td style="width: 10%;">
-                                    {{ m.types|join:";" }}
-                                </td>
-                                <td style="width: 50%;">
+                                <td style="width: 55%;">
                                     {{ m.location.title }}<br>
                                     {{ m.formatted_address }}
                                 </td>
