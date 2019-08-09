@@ -1,7 +1,6 @@
 {% load bootstrap4 static %}
 <html>
 <head>
-{# bootstrap_css #}
 <link href="{% static "meeting_guide/print.css" %}" rel="stylesheet">
 </head>
 <body>
@@ -11,31 +10,39 @@
         <subheader>Five County Meeting Directory</subheader>
     </section>
 </section>
+<br>
+<br>
 <div class="text-center">
     <h1>{% now "F Y" %}</h1>
+    <br>
+    <br>
+    <br>
     <br>
     <div class="large-text">
         SOUTHEASTERN PENNSYLVANIA INTERGROUP ASSOCIATION<br>
         444 North 3rd Street, 3rd Floor<br>
         Philadelphia, PA 19123
-        <br><br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         Phone: 215-923-7900 Fax: 215-923-7133<br>
         Website: www.aasepia.org Email: info@aasepia.org
     </div>
 </div>
 <div class="page-break"></div>
-<div class="text-center">
-    <h3>Meeting Type Codes</h3>
-</div>
 
+<h3><div class="text-center">Meeting Type Codes</div></h3>
+<br>
 <table>
     <tbody>
         {% for type in meeting_types %}
             <tr>
                 <td style="width: 50%; text-align: right;">
-                    <strong><div class="medium-text">{{ type.intergroup_code }}: </div></strong>
+                    <strong>{{ type.intergroup_code }}: </strong>
                 </td>
-                <td style="width: 50%;"><div class="medium-text">{{ type.type_name }}</div></td>
+                <td style="width: 50%;">{{ type.type_name }}</td>
             </tr>
         {% endfor %}
     </tbody>

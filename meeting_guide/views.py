@@ -1,5 +1,6 @@
 import datetime
 import json
+import re
 
 from django.conf import settings
 from django.http import HttpResponse
@@ -90,11 +91,13 @@ class MeetingsPrintView(MeetingsBaseView):
             'meeting_location__region__parent__name',
             'meeting_location__region__name',
             'start_time',
-        )  # [0:100]
+        )[0:10]
 
     def get_context_data(self, **kwargs):
         meetings = self.get_meetings()
         meeting_dict = {}
+
+        slice_address = re.compile(r"(.*), PA [0-9]+, USA")
 
         for m in meetings:
             day = m.get_day_of_week_display()
@@ -112,13 +115,20 @@ class MeetingsPrintView(MeetingsBaseView):
             if sub_region not in meeting_dict[region][day]:
                 meeting_dict[region][day][sub_region] = []
 
+            group_address = re.match(slice_address, m.meeting_location.formatted_address)
+
+            if group_address:
+                formatted_address = group_address.group(1)
+            else:
+                formatted_address = m.meeting_location.formatted_address
+
             meeting_dict[region][day][sub_region].append({
                 "name": m.title,
                 "time_formatted": f"{m.start_time:%I:%M%P}",
                 "day": day,
                 "types": types,
                 "location": m.meeting_location.title,
-                "formatted_address": m.meeting_location.formatted_address,
+                "formatted_address": formatted_address,
                 "group": getattr(m.group, "name", None),
                 "district": getattr(m.group, "district", None),
                 "gso_number": getattr(m.group, "gso_number", None),
