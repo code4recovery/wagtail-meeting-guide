@@ -1,5 +1,5 @@
 html, td {
-    font-family: "DejaVu Sans Condensed", Arial, Helvetica, sans-serif;
+    font-family: "Arial Narrow", Arial, Helvetica, sans-serif;
     font-size: 13pt;
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
@@ -37,28 +37,33 @@ body {
 }
 
 header {
-   width: 0;
-   height: 0;
-   visibility: hidden;
-   string-set: header content();
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 26pt;
+    width: 0;
+    height: 0;
+    visibility: hidden;
+    string-set: header content();
 }
 
 subheader {
-   width: 0;
-   height: 0;
-   visibility: hidden;
-   string-set: subheader content();
+    width: 0;
+    height: 0;
+    visibility: hidden;
+    string-set: subheader content();
 }
 
 h1, .h1 {
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 26pt;
 }
 
 h2, .h2 {
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 22pt;
 }
 
 h3, .h3 {
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 16pt;
 }
 
