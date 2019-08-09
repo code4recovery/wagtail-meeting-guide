@@ -90,7 +90,7 @@ class MeetingsPrintView(MeetingsBaseView):
             'meeting_location__region__parent__name',
             'meeting_location__region__name',
             'start_time',
-        )[0:100]
+        )  # [0:100]
 
     def get_context_data(self, **kwargs):
         meetings = self.get_meetings()

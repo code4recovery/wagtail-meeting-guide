@@ -17,7 +17,8 @@ body {
     size: Letter;
     @top-center {
         content: string(header) ": " string(subheader);
-        font-size: 20pt;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 26pt;
     }
     @bottom-center {
         content: "Page " counter(page) " of " counter(pages) " - www.AASEPIA.org - 215-923-7900";
@@ -37,8 +38,6 @@ body {
 }
 
 header {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 26pt;
     width: 0;
     height: 0;
     visibility: hidden;
