@@ -12,14 +12,16 @@
     </section>
 </section>
 <div class="text-center">
-    <h2>{% now "F Y" %}</h2>
+    <h1>{% now "F Y" %}</h1>
     <br>
-    <h2>SOUTHEASTERN PENNSYLVANIA INTERGROUP ASSOCIATION</h2>
-    444 North 3rd Street, 3rd Floor<br>
-    Philadelphia, PA 19123
-    <br><br>
-    Phone: 215-923-7900 Fax: 215-923-7133<br>
-    Website: www.aasepia.org Email: info@aasepia.org
+    <div class="large-text">
+        SOUTHEASTERN PENNSYLVANIA INTERGROUP ASSOCIATION<br>
+        444 North 3rd Street, 3rd Floor<br>
+        Philadelphia, PA 19123
+        <br><br>
+        Phone: 215-923-7900 Fax: 215-923-7133<br>
+        Website: www.aasepia.org Email: info@aasepia.org
+    </div>
 </div>
 <div class="page-break"></div>
 <div class="text-center">
@@ -31,9 +33,9 @@
         {% for type in meeting_types %}
             <tr>
                 <td style="width: 50%; text-align: right;">
-                    <strong>{{ type.intergroup_code }}: </strong>
+                    <strong><div class="medium-text">{{ type.intergroup_code }}: </div></strong>
                 </td>
-                <td style="width: 50%;">{{ type.type_name }}</td>
+                <td style="width: 50%;"><div class="medium-text">{{ type.type_name }}</div></td>
             </tr>
         {% endfor %}
     </tbody>
@@ -56,13 +58,11 @@ NOTE: Please refer to our website for the most up-to-date information about all 
                     <tbody>
                         {% for m in meetings %}
                             <tr>
-                                <td style="width: 8%;">
+                                <td style="width: 13%; padding-right: 2px;">
                                     {{ m.time_formatted }}<br>
                                     {{ m.types|join:"; " }}
                                 </td>
-                                <td style="width: 2%;">
-                                </td>
-                                <td style="width: 35%;">
+                                <td style="width: 32%;">
                                     <strong>{{ m.name }}</strong>
                                     {% if m.district %}
                                         <br>(D{{ m.district }}{% if m.gso_number %}
