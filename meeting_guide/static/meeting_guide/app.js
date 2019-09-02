@@ -41952,11 +41952,11 @@ function (_React$Component) {
           result = Object(_helpers_data__WEBPACK_IMPORTED_MODULE_10__["translateGoogleSheet"])(result);
         }
 
-        var _loadData = Object(_helpers_data__WEBPACK_IMPORTED_MODULE_10__["loadData"])(result, _this2.state.capabilities),
-            _loadData2 = _slicedToArray(_loadData, 3),
-            meetings = _loadData2[0],
-            indexes = _loadData2[1],
-            capabilities = _loadData2[2];
+        var _loadMeetingData = Object(_helpers_data__WEBPACK_IMPORTED_MODULE_10__["loadMeetingData"])(result, _this2.state.capabilities),
+            _loadMeetingData2 = _slicedToArray(_loadMeetingData, 3),
+            meetings = _loadMeetingData2[0],
+            indexes = _loadMeetingData2[1],
+            capabilities = _loadMeetingData2[2];
 
         _this2.setState({
           capabilities: capabilities,
@@ -41978,7 +41978,7 @@ function (_React$Component) {
     key: "setAppState",
     value: function setAppState(key, value) {
       this.setState(_defineProperty({}, key, value));
-    } //function for map component to say it's done without re-render
+    } //function for map component to say it's ready without re-rendering
 
   }, {
     key: "setMapInitialized",
@@ -41993,7 +41993,7 @@ function (_React$Component) {
 
       Object(_helpers_query_string__WEBPACK_IMPORTED_MODULE_9__["setQueryString"])(this.state); //filter data
 
-      var filteredSlugs = Object(_helpers_data__WEBPACK_IMPORTED_MODULE_10__["filterData"])(this.state); //show alert?
+      var filteredSlugs = Object(_helpers_data__WEBPACK_IMPORTED_MODULE_10__["filterMeetingData"])(this.state); //show alert?
 
       this.state.alert = filteredSlugs.length ? null : 'no_results'; //make map update
 
@@ -42121,9 +42121,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Controls; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var classnames_bind__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames/bind */ "./node_modules/classnames/bind.js");
-/* harmony import */ var classnames_bind__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames_bind__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _settings__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../settings */ "./src/settings.jsx");
+/* harmony import */ var query_string__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! query-string */ "./node_modules/query-string/index.js");
+/* harmony import */ var query_string__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(query_string__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var classnames_bind__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames/bind */ "./node_modules/classnames/bind.js");
+/* harmony import */ var classnames_bind__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames_bind__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _dropdown__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./dropdown */ "./src/components/dropdown.jsx");
+/* harmony import */ var _settings__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../settings */ "./src/settings.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -42146,23 +42149,30 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+
 var Controls =
 /*#__PURE__*/
 function (_Component) {
   _inherits(Controls, _Component);
 
-  function Controls() {
+  function Controls(props) {
     var _this;
 
     _classCallCheck(this, Controls);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Controls).call(this));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Controls).call(this, props));
     _this.state = {
-      dropdown: null
+      dropdown: null,
+      geocoding: false,
+      search: props.state.input.search
     };
     _this.searchInput = react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
     _this.closeDropdown = _this.closeDropdown.bind(_assertThisInitialized(_this));
-    _this.search = _this.search.bind(_assertThisInitialized(_this));
+    _this.keywordSearch = _this.keywordSearch.bind(_assertThisInitialized(_this));
+    _this.locationSearch = _this.locationSearch.bind(_assertThisInitialized(_this));
+    _this.setDropdown = _this.setDropdown.bind(_assertThisInitialized(_this));
+    _this.setFilter = _this.setFilter.bind(_assertThisInitialized(_this));
     return _this;
   } //add click listener for dropdowns (in lieu of including bootstrap js + jquery)
 
@@ -42187,11 +42197,45 @@ function (_Component) {
     } //keyword search
 
   }, {
-    key: "search",
-    value: function search(e) {
-      if (this.props.state.input.mode != 'search') return;
-      this.props.state.input.search = e.target.value;
-      this.props.setAppState('input', this.props.state.input);
+    key: "keywordSearch",
+    value: function keywordSearch(e) {
+      this.state.search = e.target.value;
+
+      if (this.props.state.input.mode === 'search') {
+        this.props.state.input.search = e.target.value;
+        this.props.setAppState('input', this.props.state.input);
+      } else {
+        this.setState({
+          search: this.state.search
+        });
+      }
+    }
+  }, {
+    key: "locationSearch",
+    value: function locationSearch(e) {
+      var _this2 = this;
+
+      e.preventDefault(); //make mapbox API request https://docs.mapbox.com/api/search/
+
+      var geocodingAPI = 'https://api.mapbox.com/geocoding/v5/mapbox.places/' + encodeURIComponent(this.searchInput.current.value) + '.json?' + query_string__WEBPACK_IMPORTED_MODULE_1___default.a.stringify({
+        access_token: _settings__WEBPACK_IMPORTED_MODULE_4__["settings"].keys.mapbox,
+        autocomplete: false,
+        //bbox: ,
+        language: _settings__WEBPACK_IMPORTED_MODULE_4__["settings"].language
+      });
+      fetch(geocodingAPI).then(function (result) {
+        return result.json();
+      }).then(function (result) {
+        if (result.features && result.features.length) {
+          //re-render page with new params
+          console.log(result.features[0].center.join(','));
+          _this2.props.state.input.search = _this2.searchInput.current.value;
+          _this2.props.state.input.center = result.features[0].center.join(',');
+
+          _this2.props.setAppState('input', _this2.props.state.input);
+        } else {//show error
+        }
+      });
     } //open or close dropdown
 
   }, {
@@ -42205,7 +42249,7 @@ function (_Component) {
   }, {
     key: "setFilter",
     value: function setFilter(e, filter, value) {
-      var _this2 = this;
+      var _this3 = this;
 
       e.preventDefault();
       e.stopPropagation(); //add or remove from filters
@@ -42228,9 +42272,9 @@ function (_Component) {
 
 
       this.props.state.input[filter].sort(function (a, b) {
-        return _this2.props.state.indexes[filter].findIndex(function (x) {
+        return _this3.props.state.indexes[filter].findIndex(function (x) {
           return a == x.key;
-        }) - _this2.props.state.indexes[filter].findIndex(function (x) {
+        }) - _this3.props.state.indexes[filter].findIndex(function (x) {
           return b == x.key;
         });
       }); //pass it up to app controller
@@ -42267,95 +42311,65 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row d-print-none"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-6 col-lg"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "input-group mb-3"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "input-group mb-3",
+        onSubmit: this.locationSearch
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "search",
         className: "form-control",
-        onChange: this.search,
-        value: this.props.state.input.search,
+        onChange: this.keywordSearch,
+        value: this.state.search,
         ref: this.searchInput,
-        placeholder: _settings__WEBPACK_IMPORTED_MODULE_2__["strings"].modes[this.props.state.input.mode],
-        disabled: this.props.state.input.mode == 'me',
+        placeholder: _settings__WEBPACK_IMPORTED_MODULE_4__["strings"].modes[this.props.state.input.mode],
+        disabled: this.props.state.input.mode === 'me',
         spellCheck: "false"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "input-group-append"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "btn btn-outline-secondary dropdown-toggle",
         onClick: function onClick(e) {
-          return _this3.setDropdown('search');
-        }
+          return _this4.setDropdown('search');
+        },
+        type: "button"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: classnames_bind__WEBPACK_IMPORTED_MODULE_1___default()('dropdown-menu dropdown-menu-right', {
+        className: classnames_bind__WEBPACK_IMPORTED_MODULE_2___default()('dropdown-menu dropdown-menu-right', {
           show: this.state.dropdown == 'search'
         })
-      }, _settings__WEBPACK_IMPORTED_MODULE_2__["settings"].modes.map(function (x) {
+      }, _settings__WEBPACK_IMPORTED_MODULE_4__["settings"].modes.map(function (x) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           key: x,
-          className: classnames_bind__WEBPACK_IMPORTED_MODULE_1___default()('dropdown-item d-flex justify-content-between align-items-center', {
-            'active bg-secondary': _this3.props.state.input.mode == x
+          className: classnames_bind__WEBPACK_IMPORTED_MODULE_2___default()('dropdown-item d-flex justify-content-between align-items-center', {
+            'active bg-secondary': _this4.props.state.input.mode == x
           }),
           href: "#",
           onClick: function onClick(e) {
-            return _this3.setMode(e, x);
+            return _this4.setMode(e, x);
           }
-        }, _settings__WEBPACK_IMPORTED_MODULE_2__["strings"].modes[x]);
-      }))))), _settings__WEBPACK_IMPORTED_MODULE_2__["settings"].filters.map(function (filter) {
+        }, _settings__WEBPACK_IMPORTED_MODULE_4__["strings"].modes[x]);
+      }))))), _settings__WEBPACK_IMPORTED_MODULE_4__["settings"].filters.map(function (filter) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: classnames_bind__WEBPACK_IMPORTED_MODULE_1___default()('col-sm-6 col-lg mb-3', {
-            'd-none': !_this3.props.state.capabilities[filter]
+          className: classnames_bind__WEBPACK_IMPORTED_MODULE_2___default()('col-sm-6 col-lg mb-3', {
+            'd-none': !_this4.props.state.capabilities[filter]
           }),
           key: filter
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "dropdown"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "btn btn-outline-secondary w-100 dropdown-toggle",
-          onClick: function onClick(e) {
-            return _this3.setDropdown(filter);
-          }
-        }, _this3.props.state.input[filter].length && _this3.props.state.indexes[filter].length ? _this3.props.state.input[filter].map(function (x) {
-          var value = _this3.props.state.indexes[filter].find(function (y) {
-            return y.key == x;
-          });
-
-          return value ? value.name : '';
-        }).join(' + ') : _settings__WEBPACK_IMPORTED_MODULE_2__["strings"][filter + '_any']), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: classnames_bind__WEBPACK_IMPORTED_MODULE_1___default()('dropdown-menu', {
-            show: _this3.state.dropdown == filter,
-            'dropdown-menu-right': filter == 'type' && !_this3.props.state.capabilities.map
-          })
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-          className: classnames_bind__WEBPACK_IMPORTED_MODULE_1___default()('dropdown-item', {
-            'active bg-secondary': !_this3.props.state.input[filter].length
-          }),
-          onClick: function onClick(e) {
-            return _this3.setFilter(e, filter, null);
-          },
-          href: "#"
-        }, _settings__WEBPACK_IMPORTED_MODULE_2__["strings"][filter + '_any']), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "dropdown-divider"
-        }), _this3.props.state.indexes[filter].map(function (x) {
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-            key: x.key,
-            className: classnames_bind__WEBPACK_IMPORTED_MODULE_1___default()('dropdown-item d-flex justify-content-between align-items-center', {
-              'active bg-secondary': _this3.props.state.input[filter].indexOf(x.key) !== -1
-            }),
-            href: "#",
-            onClick: function onClick(e) {
-              return _this3.setFilter(e, filter, x.key);
-            }
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, x.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-            className: "badge badge-light ml-3"
-          }, x.slugs.length));
-        }))));
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_dropdown__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          setDropdown: _this4.setDropdown,
+          filter: filter,
+          options: _this4.props.state.indexes[filter],
+          values: _this4.props.state.input[filter],
+          open: _this4.state.dropdown === filter,
+          right: filter === 'type' && !_this4.props.state.capabilities.map,
+          setFilter: _this4.setFilter,
+          "default": _settings__WEBPACK_IMPORTED_MODULE_4__["strings"][filter + '_any']
+        }));
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: classnames_bind__WEBPACK_IMPORTED_MODULE_1___default()('col-sm-6 col-lg mb-3', {
+        className: classnames_bind__WEBPACK_IMPORTED_MODULE_2___default()('col-sm-6 col-lg mb-3', {
           'd-none': !this.props.state.capabilities.map
         })
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -42363,21 +42377,21 @@ function (_Component) {
         role: "group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "button",
-        className: classnames_bind__WEBPACK_IMPORTED_MODULE_1___default()('btn btn-outline-secondary w-100', {
+        className: classnames_bind__WEBPACK_IMPORTED_MODULE_2___default()('btn btn-outline-secondary w-100', {
           active: this.props.state.input.view == 'list'
         }),
         onClick: function onClick(e) {
-          return _this3.setView(e, 'list');
+          return _this4.setView(e, 'list');
         }
-      }, _settings__WEBPACK_IMPORTED_MODULE_2__["strings"].list), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, _settings__WEBPACK_IMPORTED_MODULE_4__["strings"].list), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "button",
-        className: classnames_bind__WEBPACK_IMPORTED_MODULE_1___default()('btn btn-outline-secondary w-100', {
+        className: classnames_bind__WEBPACK_IMPORTED_MODULE_2___default()('btn btn-outline-secondary w-100', {
           active: this.props.state.input.view == 'map'
         }),
         onClick: function onClick(e) {
-          return _this3.setView(e, 'map');
+          return _this4.setView(e, 'map');
         }
-      }, _settings__WEBPACK_IMPORTED_MODULE_2__["strings"].map))));
+      }, _settings__WEBPACK_IMPORTED_MODULE_4__["strings"].map))));
     }
   }]);
 
@@ -42385,6 +42399,68 @@ function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 
+
+/***/ }),
+
+/***/ "./src/components/dropdown.jsx":
+/*!*************************************!*\
+  !*** ./src/components/dropdown.jsx ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Dropdown; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var classnames_bind__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames/bind */ "./node_modules/classnames/bind.js");
+/* harmony import */ var classnames_bind__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames_bind__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function Dropdown(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "dropdown"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "btn btn-outline-secondary w-100 dropdown-toggle",
+    onClick: function onClick(e) {
+      return props.setDropdown(props.filter);
+    }
+  }, props.values.length && props.options.length ? props.values.map(function (x) {
+    var value = props.options.find(function (y) {
+      return y.key == x;
+    });
+    return value ? value.name : '';
+  }).join(' + ') : props["default"]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: classnames_bind__WEBPACK_IMPORTED_MODULE_1___default()('dropdown-menu', {
+      show: props.open,
+      'dropdown-menu-right': props.right
+    })
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: classnames_bind__WEBPACK_IMPORTED_MODULE_1___default()('dropdown-item', {
+      'active bg-secondary': !props.values.length
+    }),
+    onClick: function onClick(e) {
+      return props.setFilter(e, props.filter, null);
+    },
+    href: "#"
+  }, props["default"]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "dropdown-divider"
+  }), props.options.map(function (x) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      key: x.key,
+      className: classnames_bind__WEBPACK_IMPORTED_MODULE_1___default()('dropdown-item d-flex justify-content-between align-items-center', {
+        'active bg-secondary': props.values.indexOf(x.key) !== -1
+      }),
+      href: "#",
+      onClick: function onClick(e) {
+        return props.setFilter(e, props.filter, x.key);
+      }
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, x.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "badge badge-light ml-3"
+    }, x.slugs.length));
+  })));
+}
 
 /***/ }),
 
@@ -42996,55 +43072,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _settings__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../settings */ "./src/settings.jsx");
 
 
+var separator = ' + ';
 function Title(props) {
-  var title = [_settings__WEBPACK_IMPORTED_MODULE_1__["strings"].meetings];
+  //loading
+  if (!props.state.indexes || !props.state.input) return; //build title from strings.title
 
-  if (props.state.input) {
-    if (props.state.indexes.type.length && props.state.input.type.length) {
-      title.unshift(props.state.input.type.map(function (x) {
-        var value = props.state.indexes.type.find(function (y) {
+  var title = [];
+  var keys = Object.keys(_settings__WEBPACK_IMPORTED_MODULE_1__["strings"].title);
+
+  for (var i = 0; i < keys.length; i++) {
+    if (keys[i] === 'meetings') {
+      title.push(_settings__WEBPACK_IMPORTED_MODULE_1__["strings"].meetings);
+    } else if (keys[i] === 'search' && props.state.input.search) {
+      var value = '‘' + props.state.input.search + '’';
+      title.push(_settings__WEBPACK_IMPORTED_MODULE_1__["strings"].title[keys[i]].replace('%search%', value));
+    } else if (props.state.indexes[keys[i]] && props.state.input[keys[i]].length) {
+      var _value = props.state.input[keys[i]].map(function (x) {
+        var value = props.state.indexes[keys[i]].find(function (y) {
           return y.key == x;
         });
         return value ? value.name : '';
-      }).join(' + '));
-    }
+      }).join(' + ');
 
-    if (props.state.indexes.time.length && props.state.input.time.length) {
-      title.unshift(props.state.input.time.map(function (x) {
-        var value = props.state.indexes.time.find(function (y) {
-          return y.key == x;
-        });
-        return value ? value.name : '';
-      }).join(' + '));
-    }
-
-    if (props.state.indexes.day.length && props.state.input.day.length) {
-      title.unshift(props.state.input.day.map(function (x) {
-        var value = props.state.indexes.day.find(function (y) {
-          return y.key == x;
-        });
-        return value ? value.name : '';
-      }).join(' + '));
-    }
-
-    if (props.state.indexes.region.length && props.state.input.region.length) {
-      title.push(_settings__WEBPACK_IMPORTED_MODULE_1__["strings"]["in"]);
-      title.push(props.state.input.region.map(function (x) {
-        var value = props.state.indexes.region.find(function (y) {
-          return y.key == x;
-        });
-        return value ? value.name : '';
-      }).join(' + '));
-    }
-
-    if (props.state.input.search.length) {
-      title.push(_settings__WEBPACK_IMPORTED_MODULE_1__["strings"]["with"]);
-      title.push('‘' + props.state.input.search + '’');
+      title.push(_settings__WEBPACK_IMPORTED_MODULE_1__["strings"].title[keys[i]].replace('%' + keys[i] + '%', _value));
     }
   }
 
-  title = title.join(' ');
-  document.title = title;
+  title = title.join(' '); //set window title
+
+  document.title = title; //return h1
+
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
     className: "font-weight-light pb-1"
   }, title);
@@ -43056,13 +43113,13 @@ function Title(props) {
 /*!******************************!*\
   !*** ./src/helpers/data.jsx ***!
   \******************************/
-/*! exports provided: filterData, loadData, translateGoogleSheet */
+/*! exports provided: filterMeetingData, loadMeetingData, translateGoogleSheet */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filterData", function() { return filterData; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadData", function() { return loadData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filterMeetingData", function() { return filterMeetingData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadMeetingData", function() { return loadMeetingData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "translateGoogleSheet", function() { return translateGoogleSheet; });
 /* harmony import */ var _settings__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../settings */ "./src/settings.jsx");
 /* harmony import */ var _slugify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./slugify */ "./src/helpers/slugify.jsx");
@@ -43079,7 +43136,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
  //run filters on meetings
 
-function filterData(state) {
+function filterMeetingData(state) {
   var filterFound = false;
   var filteredSlugs = []; //filter by region, day, time, and type
 
@@ -43102,7 +43159,7 @@ function filterData(state) {
   } //keyword search
 
 
-  if (state.input.search.length) {
+  if (state.input.search.length && state.input.mode === 'search') {
     filterFound = true;
     var needle = state.input.search.toLowerCase();
     var matches = state.meetings.filter(function (meeting) {
@@ -43148,7 +43205,7 @@ function getCommonElements(arrays) {
   return Object.keys(currentValues);
 }
 
-function loadData(meetings, capabilities) {
+function loadMeetingData(meetings, capabilities) {
   //indexes start as objects, will be converted to arrays
   var indexes = {
     day: {},
@@ -43157,7 +43214,7 @@ function loadData(meetings, capabilities) {
     type: {}
   }; //filter out unused meetings properties for a leaner memory footprint
 
-  var meeting_properties = ['day', 'formatted_address', 'formatted_end_time', 'formatted_time', 'latitude', 'longitude', 'location', 'location_notes', 'name', 'notes', 'region', 'search', 'slug', 'sub_region', 'time', 'types']; //need these lookups in a second
+  var meeting_properties = ['day', 'formatted_address', 'formatted_end_time', 'formatted_time', 'latitude', 'longitude', 'location', 'location_notes', 'name', 'notes', 'region', 'search', 'slug', 'sub_region', 'time', 'types']; //define lookups we'll need later
 
   var lookup_day = _settings__WEBPACK_IMPORTED_MODULE_0__["settings"].days.map(function (day) {
     return _settings__WEBPACK_IMPORTED_MODULE_0__["strings"][day];
@@ -43168,34 +43225,31 @@ function loadData(meetings, capabilities) {
   var meetings_to_add = [];
   var indexes_to_remove = [];
 
-  var _loop2 = function _loop2(i) {
+  for (var i = 0; i < meetings.length; i++) {
     //for readability
     var meeting = meetings[i];
 
-    if (Array.isArray(meeting.day)) {
+    if (meeting.day.constructor === Array) {
       indexes_to_remove.push(i);
-      meeting.day.forEach(function (single_day) {
-        var temp_meeting = Object.assign({}, meeting);
-        temp_meeting.day = single_day;
-        temp_meeting.slug = meeting.slug + '-' + single_day;
-        meetings_to_add.push(temp_meeting);
-      });
-    }
-  };
 
-  for (var i = 0; i < meetings.length; i++) {
-    _loop2(i);
+      for (var _i = 0; _i < meeting.day.length; _i++) {
+        var temp_meeting = Object.assign({}, meeting);
+        temp_meeting.day = meeting.day[_i];
+        temp_meeting.slug = meeting.slug + '-' + temp_meeting.day;
+        meetings_to_add.push(temp_meeting);
+      }
+    }
   }
 
-  for (var i = 0; i < indexes_to_remove.length; i++) {
-    meetings = meetings.splice(indexes_to_remove[i], 1);
+  for (var _i2 = 0; _i2 < indexes_to_remove.length; _i2++) {
+    meetings = meetings.splice(indexes_to_remove[_i2], 1);
   }
 
   meetings = meetings.concat(meetings_to_add); //build index objects for dropdowns
 
-  var _loop3 = function _loop3(_i) {
+  var _loop2 = function _loop2(_i3) {
     //for readability
-    var meeting = meetings[_i]; //if no region then use city
+    var meeting = meetings[_i3]; //if no region then use city
 
     if (!meeting.region && meeting.city) {
       meeting.region = meeting.city;
@@ -43348,15 +43402,15 @@ function loadData(meetings, capabilities) {
       }
     }); //define any missing values
 
-    for (var _i2 = 0; _i2 < meeting_properties.length; _i2++) {
-      if (!meeting.hasOwnProperty(meeting_properties[_i2])) {
-        meeting[meeting_properties[_i2]] = '';
+    for (var _i4 = 0; _i4 < meeting_properties.length; _i4++) {
+      if (!meeting.hasOwnProperty(meeting_properties[_i4])) {
+        meeting[meeting_properties[_i4]] = '';
       }
     }
   };
 
-  for (var _i = 0; _i < meetings.length; _i++) {
-    _loop3(_i);
+  for (var _i3 = 0; _i3 < meetings.length; _i3++) {
+    _loop2(_i3);
   } //convert region to array and sort by name
 
 
@@ -43479,6 +43533,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var separator = '/'; //used to separate multiple query string values (eg day=0/1)
+
 function getQueryString(queryString) {
   var input = {
     center: null,
@@ -43493,7 +43549,17 @@ function getQueryString(queryString) {
     time: [],
     type: [],
     view: _settings__WEBPACK_IMPORTED_MODULE_2__["settings"].defaults.view
-  }; //load input from query string
+  }; //today mode
+
+  if (_settings__WEBPACK_IMPORTED_MODULE_2__["settings"].defaults.today) {
+    input.day.push(new Date().getDay());
+  } //non-bookmarkable mode
+
+
+  if (!_settings__WEBPACK_IMPORTED_MODULE_2__["settings"].defaults.bookmarkable) {
+    return input;
+  } //load input from query string
+
 
   var querystring = query_string__WEBPACK_IMPORTED_MODULE_0___default.a.parse(location.search);
 
@@ -43501,10 +43567,10 @@ function getQueryString(queryString) {
     var filter = _settings__WEBPACK_IMPORTED_MODULE_2__["settings"].filters[i];
 
     if (querystring[filter]) {
-      if (filter == 'day' && querystring.day == 'any') {
+      if (filter === 'day' && querystring.day === 'any') {
         input.day = [];
-      } else {
-        input[filter] = querystring[filter].split('/');
+      } else if (querystring[filter]) {
+        input[filter] = querystring[filter].split(separator);
       }
     }
   }
@@ -43517,33 +43583,28 @@ function getQueryString(queryString) {
 
   if (querystring.meeting) {
     input.meeting = querystring.meeting;
-  } //today mode
-
-
-  if (!querystring.day && _settings__WEBPACK_IMPORTED_MODULE_2__["settings"].defaults.today) {
-    input.day.push(new Date().getDay());
   }
 
   return input;
 }
 function setQueryString(state) {
+  //non-bookmarkable mode
+  if (!_settings__WEBPACK_IMPORTED_MODULE_2__["settings"].defaults.bookmarkable) return;
   var query = {};
   var existingQuery = query_string__WEBPACK_IMPORTED_MODULE_0___default.a.parse(location.search); //filter by region, day, time, and type
 
   for (var i = 0; i < _settings__WEBPACK_IMPORTED_MODULE_2__["settings"].filters.length; i++) {
     var filter = _settings__WEBPACK_IMPORTED_MODULE_2__["settings"].filters[i];
 
-    if (state.input[filter].length && state.indexes[filter].length) {
-      if (filter != 'day') {
-        query[filter] = state.input[filter].join('/');
-      }
+    if (state.input[filter].length && state.indexes[filter].length && filter !== 'day') {
+      query[filter] = state.input[filter].join(separator);
     }
   } //decide whether to set day in the query string (todo refactor)
 
 
   if (state.input.day.length && state.indexes.day.length) {
     if (!_settings__WEBPACK_IMPORTED_MODULE_2__["settings"].defaults.today || existingQuery.search || existingQuery.day || existingQuery.region || existingQuery.district || existingQuery.time || existingQuery.type || state.input.day.length > 1 || state.input.day[0] != new Date().getDay()) {
-      query.day = state.input.day.join('/');
+      query.day = state.input.day.join(separator);
     }
   } else if (_settings__WEBPACK_IMPORTED_MODULE_2__["settings"].defaults.today) {
     query.day = 'any';
@@ -43552,6 +43613,11 @@ function setQueryString(state) {
 
   if (state.input.search.length) {
     query['search'] = state.input.search;
+  } //location search
+
+
+  if (state.input.center) {
+    query['center'] = state.input.center;
   } //set mode property
 
 
@@ -43568,6 +43634,7 @@ function setQueryString(state) {
   if (state.input.meeting) query.meeting = state.input.meeting; //create a query string with only values in use
 
   query = query_string__WEBPACK_IMPORTED_MODULE_0___default.a.stringify(deepmerge__WEBPACK_IMPORTED_MODULE_1___default()(deepmerge__WEBPACK_IMPORTED_MODULE_1___default()(existingQuery, {
+    center: undefined,
     day: undefined,
     mode: undefined,
     region: undefined,
@@ -43578,7 +43645,7 @@ function setQueryString(state) {
     view: undefined
   }), query)); //un-url-encode the separator
 
-  query = query.split(encodeURIComponent('/')).join('/'); //set the query string with html5
+  query = query.split(encodeURIComponent(separator)).join(separator); //set the query string with html5
 
   window.history.pushState('', '', query.length ? '?' + query : window.location.pathname);
 }
@@ -43699,10 +43766,12 @@ __webpack_require__.r(__webpack_exports__);
 
 var settings = deepmerge__WEBPACK_IMPORTED_MODULE_0___default()({
   defaults: {
+    bookmarkable: true,
+    //whether to read from/write to the query string
     columns: ['time', 'name', 'location', 'address', 'region'],
     //can be reordered
     mode: 'search',
-    //start in keyword search mode
+    //start in keyword search mode (options are search, location, me)
     title: false,
     //display the title h1
     today: true,
@@ -43743,8 +43812,6 @@ var settings = deepmerge__WEBPACK_IMPORTED_MODULE_0___default()({
       evening: 'Evening',
       friday: 'Friday',
       get_directions: 'Get Directions',
-      "in": 'in',
-      //todo find way to do this with string pattern
       list: 'List',
       location: 'Location',
       map: 'Map',
@@ -43769,6 +43836,14 @@ var settings = deepmerge__WEBPACK_IMPORTED_MODULE_0___default()({
       thursday: 'Thursday',
       time: 'Time',
       time_any: 'Any Time',
+      title: {
+        'day': '%day%',
+        'time': '%time%',
+        'type': '%type%',
+        'meetings': '%meetings%',
+        'region': 'in %region%',
+        'search': 'with %search%'
+      },
       tuesday: 'Tuesday',
       type_any: 'Any Type',
       types: {
@@ -43827,8 +43902,111 @@ var settings = deepmerge__WEBPACK_IMPORTED_MODULE_0___default()({
         W: 'Women',
         Y: 'Young People'
       },
-      wednesday: 'Wednesday',
-      "with": 'with'
+      wednesday: 'Wednesday'
+    },
+    es: {
+      address: 'Dirección',
+      alerts: {
+        bad_data: 'Se encontró un error al cargar la fuente de datos.',
+        no_data: 'Se debe especificar un parámetro de fuente de datos.',
+        no_results: 'No se encontraron reuniones que coincidan con los criterios seleccionados.'
+      },
+      back_to_meetings: 'Volver a las reuniones',
+      day_any: 'Cualquier día',
+      evening: 'Noche',
+      friday: 'Viernes',
+      get_directions: 'Obtener las direcciones',
+      list: 'Lista',
+      location: 'Ubicación',
+      map: 'Mapa',
+      meeting_information: 'Información de la reunión',
+      meetings: 'Reuniones',
+      midday: 'Mediodía',
+      midnight: 'Medianoche',
+      monday: 'Lunes',
+      morning: 'Mañana',
+      name: 'Nombre',
+      noon: 'Mediodía',
+      modes: {
+        location: 'Ubicación cercana',
+        me: 'Cerca de mí',
+        search: 'Buscar'
+      },
+      night: 'Noche',
+      region: 'Región',
+      region_any: 'Todos lados',
+      saturday: 'Sábado',
+      sunday: 'Domingo',
+      thursday: 'Jueves',
+      time: 'Hora',
+      time_any: 'Cualquier momento',
+      title: {
+        'day': '%day%',
+        'time': '%time%',
+        'type': '%type%',
+        'meetings': '%meetings%',
+        'region': 'en %region%',
+        'search': 'con %search%'
+      },
+      tuesday: 'Martes',
+      type_any: 'Cualquier tipo',
+      types: {
+        '11': 'Meditación del 11º paso',
+        '12x12': '12 pasos y 12 tradiciones,',
+        ABSI: 'Como lo ve Bill',
+        BA: 'Servicio de canguro disponible',
+        B: 'Libro grande',
+        H: 'Cumpleaños',
+        BRK: 'Desayuno',
+        AN: 'Luz de una vela',
+        CF: 'Niño amigable',
+        C: 'Cerrado',
+        'AL-AN': 'Concurrente con Al-Anon',
+        AL: 'Concurrente con Alateen',
+        XT: 'Charla cruzada permitida',
+        DR: 'Reflexiones Diarias',
+        DB: 'Cesta digital',
+        D: 'Discusión',
+        DD: 'Diagnóstico dual',
+        EN: 'Inglés',
+        FF: 'Sin perfume',
+        FR: 'Francés',
+        G: 'Gay',
+        GR: 'Vid',
+        NDG: 'Indígena',
+        ITA: 'Italiano',
+        JA: 'Japonés',
+        KOR: 'Coreano',
+        L: 'Lesbianas',
+        LIT: 'Literatura',
+        LS: 'Viviendo Sobrio',
+        LGBTQ: 'LGBTQ',
+        MED: 'Meditación',
+        M: 'Hombres',
+        N: 'Nativo Americano',
+        BE: 'Recién llegado',
+        NS: 'De no fumadores',
+        O: 'Abierto',
+        POC: 'Gente de color',
+        POL: 'Polaco',
+        POR: 'Portugués',
+        P: 'Profesionales',
+        PUN: 'Punjabi',
+        RUS: 'Ruso',
+        A: 'Secular',
+        ASL: 'Lenguaje de señas',
+        SM: 'Fumar permitido',
+        S: 'Español',
+        SP: 'Altavoz',
+        ST: 'Paso de reunión',
+        TR: 'Estudio de tradicion',
+        T: 'Transgénero',
+        X: 'Acceso en silla de ruedas',
+        XB: 'Baño accesible para sillas de ruedas',
+        W: 'Mujer',
+        Y: 'Gente joven'
+      },
+      wednesday: 'Miércoles'
     }
   },
   times: ['morning', 'midday', 'evening', 'night']
