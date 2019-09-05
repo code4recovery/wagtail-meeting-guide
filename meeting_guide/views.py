@@ -127,7 +127,7 @@ class MeetingsPrintView(TemplateView):
 
             meeting_dict[region][day][sub_region].append({
                 "name": m.title,
-                "time_formatted": f"{m.start_time:%I:%M%P}",
+                "time_formatted": f"{m.start_time:%I:%M%p}",
                 "day": day,
                 "types": types,
                 "location": m.meeting_location.title,
