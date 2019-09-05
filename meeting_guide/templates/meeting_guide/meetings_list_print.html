@@ -5,10 +5,7 @@
 </head>
 <body>
 <section>
-    <header>SEPIA</header>
-    <section>
-        <subheader>Five County Meeting Directory</subheader>
-    </section>
+    <header>SEPIA MEETING DIRECTORY</header>
 </section>
 <br>
 <br>
@@ -69,11 +66,11 @@ up-to-date information about all meetings.
                 <tbody>
                     {% for m in meetings %}
                         <tr>
-                            <td style="width: 18%; padding-right: 2px;">
+                            <td style="width: 17%; padding-right: px;">
                                 {{ m.time_formatted }}
                                 {{ m.types|join:";" }}
                             </td>
-                            <td style="width: 37%;">
+                            <td style="width: 35%;">
                                 <strong>{{ m.name }}</strong>
                                 {% if m.district %}
                                     (D{{ m.district }})
@@ -82,7 +79,7 @@ up-to-date information about all meetings.
                                     {% endif %}
                                 {% endif %}
                             </td>
-                            <td style="width: 45%;">
+                            <td style="width: 48%;">
                                 {{ m.location.title }} ({{ m.formatted_address }})
                             </td>
                         </tr>
