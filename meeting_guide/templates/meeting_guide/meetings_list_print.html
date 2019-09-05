@@ -59,32 +59,32 @@ NOTE: Please refer to our website for the most up-to-date information about all 
     {% for day, day_value in region_value.items %}
     <section>
         <subheader>{{ day }}</subheader>
-            {% for sub_region, meetings in day_value.items %}
-                <h3>{{ sub_region }}</h3>
-                <table>
-                    <tbody>
-                        {% for m in meetings %}
-                            <tr>
-                                <td style="width: 13%; padding-right: 2px;">
-                                    {{ m.time_formatted }}<br>
-                                    {{ m.types|join:"; " }}
-                                </td>
-                                <td style="width: 32%;">
-                                    <strong>{{ m.name }}</strong>
-                                    {% if m.district %}
-                                        <br>(D{{ m.district }}{% if m.gso_number %}
-                                            / GSO #{{ m.gso_number }}{% endif %})
-                                    {% endif %}
-                                </td>
-                                <td style="width: 55%;">
-                                    {{ m.location.title }}<br>
-                                    {{ m.formatted_address }}
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            {% endfor %}
+        {% for sub_region, meetings in day_value.items %}
+            <h3>{{ sub_region }}</h3>
+            <table>
+                <tbody>
+                    {% for m in meetings %}
+                        <tr>
+                            <td style="width: 13%; padding-right: 2px;">
+                                {{ m.time_formatted }}<br>
+                                {{ m.types|join:"; " }}
+                            </td>
+                            <td style="width: 32%;">
+                                <strong>{{ m.name }}</strong>
+                                {% if m.district %}
+                                    <br>(D{{ m.district }}{% if m.gso_number %}
+                                        / GSO #{{ m.gso_number }}{% endif %})
+                                {% endif %}
+                            </td>
+                            <td style="width: 55%;">
+                                {{ m.location.title }}<br>
+                                {{ m.formatted_address }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endfor %}
     </section>
     {% endfor %}
     <div class="page-break"></div>
