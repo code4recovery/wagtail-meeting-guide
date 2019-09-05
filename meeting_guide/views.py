@@ -74,7 +74,7 @@ class MeetingsDataTablesView(MeetingsBaseView):
         return context
 
 
-class MeetingsPrintView(MeetingsBaseView):
+class MeetingsPrintView(TemplateView):
     """
     List all meetings in an HTML printable format.
     """
@@ -115,7 +115,10 @@ class MeetingsPrintView(MeetingsBaseView):
             if sub_region not in meeting_dict[region][day]:
                 meeting_dict[region][day][sub_region] = []
 
-            group_address = re.match(slice_address, m.meeting_location.formatted_address)
+            group_address = re.match(
+                slice_address,
+                m.meeting_location.formatted_address,
+            )
 
             if group_address:
                 formatted_address = group_address.group(1)
