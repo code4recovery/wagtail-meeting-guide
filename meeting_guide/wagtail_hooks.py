@@ -49,8 +49,8 @@ class MeetingTypeAdmin(ModelAdmin):
     menu_label = 'Meeting Types'
     menu_icon = 'fa-folder-open'
     add_to_settings_menu = True
-    list_display = ('type_name', 'intergroup_code', 'meeting_guide_code')
-    ordering = ('type_name',)
+    list_display = ('type_name', 'intergroup_code', 'meeting_guide_code', 'display_order')
+    ordering = ('display_order', 'type_name')
 
 
 class RegionAdmin(ModelAdmin):

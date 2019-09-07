@@ -132,9 +132,10 @@ class MeetingType(models.Model):
     type_name = models.CharField(max_length=191)
     intergroup_code = models.CharField(max_length=5, null=True, blank=True)
     meeting_guide_code = models.CharField(max_length=5, null=True, blank=True)
-
+    display_order = models.PositiveSmallIntegerField(default=100)
+    
     class Meta:
-        ordering = ["type_name"]
+        ordering = ["display_order", "type_name"]
         indexes = [
             models.Index(fields=["type_name"]),
             models.Index(fields=["intergroup_code"]),
