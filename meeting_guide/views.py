@@ -121,7 +121,7 @@ class MeetingsPrintView(TemplateView):
             )
 
             if group_address:
-                formatted_address = group_address.group(1)
+                formatted_address = group_address.group(1).split(",")[0]
             else:
                 formatted_address = m.meeting_location.formatted_address
 

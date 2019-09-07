@@ -5,10 +5,7 @@
 </head>
 <body>
 <section>
-    <header>SEPIA</header>
-    <section>
-        <subheader>Five County Meeting Directory</subheader>
-    </section>
+    <header>SEPIA MEETING DIRECTORY</header>
 </section>
 <br>
 <br>
@@ -48,9 +45,13 @@
     </tbody>
 </table>
 <br><br>
-<div class="text-center">
-NOTE: Please refer to our website for the most up-to-date information about all meetings.
-</div>
+<h3 class="text-center">
+NOTE: Please refer to our website for the most<br>
+up-to-date information about all meetings.
+</h3>
+<h1 class="text-center">
+    www.AASEPIA.org
+</h1>
 <div class="page-break"></div>
 <div class="container-fluid">
 {% for region, region_value in meetings.items %}
@@ -61,24 +62,25 @@ NOTE: Please refer to our website for the most up-to-date information about all 
         <subheader>{{ day }}</subheader>
         {% for sub_region, meetings in day_value.items %}
             <h3>{{ sub_region }}</h3>
-            <table>
+            <table cellspacing="0" cellpadding="0" border="0" style="padding: 1; margin: 0; border: 0;">
                 <tbody>
                     {% for m in meetings %}
                         <tr>
-                            <td style="width: 13%; padding-right: 2px;">
-                                {{ m.time_formatted }}<br>
-                                {{ m.types|join:"; " }}
+                            <td style="width: 17%; padding-right: px;">
+                                {{ m.time_formatted }}
+                                {{ m.types|join:";" }}
                             </td>
-                            <td style="width: 32%;">
+                            <td style="width: 35%;">
                                 <strong>{{ m.name }}</strong>
                                 {% if m.district %}
-                                    <br>(D{{ m.district }}{% if m.gso_number %}
-                                        / GSO #{{ m.gso_number }}{% endif %})
+                                    (D{{ m.district }})
+                                    {% if m.gso_number %}
+                                        #{{ m.gso_number }}
+                                    {% endif %}
                                 {% endif %}
                             </td>
-                            <td style="width: 55%;">
-                                {{ m.location.title }}<br>
-                                {{ m.formatted_address }}
+                            <td style="width: 48%;">
+                                {{ m.location.title }} ({{ m.formatted_address }})
                             </td>
                         </tr>
                     {% endfor %}
