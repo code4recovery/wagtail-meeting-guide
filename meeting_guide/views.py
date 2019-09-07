@@ -145,6 +145,7 @@ class MeetingsPrintView(TemplateView):
         ).filter(
             intergroup_code__isnull=False,
         ).order_by(
+            "display_order",
             "intergroup_code",
         )
 
