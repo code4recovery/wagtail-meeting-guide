@@ -73,14 +73,16 @@ up-to-date information about all meetings.
                             <td style="width: 35%;">
                                 <strong>{{ m.name }}</strong>
                                 {% if m.district %}
-                                    (D{{ m.district }})
+                                    (D{{ m.district }}) #
                                     {% if m.gso_number %}
-                                        #{{ m.gso_number }}
+                                        {{ m.gso_number }}
+                                    {% else %}
+                                        0
                                     {% endif %}
                                 {% endif %}
                             </td>
                             <td style="width: 48%;">
-                                {{ m.location.title }} ({{ m.formatted_address }})
+                                {{ m.location.title }}, {{ m.formatted_address }}
                             </td>
                         </tr>
                     {% endfor %}
