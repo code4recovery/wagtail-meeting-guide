@@ -83,6 +83,9 @@ class Location(Page):
     lat_lng = models.CharField(
         "Latitude/Longitude", max_length=255, blank=True, null=True
     )
+    postal_code = models.CharField(
+        "Postal Code", max_length=12, blank=True
+    )
 
     @cached_property
     def point(self):
@@ -98,6 +101,7 @@ class Location(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel("region"),
+        FieldPanel("postal_code"),
         MultiFieldPanel(
             [
                 FieldPanel("formatted_address"),
@@ -133,7 +137,7 @@ class MeetingType(models.Model):
     intergroup_code = models.CharField(max_length=5, null=True, blank=True)
     meeting_guide_code = models.CharField(max_length=5, null=True, blank=True)
     display_order = models.PositiveSmallIntegerField(default=100)
-    
+
     class Meta:
         ordering = ["display_order", "type_name"]
         indexes = [
