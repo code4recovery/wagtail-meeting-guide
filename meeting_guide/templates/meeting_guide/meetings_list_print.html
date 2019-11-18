@@ -88,6 +88,12 @@ up-to-date information about all meetings.
                             </td>
                             <td style="width: 48%;">
                                 {{ m.location }}, {{ m.formatted_address }}
+                                {% if m.location_details %}
+                                    ({{ m.location_details }})
+                                {% endif %}
+                                {% if m.meeting_details %}
+                                    ({{ m.meeting_details }})
+                                {% endif %}
                             </td>
                         </tr>
                     {% endfor %}

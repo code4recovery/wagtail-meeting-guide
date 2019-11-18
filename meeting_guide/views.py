@@ -135,6 +135,8 @@ class MeetingsPrintView(TemplateView):
                 "group": getattr(m.group, "name", None),
                 "district": getattr(m.group, "district", None),
                 "gso_number": getattr(m.group, "gso_number", None),
+                "meeting_details": m.meeting_details,
+                "location_details": m.location_details,
             })
 
         context = super().get_context_data(**kwargs)
