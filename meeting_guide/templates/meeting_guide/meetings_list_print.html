@@ -68,6 +68,7 @@ up-to-date information about all meetings.
             <h3>{{ sub_region }}</h3>
             <table cellspacing="0" cellpadding="0" border="0" style="padding: 1; margin: 0; border: 0;">
                 <tbody>
+                    {% spaceless %}
                     {% for m in meetings %}
                         <tr>
                             <td style="width: 17%; padding-right: px;">
@@ -86,10 +87,11 @@ up-to-date information about all meetings.
                                 {% endif %}
                             </td>
                             <td style="width: 48%;">
-                                {{ m.location.title }}, {{ m.formatted_address }}
+                                {{ m.location }}, {{ m.formatted_address }}
                             </td>
                         </tr>
                     {% endfor %}
+                    {% endspaceless %}
                 </tbody>
             </table>
         {% endfor %}
