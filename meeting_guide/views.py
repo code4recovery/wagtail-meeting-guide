@@ -89,7 +89,7 @@ class MeetingsPrintView(TemplateView):
         ).order_by(
             'day_of_week',
             'meeting_location__region__parent__name',
-            'meeting_location__region__name',
+            'meeting_location__postal_code',
             'start_time',
         )  # [0:10]
 
@@ -102,7 +102,7 @@ class MeetingsPrintView(TemplateView):
         for m in meetings:
             day = m.get_day_of_week_display()
             region = m.meeting_location.region.parent.name
-            sub_region = m.meeting_location.region.name
+            postal_code = m.meeting_location.postal_code
             types = list(m.types.values_list('intergroup_code', flat=True))
 
             if None in types:
@@ -112,8 +112,8 @@ class MeetingsPrintView(TemplateView):
                 meeting_dict[region] = {}
             if day not in meeting_dict[region]:
                 meeting_dict[region][day] = {}
-            if sub_region not in meeting_dict[region][day]:
-                meeting_dict[region][day][sub_region] = []
+            if postal_code not in meeting_dict[region][day]:
+                meeting_dict[region][day][postal_code] = []
 
             group_address = re.match(
                 slice_address,
@@ -125,7 +125,7 @@ class MeetingsPrintView(TemplateView):
             else:
                 formatted_address = m.meeting_location.formatted_address
 
-            meeting_dict[region][day][sub_region].append({
+            meeting_dict[region][day][postal_code].append({
                 "name": m.title,
                 "time_formatted": f"{m.start_time:%I:%M%p}",
                 "day": day,

@@ -64,8 +64,8 @@ up-to-date information about all meetings.
     {% for day, day_value in region_value.items %}
     <section>
         <subheader>{{ day }}</subheader>
-        {% for sub_region, meetings in day_value.items %}
-            <h3>{{ sub_region }}</h3>
+        {% for postal_code, meetings in day_value.items %}
+            <h3>{{ postal_code }}</h3>
             <table cellspacing="0" cellpadding="0" border="0" style="padding: 1; margin: 0; border: 0;">
                 <tbody>
                     {% spaceless %}
