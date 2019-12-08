@@ -49533,11 +49533,26 @@ function (_React$Component) {
   }
 
   _createClass(App, [{
+    key: "setUserLatLng",
+    value: function setUserLatLng(position) {
+      this.setState({
+        user_lat: position.coords.latitude,
+        user_lng: position.coords.longitude
+      });
+      console.log("latitude: ".concat(this.state.user_lat, " | longitude: ").concat(this.state.user_lng));
+    }
+  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
       var _this2 = this;
 
-      //if this is empty it'll be reported in fetch()s error handler
+      //find the end user's location, if given permission
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(this.setUserLatLng.bind(this));
+        this.state.geolocation = true;
+      } //if this is empty it'll be reported in fetch()s error handler
+
+
       var json = element.getAttribute('src'); //this is the default way to specify a mapbox key
 
       if (element.getAttribute('mapbox')) {
