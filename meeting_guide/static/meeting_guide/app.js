@@ -51097,7 +51097,7 @@ function loadMeetingData(meetings, capabilities) {
   if (capabilities.coordinates) {
     _settings__WEBPACK_IMPORTED_MODULE_0__["settings"].modes.push('location');
 
-    if (window.location.protocol == 'https:' || window.location.hostname == 'localhost') {
+    if (window.location.protocol == 'https:' || window.location.hostname == 'localhost' || window.location.hostname.includes('phillyaa.org')) {
       capabilities.geolocation = true;
       _settings__WEBPACK_IMPORTED_MODULE_0__["settings"].modes.push('me');
     }
