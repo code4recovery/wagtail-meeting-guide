@@ -50822,6 +50822,60 @@ function (_Component) {
       }); //pass it up to app controller
 
       this.props.setAppState('input', this.props.state.input);
+    } // Calculate the distance as the crow flies between two geometric points
+    // Adapted from: https://www.geodatasource.com/developers/javascript
+
+  }, {
+    key: "distance",
+    value: function distance(lat1, lon1, lat2, lon2) {
+      if (lat1 == lat2 && lon1 == lon2) {
+        return 0;
+      } else {
+        var radlat1 = Math.PI * lat1 / 180;
+        var radlat2 = Math.PI * lat2 / 180;
+        var radtheta = Math.PI * (lon1 - lon2) / 180;
+        var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+
+        if (dist > 1) {
+          dist = 1;
+        }
+
+        dist = Math.acos(dist);
+        dist = dist * 12436.2 / Math.PI; // 12436.2 = 180 * 60 * 1.1515
+        // If using kilometers, do an additional multiplication
+
+        if (_settings__WEBPACK_IMPORTED_MODULE_4__["settings"].distance_unit == "km") {
+          dist = dist * 1.609344;
+        }
+
+        return dist;
+      }
+    } // Callback function invoked when user allows latitude/longitude to be probed
+
+  }, {
+    key: "setUserLatLng",
+    value: function setUserLatLng(position) {
+      var user_latitude = position.coords.latitude;
+      var user_longitude = position.coords.longitude;
+      var meetings = [];
+
+      for (var index = 0; index < this.props.state.meetings.length; index++) {
+        meetings[index] = this.props.state.meetings[index];
+        meetings[index].distance = this.distance(user_latitude, user_longitude, this.props.state.meetings[index].latitude, this.props.state.meetings[index].longitude).toFixed(2).toString() + ' ' + _settings__WEBPACK_IMPORTED_MODULE_4__["settings"].distance_unit;
+      } // If it isn't already there, add the "distance" column
+
+
+      if (!_settings__WEBPACK_IMPORTED_MODULE_4__["settings"].defaults.columns.includes("distance")) {
+        _settings__WEBPACK_IMPORTED_MODULE_4__["settings"].defaults.columns.push("distance");
+      } // Re-render including meeting distances
+
+
+      this.props.setAppState({
+        user_latitude: user_latitude,
+        user_longitude: user_longitude,
+        meetings: meetings,
+        geolocation: true
+      });
     } //set search mode dropdown
 
   }, {
@@ -50831,7 +50885,12 @@ function (_Component) {
 
       if (mode == 'me') {
         //clear search value
-        this.props.state.input.search = '';
+        this.props.state.input.search = ''; // Find the end user's location, if given permission. Load after JSON to ensure
+        // that we can update distances.
+
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(this.setUserLatLng.bind(this));
+        }
       } else {
         //focus after waiting for disabled to clear
         setTimeout(function () {
@@ -51984,12 +52043,12 @@ function loadMeetingData(meetings, capabilities) {
   indexes.type = Object.values(indexes.type);
   indexes.type.sort(function (a, b) {
     return a.name > b.name ? 1 : b.name > a.name ? -1 : 0;
-  }); //near me mode enabled on https
+  }); //near me mode enabled on https or local development
 
   if (capabilities.coordinates) {
     _settings__WEBPACK_IMPORTED_MODULE_0__["settings"].modes.push('location');
 
-    if (window.location.protocol == 'https:') {
+    if (window.location.protocol == 'https:' || window.location.hostname == 'localhost') {
       capabilities.geolocation = true;
       _settings__WEBPACK_IMPORTED_MODULE_0__["settings"].modes.push('me');
     }
@@ -52332,6 +52391,8 @@ var settings = deepmerge__WEBPACK_IMPORTED_MODULE_0___default()({
 
   },
   days: ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'],
+  distance_unit: "mi",
+  // "mi" for miles, "km" for kilometers
   filters: ['region', 'day', 'time', 'type'],
   keys: {
     google: null,
@@ -52361,6 +52422,7 @@ var settings = deepmerge__WEBPACK_IMPORTED_MODULE_0___default()({
       },
       back_to_meetings: 'Back to Meetings',
       day_any: 'Any Day',
+      distance: 'Distance',
       evening: 'Evening',
       friday: 'Friday',
       get_directions: 'Get Directions',
@@ -52390,6 +52452,7 @@ var settings = deepmerge__WEBPACK_IMPORTED_MODULE_0___default()({
       time_any: 'Any Time',
       title: {
         'day': '%day%',
+        'distance': '%distance%',
         'time': '%time%',
         'type': '%type%',
         'meetings': '%meetings%',
@@ -52465,6 +52528,7 @@ var settings = deepmerge__WEBPACK_IMPORTED_MODULE_0___default()({
       },
       back_to_meetings: 'Volver a las reuniones',
       day_any: 'Cualquier día',
+      distance: 'Distancia',
       evening: 'Noche',
       friday: 'Viernes',
       get_directions: 'Obtener las direcciones',
