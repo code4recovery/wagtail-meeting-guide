@@ -10,8 +10,8 @@ from .models import Group, GroupContribution, MeetingType, Region
 
 class RegionListFilter(SimpleListFilter):
     """
-    This filter will always return a subset of the instances in a Model, either filtering by the
-    user choice or by a default value.
+    This filter will always return a subset of the instances in a Model, either
+    filtering by the user choice or by a default value.
     """
 
     title = "Regions"
