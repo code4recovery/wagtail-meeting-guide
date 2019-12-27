@@ -1,0 +1,33 @@
+{% load i18n wagtailadmin_tags %}
+
+{# The title field for a page in the page listing, when in 'explore' mode #}
+
+<div class="title-wrapper">
+    {% if page.sites_rooted_here.exists %}
+        {% if perms.wagtailcore.add_site or perms.wagtailcore.change_site or perms.wagtailcore.delete_site %}
+            <a href="{% url 'wagtailsites:index' %}" class="icon icon-site" title="{% trans 'Sites menu' %}"></a>
+        {% endif %}
+    {% endif %}
+
+    {% if page_perms.can_edit %}
+        <a href="{% url 'wagtailadmin_pages:edit' page.id %}" title="{% trans 'Edit this page' %}">{{ page.get_admin_display_title }}</a>
+    {% else %}
+        {{ page.get_admin_display_title }}
+    {% endif %}
+
+    {# MEETING GUIDE: DISPLAY DAY OF WEEK AND ADDRESS, IF ON CURRENT PAGE #}
+    {% if page.day_of_week >= 0 and page.day_of_week <= 6 %}
+        ({{ page.get_day_of_week_display }})
+    {% endif %}
+    {% if page.formatted_address %}
+        <br>{{ page.formatted_address }}
+    {% endif %}
+    {# END MEETING GUIDE MODIFICATIONS #}
+
+    {% include "wagtailadmin/pages/listing/_privacy_indicator.html" with page=page %}
+    {% include "wagtailadmin/pages/listing/_locked_indicator.html" with page=page %}
+</div>
+
+<ul class="actions">
+    {% page_listing_buttons page page_perms %}
+</ul>
