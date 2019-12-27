@@ -50669,6 +50669,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames_bind__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames_bind__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _dropdown__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./dropdown */ "./src/components/dropdown.jsx");
 /* harmony import */ var _settings__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../settings */ "./src/settings.jsx");
+/* harmony import */ var _helpers_data__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../helpers/data */ "./src/helpers/data.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -50686,6 +50687,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -50822,60 +50824,6 @@ function (_Component) {
       }); //pass it up to app controller
 
       this.props.setAppState('input', this.props.state.input);
-    } // Calculate the distance as the crow flies between two geometric points
-    // Adapted from: https://www.geodatasource.com/developers/javascript
-
-  }, {
-    key: "distance",
-    value: function distance(lat1, lon1, lat2, lon2) {
-      if (lat1 == lat2 && lon1 == lon2) {
-        return 0;
-      } else {
-        var radlat1 = Math.PI * lat1 / 180;
-        var radlat2 = Math.PI * lat2 / 180;
-        var radtheta = Math.PI * (lon1 - lon2) / 180;
-        var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-
-        if (dist > 1) {
-          dist = 1;
-        }
-
-        dist = Math.acos(dist);
-        dist = dist * 12436.2 / Math.PI; // 12436.2 = 180 * 60 * 1.1515
-        // If using kilometers, do an additional multiplication
-
-        if (_settings__WEBPACK_IMPORTED_MODULE_4__["settings"].distance_unit == "km") {
-          dist = dist * 1.609344;
-        }
-
-        return dist;
-      }
-    } // Callback function invoked when user allows latitude/longitude to be probed
-
-  }, {
-    key: "setUserLatLng",
-    value: function setUserLatLng(position) {
-      var user_latitude = position.coords.latitude;
-      var user_longitude = position.coords.longitude;
-      var meetings = [];
-
-      for (var index = 0; index < this.props.state.meetings.length; index++) {
-        meetings[index] = this.props.state.meetings[index];
-        meetings[index].distance = this.distance(user_latitude, user_longitude, this.props.state.meetings[index].latitude, this.props.state.meetings[index].longitude).toFixed(2).toString() + ' ' + _settings__WEBPACK_IMPORTED_MODULE_4__["settings"].distance_unit;
-      } // If it isn't already there, add the "distance" column
-
-
-      if (!_settings__WEBPACK_IMPORTED_MODULE_4__["settings"].defaults.columns.includes("distance")) {
-        _settings__WEBPACK_IMPORTED_MODULE_4__["settings"].defaults.columns.push("distance");
-      } // Re-render including meeting distances
-
-
-      this.props.setAppState({
-        user_latitude: user_latitude,
-        user_longitude: user_longitude,
-        meetings: meetings,
-        geolocation: true
-      });
     } //set search mode dropdown
 
   }, {
@@ -50889,7 +50837,7 @@ function (_Component) {
         // that we can update distances.
 
         if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(this.setUserLatLng.bind(this));
+          navigator.geolocation.getCurrentPosition(_helpers_data__WEBPACK_IMPORTED_MODULE_5__["default"].bind(this));
         }
       } else {
         //focus after waiting for disabled to clear
@@ -51454,7 +51402,9 @@ function (_Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: type
         }, type);
-      }) : '')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }) : '')), meeting.notes && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "list-group-item"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Meeting Notes"), meeting.notes), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "list-group-item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, meeting.location), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "my-0 mt-1"
@@ -51714,7 +51664,7 @@ function Title(props) {
 /*!******************************!*\
   !*** ./src/helpers/data.jsx ***!
   \******************************/
-/*! exports provided: filterMeetingData, loadMeetingData, translateGoogleSheet */
+/*! exports provided: filterMeetingData, loadMeetingData, translateGoogleSheet, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -51722,6 +51672,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filterMeetingData", function() { return filterMeetingData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadMeetingData", function() { return loadMeetingData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "translateGoogleSheet", function() { return translateGoogleSheet; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return setUserLatLng; });
 /* harmony import */ var _settings__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../settings */ "./src/settings.jsx");
 /* harmony import */ var _slugify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./slugify */ "./src/helpers/slugify.jsx");
 /* harmony import */ var _time__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./time */ "./src/helpers/time.jsx");
@@ -52121,6 +52072,57 @@ function translateGoogleSheet(data) {
   }
 
   return meetings;
+} // Calculate the distance as the crow flies between two geometric points
+// Adapted from: https://www.geodatasource.com/developers/javascript
+
+function distance(lat1, lon1, lat2, lon2) {
+  if (lat1 == lat2 && lon1 == lon2) {
+    return 0;
+  } else {
+    var radlat1 = Math.PI * lat1 / 180;
+    var radlat2 = Math.PI * lat2 / 180;
+    var radtheta = Math.PI * (lon1 - lon2) / 180;
+    var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+
+    if (dist > 1) {
+      dist = 1;
+    }
+
+    dist = Math.acos(dist);
+    dist = dist * 12436.2 / Math.PI; // 12436.2 = 180 * 60 * 1.1515
+    // If using kilometers, do an additional multiplication
+
+    if (_settings__WEBPACK_IMPORTED_MODULE_0__["settings"].distance_unit == "km") {
+      dist = dist * 1.609344;
+    }
+
+    return dist;
+  }
+} // Callback function invoked when user allows latitude/longitude to be probed
+
+
+function setUserLatLng(position) {
+  var user_latitude = position.coords.latitude;
+  var user_longitude = position.coords.longitude;
+  var meetings = [];
+
+  for (var index = 0; index < this.props.state.meetings.length; index++) {
+    meetings[index] = this.props.state.meetings[index];
+    meetings[index].distance = distance(user_latitude, user_longitude, this.props.state.meetings[index].latitude, this.props.state.meetings[index].longitude).toFixed(2).toString() + ' ' + _settings__WEBPACK_IMPORTED_MODULE_0__["settings"].distance_unit;
+  } // If it isn't already there, add the "distance" column
+
+
+  if (!_settings__WEBPACK_IMPORTED_MODULE_0__["settings"].defaults.columns.includes("distance")) {
+    _settings__WEBPACK_IMPORTED_MODULE_0__["settings"].defaults.columns.push("distance");
+  } // Re-render including meeting distances
+
+
+  this.props.setAppState({
+    user_latitude: user_latitude,
+    user_longitude: user_longitude,
+    meetings: meetings,
+    geolocation: true
+  });
 }
 
 /***/ }),
