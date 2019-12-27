@@ -20,9 +20,9 @@ def get_geocode_address(full_address):
     address_components["problem"] = "OK"
 
     cache_filename = (
-        "meeting_guide_cache/" +
-        re.sub("[^0-9a-zA-Z]+", "", full_address.lower().lstrip(" ")) +
-        ".json"
+        "meeting_guide_cache/"
+        + re.sub("[^0-9a-zA-Z]+", "", full_address.lower().lstrip(" "))
+        + ".json"
     )
 
     address_components["cache_status"] = "MISS"
@@ -93,8 +93,8 @@ def get_geocode_address(full_address):
         ]
 
         if (
-            "street_number" not in address_components or
-            "route" not in address_components
+            "street_number" not in address_components
+            or "route" not in address_components
         ):
             address_components[
                 "problem"
@@ -171,11 +171,7 @@ def build_tree(regions):
     """ Build up our regions recursively """
     items = []
     for r in regions:
-        item = {
-            "label": r.name,
-            "value": r.id,
-            "children": []
-        }
+        item = {"label": r.name, "value": r.id, "children": []}
 
         if r.children.count():
             item["children"] = build_tree(r.children.all())
@@ -191,5 +187,7 @@ def get_region_tree():
     This returns a nested structure of lists and dicts of regions with their
     names, ids, and children.
     """
-    top_regions = Region.objects.filter(parent__isnull=True).prefetch_related("children")
+    top_regions = Region.objects.filter(parent__isnull=True).prefetch_related(
+        "children"
+    )
     return build_tree(top_regions)

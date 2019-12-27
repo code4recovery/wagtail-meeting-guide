@@ -5,18 +5,15 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('meeting_guide', '0001_initial'),
-    ]
+    dependencies = [("meeting_guide", "0001_initial")]
 
     operations = [
         migrations.AlterModelOptions(
-            name='meetingtype',
-            options={'ordering': ['display_order', 'type_name']},
+            name="meetingtype", options={"ordering": ["display_order", "type_name"]}
         ),
         migrations.AddField(
-            model_name='meetingtype',
-            name='display_order',
+            model_name="meetingtype",
+            name="display_order",
             field=models.PositiveSmallIntegerField(default=100),
         ),
     ]

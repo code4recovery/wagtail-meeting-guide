@@ -5,14 +5,14 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('meeting_guide', '0002_auto_20190907_0756'),
-    ]
+    dependencies = [("meeting_guide", "0002_auto_20190907_0756")]
 
     operations = [
         migrations.AddField(
-            model_name='location',
-            name='postal_code',
-            field=models.CharField(blank=True, max_length=12, verbose_name='Postal Code'),
-        ),
+            model_name="location",
+            name="postal_code",
+            field=models.CharField(
+                blank=True, max_length=12, verbose_name="Postal Code"
+            ),
+        )
     ]

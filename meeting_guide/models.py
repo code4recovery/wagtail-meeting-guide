@@ -83,9 +83,7 @@ class Location(Page):
     lat_lng = models.CharField(
         "Latitude/Longitude", max_length=255, blank=True, null=True
     )
-    postal_code = models.CharField(
-        "Postal Code", max_length=12, blank=True
-    )
+    postal_code = models.CharField("Postal Code", max_length=12, blank=True)
 
     @cached_property
     def point(self):

@@ -12,137 +12,286 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('wagtailcore', '0041_group_collection_permissions_verbose_name_plural'),
+        ("wagtailcore", "0041_group_collection_permissions_verbose_name_plural")
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Group',
+            name="Group",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255)),
-                ('gso_number', models.CharField(blank=True, max_length=10, null=True)),
-                ('district', models.CharField(blank=True, max_length=10, null=True)),
-                ('area', models.CharField(blank=True, max_length=10, null=True)),
-                ('status', models.SmallIntegerField(choices=[(0, 'Inactive'), (1, 'Active')], default=1)),
-                ('founded', models.DateField(blank=True, null=True)),
-                ('history', models.TextField(blank=True, null=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255)),
+                ("gso_number", models.CharField(blank=True, max_length=10, null=True)),
+                ("district", models.CharField(blank=True, max_length=10, null=True)),
+                ("area", models.CharField(blank=True, max_length=10, null=True)),
+                (
+                    "status",
+                    models.SmallIntegerField(
+                        choices=[(0, "Inactive"), (1, "Active")], default=1
+                    ),
+                ),
+                ("founded", models.DateField(blank=True, null=True)),
+                ("history", models.TextField(blank=True, null=True)),
             ],
-            options={
-                'ordering': ['name'],
-            },
+            options={"ordering": ["name"]},
         ),
         migrations.CreateModel(
-            name='GroupContribution',
+            name="GroupContribution",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('date', models.DateField(default=datetime.date.today)),
-                ('amount', models.DecimalField(decimal_places=2, max_digits=20)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("date", models.DateField(default=datetime.date.today)),
+                ("amount", models.DecimalField(decimal_places=2, max_digits=20)),
             ],
-            options={
-                'ordering': ['group__name', '-date'],
-            },
+            options={"ordering": ["group__name", "-date"]},
         ),
         migrations.CreateModel(
-            name='Location',
+            name="Location",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('formatted_address', models.CharField(blank=True, max_length=255, null=True, verbose_name='Full Address')),
-                ('lat_lng', models.CharField(blank=True, max_length=255, null=True, verbose_name='Latitude/Longitude')),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.Page",
+                    ),
+                ),
+                (
+                    "formatted_address",
+                    models.CharField(
+                        blank=True,
+                        max_length=255,
+                        null=True,
+                        verbose_name="Full Address",
+                    ),
+                ),
+                (
+                    "lat_lng",
+                    models.CharField(
+                        blank=True,
+                        max_length=255,
+                        null=True,
+                        verbose_name="Latitude/Longitude",
+                    ),
+                ),
             ],
-            bases=('wagtailcore.page',),
+            bases=("wagtailcore.page",),
         ),
         migrations.CreateModel(
-            name='Meeting',
+            name="Meeting",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('start_time', models.TimeField(null=True)),
-                ('end_time', models.TimeField(null=True)),
-                ('day_of_week', models.SmallIntegerField(choices=[(0, 'Sunday'), (1, 'Monday'), (2, 'Tuesday'), (3, 'Wednesday'), (4, 'Thursday'), (5, 'Friday'), (6, 'Saturday')], default=0)),
-                ('status', models.SmallIntegerField(choices=[(0, 'Inactive'), (1, 'Active')], default=1)),
-                ('meeting_details', models.TextField(blank=True, help_text='Additional details about the meeting.', null=True)),
-                ('location_details', models.TextField(blank=True, help_text="How to find the meeting at the location, I.e.: 'In the basement', 'In the rear building.'", null=True)),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.Page",
+                    ),
+                ),
+                ("start_time", models.TimeField(null=True)),
+                ("end_time", models.TimeField(null=True)),
+                (
+                    "day_of_week",
+                    models.SmallIntegerField(
+                        choices=[
+                            (0, "Sunday"),
+                            (1, "Monday"),
+                            (2, "Tuesday"),
+                            (3, "Wednesday"),
+                            (4, "Thursday"),
+                            (5, "Friday"),
+                            (6, "Saturday"),
+                        ],
+                        default=0,
+                    ),
+                ),
+                (
+                    "status",
+                    models.SmallIntegerField(
+                        choices=[(0, "Inactive"), (1, "Active")], default=1
+                    ),
+                ),
+                (
+                    "meeting_details",
+                    models.TextField(
+                        blank=True,
+                        help_text="Additional details about the meeting.",
+                        null=True,
+                    ),
+                ),
+                (
+                    "location_details",
+                    models.TextField(
+                        blank=True,
+                        help_text="How to find the meeting at the location, I.e.: 'In the basement', 'In the rear building.'",
+                        null=True,
+                    ),
+                ),
             ],
-            bases=('wagtailcore.page',),
+            bases=("wagtailcore.page",),
         ),
         migrations.CreateModel(
-            name='MeetingType',
+            name="MeetingType",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('type_name', models.CharField(max_length=191)),
-                ('intergroup_code', models.CharField(blank=True, max_length=5, null=True)),
-                ('meeting_guide_code', models.CharField(blank=True, max_length=5, null=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("type_name", models.CharField(max_length=191)),
+                (
+                    "intergroup_code",
+                    models.CharField(blank=True, max_length=5, null=True),
+                ),
+                (
+                    "meeting_guide_code",
+                    models.CharField(blank=True, max_length=5, null=True),
+                ),
             ],
-            options={
-                'ordering': ['type_name'],
-            },
+            options={"ordering": ["type_name"]},
         ),
         migrations.CreateModel(
-            name='Region',
+            name="Region",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255)),
-                ('lft', models.PositiveIntegerField(editable=False)),
-                ('rght', models.PositiveIntegerField(editable=False)),
-                ('tree_id', models.PositiveIntegerField(db_index=True, editable=False)),
-                ('level', models.PositiveIntegerField(editable=False)),
-                ('parent', mptt.fields.TreeForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='children', to='meeting_guide.Region')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255)),
+                ("lft", models.PositiveIntegerField(editable=False)),
+                ("rght", models.PositiveIntegerField(editable=False)),
+                ("tree_id", models.PositiveIntegerField(db_index=True, editable=False)),
+                ("level", models.PositiveIntegerField(editable=False)),
+                (
+                    "parent",
+                    mptt.fields.TreeForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="children",
+                        to="meeting_guide.Region",
+                    ),
+                ),
             ],
-            options={
-                'abstract': False,
-            },
+            options={"abstract": False},
         ),
         migrations.AddIndex(
-            model_name='meetingtype',
-            index=models.Index(fields=['type_name'], name='meeting_gui_type_na_8f3ae8_idx'),
+            model_name="meetingtype",
+            index=models.Index(
+                fields=["type_name"], name="meeting_gui_type_na_8f3ae8_idx"
+            ),
         ),
         migrations.AddIndex(
-            model_name='meetingtype',
-            index=models.Index(fields=['intergroup_code'], name='meeting_gui_intergr_c031b7_idx'),
+            model_name="meetingtype",
+            index=models.Index(
+                fields=["intergroup_code"], name="meeting_gui_intergr_c031b7_idx"
+            ),
         ),
         migrations.AddIndex(
-            model_name='meetingtype',
-            index=models.Index(fields=['meeting_guide_code'], name='meeting_gui_meeting_e22f98_idx'),
+            model_name="meetingtype",
+            index=models.Index(
+                fields=["meeting_guide_code"], name="meeting_gui_meeting_e22f98_idx"
+            ),
         ),
         migrations.AddField(
-            model_name='meeting',
-            name='group',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='meetings', to='meeting_guide.Group'),
+            model_name="meeting",
+            name="group",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="meetings",
+                to="meeting_guide.Group",
+            ),
         ),
         migrations.AddField(
-            model_name='meeting',
-            name='meeting_location',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='meetings', to='meeting_guide.Location'),
+            model_name="meeting",
+            name="meeting_location",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="meetings",
+                to="meeting_guide.Location",
+            ),
         ),
         migrations.AddField(
-            model_name='meeting',
-            name='types',
-            field=modelcluster.fields.ParentalManyToManyField(limit_choices_to={'intergroup_code__isnull': False}, related_name='meetings', to='meeting_guide.MeetingType'),
+            model_name="meeting",
+            name="types",
+            field=modelcluster.fields.ParentalManyToManyField(
+                limit_choices_to={"intergroup_code__isnull": False},
+                related_name="meetings",
+                to="meeting_guide.MeetingType",
+            ),
         ),
         migrations.AddField(
-            model_name='location',
-            name='region',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='locations', to='meeting_guide.Region'),
+            model_name="location",
+            name="region",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="locations",
+                to="meeting_guide.Region",
+            ),
         ),
         migrations.AddField(
-            model_name='groupcontribution',
-            name='group',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='meeting_guide.Group'),
+            model_name="groupcontribution",
+            name="group",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="meeting_guide.Group"
+            ),
         ),
         migrations.AddIndex(
-            model_name='meeting',
-            index=models.Index(fields=['meeting_location'], name='meeting_gui_meeting_792a4f_idx'),
+            model_name="meeting",
+            index=models.Index(
+                fields=["meeting_location"], name="meeting_gui_meeting_792a4f_idx"
+            ),
         ),
         migrations.AddIndex(
-            model_name='meeting',
-            index=models.Index(fields=['day_of_week'], name='meeting_gui_day_of__e95721_idx'),
+            model_name="meeting",
+            index=models.Index(
+                fields=["day_of_week"], name="meeting_gui_day_of__e95721_idx"
+            ),
         ),
         migrations.AddIndex(
-            model_name='location',
-            index=models.Index(fields=['region'], name='meeting_gui_region__d7d310_idx'),
+            model_name="location",
+            index=models.Index(
+                fields=["region"], name="meeting_gui_region__d7d310_idx"
+            ),
         ),
         migrations.AddIndex(
-            model_name='location',
-            index=models.Index(fields=['formatted_address'], name='meeting_gui_formatt_18f95a_idx'),
+            model_name="location",
+            index=models.Index(
+                fields=["formatted_address"], name="meeting_gui_formatt_18f95a_idx"
+            ),
         ),
     ]
