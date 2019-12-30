@@ -51456,7 +51456,7 @@ function (_Component) {
         width: "100%",
         height: "100%"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_map_gl__WEBPACK_IMPORTED_MODULE_2__["Marker"], {
-        latitude: meeting.latitude - 0.0025,
+        latitude: meeting.latitude,
         longitude: meeting.longitude,
         offsetLeft: -_settings__WEBPACK_IMPORTED_MODULE_3__["settings"].marker_style.width / 2,
         offsetTop: -_settings__WEBPACK_IMPORTED_MODULE_3__["settings"].marker_style.height
@@ -51469,7 +51469,7 @@ function (_Component) {
           });
         }
       })), this.state.popup && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_map_gl__WEBPACK_IMPORTED_MODULE_2__["Popup"], {
-        latitude: meeting.latitude - 0.0025,
+        latitude: meeting.latitude,
         longitude: meeting.longitude,
         className: "popup",
         onClose: function onClose() {
