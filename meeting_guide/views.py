@@ -36,7 +36,7 @@ class MeetingsBaseView(CacheMixin, TemplateView):
 
     def get_meetings(self):
         return (
-            Meeting.objects.filter(status=1)
+            Meeting.objects.live().filter(status=1)
             .select_related("meeting_location", "group")
             .prefetch_related(
                 "meeting_location__region",
@@ -84,7 +84,7 @@ class MeetingsPrintView(TemplateView):
 
     def get_meetings(self):
         return (
-            Meeting.objects.select_related("meeting_location__region__parent", "group")
+            Meeting.objects.live().select_related("meeting_location__region__parent", "group")
             .filter(status=1)
             .order_by(
                 "day_of_week",
