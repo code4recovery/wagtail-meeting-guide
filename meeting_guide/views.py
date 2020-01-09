@@ -84,8 +84,9 @@ class MeetingsPrintView(TemplateView):
 
     def get_meetings(self):
         return (
-            Meeting.objects.live().select_related("meeting_location__region__parent", "group")
-            .filter(status=1)
+            Meeting.objects.live().select_related(
+                "meeting_location__region__parent", "group",
+            ).filter(status=1)
             .order_by(
                 "day_of_week",
                 "meeting_location__region__parent__name",
@@ -193,10 +194,12 @@ class MeetingsAPIView(MeetingsBaseView):
 
             group_info = f"{district}{gso_number}"
 
+            location = (
+                f"{meeting.meeting_location.title}, "
+                f"{meeting.meeting_location.region.name}"
+            )
             if len(group_info):
-                location = f"{meeting.meeting_location.title}\n({group_info})"
-            else:
-                location = meeting.meeting_location.title
+                location = f"{location} ({group_info})"
 
             region_ancestors = list(
                 regions.get(id=meeting.meeting_location.region.id)
@@ -228,7 +231,8 @@ class MeetingsAPIView(MeetingsBaseView):
                     "latitude": str(meeting.meeting_location.lat),
                     "longitude": str(meeting.meeting_location.lng),
                     "region_id": meeting.meeting_location.region.id,
-                    "region": f"{meeting.meeting_location.region.parent.name}: {meeting.meeting_location.region.name}",
+                    # "region": f"{meeting.meeting_location.region.parent.name}: {meeting.meeting_location.region.name}",
+                    "region": f"{meeting.meeting_location.region.parent.name}",  # Let's try with just parent region
                     "regions": region_ancestors,
                     "group": group_info,
                     "image": "",
