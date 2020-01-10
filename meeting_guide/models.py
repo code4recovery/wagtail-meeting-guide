@@ -84,6 +84,12 @@ class Location(Page):
         "Latitude/Longitude", max_length=255, blank=True, null=True
     )
     postal_code = models.CharField("Postal Code", max_length=12, blank=True)
+    details = models.TextField(
+        null=True,
+        blank=True,
+        help_text="How to find the meeting at the location, I.e.: 'In the basement',"
+                  " 'In the rear building.'",
+    )
 
     @cached_property
     def point(self):
@@ -100,6 +106,7 @@ class Location(Page):
     content_panels = Page.content_panels + [
         FieldPanel("region"),
         FieldPanel("postal_code"),
+        FieldPanel("details"),
         MultiFieldPanel(
             [
                 FieldPanel("formatted_address"),
@@ -186,15 +193,11 @@ class Meeting(Page):
     end_time = models.TimeField(null=True)
     day_of_week = models.SmallIntegerField(default=0, choices=DAY_OF_WEEK)
     status = models.SmallIntegerField(default=1, choices=STATUS_CHOICES)
-    meeting_details = models.TextField(
+    details = models.TextField(
         null=True, blank=True, help_text="Additional details about the meeting."
     )
-    location_details = models.TextField(
-        null=True,
-        blank=True,
-        help_text="How to find the meeting at the location, I.e.: 'In the basement',"
-        " 'In the rear building.'",
-    )
+    area = models.CharField(max_length=10, null=True, blank=True)
+    district = models.CharField(max_length=10, null=True, blank=True)
     types = ParentalManyToManyField(
         MeetingType,
         related_name="meetings",
@@ -214,7 +217,13 @@ class Meeting(Page):
         return day_sort_order
 
     content_panels = Page.content_panels + [
-        FieldPanel("group"),
+        FieldRowPanel(
+            [
+                FieldPanel("group"),
+                FieldPanel("area"),
+                FieldPanel("district"),
+            ]
+        ),
         FieldRowPanel(
             [
                 FieldPanel("day_of_week"),
@@ -223,8 +232,7 @@ class Meeting(Page):
             ]
         ),
         FieldPanel("types", widget=CheckboxSelectMultiple),
-        FieldPanel("meeting_details"),
-        FieldPanel("location_details"),
+        FieldPanel("details"),
     ]
 
     search_fields = Page.search_fields + [

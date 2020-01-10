@@ -74,8 +74,7 @@ class GroupAdmin(ModelAdmin):
     menu_label = "Groups"
     menu_icon = "fa-folder-open"
     add_to_settings_menu = False
-    list_display = ("name", "gso_number", "area", "district")
-    list_filter = ("area", "district")
+    list_display = ("name", "gso_number")
     search_fields = ("name",)
 
 
