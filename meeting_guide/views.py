@@ -135,10 +135,10 @@ class MeetingsPrintView(TemplateView):
                     "location": m.meeting_location.title,
                     "formatted_address": formatted_address,
                     "group": getattr(m.group, "name", None),
-                    "district": getattr(m.group, "district", None),
+                    "district": m.district,
                     "gso_number": getattr(m.group, "gso_number", None),
-                    "meeting_details": m.meeting_details,
-                    "location_details": m.location_details,
+                    "meeting_details": m.details,
+                    "location_details": m.meeting_location.details,
                 }
             )
 
@@ -184,7 +184,7 @@ class MeetingsAPIView(MeetingsBaseView):
         regions = Region.objects.all().prefetch_related("children")
 
         for meeting in meetings:
-            district = getattr(meeting.group, "district", "")
+            district = meeting.district
             if len(district):
                 district = f"D{district}"
 
@@ -212,7 +212,7 @@ class MeetingsAPIView(MeetingsBaseView):
                     "id": meeting.id,
                     "name": meeting.title,
                     "slug": meeting.slug,
-                    "notes": meeting.meeting_details,
+                    "notes": meeting.details,
                     "updated": f"{meeting.last_published_at if meeting.last_published_at else datetime.datetime.now():%Y-%m-%d %H:%M:%S}",
                     "location_id": meeting.meeting_location.id,
                     "url": f"{url}{meeting.url_path}",

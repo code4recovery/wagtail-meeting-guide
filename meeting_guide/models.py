@@ -40,8 +40,6 @@ class Group(models.Model):
 
     name = models.CharField(max_length=255)
     gso_number = models.CharField(max_length=10, null=True, blank=True)
-    district = models.CharField(max_length=10, null=True, blank=True)
-    area = models.CharField(max_length=10, null=True, blank=True)
     status = models.SmallIntegerField(default=1, choices=STATUS_CHOICES)
     founded = models.DateField(null=True, blank=True)
     history = models.TextField(null=True, blank=True)
@@ -87,8 +85,8 @@ class Location(Page):
     details = models.TextField(
         null=True,
         blank=True,
-        help_text="How to find the meeting at the location, I.e.: 'In the basement',"
-                  " 'In the rear building.'",
+        help_text="Details specific to the location, not the meeting. For example, "
+                  "'Located in shopping center behind the bank.'",
     )
 
     @cached_property
@@ -196,8 +194,8 @@ class Meeting(Page):
     details = models.TextField(
         null=True, blank=True, help_text="Additional details about the meeting."
     )
-    area = models.CharField(max_length=10, null=True, blank=True)
-    district = models.CharField(max_length=10, null=True, blank=True)
+    area = models.CharField(max_length=10, blank=True)
+    district = models.CharField(max_length=10, blank=True)
     types = ParentalManyToManyField(
         MeetingType,
         related_name="meetings",
