@@ -73,7 +73,10 @@ class Location(Page):
     """
 
     region = models.ForeignKey(
-        Region, related_name="locations", null=True, on_delete=models.SET_NULL
+        Region,
+        related_name="locations",
+        on_delete=models.SET_NULL,
+        limit_choices_to={'parent__isnull': False},
     )
     formatted_address = models.CharField(
         "Full Address", max_length=255, blank=True, null=True
