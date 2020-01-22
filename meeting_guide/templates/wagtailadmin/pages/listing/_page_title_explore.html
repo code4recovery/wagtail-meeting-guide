@@ -17,7 +17,7 @@
 
     {# MEETING GUIDE: DISPLAY DAY OF WEEK AND ADDRESS, IF ON CURRENT PAGE #}
     {% if page.day_of_week >= 0 and page.day_of_week <= 6 %}
-        ({{ page.get_day_of_week_display }})
+        ({{ page.get_day_of_week_display }} {{ page.start_time }} - {{ page.end_time }})
     {% endif %}
     {% if page.formatted_address %}
         <br>{{ page.formatted_address }}
