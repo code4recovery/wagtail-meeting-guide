@@ -91,7 +91,7 @@ h1, .h1 {
 
 ## Release Notes
 
-### 0.1
+https://github.com/code4recovery/wagtail-meeting-guide/releases/
 
 ## Maintainer
 
