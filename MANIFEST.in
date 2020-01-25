@@ -1,6 +1,0 @@
-include README.md
-recursive-include meeting_guide/fixtures *
-recursive-include meeting_guide/migrations *
-recursive-include meeting_guide/templates *
-recursive-include meeting_guide/templatetags *
-recursive-include meeting_guide/static *
