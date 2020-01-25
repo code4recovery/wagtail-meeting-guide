@@ -1,11 +1,25 @@
 from django.contrib.admin import SimpleListFilter
+from django.core.cache import cache
 
 from wagtail.contrib.modeladmin.options import (
     ModelAdmin,
     ModelAdminGroup,
     modeladmin_register,
 )
-from .models import Group, GroupContribution, MeetingType, Region
+from wagtail.core.signals import page_published
+from .models import Group, GroupContribution, MeetingType, Region, Location, Meeting
+
+
+def receiver(sender, **kwargs):
+    """
+    Clear the API cache whenever a Location or Meeting is published.
+    """
+    cache.delete("wagtail_meeting_guide_api_cache")
+
+
+# Register the signal receive for Location and Meeting publishes.
+page_published.connect(receiver, sender=Location)
+page_published.connect(receiver, sender=Meeting)
 
 
 class RegionListFilter(SimpleListFilter):

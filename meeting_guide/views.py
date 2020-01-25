@@ -4,6 +4,7 @@ import re
 
 from django.conf import settings
 from django.http import HttpResponse
+from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 from django.views.generic import TemplateView
 
@@ -13,17 +14,11 @@ from .models import Meeting, MeetingType, Region
 from .utils import get_region_tree
 
 
-class CacheMixin(object):
-    cache_timeout = 3600 * 24 * 7
-
-    def get_cache_timeout(self):
-        return self.cache_timeout
-
-    def dispatch(self, *args, **kwargs):
-        return cache_page(self.get_cache_timeout())(super().dispatch)(*args, **kwargs)
-
-
-class MeetingsBaseView(CacheMixin, TemplateView):
+@method_decorator(
+    cache_page(3600 * 24 * 7, key_prefix="wagtail_meeting_guide_api_cache"),
+    name='dispatch',
+)
+class MeetingsBaseView(TemplateView):
     DAY_OF_WEEK = (
         (0, "Sunday"),
         (1, "Monday"),
@@ -46,7 +41,7 @@ class MeetingsBaseView(CacheMixin, TemplateView):
         )
 
 
-class MeetingsReactJSView(CacheMixin, TemplateView):
+class MeetingsReactJSView(TemplateView):
     """
     List all meetings in the Meeting Guide ReactJS plugin.
     """
