@@ -213,8 +213,6 @@ class MeetingsAPIView(MeetingsBaseView):
                     "url": f"{url}{meeting.url_path}",
                     "time": f"{meeting.start_time:%H:%M}",
                     "end_time": f"{meeting.end_time:%H:%M}",
-                    # "formatted_time": f"{meeting.start_time:%H:%M %P}",
-                    # "formatted_end_time": f"{meeting.end_time:%H:%M %P}",
                     "distance": "",
                     "day": str(meeting.day_of_week),
                     "types": list(
