@@ -1,6 +1,17 @@
 from django.conf import settings
 
 
+def get_display_flags():
+    """
+    Which meeting types to display as flags next to the meeting title in the listing.
+    """
+
+    return getattr(
+        settings,
+        "WAGTAIL_MEETING_GUIDE_DISPLAY_FLAGS",
+        ['Men', 'Women', 'Wheelchair'],
+    )
+
 def get_print_styles():
     """
     Default options for PDF styling.

@@ -13,7 +13,7 @@ node-installed package and picked up by the Meeting Guide build process.
         defaults: {
             title: true,
         },
-        flags: ['X'],
+        flags: [{{ display_flags|safe }}],
         keys: {
             mapbox: '{{ mapbox_key }}',
         },
