@@ -54,6 +54,10 @@ To download the meeting list as a PDF, you must [have wkhtmltopdf installed on y
 You can change the print and style options in your Django settings. The options are a Python dictionary while the styles are a string containing CSS:
 
 ```python
+WAGTAIL_MEETING_GUIDE_DISPLAY_FLAGS = [
+    "Men", "Women", "Wheelchair Access"
+]
+
 WAGTAIL_MEETING_GUIDE_PRINT_OPTIONS = {
     'page-width': '100mm',
     'page-height': '120mm',
