@@ -1,10 +1,10 @@
 # Wagtail Meeting Guide
 
-[Meeting Guide](https://www.aa.org/pages/en_US/meeting-guide) compatible Python package for [the Wagtail CMS](https://wagtail.io) on the [Django web framework](https://www.djangoproject.com).
+A Python package compatible with the [Meeting Guide App](https://www.aa.org/pages/en_US/meeting-guide) for [the Wagtail CMS](https://wagtail.io) on the [Django web framework](https://www.djangoproject.com).
 
 ## Pre-Requisites
 
-Using this package requires both the Wagtail CMS and Django. Wagtail and Django are fantastic for running your website, but require a developer. If you are new, I would recommend going through both the [Django](https://docs.djangoproject.com/en/dev/intro/tutorial01/) and [Wagtail](http://docs.wagtail.io/en/v2.4/getting_started/tutorial.html) tutorials before trying to use this package.
+Using this package requires both the Wagtail CMS and Django. Wagtail and Django are fantastic for running your website, but require a developer. If you are new to Django, I would recommend going through both the [Django](https://docs.djangoproject.com/en/dev/intro/tutorial01/) and [Wagtail](http://docs.wagtail.io/en/latest/getting_started/tutorial.html) tutorials before trying to use this package.
 
 A Google Geocode API key is also required.
 
