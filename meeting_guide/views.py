@@ -31,13 +31,12 @@ class MeetingsBaseView(TemplateView):
 
     def get_meetings(self):
         return (
-            Meeting.objects.live().filter(status=1)
-            .select_related("meeting_location", "group")
-            .prefetch_related(
+            Meeting.objects.live().filter(
+                status__in=(Meeting.ACTIVE, Meeting.SUSPENDED),
+            ).select_related("meeting_location", "group").prefetch_related(
                 "meeting_location__region",
                 # 'types',  # ParentalManyToManyField instead of ManyToManyField causes Django to throw up on this
-            )
-            .order_by("day_of_week", "start_time")
+            ).order_by("day_of_week", "start_time")
         )
 
 
@@ -179,6 +178,11 @@ class MeetingsAPIView(MeetingsBaseView):
         regions = Region.objects.all().prefetch_related("children")
 
         for meeting in meetings:
+            if meeting.status == Meeting.SUSPENDED:
+                meeting_title = f"(SUSPENDED) {meeting.title}"
+            else:
+                meeting_title = meeting.title
+
             district = meeting.district
             if len(district):
                 district = f"D{district}"
@@ -205,7 +209,7 @@ class MeetingsAPIView(MeetingsBaseView):
             meetings_dict.append(
                 {
                     "id": meeting.id,
-                    "name": meeting.title,
+                    "name": meeting_title,
                     "slug": meeting.slug,
                     "notes": meeting.details,
                     "updated": f"{meeting.last_published_at if meeting.last_published_at else datetime.datetime.now():%Y-%m-%d %H:%M:%S}",

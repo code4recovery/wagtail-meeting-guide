@@ -76,7 +76,7 @@ class Location(Page):
         Region,
         related_name="locations",
         on_delete=models.PROTECT,
-        limit_choices_to={'parent__isnull': False},
+        limit_choices_to={"parent__isnull": False},
     )
     formatted_address = models.CharField(
         "Full Address", max_length=255, blank=True, null=True
@@ -89,7 +89,7 @@ class Location(Page):
         null=True,
         blank=True,
         help_text="Details specific to the location, not the meeting. For example, "
-                  "'Located in shopping center behind the bank.'",
+        "'Located in shopping center behind the bank.'",
     )
 
     @cached_property
@@ -182,7 +182,12 @@ class Meeting(Page):
 
     INACTIVE = 0
     ACTIVE = 1
-    STATUS_CHOICES = ((INACTIVE, "Inactive"), (ACTIVE, "Active"))
+    SUSPENDED = 2
+    STATUS_CHOICES = (
+        (ACTIVE, "Active"),
+        (SUSPENDED, "Suspended"),
+        (INACTIVE, "Inactive Permanently"),
+    )
 
     group = models.ForeignKey(
         Group, null=True, blank=True, on_delete=models.SET_NULL, related_name="meetings"
@@ -220,6 +225,7 @@ class Meeting(Page):
     content_panels = Page.content_panels + [
         FieldRowPanel(
             [
+                FieldPanel("status"),
                 FieldPanel("group"),
                 FieldPanel("area"),
                 FieldPanel("district"),
