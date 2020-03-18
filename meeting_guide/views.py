@@ -180,6 +180,8 @@ class MeetingsAPIView(MeetingsBaseView):
         for meeting in meetings:
             if meeting.status == Meeting.SUSPENDED:
                 meeting_title = f"(SUSPENDED) {meeting.title}"
+            elif meeting.status == Meeting.ONLINE_ONLY:
+                meeting_title = f"(ONLINE ONLY) {meeting.title}"
             else:
                 meeting_title = meeting.title
 
@@ -193,13 +195,11 @@ class MeetingsAPIView(MeetingsBaseView):
 
             group_info = f"{district}{gso_number}"
 
-            if meeting.status == Meeting.ONLINE_ONLY:
-                meeting_title = f"(ONLINE ONLY) {meeting.title}"
-            else:
-                location = (
-                    f"{meeting.meeting_location.title}, "
-                    f"{meeting.meeting_location.region.name}"
-                )
+            location = (
+                f"{meeting.meeting_location.title}, "
+                f"{meeting.meeting_location.region.name}"
+            )
+
             if len(group_info):
                 location = f"{location} ({group_info})"
 
