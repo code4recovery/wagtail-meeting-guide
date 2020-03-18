@@ -183,8 +183,10 @@ class Meeting(Page):
     INACTIVE = 0
     ACTIVE = 1
     SUSPENDED = 2
+    ONLINE_ONLY = 3
     STATUS_CHOICES = (
         (ACTIVE, "Active"),
+        (ONLINE_ONLY, "Online Only"),
         (SUSPENDED, "Suspended"),
         (INACTIVE, "Inactive Permanently"),
     )
@@ -209,6 +211,16 @@ class Meeting(Page):
         related_name="meetings",
         limit_choices_to={"intergroup_code__isnull": False},
     )
+    video_conference_url = models.URLField(
+        blank=True, verbose_name="Video conference URL", default=""
+    )
+    video_conference_dial_in = models.CharField(max_length=255, blank=True, default="")
+    payment_venmo = models.CharField(
+        max_length=100, blank=True, verbose_name="Venmo account", default=""
+    )
+    payment_paypal = models.EmailField(
+        blank=True, verbose_name="PayPal account", default=""
+    )
 
     @property
     def day_sort_order(self):
@@ -225,18 +237,34 @@ class Meeting(Page):
     content_panels = Page.content_panels + [
         FieldRowPanel(
             [
-                FieldPanel("status"),
+                FieldPanel("day_of_week"),
+                FieldPanel("start_time"),
+                FieldPanel("end_time"),
+            ]
+        ),
+        FieldRowPanel(
+            [
                 FieldPanel("group"),
+                FieldPanel("status"),
+            ]
+        ),
+        FieldRowPanel(
+            [
                 FieldPanel("area"),
                 FieldPanel("district"),
             ]
         ),
         FieldRowPanel(
             [
-                FieldPanel("day_of_week"),
-                FieldPanel("start_time"),
-                FieldPanel("end_time"),
-            ]
+                FieldPanel("video_conference_url"),
+                FieldPanel("video_conference_dial_in"),
+            ],
+        ),
+        FieldRowPanel(
+            [
+                FieldPanel("payment_venmo"),
+                FieldPanel("payment_paypal"),
+            ],
         ),
         FieldPanel("types", widget=CheckboxSelectMultiple),
         FieldPanel("details"),

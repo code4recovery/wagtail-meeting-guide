@@ -32,7 +32,7 @@ class MeetingsBaseView(TemplateView):
     def get_meetings(self):
         return (
             Meeting.objects.live().filter(
-                status__in=(Meeting.ACTIVE, Meeting.SUSPENDED),
+                status__in=(Meeting.ACTIVE, Meeting.SUSPENDED, Meeting.ONLINE_ONLY),
             ).select_related("meeting_location", "group").prefetch_related(
                 "meeting_location__region",
                 # 'types',  # ParentalManyToManyField instead of ManyToManyField causes Django to throw up on this
@@ -80,7 +80,7 @@ class MeetingsPrintView(TemplateView):
         return (
             Meeting.objects.live().select_related(
                 "meeting_location__region__parent", "group",
-            ).filter(status=1)
+            ).filter(status__gte=1)
             .order_by(
                 "day_of_week",
                 "meeting_location__region__parent__name",
