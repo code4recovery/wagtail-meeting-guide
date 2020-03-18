@@ -193,10 +193,13 @@ class MeetingsAPIView(MeetingsBaseView):
 
             group_info = f"{district}{gso_number}"
 
-            location = (
-                f"{meeting.meeting_location.title}, "
-                f"{meeting.meeting_location.region.name}"
-            )
+            if meeting.status == Meeting.ONLINE_ONLY:
+                meeting_title = f"(ONLINE ONLY) {meeting.title}"
+            else:
+                location = (
+                    f"{meeting.meeting_location.title}, "
+                    f"{meeting.meeting_location.region.name}"
+                )
             if len(group_info):
                 location = f"{location} ({group_info})"
 
@@ -234,6 +237,10 @@ class MeetingsAPIView(MeetingsBaseView):
                     "regions": region_ancestors,
                     "group": group_info,
                     "image": "",
+                    "payment_venmo": meeting.payment_venmo,
+                    "payment_paypal": meeting.payment_paypal,
+                    "video_conference_url": meeting.video_conference_url,
+                    "video_conference_dial_in": meeting.video_conference_dial_in,
                 }
             )
 
