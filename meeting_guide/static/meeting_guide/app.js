@@ -51228,21 +51228,13 @@ function filterMeetingData(state, setAppState) {
       }, {
         timeout: 5000
       });
-    } else {
-      //todo: filter meetings now based on distance
-      console.log(state.meetings);
-      state.meetings.sort(function (a, b) {
-        return a.distance_number - b.distance_number;
-      });
-      console.log(state.meetings);
+    } else {//todo: filter meetings now based on distance
     }
   } //loop through and update or clear distances
 
 
   for (var _i = 0; _i < state.meetings.length; _i++) {
-    var distance_number = Object(_distance__WEBPACK_IMPORTED_MODULE_3__["distanceNumber"])(state.input.center, state.meetings[_i]);
-    state.meetings[_i].distance = Object(_distance__WEBPACK_IMPORTED_MODULE_3__["distance"])(distance_number);
-    state.meetings[_i].distance_number = distance_number;
+    state.meetings[_i].distance = Object(_distance__WEBPACK_IMPORTED_MODULE_3__["default"])(state.input.center, state.meetings[_i]);
   } //do the filtering, if necessary
 
 
@@ -51631,18 +51623,17 @@ function processSearch(search_string) {
 /*!*********************************!*\
   !*** ./src/helpers/distance.js ***!
   \*********************************/
-/*! exports provided: distanceNumber, distance */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "distanceNumber", function() { return distanceNumber; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "distance", function() { return distance; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return distance; });
 /* harmony import */ var _settings__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./settings */ "./src/helpers/settings.js");
  // Calculate the distance as the crow flies between two geometric points
 // Adapted from: https://www.geodatasource.com/developers/javascript
 
-function distanceNumber(a, b) {
+function distance(a, b) {
   if (!a || !b) return null;
 
   if (a.latitude == b.latitude && a.longitude == b.longitude) {
@@ -51658,14 +51649,7 @@ function distanceNumber(a, b) {
     // If using kilometers, do an additional multiplication
 
     if (_settings__WEBPACK_IMPORTED_MODULE_0__["settings"].distance_unit === 'km') dist *= 1.609344;
-    return dist;
-  }
-}
-function distance(a) {
-  if (a) {
-    return a.toFixed(2).toString() + ' ' + _settings__WEBPACK_IMPORTED_MODULE_0__["settings"].distance_unit;
-  } else {
-    return null;
+    return dist.toFixed(2).toString() + ' ' + _settings__WEBPACK_IMPORTED_MODULE_0__["settings"].distance_unit;
   }
 }
 
@@ -51831,7 +51815,6 @@ var settings = deepmerge__WEBPACK_IMPORTED_MODULE_0___default()({
   },
   distance_unit: 'mi',
   // "mi" for miles, "km" for kilometers
-  distances: [1, 2, 5, 10, 25, 50],
   filters: ['region', 'day', 'time', 'type'],
   flags: window.config.flags ? [] : ['Men', 'Women'],
   keys: {
