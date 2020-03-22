@@ -237,10 +237,10 @@ class MeetingsAPIView(MeetingsBaseView):
                     "regions": region_ancestors,
                     "group": group_info,
                     "image": "",
-                    "payment_venmo": meeting.payment_venmo,
-                    "payment_paypal": meeting.payment_paypal,
+                    "venmo": meeting.venmo,
+                    "paypal": meeting.paypal,
                     "video_conference_url": meeting.video_conference_url,
-                    "video_conference_dial_in": meeting.video_conference_dial_in,
+                    "video_conference_phone": meeting.video_conference_phone,
                 }
             )
 

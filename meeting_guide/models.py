@@ -214,11 +214,11 @@ class Meeting(Page):
     video_conference_url = models.URLField(
         blank=True, verbose_name="Video conference URL", default=""
     )
-    video_conference_dial_in = models.CharField(max_length=255, blank=True, default="")
-    payment_venmo = models.CharField(
+    video_conference_phone = models.CharField(max_length=255, blank=True, default="")
+    venmo = models.CharField(
         max_length=100, blank=True, verbose_name="Venmo account", default=""
     )
-    payment_paypal = models.EmailField(
+    paypal = models.EmailField(
         blank=True, verbose_name="PayPal account", default=""
     )
 
@@ -257,13 +257,13 @@ class Meeting(Page):
         FieldRowPanel(
             [
                 FieldPanel("video_conference_url"),
-                FieldPanel("video_conference_dial_in"),
+                FieldPanel("video_conference_phone"),
             ],
         ),
         FieldRowPanel(
             [
-                FieldPanel("payment_venmo"),
-                FieldPanel("payment_paypal"),
+                FieldPanel("venmo"),
+                FieldPanel("paypal"),
             ],
         ),
         FieldPanel("types", widget=CheckboxSelectMultiple),
