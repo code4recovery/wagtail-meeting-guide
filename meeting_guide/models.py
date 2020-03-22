@@ -208,14 +208,20 @@ class Meeting(Page):
         limit_choices_to={"intergroup_code__isnull": False},
     )
     video_conference_url = models.URLField(
-        blank=True, verbose_name="Video conference URL", default=""
+        blank=True, verbose_name="Video conference URL", default="",
+        help_text="Example: https://zoom.com/j/123456789",
     )
-    video_conference_phone = models.CharField(max_length=255, blank=True, default="")
-    venmo = models.CharField(
-        max_length=100, blank=True, verbose_name="Venmo account", default=""
+    video_conference_phone = models.CharField(
+        max_length=255, blank=True, default="",
+        help_text="Example: 215-555-1212 Code: 123 456 789",
     )
-    paypal = models.EmailField(
-        blank=True, verbose_name="PayPal account", default=""
+    venmo = models.URLField(
+        blank=True, verbose_name="Venmo URL", default="",
+        help_text="Example: https://venmo.com/sepia-mygroup",
+    )
+    paypal = models.URLField(
+        blank=True, verbose_name="PayPal URL", default="",
+        help_text="Example: https://paypal.me/sepia-mygroup",
     )
 
     @property
