@@ -182,12 +182,8 @@ class Meeting(Page):
 
     INACTIVE = 0
     ACTIVE = 1
-    SUSPENDED = 2
-    ONLINE_ONLY = 3
     STATUS_CHOICES = (
         (ACTIVE, "Active"),
-        (ONLINE_ONLY, "Online Only"),
-        (SUSPENDED, "Suspended"),
         (INACTIVE, "Inactive Permanently"),
     )
 
