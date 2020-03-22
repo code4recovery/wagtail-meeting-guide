@@ -175,10 +175,8 @@ class MeetingsAPIView(MeetingsBaseView):
         regions = Region.objects.all().prefetch_related("children")
 
         for meeting in meetings:
-            if meeting.status == Meeting.SUSPENDED:
-                meeting_title = f"(SUSPENDED) {meeting.title}"
-            elif meeting.status == Meeting.ONLINE_ONLY:
-                meeting_title = f"(ONLINE ONLY) {meeting.title}"
+            if len(meeting.video_conference_url):
+                meeting_title = f"{meeting.title} (ONLINE)"
             else:
                 meeting_title = meeting.title
 

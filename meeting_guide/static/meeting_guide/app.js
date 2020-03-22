@@ -50675,6 +50675,13 @@ function (_Component) {
           state: this.props.state,
           setAppState: this.props.setAppState
         });
+      } else if (key == 'location' && meeting.video_conference_url) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "location"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          href: meeting.video_conference_url,
+          target: "_blank"
+        }, meeting.video_conference_url), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Phone: ", meeting.video_conference_phone);
       } else if (key == 'time') {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("time", {
           className: "text-nowrap"
@@ -50910,7 +50917,7 @@ function loadMeetingData(meetings, capabilities) {
     type: {}
   }; //filter out unused meetings properties for a leaner memory footprint
 
-  var meeting_properties = ['day', 'end_time', 'flags', 'formatted_address', 'formatted_end_time', 'formatted_time', 'latitude', 'longitude', 'location', 'location_notes', 'name', 'notes', 'region', 'search', 'slug', 'sub_region', 'time', 'types']; //define lookups we'll need later
+  var meeting_properties = ['day', 'end_time', 'flags', 'formatted_address', 'formatted_end_time', 'formatted_time', 'latitude', 'longitude', 'location', 'location_notes', 'name', 'notes', 'region', 'search', 'slug', 'sub_region', 'time', 'types', 'video_conference_url', 'video_conference_phone']; //define lookups we'll need later
 
   var lookup_day = _settings__WEBPACK_IMPORTED_MODULE_0__["settings"].days.map(function (day) {
     return _settings__WEBPACK_IMPORTED_MODULE_0__["strings"][day];
@@ -51666,6 +51673,7 @@ var settings = deepmerge__WEBPACK_IMPORTED_MODULE_0___default()({
         S: 'Español',
         SP: 'Altavoz',
         ST: 'Paso de reunión',
+        TC: 'Cierre Temporal',
         TR: 'Estudio de tradicion',
         T: 'Transgénero',
         X: 'Acceso en silla de ruedas',
