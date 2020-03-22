@@ -101,9 +101,6 @@ class MeetingsPrintView(TemplateView):
             postal_code = m.meeting_location.postal_code
             types = list(m.types.values_list("intergroup_code", flat=True))
 
-            if None in types:
-                print(m.types.values_list("meeting_guide_code", flat=True))
-
             if region not in meeting_dict:
                 meeting_dict[region] = {}
             if day not in meeting_dict[region]:
@@ -115,7 +112,7 @@ class MeetingsPrintView(TemplateView):
                 slice_address, m.meeting_location.formatted_address
             )
 
-            if group_address:
+            if group_address and group_address.group(1):
                 formatted_address = group_address.group(1).split(",")[0]
             else:
                 formatted_address = m.meeting_location.formatted_address
