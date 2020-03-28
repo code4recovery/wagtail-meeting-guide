@@ -180,6 +180,15 @@ class MeetingsAPIView(MeetingsBaseView):
             else:
                 meeting_title = meeting.title
 
+            meeting_types = list(
+                meeting.types.values_list("meeting_guide_code", flat=True)
+            )
+
+            if "TC" in meeting_types:
+                meeting_title = f"(SUSPENDED) {meeting_title}"
+                if len(meeting.video_conference_url):
+                    meeting_types.remove("TC")
+
             district = meeting.district
             if len(district):
                 district = f"D{district}"
@@ -217,9 +226,7 @@ class MeetingsAPIView(MeetingsBaseView):
                     "end_time": f"{meeting.end_time:%H:%M}",
                     "distance": "",
                     "day": str(meeting.day_of_week),
-                    "types": list(
-                        meeting.types.values_list("meeting_guide_code", flat=True)
-                    ),
+                    "types": meeting_types,
                     "location": location,
                     "location_notes": "",
                     "location_url": f"{url}{meeting.meeting_location.url_path}",
