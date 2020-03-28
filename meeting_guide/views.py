@@ -213,12 +213,20 @@ class MeetingsAPIView(MeetingsBaseView):
                 .values_list("name", flat=True)
             )
 
+            notes = meeting.details
+
+            # If a Video Conference URL and Phone exist, prefix the notes with them.
+            if len(meeting.video_conference_phone):
+                notes = f"Video Conference Phone: {meeting.video_conference_phone} {notes}"
+            if len(meeting.video_conference_url):
+                notes = f"Video Conference URL: {meeting.video_conference_url} {notes}"
+
             meetings_dict.append(
                 {
                     "id": meeting.id,
                     "name": meeting_title,
                     "slug": meeting.slug,
-                    "notes": meeting.details,
+                    "notes": notes,
                     "updated": f"{meeting.last_published_at if meeting.last_published_at else datetime.datetime.now():%Y-%m-%d %H:%M:%S}",
                     "location_id": meeting.meeting_location.id,
                     "url": f"{url}{meeting.url_path}",
