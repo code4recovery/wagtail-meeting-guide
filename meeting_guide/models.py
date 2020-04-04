@@ -218,10 +218,11 @@ class Meeting(Page):
         help_text="Example: 215-555-1212 Code: 123 456 789",
     )
     venmo = models.TextField(
-        min_length=6,
         max_length=17,
         validators=[VenmoUsernameValidator()],
-        blank=True, verbose_name="Venmo Account", default="",
+        blank=True,
+        verbose_name="Venmo Account",
+        default="",
         help_text="Example: @aa-tbc",
     )
     paypal = models.URLField(
