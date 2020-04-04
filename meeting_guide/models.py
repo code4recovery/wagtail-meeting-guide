@@ -215,9 +215,10 @@ class Meeting(Page):
         max_length=255, blank=True, default="",
         help_text="Example: 215-555-1212 Code: 123 456 789",
     )
-    venmo = models.URLField(
-        blank=True, verbose_name="Venmo URL", default="",
-        help_text="Example: https://venmo.com/sepia-mygroup",
+    venmo = models.TextField(
+        max_length=17,
+        blank=True, verbose_name="Venmo Account", default="",
+        help_text="Example: @aa-tbc",
     )
     paypal = models.URLField(
         blank=True, verbose_name="PayPal URL", default="",
