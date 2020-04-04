@@ -50623,7 +50623,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames_bind__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames/bind */ "./node_modules/classnames/bind.js");
 /* harmony import */ var classnames_bind__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames_bind__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _helpers_settings__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../helpers/settings */ "./src/helpers/settings.js");
-/* harmony import */ var _link__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./link */ "./src/components/link.jsx");
+/* harmony import */ var _helpers_data__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../helpers/data */ "./src/helpers/data.js");
+/* harmony import */ var _link__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./link */ "./src/components/link.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -50641,6 +50642,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -50670,18 +50672,19 @@ function (_Component) {
         var address = meeting.formatted_address.split(', ');
         return address.length ? address[0] : '';
       } else if (key == 'name' && meeting.slug) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_link__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_link__WEBPACK_IMPORTED_MODULE_4__["default"], {
           meeting: meeting,
           state: this.props.state,
           setAppState: this.props.setAppState
         });
-      } else if (key == 'location' && meeting.video_conference_url) {
+      } else if (key == 'location' && meeting.conference_url) {
+        var conference_domain = Object(_helpers_data__WEBPACK_IMPORTED_MODULE_3__["getDomainName"])(meeting.conference_url);
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "location"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-          href: meeting.video_conference_url,
+          href: meeting.conference_url,
           target: "_blank"
-        }, meeting.video_conference_url), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Phone: ", meeting.video_conference_phone);
+        }, "Join Online with ", conference_domain), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Phone: ", meeting.conference_phone);
       } else if (key == 'time') {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("time", {
           className: "text-nowrap"
@@ -50789,7 +50792,7 @@ function Title(props) {
 /*!*****************************!*\
   !*** ./src/helpers/data.js ***!
   \*****************************/
-/*! exports provided: filterMeetingData, loadMeetingData, translateGoogleSheet */
+/*! exports provided: filterMeetingData, loadMeetingData, translateGoogleSheet, getDomainName */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -50797,6 +50800,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filterMeetingData", function() { return filterMeetingData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadMeetingData", function() { return loadMeetingData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "translateGoogleSheet", function() { return translateGoogleSheet; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDomainName", function() { return getDomainName; });
 /* harmony import */ var _settings__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./settings */ "./src/helpers/settings.js");
 /* harmony import */ var _slugify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./slugify */ "./src/helpers/slugify.js");
 /* harmony import */ var _time__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./time */ "./src/helpers/time.js");
@@ -51227,6 +51231,27 @@ function translateGoogleSheet(data) {
   }
 
   return meetings;
+} // Returns the host name only for a full URL 
+
+function getDomainName(url) {
+  // Example input: url = "https://zoom.us/j/1234123498?pwd=23a23ofnuao32irufnio23ufa2"
+  // Example output: "zoom.us"
+  if (!url.length) {
+    return "";
+  }
+
+  var hostname;
+
+  if (url.indexOf("//") > -1) {
+    hostname = url.split('/')[2];
+  } else {
+    hostname = url.split('/')[0];
+  } // Remove port numbers & query strings
+
+
+  hostname = hostname.split(':')[0];
+  hostname = hostname.split('?')[0];
+  return hostname;
 } // converts a search string into pipe delimited format. Example:
 // input: "west chester" malvern devon "center city west"
 // output: west chester|malvern|devon|center city west

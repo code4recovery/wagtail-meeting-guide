@@ -217,9 +217,9 @@ class MeetingsAPIView(MeetingsBaseView):
 
             # If a Video Conference URL and Phone exist, prefix the notes with them.
             if len(meeting.video_conference_phone):
-                notes = f"Video Conference Phone: {meeting.video_conference_phone} {notes}"
+                notes = f"Conference Phone: {meeting.video_conference_phone} {notes}"
             if len(meeting.video_conference_url):
-                notes = f"Video Conference URL: {meeting.video_conference_url} {notes}"
+                notes = f"Conference URL: {meeting.video_conference_url} {notes}"
 
             meetings_dict.append(
                 {
@@ -249,8 +249,8 @@ class MeetingsAPIView(MeetingsBaseView):
                     "image": "",
                     "venmo": meeting.venmo,
                     "paypal": meeting.paypal,
-                    "video_conference_url": meeting.video_conference_url,
-                    "video_conference_phone": meeting.video_conference_phone,
+                    "conference_url": meeting.video_conference_url,
+                    "conference_phone": meeting.video_conference_phone,
                 }
             )
 
