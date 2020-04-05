@@ -215,12 +215,6 @@ class MeetingsAPIView(MeetingsBaseView):
 
             notes = meeting.details
 
-            # If a Video Conference URL and Phone exist, prefix the notes with them.
-            if len(meeting.video_conference_phone):
-                notes = f"Conference Phone: {meeting.video_conference_phone} {notes}"
-            if len(meeting.video_conference_url):
-                notes = f"Conference URL: {meeting.video_conference_url} {notes}"
-
             meetings_dict.append(
                 {
                     "id": meeting.id,
