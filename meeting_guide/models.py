@@ -218,7 +218,7 @@ class Meeting(Page):
         help_text="Example: 215-555-1212 Code: 123 456 789",
     )
     venmo = models.TextField(
-        max_length=17,
+        max_length=31,  # Venmo's max username length is 31 chars with the "@" prefix
         validators=[VenmoUsernameValidator()],
         blank=True,
         verbose_name="Venmo Account",
