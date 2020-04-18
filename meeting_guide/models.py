@@ -12,6 +12,8 @@ from wagtail.search.index import SearchField
 from wagtailgeowidget.edit_handlers import GeoPanel
 from wagtailgeowidget.helpers import geosgeometry_str_to_struct
 
+from .validators import VenmoUsernameValidator
+
 
 class Region(MPTTModel):
     """
@@ -215,9 +217,13 @@ class Meeting(Page):
         max_length=255, blank=True, default="",
         help_text="Example: 215-555-1212 Code: 123 456 789",
     )
-    venmo = models.URLField(
-        blank=True, verbose_name="Venmo URL", default="",
-        help_text="Example: https://venmo.com/sepia-mygroup",
+    venmo = models.TextField(
+        max_length=31,  # Venmo's max username length is 31 chars with the "@" prefix
+        validators=[VenmoUsernameValidator()],
+        blank=True,
+        verbose_name="Venmo Account",
+        default="",
+        help_text="Example: @aa-tbc",
     )
     paypal = models.URLField(
         blank=True, verbose_name="PayPal URL", default="",

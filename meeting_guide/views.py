@@ -180,6 +180,15 @@ class MeetingsAPIView(MeetingsBaseView):
             else:
                 meeting_title = meeting.title
 
+            meeting_types = list(
+                meeting.types.values_list("meeting_guide_code", flat=True)
+            )
+
+            if "TC" in meeting_types:
+                meeting_title = f"(SUSPENDED) {meeting_title}"
+                if len(meeting.video_conference_url):
+                    meeting_types.remove("TC")
+
             district = meeting.district
             if len(district):
                 district = f"D{district}"
@@ -204,12 +213,14 @@ class MeetingsAPIView(MeetingsBaseView):
                 .values_list("name", flat=True)
             )
 
+            notes = meeting.details
+
             meetings_dict.append(
                 {
                     "id": meeting.id,
                     "name": meeting_title,
                     "slug": meeting.slug,
-                    "notes": meeting.details,
+                    "notes": notes,
                     "updated": f"{meeting.last_published_at if meeting.last_published_at else datetime.datetime.now():%Y-%m-%d %H:%M:%S}",
                     "location_id": meeting.meeting_location.id,
                     "url": f"{url}{meeting.url_path}",
@@ -217,9 +228,7 @@ class MeetingsAPIView(MeetingsBaseView):
                     "end_time": f"{meeting.end_time:%H:%M}",
                     "distance": "",
                     "day": str(meeting.day_of_week),
-                    "types": list(
-                        meeting.types.values_list("meeting_guide_code", flat=True)
-                    ),
+                    "types": meeting_types,
                     "location": location,
                     "location_notes": "",
                     "location_url": f"{url}{meeting.meeting_location.url_path}",
@@ -234,8 +243,8 @@ class MeetingsAPIView(MeetingsBaseView):
                     "image": "",
                     "venmo": meeting.venmo,
                     "paypal": meeting.paypal,
-                    "video_conference_url": meeting.video_conference_url,
-                    "video_conference_phone": meeting.video_conference_phone,
+                    "conference_url": meeting.video_conference_url,
+                    "conference_phone": meeting.video_conference_phone,
                 }
             )
 
