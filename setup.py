@@ -17,7 +17,7 @@ setup(
     setup_requires=["setuptools_scm"],
     use_scm_version=True,
     install_requires=[
-        "wagtail>=2.8",
+        "wagtail>=2.8,<2.9",
         "wagtailgeowidget<=5.1",
         "django-mptt<=0.11.0",
         "django-weasyprint<=0.6",
