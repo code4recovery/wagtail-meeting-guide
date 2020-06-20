@@ -9,7 +9,7 @@ def get_display_flags():
     return getattr(
         settings,
         "WAGTAIL_MEETING_GUIDE_DISPLAY_FLAGS",
-        ["Men", "Women", "Wheelchair", "TempClosed"],
+        ["Men", "Women", "Wheelchair", "Temporary Closure"],
     )
 
 
