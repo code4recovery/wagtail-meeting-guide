@@ -184,10 +184,12 @@ class MeetingsAPIView(MeetingsBaseView):
                 meeting.types.values_list("meeting_guide_code", flat=True)
             )
 
+            """
             if "TC" in meeting_types:
                 meeting_title = f"(SUSPENDED) {meeting_title}"
                 if len(meeting.video_conference_url):
                     meeting_types.remove("TC")
+            """
 
             district = meeting.district
             if len(district):
