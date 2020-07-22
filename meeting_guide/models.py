@@ -1,5 +1,6 @@
 import datetime
 
+from django.core.validators import MinLengthValidator
 from django.db import models
 from django.forms import CheckboxSelectMultiple
 from django.utils.functional import cached_property
@@ -12,7 +13,11 @@ from wagtail.search.index import SearchField
 from wagtailgeowidget.edit_handlers import GeoPanel
 from wagtailgeowidget.helpers import geosgeometry_str_to_struct
 
-from .validators import VenmoUsernameValidator
+from .validators import (
+    ConferencePhoneValidator,
+    PayPalUsernameValidator,
+    VenmoUsernameValidator,
+)
 
 
 class Region(MPTTModel):
@@ -216,7 +221,12 @@ class Meeting(Page):
     )
     conference_phone = models.CharField(
         max_length=255, blank=True, default="",
-        help_text="Example: 215-555-1212 Code: 123 456 789",
+        validators=[ConferencePhoneValidator()],
+        help_text=(
+            "Enter a valid conference phone number. The three groups of numbers in "
+            "this example are a Zoom phone number, meeting code, and password: "
+            "+19294362866,,2151234215#,,#,,12341234#",
+        )
     )
     venmo = models.TextField(
         max_length=31,  # Venmo's max username length is 31 chars with the "@" prefix
@@ -230,8 +240,8 @@ class Meeting(Page):
         blank=True,
         verbose_name="PayPal Username",
         default="",
-        min_length=8,
         max_length=255,
+        validators=[PayPalUsernameValidator(), MinLengthValidator(8)],
         help_text="Example: sepia-mygroup",
     )
 
