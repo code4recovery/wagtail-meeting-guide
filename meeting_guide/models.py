@@ -138,7 +138,8 @@ class Location(Page):
 
 class MeetingType(models.Model):
     """
-    Model for storing different types of meetings.
+    Model for storing different types of meetings. Initially populating with data from:
+    https://github.com/code4recovery/spec
     """
 
     type_name = models.CharField(max_length=191)
@@ -225,9 +226,13 @@ class Meeting(Page):
         default="",
         help_text="Example: @aa-tbc",
     )
-    paypal = models.URLField(
-        blank=True, verbose_name="PayPal URL", default="",
-        help_text="Example: https://paypal.me/sepia-mygroup",
+    paypal = models.TextField(
+        blank=True,
+        verbose_name="PayPal Username",
+        default="",
+        min_length=8,
+        max_length=255,
+        help_text="Example: sepia-mygroup",
     )
 
     @property

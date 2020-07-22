@@ -208,7 +208,7 @@ class MeetingsAPIView(MeetingsBaseView):
             meetings_dict.append(
                 {
                     "id": meeting.id,
-                    "name": meeting_title,
+                    "name": meeting.title,
                     "slug": meeting.slug,
                     "notes": notes,
                     "updated": f"{meeting.last_published_at if meeting.last_published_at else datetime.datetime.now():%Y-%m-%d %H:%M:%S}",
