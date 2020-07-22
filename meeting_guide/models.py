@@ -14,6 +14,7 @@ from wagtailgeowidget.edit_handlers import GeoPanel
 from wagtailgeowidget.helpers import geosgeometry_str_to_struct
 
 from .validators import (
+    CashAppUsernameValidator,
     ConferencePhoneValidator,
     PayPalUsernameValidator,
     VenmoUsernameValidator,
@@ -234,7 +235,7 @@ class Meeting(Page):
         blank=True,
         verbose_name="Venmo Account",
         default="",
-        help_text="Example: @aa-tbc",
+        help_text="Example: @aa-mygroup",
     )
     paypal = models.TextField(
         blank=True,
@@ -242,7 +243,15 @@ class Meeting(Page):
         default="",
         max_length=255,
         validators=[PayPalUsernameValidator(), MinLengthValidator(8)],
-        help_text="Example: sepia-mygroup",
+        help_text="Example: aamygroup",
+    )
+    cashapp = models.TextField(
+        max_length=31,  # Venmo's max username length is 31 chars with the "@" prefix
+        validators=[CashAppUsernameValidator()],
+        blank=True,
+        verbose_name="CashApp Account",
+        default="",
+        help_text="Example: $aa-mygroup",
     )
 
     @property

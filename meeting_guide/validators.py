@@ -4,6 +4,21 @@ from django.utils.translation import gettext_lazy as _
 
 
 @deconstructible
+class CashAppUsernameValidator(validators.RegexValidator):
+    """
+    Validator for CashApp usernames (from Square).
+    - Must start with "$"
+    - Only ASCII alphanumeric characters, hyphens, and underscores are supported.
+    """
+    regex = r"^\$[a-zA-Z0-9_-]+$"
+    message = _(
+        "Enter a valid CashApp username. Must start with '$', and can contain "
+        "letters, numbers, '-', and '_'."
+    )
+    flags = 0
+
+
+@deconstructible
 class ConferencePhoneValidator(validators.RegexValidator):
     """
     Only allow valid characters for conference phone numbers.
