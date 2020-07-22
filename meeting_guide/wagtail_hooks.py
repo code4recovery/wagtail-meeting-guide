@@ -65,7 +65,7 @@ class MeetingTypeAdmin(ModelAdmin):
     list_display = (
         "type_name",
         "intergroup_code",
-        "meeting_guide_code",
+        "spec_code",
         "display_order",
     )
     ordering = ("display_order", "type_name")

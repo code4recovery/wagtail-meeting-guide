@@ -143,7 +143,7 @@ class MeetingType(models.Model):
 
     type_name = models.CharField(max_length=191)
     intergroup_code = models.CharField(max_length=5, null=True, blank=True)
-    meeting_guide_code = models.CharField(max_length=5, null=True, blank=True)
+    spec_code = models.CharField(max_length=5, null=True, blank=True)
     display_order = models.PositiveSmallIntegerField(default=100)
 
     class Meta:
@@ -151,12 +151,12 @@ class MeetingType(models.Model):
         indexes = [
             models.Index(fields=["type_name"]),
             models.Index(fields=["intergroup_code"]),
-            models.Index(fields=["meeting_guide_code"]),
+            models.Index(fields=["spec_code"]),
         ]
 
     def __str__(self):
         return "{0} ({1} / {2})".format(
-            self.type_name, self.intergroup_code, self.meeting_guide_code
+            self.type_name, self.intergroup_code, self.spec_code
         )
 
 
@@ -209,11 +209,11 @@ class Meeting(Page):
         related_name="meetings",
         limit_choices_to={"intergroup_code__isnull": False},
     )
-    video_conference_url = models.URLField(
+    conference_url = models.URLField(
         blank=True, verbose_name="Video conference URL", default="",
         help_text="Example: https://zoom.com/j/123456789",
     )
-    video_conference_phone = models.CharField(
+    conference_phone = models.CharField(
         max_length=255, blank=True, default="",
         help_text="Example: 215-555-1212 Code: 123 456 789",
     )
@@ -264,8 +264,8 @@ class Meeting(Page):
         ),
         FieldRowPanel(
             [
-                FieldPanel("video_conference_url"),
-                FieldPanel("video_conference_phone"),
+                FieldPanel("conference_url"),
+                FieldPanel("conference_phone"),
             ],
         ),
         FieldRowPanel(
@@ -292,8 +292,24 @@ class Meeting(Page):
         ]
 
     def save(self, *args, **kwargs):
+        """
+        Associate the meeting with the Location parent and save. Then
+        automatically assign the ONLINE meeting type if the field is
+        populated.
+        """
+        # Associate with the parent meeting location, and save in case this
+        # is new, before we change meeting types.
         self.meeting_location = Location.objects.get(pk=self.get_parent().id)
-        super(Meeting, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
+
+        # Automagically add or remove the online meeting type.
+        online_meeting_type = MeetingType.objects.get(spec_code="ONL")
+        if self.conference_url:
+            self.types.add(online_meeting_type)
+        else:
+            self.types.remove(online_meeting_type)
+
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return "{0} ({1}): {2} @ {3}".format(

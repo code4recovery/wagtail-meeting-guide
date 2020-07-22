@@ -175,21 +175,9 @@ class MeetingsAPIView(MeetingsBaseView):
         regions = Region.objects.all().prefetch_related("children")
 
         for meeting in meetings:
-            if len(meeting.video_conference_url):
-                meeting_title = f"{meeting.title} (ONLINE)"
-            else:
-                meeting_title = meeting.title
-
             meeting_types = list(
-                meeting.types.values_list("meeting_guide_code", flat=True)
+                meeting.types.values_list("spec_code", flat=True)
             )
-
-            """
-            if "TC" in meeting_types:
-                meeting_title = f"(SUSPENDED) {meeting_title}"
-                if len(meeting.video_conference_url):
-                    meeting_types.remove("TC")
-            """
 
             district = meeting.district
             if len(district):
@@ -245,8 +233,8 @@ class MeetingsAPIView(MeetingsBaseView):
                     "image": "",
                     "venmo": meeting.venmo,
                     "paypal": meeting.paypal,
-                    "conference_url": meeting.video_conference_url,
-                    "conference_phone": meeting.video_conference_phone,
+                    "conference_url": meeting.conference_url,
+                    "conference_phone": meeting.conference_phone,
                 }
             )
 
