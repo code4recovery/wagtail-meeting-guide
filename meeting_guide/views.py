@@ -49,9 +49,8 @@ class MeetingsReactJSView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context[
-            "mapbox_key"
-        ] = "pk.eyJ1IjoiZmxpcHBlcnBhIiwiYSI6ImNqcHZhbjZwdDBldDA0MXBveTlrZG9uaGIifQ.WpB5eRUcUnQh0-P_CX3nKg"  # noqa
+        context["mapbox_key"] = "pk.eyJ1IjoiZmxpcHBlcnBhIiwiYSI6ImNqcHZhbjZwdDBldDA0" \
+                                "MXBveTlrZG9uaGIifQ.WpB5eRUcUnQh0-P_CX3nKg"
         return context
 
 
