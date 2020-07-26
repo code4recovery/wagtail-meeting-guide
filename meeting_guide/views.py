@@ -213,10 +213,12 @@ class MeetingsAPIView(MeetingsBaseView):
                     "updated": f"{meeting.last_published_at if meeting.last_published_at else datetime.datetime.now():%Y-%m-%d %H:%M:%S}",
                     "location_id": meeting.meeting_location.id,
                     "url": f"{url}{meeting.url_path}",
+                    "day": str(meeting.day_of_week),
                     "time": f"{meeting.start_time:%H:%M}",
                     "end_time": f"{meeting.end_time:%H:%M}",
-                    "distance": "",
-                    "day": str(meeting.day_of_week),
+                    # time_formatted?
+                    "conference_url": meeting.conference_url,
+                    "conference_phone": meeting.conference_phone,
                     "types": meeting_types,
                     "location": location,
                     "location_notes": "",
@@ -226,11 +228,8 @@ class MeetingsAPIView(MeetingsBaseView):
                     "longitude": str(meeting.meeting_location.lng),
                     "regions": region_ancestors,
                     "group": group_info,
-                    "image": "",
-                    "venmo": meeting.venmo,
                     "paypal": meeting.paypal,
-                    "conference_url": meeting.conference_url,
-                    "conference_phone": meeting.conference_phone,
+                    "venmo": meeting.venmo,
                 }
             )
 
