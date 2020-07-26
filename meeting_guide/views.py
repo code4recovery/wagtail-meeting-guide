@@ -224,9 +224,6 @@ class MeetingsAPIView(MeetingsBaseView):
                     "formatted_address": meeting.meeting_location.formatted_address,
                     "latitude": str(meeting.meeting_location.lat),
                     "longitude": str(meeting.meeting_location.lng),
-                    "region_id": meeting.meeting_location.region.id,
-                    # "region": f"{meeting.meeting_location.region.parent.name}: {meeting.meeting_location.region.name}",
-                    "region": f"{meeting.meeting_location.region.parent.name}",  # Let's try with just parent region
                     "regions": region_ancestors,
                     "group": group_info,
                     "image": "",
