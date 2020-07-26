@@ -6,10 +6,12 @@ def get_display_flags():
     Which meeting types to display as flags next to the meeting title in the listing.
     """
 
+    # Check these values to see if they need to be over-ridden in the JS settings:
+    # meeting_guide/templates/meeting_guide/tags/meeting_guide.html
     return getattr(
         settings,
         "WAGTAIL_MEETING_GUIDE_DISPLAY_FLAGS",
-        ["Men", "Women", "Wheelchair", "Location Temporarily Closed"],
+        ["Men", "Women", "Wheelchair", "Temp Closed"],
     )
 
 
