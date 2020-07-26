@@ -217,17 +217,20 @@ class Meeting(Page):
         limit_choices_to={"intergroup_code__isnull": False},
     )
     conference_url = models.URLField(
-        blank=True, verbose_name="Video conference URL", default="",
-        help_text="Example: https://zoom.com/j/123456789",
+        blank=True,
+        verbose_name="Conference URL",
+        default="",
+        help_text="Example: " \
+            "https://zoom.com/j/123456789?pwd=ExzUZMeT091pRU0Omc2QWjErUUUpxS1B",
     )
     conference_phone = models.CharField(
-        max_length=255, blank=True, default="",
+        max_length=255,
+        blank=True,
+        default="",
         validators=[ConferencePhoneValidator()],
-        help_text=(
-            "Enter a valid conference phone number. The three groups of numbers in "
-            "this example are a Zoom phone number, meeting code, and password: "
-            "+19294362866,,2151234215#,,#,,12341234#",
-        )
+        help_text="Enter a valid conference phone number. The three groups of " \
+            "numbers in this example are a Zoom phone number, meeting code, and " \
+            "password: +19294362866,,2151234215#,,#,,12341234#",
     )
     venmo = models.TextField(
         max_length=31,  # Venmo's max username length is 31 chars with the "@" prefix
@@ -242,7 +245,7 @@ class Meeting(Page):
         verbose_name="PayPal Username",
         default="",
         max_length=255,
-        validators=[PayPalUsernameValidator(), MinLengthValidator(8)],
+        validators=[PayPalUsernameValidator(), MinLengthValidator(3)],
         help_text="Example: aamygroup",
     )
     cashapp = models.TextField(
@@ -272,30 +275,30 @@ class Meeting(Page):
                 FieldPanel("day_of_week"),
                 FieldPanel("start_time"),
                 FieldPanel("end_time"),
-            ]
+            ],
         ),
         FieldRowPanel(
             [
                 FieldPanel("group"),
                 FieldPanel("status"),
-            ]
+            ],
         ),
         FieldRowPanel(
             [
                 FieldPanel("area"),
                 FieldPanel("district"),
-            ]
-        ),
-        FieldRowPanel(
-            [
-                FieldPanel("conference_url"),
-                FieldPanel("conference_phone"),
             ],
         ),
         FieldRowPanel(
             [
                 FieldPanel("venmo"),
                 FieldPanel("paypal"),
+            ],
+        ),
+        FieldRowPanel(
+            [
+                FieldPanel("conference_url"),
+                FieldPanel("conference_phone"),
             ],
         ),
         FieldPanel("types", widget=CheckboxSelectMultiple),
