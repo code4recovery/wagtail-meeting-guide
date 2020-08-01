@@ -165,8 +165,6 @@ class MeetingsAPIView(MeetingsBaseView):
     """
 
     def get(self, request, *args, **kwargs):
-        url = f"""{request.META["wsgi.url_scheme"]}://{request.META["SERVER_NAME"]}"""
-
         meetings = self.get_meetings()
         meetings_dict = []
 
@@ -206,34 +204,30 @@ class MeetingsAPIView(MeetingsBaseView):
 
             meetings_dict.append(
                 {
-                    "id": meeting.id,
+                    # "id": meeting.id,
                     "name": meeting.title,
                     "slug": meeting.slug,
                     "notes": notes,
                     "updated": f"{meeting.last_published_at if meeting.last_published_at else datetime.datetime.now():%Y-%m-%d %H:%M:%S}",
-                    "location_id": meeting.meeting_location.id,
-                    "url": f"{url}{meeting.url_path}",
+                    # "location_id": meeting.meeting_location.id,
+                    "url": f"{settings.BASE_URL}{meeting.url_path}",
+                    "day": str(meeting.day_of_week),
                     "time": f"{meeting.start_time:%H:%M}",
                     "end_time": f"{meeting.end_time:%H:%M}",
-                    "distance": "",
-                    "day": str(meeting.day_of_week),
+                    # time_formatted?
+                    "conference_url": meeting.conference_url,
+                    "conference_phone": meeting.conference_phone,
                     "types": meeting_types,
                     "location": location,
                     "location_notes": "",
-                    "location_url": f"{url}{meeting.meeting_location.url_path}",
+                    "location_url": f"{settings.BASE_URL}{meeting.meeting_location.url_path}",
                     "formatted_address": meeting.meeting_location.formatted_address,
                     "latitude": str(meeting.meeting_location.lat),
                     "longitude": str(meeting.meeting_location.lng),
-                    "region_id": meeting.meeting_location.region.id,
-                    # "region": f"{meeting.meeting_location.region.parent.name}: {meeting.meeting_location.region.name}",
-                    "region": f"{meeting.meeting_location.region.parent.name}",  # Let's try with just parent region
                     "regions": region_ancestors,
                     "group": group_info,
-                    "image": "",
-                    "venmo": meeting.venmo,
                     "paypal": meeting.paypal,
-                    "conference_url": meeting.conference_url,
-                    "conference_phone": meeting.conference_phone,
+                    "venmo": meeting.venmo,
                 }
             )
 
