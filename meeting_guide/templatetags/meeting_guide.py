@@ -16,5 +16,5 @@ def meeting_guide(context):
             [f"'{x}'" for x in get_display_flags()]
         ),
     }
-    print(settings)
+
     return settings
