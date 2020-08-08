@@ -176,17 +176,16 @@ class MeetingsAPIView(MeetingsBaseView):
                 meeting.types.values_list("spec_code", flat=True)
             )
 
-            district = meeting.district
-            if len(district):
-                location = f"{meeting.meeting_location.title} (D{district})"
+            group_info = ""
+            if len(meeting.district):
+                location = f"{meeting.meeting_location.title} (D{meeting.district})"
+                group_info = f"D{meeting.district}"
             else:
                 location = meeting.meeting_location.title
 
             gso_number = getattr(meeting.group, "gso_number", "")
             if len(gso_number):
-                gso_number = f" / GSO #{gso_number}"
-
-            group_info = f"{district}{gso_number}"
+                group_info += f" / GSO #{gso_number}"
 
             region_ancestors = list(
                 regions.get(id=meeting.meeting_location.region.id)
