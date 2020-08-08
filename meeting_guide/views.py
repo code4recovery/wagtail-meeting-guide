@@ -178,18 +178,14 @@ class MeetingsAPIView(MeetingsBaseView):
 
             district = meeting.district
             if len(district):
-                district = f"D{district}"
+                district = f" (D{district})"
+            location = f"{meeting.meeting_location.title}{district}"
 
             gso_number = getattr(meeting.group, "gso_number", "")
             if len(gso_number):
                 gso_number = f" / GSO #{gso_number}"
 
             group_info = f"{district}{gso_number}"
-
-            location = (
-                f"{meeting.meeting_location.title}, "
-                f"{meeting.meeting_location.region.name}"
-            )
 
             if len(group_info):
                 location = f"{location} ({group_info})"
