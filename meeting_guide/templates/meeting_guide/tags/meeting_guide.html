@@ -9,7 +9,7 @@ node-installed package and picked up by the Meeting Guide build process.
 
 <meetings src="{% url "meeting-guide:api" %}"></meetings>
 <script>
-    window.config = {
+    var tsml_react_config = {
         defaults: {
             title: true,
         },
@@ -17,6 +17,9 @@ node-installed package and picked up by the Meeting Guide build process.
         keys: {
             mapbox: '{{ mapbox_key }}',
         },
+	show: {
+	    listButtons: true,
+	},
         strings: {
             en: {
                 types: {
