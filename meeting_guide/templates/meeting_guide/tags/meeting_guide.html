@@ -1,11 +1,4 @@
 {% load static %}
-{% comment %}
-FIXME: This is a temp workaround to get zoom in and out icons appearing
-until mapbox-gl.css fixes their stylesheet; it should be included in the
-node-installed package and picked up by the Meeting Guide build process.
-{% endcomment %}
-<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.32.1/mapbox-gl.css' rel='stylesheet' />
-{# END FIXME #}
 
 <meetings src="{% url "meeting-guide:api" %}"></meetings>
 <script>
@@ -14,12 +7,12 @@ node-installed package and picked up by the Meeting Guide build process.
             title: true,
         },
         flags: [{{ display_flags|safe }}],
-        keys: {
-            mapbox: '{{ mapbox_key }}',
+        map: {
+            key: '{{ mapbox_key }}',
         },
-	show: {
-	    listButtons: true,
-	},
+        show: {
+            listButtons: true,
+        },
         strings: {
             en: {
                 types: {
