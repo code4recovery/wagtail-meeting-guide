@@ -1,0 +1,4 @@
+{% extends "wagtailadmin/pages/listing/_page_title_move.html" %}
+
+{% block pages_listing_link_title_extra %}{% if page.specific.formatted_address %} ({{ page.specific.formatted_address }}){% endif %}{% endblock pages_listing_link_title_extra %}
+{% block pages_listing_title_extra %}{% if page.specific.formatted_address %} ({{ page.specific.formatted_address }}){% endif %}{% endblock pages_listing_title_extra %}
