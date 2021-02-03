@@ -1,18 +1,22 @@
 from django.conf import settings
 
 
-def get_display_flags():
+def get_meeting_guide_settings():
     """
-    Which meeting types to display as flags next to the meeting title in the listing.
+    Define default settings and allow them to be overridden.
     """
+    meeting_guide_settings = {
+        "defaults": {
+            "title": True,
+        },
+        "show": {
+            "listButtons": True,
+        },      
+    }
 
-    # Check these values to see if they need to be over-ridden in the JS settings:
-    # meeting_guide/templates/meeting_guide/tags/meeting_guide.html
-    return getattr(
-        settings,
-        "WAGTAIL_MEETING_GUIDE_DISPLAY_FLAGS",
-        ["Men", "Women", "Wheelchair", "Temp Closed"],
-    )
+    meeting_guide_settings.update(settings.MEETING_GUIDE)
+
+    return meeting_guide_settings
 
 
 def get_print_styles():

@@ -1,6 +1,8 @@
+from json import dumps as json_dumps
+
 from django import template
 
-from meeting_guide.settings import get_display_flags
+from meeting_guide.settings import get_meeting_guide_settings
 
 register = template.Library()
 
@@ -10,11 +12,8 @@ def meeting_guide(context):
     """
     Display the ReactJS drive Meeting Guide list.
     """
-    settings = {
-        "mapbox_key": context["mapbox_key"],
-        "display_flags": ", ".join(
-            [f"'{x}'" for x in get_display_flags()]
-        ),
-    }
+    meeting_guide_settings = json_dumps(get_meeting_guide_settings())
 
-    return settings
+    return {
+        "meeting_guide_settings": meeting_guide_settings,
+    }

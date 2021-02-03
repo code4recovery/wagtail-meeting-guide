@@ -1,28 +1,9 @@
 {% load static %}
 
 <meetings src="{% url "meeting-guide:api" %}"></meetings>
+
 <script>
-    var tsml_react_config = {
-        defaults: {
-            title: true,
-        },
-        flags: [{{ display_flags|safe }}],
-        map: {
-            key: '{{ mapbox_key }}',
-        },
-        search: 'quoted',
-        show: {
-            listButtons: true,
-        },
-        strings: {
-            en: {
-                types: {
-                    TC: 'Temp Closed',
-                    X: 'Wheelchair',
-                },
-            },
-        },
-    };
+var tsml_react_config = {{ meeting_guide_settings|safe }};
 </script>
 {% comment %}
 Let's keep a local copy of the JavaScript here so we can control

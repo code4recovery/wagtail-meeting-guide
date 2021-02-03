@@ -11,7 +11,7 @@ from django.views.generic import TemplateView
 from django_weasyprint import WeasyTemplateResponseMixin
 
 from .models import Meeting, MeetingType, Region
-from .utils import get_region_tree
+from .settings import get_meeting_guide_settings
 
 
 @method_decorator(
@@ -49,8 +49,8 @@ class MeetingsReactJSView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["mapbox_key"] = "pk.eyJ1IjoiZmxpcHBlcnBhIiwiYSI6ImNqcHZhbjZwdDBldDA0" \
-                                "MXBveTlrZG9uaGIifQ.WpB5eRUcUnQh0-P_CX3nKg"
+        context["settings"] = json.dumps(get_meeting_guide_settings())
+
         return context
 
 
