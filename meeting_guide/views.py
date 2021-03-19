@@ -183,8 +183,8 @@ class MeetingsAPIView(MeetingsBaseView):
             else:
                 location = meeting.meeting_location.title
 
-            gso_number = getattr(meeting.group, "gso_number", "")
-            if len(gso_number):
+            gso_number = getattr(meeting.group, "gso_number", None)
+            if gso_number and len(gso_number):
                 group_info += f" / GSO #{gso_number}"
 
             region_ancestors = list(
