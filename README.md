@@ -6,14 +6,15 @@ A Python package compatible with the [Meeting Guide App](https://www.aa.org/page
 
 Using this package requires both the Wagtail CMS and Django. Wagtail and Django are fantastic for running your website, but require a developer. If you are new to Django, I would recommend going through both the [Django](https://docs.djangoproject.com/en/dev/intro/tutorial01/) and [Wagtail](http://docs.wagtail.io/en/latest/getting_started/tutorial.html) tutorials before trying to use this package.
 
-A Google Geocode API key is also required.
+A Google Geocode API key and MapBox API key are also required. The Google API key is only used in the content management system (typically by administrators), so the free tier should be fine to use.
 
 ## Installation to Your Django Project
 
 * Install with the command `pip install wagtail-meeting-guide`
 * Add `meeting_guide`, `mptt`, and `wagtailgeowidget` to your `INSTALLED_APPS`.
-* Add the following settings, including your Google Geocode API key:
-
+* Add the following settings:
+    * `WAGTAIL_SITE_NAME` (MyCity Intergroup): the name of your website, typically the intergroup.
+    * `BASE_URL` (https://AAMyCity.org): the base URL or the website.
 * Run migrations: `python manage.py migrate meeting_guide`
 * Load Meeting Guide's meeting types: `python manage.py loaddata meeting_guide_types.json`
 
@@ -47,12 +48,21 @@ You can include the Meeting Guide within any Django Template. Here is an example
 {% endblock content %}
 ```
 
-## Settings
+## More Settings
 
 Modify the `MEETING_GUIDE` setting in Django's settings to change the defaults from those in pass along values in [https://github.com/code4recovery/tsml-ui#advanced-customization](tsml-ui), for example:
 
 ```python
+# Google Maps, Used by the Wagtail Content Management System
+GOOGLE_MAPS_V3_APIKEY = "AIzaSyCFYHEYHUoPMBJc2eO1YbRqjBafhI3Kr3g"
+GOOGLE_MAPS_API_BOUNDS = "39.732679,-77.821655|41.553879,-73.896790"
+GEO_WIDGET_DEFAULT_LOCATION = {"lat": 40.0024137, "lng": -75.258117}
+GEO_WIDGET_ZOOM = 14
+
+# Key for MapBox, used by the front end served to users.
 MAPBOX_KEY = "YourMaxBoxKeyGoesHere"  # noqa
+
+# Example of sending settings to tsml-ui
 MEETING_GUIDE = {
     "flags": ["Men", "Women", "Wheelchair", "Temp Closed"],
     "map": {
@@ -71,7 +81,6 @@ MEETING_GUIDE = {
         },
     },
 }
-
 
 ## Downloading Meetings as a PDF
 
