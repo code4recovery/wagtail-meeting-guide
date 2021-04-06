@@ -219,7 +219,7 @@ class MeetingsAPIView(MeetingsBaseView):
                     "longitude": str(meeting.meeting_location.lng),
                     "regions": region_ancestors,
                     "group": group_info,
-                    "paypal": meeting.paypal,
+                    "paypal": f"https://paypal.me/{meeting.paypal}" if len(meeting.paypal) else "",
                     "venmo": meeting.venmo,
                 }
             )
