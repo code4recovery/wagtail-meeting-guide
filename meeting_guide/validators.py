@@ -42,8 +42,8 @@ class PayPalUsernameValidator(validators.RegexValidator):
     """
     regex = r'^[a-zA-Z0-9]+$'
     message = _(
-        'Enter a valid PayPal username for https://PayPal.me/. Only letters and '
-        'numbers are valid.'
+        "Enter a valid PayPal username for https://paypal.me/. Only letters and "
+        "numbers are valid."
     )
     flags = 0
 
