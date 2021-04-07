@@ -70123,6 +70123,7 @@ function Link(_ref) {
   var state = _ref.state,
       meeting = _ref.meeting,
       setState = _ref.setState;
+  var encodedMeetingName = encodeURIComponent(meeting.name);
   var flags = _helpers__WEBPACK_IMPORTED_MODULE_1__["settings"].flags.filter(function (type) {
     return meeting.types.includes(type);
   }).sort().join(', ');
@@ -70134,12 +70135,13 @@ function Link(_ref) {
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: window.location.pathname + '?meeting=' + meeting.slug + '&meeting_name=' + meeting.name,
+    href: window.location.pathname + '?meeting=' + meeting.slug + '&meeting_name=' + encodedMeetingName,
     onClick: function onClick(e) {
       e.preventDefault();
       setState(_objectSpread(_objectSpread({}, state), {}, {
         input: _objectSpread(_objectSpread({}, state.input), {}, {
-          meeting: meeting.slug
+          meeting: meeting.slug,
+          meeting_name: encodedMeetingName
         })
       }));
     }
@@ -71962,7 +71964,7 @@ var settings = deepmerge__WEBPACK_IMPORTED_MODULE_0___default()({
   },
   modes: ['search'],
   //location and me will be appended if capable
-  params: ['search', 'mode', 'view', 'meeting'],
+  params: ['search', 'mode', 'view', 'meeting', 'meeting_name'],
   //input other than filters
   search: 'default',
   //one of 'default', 'quoted' or 'or'
