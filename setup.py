@@ -15,7 +15,8 @@ setup(
     packages=find_packages(),
     zip_safe=False,
     setup_requires=["setuptools_scm"],
-    use_scm_version=True,
+    version="1.2.1",
+    # use_scm_version=True,
     install_requires=[
         "wagtailgeowidget<=5.1",
         "django-mptt<=0.11.0",
