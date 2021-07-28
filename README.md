@@ -54,7 +54,7 @@ Modify the `MEETING_GUIDE` setting in Django's settings to change the defaults f
 
 ```python
 # Google Maps, Used by the Wagtail Content Management System
-GOOGLE_MAPS_V3_APIKEY = "AIzaSyCFYHEYHUoPMBJc2eO1YbRqjBafhI3Kr3g"
+GOOGLE_MAPS_V3_APIKEY = "FAKEoyCFYHEYHUoBLAHBLAHYbRqjBafhI3BlAh"
 GOOGLE_MAPS_API_BOUNDS = "39.732679,-77.821655|41.553879,-73.896790"
 GEO_WIDGET_DEFAULT_LOCATION = {"lat": 40.0024137, "lng": -75.258117}
 GEO_WIDGET_ZOOM = 14
