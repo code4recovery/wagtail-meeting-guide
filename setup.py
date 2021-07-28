@@ -15,7 +15,7 @@ setup(
     packages=find_packages(),
     zip_safe=False,
     setup_requires=["setuptools_scm"],
-    version="1.2.1",
+    version="1.2.2",
     # use_scm_version=True,
     install_requires=[
         "wagtailgeowidget<=5.1",
