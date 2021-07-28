@@ -64,19 +64,15 @@ MAPBOX_KEY = "YourMaxBoxKeyGoesHere"  # noqa
 
 # Example of sending settings to tsml-ui
 MEETING_GUIDE = {
-    "flags": ["Men", "Women", "Wheelchair", "Temp Closed"],
-    "map": {
-        "key": MAPBOX_KEY,
-    },
-    "search": "or",
+    "flags": ["M", "W", "X", "TC"],
     "show": {
         "listButtons": True,
     },
     "strings": {
         "en": {
             "types": {
-                "TC": "Temp Closed",
                 "X": "Wheelchair",
+                "TC": "Temp Closed",
             },
         },
     },
