@@ -8,10 +8,14 @@ def get_meeting_guide_settings():
     meeting_guide_settings = {
         "defaults": {
             "title": True,
+            "timezone": "America/New_York",
         },
         "show": {
             "listButtons": True,
-        },      
+        },
+        "map": {
+            "key": "",
+        },
     }
 
     meeting_guide_settings.update(settings.MEETING_GUIDE)

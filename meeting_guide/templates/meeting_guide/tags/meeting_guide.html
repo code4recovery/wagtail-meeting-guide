@@ -1,7 +1,10 @@
 {% load static %}
 
-<meetings src="{% url "meeting-guide:api" %}"></meetings>
-
+<div id="tsml-ui" 
+  data-src="{% url "meeting-guide:api" %}"
+  data-timezone="{{ timezone }}" 
+  data-mapbox="{{ mapbox_key }}"
+  ></div>
 <script>
 var tsml_react_config = {{ meeting_guide_settings|safe }};
 </script>

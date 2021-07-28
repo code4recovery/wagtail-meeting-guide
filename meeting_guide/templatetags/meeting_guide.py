@@ -12,8 +12,10 @@ def meeting_guide(context):
     """
     Display the ReactJS drive Meeting Guide list.
     """
-    meeting_guide_settings = json_dumps(get_meeting_guide_settings())
-
+    settings = get_meeting_guide_settings()
+    json_meeting_guide_settings = json_dumps(settings)
     return {
-        "meeting_guide_settings": meeting_guide_settings,
+        "meeting_guide_settings": json_meeting_guide_settings,
+        "mapbox_key": settings["map"]["key"],
+        "timezone": settings["defaults"]["timezone"],
     }
