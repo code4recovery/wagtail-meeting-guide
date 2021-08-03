@@ -68,6 +68,9 @@ MEETING_GUIDE = {
     "show": {
         "listButtons": True,
     },
+    "map": {
+        "key": MAPBOX_KEY,
+    },
     "strings": {
         "en": {
             "types": {
