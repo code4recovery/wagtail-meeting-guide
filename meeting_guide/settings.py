@@ -6,10 +6,7 @@ def get_meeting_guide_settings():
     Define default settings and allow them to be overridden.
     """
     meeting_guide_settings = {
-        "defaults": {
-            "title": True,
-            "timezone": "America/New_York",
-        },
+        "timezone": "America/New_York",
         "show": {
             "listButtons": True,
         },

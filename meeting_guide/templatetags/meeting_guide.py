@@ -17,5 +17,5 @@ def meeting_guide(context):
     return {
         "meeting_guide_settings": json_meeting_guide_settings,
         "mapbox_key": settings["map"]["key"],
-        "timezone": settings["defaults"]["timezone"],
+        "timezone": settings["timezone"],
     }
