@@ -3,7 +3,7 @@ import json
 import re
 
 from django.conf import settings
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse
 from django.middleware.gzip import GZipMiddleware
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
@@ -203,7 +203,7 @@ class MeetingsAPIView(MeetingsBaseView):
                     "notes": notes,
                     "updated": f"{meeting.last_published_at if meeting.last_published_at else datetime.datetime.now():%Y-%m-%d %H:%M:%S}",
                     "url": f"{settings.BASE_URL}{meeting.url_path}",
-                    "day": str(meeting.day_of_week),
+                    "day": meeting.day_of_week,
                     "time": f"{meeting.start_time:%H:%M}",
                     "end_time": f"{meeting.end_time:%H:%M}",
                     "conference_url": meeting.conference_url,
@@ -211,8 +211,8 @@ class MeetingsAPIView(MeetingsBaseView):
                     "types": meeting_types,
                     "location": location,
                     "formatted_address": meeting.meeting_location.formatted_address,
-                    "latitude": str(meeting.meeting_location.lat),
-                    "longitude": str(meeting.meeting_location.lng),
+                    "latitude": meeting.meeting_location.lat,
+                    "longitude": meeting.meeting_location.lng,
                     "regions": region_ancestors,
                     "group": group_info,
                     "paypal": f"https://paypal.me/{meeting.paypal}" if len(meeting.paypal) else "",
@@ -220,14 +220,9 @@ class MeetingsAPIView(MeetingsBaseView):
                 }
             )
 
-        if settings.DEBUG:
-            meetings_dict = json.dumps(meetings_dict, indent=4)
-        else:
-            meetings_dict = json.dumps(meetings_dict)
-
         response = GZipMiddleware().process_response(
             request,
-            JsonResponse(meetings_dict),
+            HttpResponse(json.dumps(meetings_dict), content_type="application/json")
         )
 
         return response
