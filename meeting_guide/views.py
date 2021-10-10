@@ -3,7 +3,8 @@ import json
 import re
 
 from django.conf import settings
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
+from django.middleware.gzip import GZipMiddleware
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 from django.views.generic import TemplateView
@@ -197,23 +198,18 @@ class MeetingsAPIView(MeetingsBaseView):
 
             meetings_dict.append(
                 {
-                    # "id": meeting.id,
                     "name": meeting.title,
                     "slug": meeting.slug,
                     "notes": notes,
                     "updated": f"{meeting.last_published_at if meeting.last_published_at else datetime.datetime.now():%Y-%m-%d %H:%M:%S}",
-                    # "location_id": meeting.meeting_location.id,
                     "url": f"{settings.BASE_URL}{meeting.url_path}",
                     "day": str(meeting.day_of_week),
                     "time": f"{meeting.start_time:%H:%M}",
                     "end_time": f"{meeting.end_time:%H:%M}",
-                    # time_formatted?
                     "conference_url": meeting.conference_url,
                     "conference_phone": meeting.conference_phone,
                     "types": meeting_types,
                     "location": location,
-                    "location_notes": "",
-                    "location_url": f"{settings.BASE_URL}{meeting.meeting_location.url_path}",
                     "formatted_address": meeting.meeting_location.formatted_address,
                     "latitude": str(meeting.meeting_location.lat),
                     "longitude": str(meeting.meeting_location.lng),
@@ -229,7 +225,12 @@ class MeetingsAPIView(MeetingsBaseView):
         else:
             meetings_dict = json.dumps(meetings_dict)
 
-        return HttpResponse(meetings_dict, content_type="application/json")
+        response = GZipMiddleware().process_response(
+            request,
+            JsonResponse(meetings_dict),
+        )
+
+        return response
 
 
 class RegionAPIView(MeetingsBaseView):
