@@ -19,6 +19,7 @@ setup(
     install_requires=[
         "wagtailgeowidget<=5.1",
         "django-mptt<0.14.0",
+        "django-weasyprint==0.5.4",
     ],
     classifiers=[
         "Development Status :: 5 - Production/Stable",
