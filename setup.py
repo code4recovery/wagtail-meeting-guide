@@ -18,8 +18,7 @@ setup(
     use_scm_version=True,
     install_requires=[
         "wagtailgeowidget<=5.1",
-        "django-mptt<=0.11.0",
-        "django-weasyprint<=0.6",
+        "django-mptt<0.14.0",
     ],
     classifiers=[
         "Development Status :: 5 - Production/Stable",
