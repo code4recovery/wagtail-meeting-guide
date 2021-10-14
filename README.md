@@ -54,19 +54,22 @@ Modify the `MEETING_GUIDE` setting in Django's settings to change the defaults f
 
 ```python
 # Google Maps, Used by the Wagtail Content Management System
-GOOGLE_MAPS_V3_APIKEY = "FAKEoyCFYHEYHUoBLAHBLAHYbRqjBafhI3BlAh"
+GOOGLE_MAPS_V3_APIKEY = "FAKEoyCFYHEYHUoBLAHBLAHYbRqjBafhI3FAKE"
 GOOGLE_MAPS_API_BOUNDS = "39.732679,-77.821655|41.553879,-73.896790"
 GEO_WIDGET_DEFAULT_LOCATION = {"lat": 40.0024137, "lng": -75.258117}
 GEO_WIDGET_ZOOM = 14
 
 # Key for MapBox, used by the front end served to users.
-MAPBOX_KEY = "YourMaxBoxKeyGoesHere"  # noqa
+MAPBOX_KEY = "YourMaxBoxKeyGoesHere"
 
 # Example of sending settings to tsml-ui
 MEETING_GUIDE = {
     "flags": ["X", "TC"],
     "show": {
         "listButtons": True,
+    },
+    "map": {
+        "key": MAPBOX_KEY,
     },
     "strings": {
         "en": {
