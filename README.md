@@ -68,9 +68,6 @@ MEETING_GUIDE = {
     "show": {
         "listButtons": True,
     },
-    "map": {
-        "key": MAPBOX_KEY,
-    },
     "strings": {
         "en": {
             "types": {
@@ -79,6 +76,7 @@ MEETING_GUIDE = {
             },
         },
     },
+    "feedback_emails": "manager@your-integroup.org",
 }
 ```
 
