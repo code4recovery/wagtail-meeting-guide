@@ -50,13 +50,13 @@ You can include the Meeting Guide within any Django Template. Here is an example
 
 ## More Settings
 
-Modify the `MEETING_GUIDE` setting in Django's settings to change the defaults from those in pass along values in [https://github.com/code4recovery/tsml-ui#advanced-customization](tsml-ui), for example:
+You can modify the `MEETING_GUIDE` setting in Django's settings to change the defaults in [https://github.com/code4recovery/tsml-ui#advanced-customization](tsml-ui). Here is an example settings block:
 
 ```python
 # Google Maps, Used by the Wagtail Content Management System
 GOOGLE_MAPS_V3_APIKEY = "FAKEoyCFYHEYHUoBLAHBLAHYbRqjBafhI3FAKE"
 GOOGLE_MAPS_API_BOUNDS = "39.732679,-77.821655|41.553879,-73.896790"
-GEO_WIDGET_DEFAULT_LOCATION = {"lat": 40.0024137, "lng": -75.258117}
+GEO_WIDGET_DEFAULT_LOCATION = {"lat": 40.0024137, "lng": -75.258117}  # The Philadelphia area
 GEO_WIDGET_ZOOM = 14
 
 # Key for MapBox, used by the front end served to users.
