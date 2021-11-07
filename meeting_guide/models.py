@@ -327,7 +327,6 @@ class Meeting(Page):
         # Associate with the parent meeting location, and save in case this
         # is new, before we change meeting types.
         self.meeting_location = Location.objects.get(pk=self.get_parent().id)
-        super().save(*args, **kwargs)
 
         # Automagically add or remove the online meeting type.
         online_meeting_type = MeetingType.objects.get(spec_code="ONL")

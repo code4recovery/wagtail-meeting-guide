@@ -55,20 +55,6 @@ class MeetingsReactJSView(TemplateView):
         return context
 
 
-class MeetingsDataTablesView(MeetingsBaseView):
-    """
-    List all meetings in a jQuery datatable.
-    """
-
-    template_name = "meeting_guide/meetings_list.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["meetings"] = self.get_meetings()
-
-        return context
-
-
 class MeetingsPrintView(TemplateView):
     """
     List all meetings in an HTML printable format.
@@ -226,23 +212,3 @@ class MeetingsAPIView(MeetingsBaseView):
         )
 
         return response
-
-
-class RegionAPIView(MeetingsBaseView):
-    """
-    Return a JSON response of the meeting list.
-    """
-
-    def get(self, request, *args, **kwargs):
-        tree = get_region_tree()
-        return HttpResponse(json.dumps(tree), content_type="application/json")
-
-
-from django.views.generic.edit import UpdateView
-
-from .models import Location
-
-
-class LocationUpdate(UpdateView):
-    model = Location
-    fields = ["title", "address1", "address2", "city", "state", "postal_code"]
