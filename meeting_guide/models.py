@@ -199,9 +199,6 @@ class Meeting(Page):
     group = models.ForeignKey(
         Group, null=True, blank=True, on_delete=models.SET_NULL, related_name="meetings"
     )
-    meeting_location = models.ForeignKey(
-        Location, related_name="meetings", null=True, on_delete=models.SET_NULL
-    )
     start_time = models.TimeField(null=True)
     end_time = models.TimeField(null=True)
     day_of_week = models.SmallIntegerField(default=0, choices=DAY_OF_WEEK)
@@ -307,28 +304,20 @@ class Meeting(Page):
 
     search_fields = Page.search_fields + [
         SearchField("group", partial_match=True),
-        SearchField("meeting_location", partial_match=True),
     ]
 
     parent_page_types = ["Location"]
 
     class Meta:
         indexes = [
-            models.Index(fields=["meeting_location"]),
             models.Index(fields=["day_of_week"]),
         ]
 
     def save(self, *args, **kwargs):
         """
-        Associate the meeting with the Location parent and save. Then
-        automatically assign the ONLINE meeting type if the field is
+        Automatically assign the ONLINE meeting type if the field is
         populated.
         """
-        # Associate with the parent meeting location, and save in case this
-        # is new, before we change meeting types.
-        self.meeting_location = Location.objects.get(pk=self.get_parent().id)
-        super().save(*args, **kwargs)
-
         # Automagically add or remove the online meeting type.
         online_meeting_type = MeetingType.objects.get(spec_code="ONL")
         if self.conference_url:
