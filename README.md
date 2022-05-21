@@ -31,7 +31,7 @@ The API end point for the locations and meetings you create in Wagtail has to be
 ```python
 urlpatterns = [
     ...
-    path("meeting-guide/", include("meeting_guide.urls")),
+    path("meetings/", include("meeting_guide.urls")),
     ...
 ]
 ```
