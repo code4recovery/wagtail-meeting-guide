@@ -41,109 +41,21 @@ class MeetingsBaseView(TemplateView):
         )
 
 
-class MeetingsReactJSView(TemplateView):
+class MeetingsHomeView(TemplateView):
     """
     List all meetings in the Meeting Guide ReactJS plugin.
     """
 
-    template_name = "meeting_guide/meetings_list_react.html"
+    template_name = "meeting_guide/meetings_home.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["settings"] = json.dumps(get_meeting_guide_settings())
+        settings = get_meeting_guide_settings()
+        context["settings"] = json.dumps(settings)
+        context["mapbox_key"] = settings["map"]["key"]
+        context["timezone"] = settings["timezone"]
 
         return context
-
-
-class MeetingsPrintView(TemplateView):
-    """
-    List all meetings in an HTML printable format.
-    """
-
-    template_name = "meeting_guide/meetings_list_print.html"
-
-    def get_meetings(self):
-        return (
-            Meeting.objects.live().select_related(
-                "meeting_location__region__parent", "group",
-            ).filter(status__gte=1)
-            .order_by(
-                "day_of_week",
-                "meeting_location__region__parent__name",
-                "meeting_location__postal_code",
-                "start_time",
-            )
-        )  # [0:10]
-
-    def get_context_data(self, **kwargs):
-        meetings = self.get_meetings()
-        meeting_dict = {}
-
-        slice_address = re.compile(r"(.*), PA [0-9]+, USA")
-
-        for m in meetings:
-            day = m.get_day_of_week_display()
-            region = m.meeting_location.region.parent.name
-            postal_code = m.meeting_location.postal_code
-            types = list(m.types.values_list("intergroup_code", flat=True))
-
-            if region not in meeting_dict:
-                meeting_dict[region] = {}
-            if day not in meeting_dict[region]:
-                meeting_dict[region][day] = {}
-            if postal_code not in meeting_dict[region][day]:
-                meeting_dict[region][day][postal_code] = []
-
-            group_address = re.match(
-                slice_address, m.meeting_location.formatted_address
-            )
-
-            if group_address and group_address.group(1):
-                formatted_address = group_address.group(1).split(",")[0]
-            else:
-                formatted_address = m.meeting_location.formatted_address
-
-            meeting_dict[region][day][postal_code].append(
-                {
-                    "name": m.title,
-                    "time_formatted": f"{m.start_time:%I:%M%p}",
-                    "day": day,
-                    "types": types,
-                    "location": m.meeting_location.title,
-                    "formatted_address": formatted_address,
-                    "group": getattr(m.group, "name", None),
-                    "district": m.district,
-                    "gso_number": getattr(m.group, "gso_number", None),
-                    "meeting_details": m.details,
-                    "location_details": m.meeting_location.details,
-                }
-            )
-
-        context = super().get_context_data(**kwargs)
-        context["meetings"] = meeting_dict
-        context["meeting_types"] = (
-            MeetingType.objects.values("type_name", "intergroup_code")
-            .filter(intergroup_code__isnull=False)
-            .order_by("display_order", "intergroup_code")
-        )
-
-        return context
-
-
-class MeetingsPrintDownloadView(WeasyTemplateResponseMixin, MeetingsPrintView):
-    """
-    Provide a PDF download of all active meetings, sourcing
-    the HTML printable format.
-
-    SEPIA WIDTH: 3.75" x 5.5" papersize (0.25" margin)
-    """
-
-    from django.contrib.staticfiles import finders
-
-    meeting_guide_css_file = finders.find("meeting_guide/print.css")
-
-    pdf_stylesheets = [meeting_guide_css_file]
-    pdf_presentational_hints = True
 
 
 class MeetingsAPIView(MeetingsBaseView):

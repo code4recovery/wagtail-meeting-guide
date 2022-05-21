@@ -16,6 +16,7 @@ def get_meeting_guide_settings():
     }
 
     meeting_guide_settings.update(settings.MEETING_GUIDE)
+    print(meeting_guide_settings)
 
     return meeting_guide_settings
 
