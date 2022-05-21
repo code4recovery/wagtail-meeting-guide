@@ -94,29 +94,36 @@ class MeetingsAPIView(MeetingsBaseView):
 
             notes = meeting.details
 
-            meetings_dict.append(
-                {
-                    "name": meeting.title,
-                    "slug": meeting.slug,
-                    "notes": notes,
-                    "updated": f"{meeting.last_published_at if meeting.last_published_at else datetime.datetime.now():%Y-%m-%d %H:%M:%S}",
-                    "url": f"{settings.BASE_URL}{meeting.url_path}",
-                    "day": meeting.day_of_week,
-                    "time": f"{meeting.start_time:%H:%M}",
-                    "end_time": f"{meeting.end_time:%H:%M}",
-                    "conference_url": meeting.conference_url,
-                    "conference_phone": meeting.conference_phone,
-                    "types": meeting_types,
-                    "location": location,
-                    "formatted_address": meeting.meeting_location.formatted_address,
-                    "latitude": meeting.meeting_location.lat,
-                    "longitude": meeting.meeting_location.lng,
-                    "regions": region_ancestors,
-                    "group": group_info,
-                    "paypal": f"https://paypal.me/{meeting.paypal}" if len(meeting.paypal) else "",
-                    "venmo": meeting.venmo,
-                }
-            )
+            meeting_dict = {
+                "name": meeting.title,
+                "slug": meeting.slug,
+                "notes": notes,
+                "updated": f"{meeting.last_published_at if meeting.last_published_at else datetime.datetime.now():%Y-%m-%d %H:%M:%S}",
+                "url": f"{settings.BASE_URL}/meetings/?meeting={meeting.slug}",
+                "day": meeting.day_of_week,
+                "time": f"{meeting.start_time:%H:%M}",
+                "end_time": f"{meeting.end_time:%H:%M}",
+                "conference_url": meeting.conference_url,
+                "conference_phone": meeting.conference_phone,
+                "types": meeting_types,
+                "location": location,
+                "formatted_address": meeting.meeting_location.formatted_address,
+                "latitude": meeting.meeting_location.lat,
+                "longitude": meeting.meeting_location.lng,
+                "regions": region_ancestors,
+                "group": group_info,
+            }
+
+            if len(meeting.paypal):
+                meeting_dict["paypal"] = f"https://paypal.me/{meeting.paypal}"
+
+            if len(meeting.venmo):
+                meeting_dict["venmo"] = meeting.venmo
+
+            if "feedback_url" in settings.MEETING_GUIDE:
+                meeting_dict["feedback_url"] = settings.MEETING_GUIDE["feedback_url"]
+
+            meetings_dict.append(meeting_dict)
 
         response = GZipMiddleware().process_response(
             request,
