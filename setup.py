@@ -5,7 +5,10 @@ with open("README.md") as f:
 
 setup(
     name="wagtail-meeting_guide",
-    description="Meeting Guide compatible Python package for Django's Wagtail CMS: meetings, locations, and API.",
+    description=(
+        "Meeting Guide compatible Python package for Django's Wagtail CMS: meetings, "
+        "locations, and API.",
+    ),
     long_description=long_description,
     long_description_content_type="text/markdown",
     author="Tim Allen",
@@ -19,7 +22,6 @@ setup(
     install_requires=[
         "wagtailgeowidget",
         "django-mptt",
-        "django-weasyprint",
     ],
     classifiers=[
         "Development Status :: 5 - Production/Stable",
@@ -28,10 +30,11 @@ setup(
         "License :: OSI Approved :: BSD License",
         "Operating System :: OS Independent",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3 :: Only",
         "Framework :: Django",
         "Framework :: Django :: 2.0",
