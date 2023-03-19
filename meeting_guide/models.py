@@ -10,7 +10,7 @@ from mptt.models import MPTTModel, TreeForeignKey
 from wagtail.core.models import Page
 from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel, FieldRowPanel
 from wagtail.search.index import SearchField
-from wagtailgeowidget.edit_handlers import GeoPanel
+from wagtailgeowidget.panels import GoogleMapsPanel
 from wagtailgeowidget.helpers import geosgeometry_str_to_struct
 
 from .validators import (
@@ -119,7 +119,7 @@ class Location(Page):
         MultiFieldPanel(
             [
                 FieldPanel("formatted_address"),
-                GeoPanel("lat_lng", address_field="formatted_address"),
+                GoogleMapsPanel("lat_lng", address_field="formatted_address"),
             ],
             "Geocoded Address",
         ),
