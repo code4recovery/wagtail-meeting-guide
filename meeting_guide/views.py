@@ -114,7 +114,7 @@ class MeetingsAPIView(MeetingsBaseView):
             }
 
             if len(meeting.paypal):
-                meeting_dict["paypal"] = f"https://paypal.me/{meeting.paypal}"
+                meeting_dict["paypal"] = meeting.paypal
 
             if len(meeting.venmo):
                 meeting_dict["venmo"] = meeting.venmo
