@@ -4,12 +4,10 @@ import re
 
 from django.conf import settings
 from django.http import HttpResponse
-from django.middleware.gzip import GZipMiddleware
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
+from django.views.decorators.gzip import gzip_page
 from django.views.generic import TemplateView
-
-from django_weasyprint import WeasyTemplateResponseMixin
 
 from .models import Meeting, MeetingType, Region
 from .settings import get_meeting_guide_settings
@@ -58,6 +56,7 @@ class MeetingsHomeView(TemplateView):
         return context
 
 
+@method_decorator(gzip_page, name="dispatch")
 class MeetingsAPIView(MeetingsBaseView):
     """
     Return a JSON response of the meeting list.
@@ -125,9 +124,4 @@ class MeetingsAPIView(MeetingsBaseView):
 
             meetings_dict.append(meeting_dict)
 
-        response = GZipMiddleware().process_response(
-            request,
-            HttpResponse(json.dumps(meetings_dict), content_type="application/json")
-        )
-
-        return response
+        return HttpResponse(json.dumps(meetings_dict), content_type="application/json")
