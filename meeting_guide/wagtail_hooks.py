@@ -1,12 +1,10 @@
 from django.contrib.admin import SimpleListFilter
 from django.core.cache import cache
 
-from wagtail.contrib.modeladmin.options import (
-    ModelAdmin,
-    ModelAdminGroup,
-    modeladmin_register,
-)
-from wagtail.core.signals import page_published
+from wagtail.signals import page_published
+from wagtail.snippets.models import register_snippet
+from wagtail.snippets.views.snippets import SnippetViewSet, SnippetViewSetGroup
+
 from .models import Group, GroupContribution, MeetingType, Region, Location, Meeting
 
 
@@ -57,10 +55,10 @@ class RegionListFilter(SimpleListFilter):
         return queryset
 
 
-class MeetingTypeAdmin(ModelAdmin):
+class MeetingTypeAdmin(SnippetViewSet):
     model = MeetingType
     menu_label = "Meeting Types"
-    menu_icon = "fa-folder-open"
+    menu_icon = "folder-open-1"
     add_to_settings_menu = True
     list_display = (
         "type_name",
@@ -69,44 +67,45 @@ class MeetingTypeAdmin(ModelAdmin):
         "display_order",
     )
     ordering = ("display_order", "type_name")
+    search_fields = ("type_name",)
 
 
-class RegionAdmin(ModelAdmin):
+class RegionAdmin(SnippetViewSet):
     model = Region
     menu_icon = "doc-full-inverse"
     empty_value_display = "-----"
     list_display = ("parent", "name")
     ordering = ("parent", "name")
-    list_filter = (RegionListFilter,)
+    # list_filter = (RegionListFilter,)
 
     def get_root_regions(self, obj):
         return Region.objects.filter(parent=None)
 
 
-class GroupAdmin(ModelAdmin):
+class GroupAdmin(SnippetViewSet):
     model = Group
     menu_label = "Groups"
-    menu_icon = "fa-folder-open"
+    menu_icon = "folder-open-inverse"
     add_to_settings_menu = False
     list_display = ("name", "gso_number")
     search_fields = ("name",)
 
 
-class GroupContributionAdmin(ModelAdmin):
+class GroupContributionAdmin(SnippetViewSet):
     model = GroupContribution
     menu_label = "Contributions"
-    menu_icon = "fa-folder-open"
+    menu_icon = "folder-open-inverse"
     add_to_settings_menu = False
     list_display = ("group", "date", "amount")
     list_filter = ("group",)
     search_fields = ("group",)
 
 
-class MeetingGuideAdminGroup(ModelAdminGroup):
+class MeetingGuideAdminGroup(SnippetViewSetGroup):
     menu_label = "Meeting Guide"
-    menu_icon = "fa-th"
+    menu_icon = "calendar-alt"
     menu_order = 1000
     items = (MeetingTypeAdmin, RegionAdmin, GroupAdmin, GroupContributionAdmin)
 
 
-modeladmin_register(MeetingGuideAdminGroup)
+register_snippet(MeetingGuideAdminGroup)

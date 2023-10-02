@@ -7,8 +7,9 @@ from django.utils.functional import cached_property
 
 from modelcluster.fields import ParentalManyToManyField
 from mptt.models import MPTTModel, TreeForeignKey
-from wagtail.core.models import Page
-from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel, FieldRowPanel
+from wagtail.models import Page
+from wagtail.admin.panels import FieldPanel, MultiFieldPanel, FieldRowPanel
+from wagtail.search import index
 from wagtail.search.index import SearchField
 from wagtailgeowidget.panels import GoogleMapsPanel
 from wagtailgeowidget.helpers import geosgeometry_str_to_struct
@@ -47,7 +48,13 @@ class Group(models.Model):
     STATUS_CHOICES = ((0, "Inactive"), (1, "Active"))
 
     name = models.CharField(max_length=255)
-    gso_number = models.CharField(max_length=10, null=True, blank=True)
+    gso_number = models.CharField(
+        max_length=10,
+        null=True,
+        blank=True,
+        help_text='General Service Office (GSO) number, if applicable.',
+        verbose_name='GSO Number',
+    )
     status = models.SmallIntegerField(default=1, choices=STATUS_CHOICES)
     founded = models.DateField(null=True, blank=True)
     history = models.TextField(null=True, blank=True)
@@ -209,7 +216,7 @@ class Meeting(Page):
     details = models.TextField(
         null=True, blank=True, help_text="Additional details about the meeting."
     )
-    area = models.CharField(max_length=10, blank=True)
+    area = models.CharField(max_length=30, blank=True)
     district = models.CharField(max_length=10, blank=True)
     types = ParentalManyToManyField(
         MeetingType,
