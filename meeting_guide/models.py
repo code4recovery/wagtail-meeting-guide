@@ -4,6 +4,7 @@ from django.core.validators import MinLengthValidator
 from django.db import models
 from django.forms import CheckboxSelectMultiple
 from django.utils.functional import cached_property
+from django.utils.html import mark_safe
 
 from modelcluster.fields import ParentalManyToManyField
 from mptt.models import MPTTModel, TreeForeignKey
@@ -216,7 +217,11 @@ class Meeting(Page):
     details = models.TextField(
         null=True, blank=True, help_text="Additional details about the meeting."
     )
-    area = models.CharField(max_length=30, blank=True)
+    area = models.CharField(
+        max_length=10,
+        blank=True,
+        help_text=mark_safe("Every A.A. area has a number. Find yours at <strong><a href='https://www.aa.org/sites/default/files/literature/smf-146_AreaMapUSCAN_EN_1121.pdf' target='_blank'>aa.org</a></strong>")
+    )
     district = models.CharField(max_length=10, blank=True)
     types = ParentalManyToManyField(
         MeetingType,
