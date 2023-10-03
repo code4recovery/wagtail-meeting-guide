@@ -23,7 +23,7 @@ page_published.connect(receiver, sender=Meeting)
 
 class RegionFilter(WagtailFilterSet):
     parent = ModelChoiceFilter(
-        queryset=Region.objects.filter(parent__isnull=True),
+        queryset=Region.objects.filter(parent__isnull=True).order_by("name"),
         label='Select Region'
     )
 
