@@ -16,7 +16,7 @@ A Google Geocode API key and MapBox API key are also required. The Google API ke
     * `WAGTAIL_SITE_NAME` (MyCity Intergroup): the name of your website, typically the intergroup.
     * `BASE_URL` (https://AAMyCity.org): the base URL or the website.
 * Run migrations: `python manage.py migrate meeting_guide`
-* Load Meeting Guide's meeting types: `python manage.py loaddata meeting_guide_types.json`
+* Load Meeting Guide's meeting types: `python manage.py loaddata spec_meeting_types.json`
 
 ## Configuration
 
@@ -48,9 +48,11 @@ You can include the Meeting Guide within any Django Template. Here is an example
 {% endblock content %}
 ```
 
+> **Note:** `wagtail-meeting-guide` does not come with the template for `meeting_guide/location.html` (the template for the `Location` page). Use the code above in your own template as needed.
+
 ## More Settings
 
-You can modify the `MEETING_GUIDE` setting in Django's settings to change the defaults in [https://github.com/code4recovery/tsml-ui#advanced-customization](tsml-ui). Here is an example settings block:
+You can modify the `MEETING_GUIDE` setting in Django's settings to change the defaults in [https://github.com/code4recovery/tsml-ui#advanced-customization](https://github.com/code4recovery/tsml-ui#advanced-customization). Here is an example settings block:
 
 ```python
 # Google Maps, Used by the Wagtail Content Management System
